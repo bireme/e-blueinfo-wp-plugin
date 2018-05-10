@@ -1,0 +1,1 @@
+# memoria-azul-wp-plugin
