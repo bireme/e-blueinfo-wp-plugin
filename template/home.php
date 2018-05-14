@@ -403,7 +403,6 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
                                     <header class="row-fluid border-bottom marginbottom15">
                                         <h1 class="h1-header"><?php echo translate_label($memoria_azul_texts, 'language', 'filter'); ?></h1>
                                     </header>
-                                    <?php //echo "<pre>"; print_r($language_list); echo "</pre>"; ?>
                                     <ul>
                                         <?php foreach ( $language_list as $lang ) { ?>
                                             <li class="cat-item">
