@@ -1,0 +1,227 @@
+# Copyright (C) 2018 LeisRef
+# This file is distributed under the same license as the LeisRef package.
+msgid ""
+msgstr ""
+"Project-Id-Version: LeisRef 0.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/leisref\n"
+"POT-Creation-Date: 2018-02-06 14:48:26+00:00\n"
+"PO-Revision-Date: 2018-02-06 12:49-0300\n"
+"Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Spanish\n"
+
+#: leisref.php:92
+msgid "Legislation Settings"
+msgstr "Ajustes Legislación"
+
+#: leisref.php:92
+#: leisref.php:179
+msgid "Legislation"
+msgstr "Legislación"
+
+#: leisref.php:139
+msgid "Legislation sidebar"
+msgstr "Legislación sidebar"
+
+#: lib/Paginator.php:38
+#: lib/Paginator.php:39
+#: lib/Paginator.php:50
+#: lib/Paginator.php:56
+#: lib/Paginator.php:65
+#: lib/Paginator.php:66
+#: lib/Paginator.php:72
+#: lib/Paginator.php:73
+msgid "go to page"
+msgstr "ir a la página"
+
+#: settings.php:9
+msgid "Legislation settings"
+msgstr "Legislación ajustes"
+
+#: settings.php:18
+msgid "Plugin page"
+msgstr "Pagina del plugin"
+
+#: settings.php:22
+msgid "Filter query"
+msgstr "Filtro de búsqueda"
+
+#: settings.php:26
+msgid "AddThis profile ID"
+msgstr ""
+
+#: settings.php:30
+msgid "Google Analytics code"
+msgstr "Código del Google Analytics"
+
+#: settings.php:34
+msgid "Fulltext"
+msgstr "Texto completo"
+
+#: settings.php:38
+msgid "Present alternative fulltext links"
+msgstr "Presentar enlaces alternativos de texto completo"
+
+#: settings.php:53
+msgid "Home URL"
+msgstr "Enlace de la página inicial"
+
+#: settings.php:58
+msgid "Page title"
+msgstr "Titulo"
+
+#: settings.php:74
+msgid "Display filters"
+msgstr "Mostrar filtros"
+
+#: settings.php:80
+msgid "Subject"
+msgstr "Asunto"
+
+#: settings.php:85
+msgid "Act type"
+msgstr "Tipo del acto"
+
+#: settings.php:90
+msgid "Country/region"
+msgstr "País/región"
+
+#: settings.php:96
+msgid "Database"
+msgstr "Base de datos"
+
+#: settings.php:102
+msgid "Collection"
+msgstr "Colección"
+
+#: settings.php:107
+#: template/metadata.php:61
+msgid "Language"
+msgstr "Idioma"
+
+#: settings.php:112
+msgid "Year"
+msgstr "Año"
+
+#: settings.php:122
+msgid "Save changes"
+msgstr "Guardar cambios"
+
+#: template/detail.php:35
+#: template/home.php:69
+msgid "Portuguese"
+msgstr "Português"
+
+#: template/detail.php:36
+#: template/home.php:70
+msgid "Spanish"
+msgstr "Español"
+
+#: template/detail.php:37
+#: template/home.php:71
+msgid "English"
+msgstr "Inglês"
+
+#: template/detail.php:46
+#: template/home.php:76
+msgid "Home"
+msgstr "Inicio"
+
+#: template/detail.php:48
+msgid "Act"
+msgstr "Ato"
+
+#: template/detail.php:60
+msgid "Share"
+msgstr "Compartir"
+
+#: template/detail.php:88
+msgid "Related articles"
+msgstr "Artículos relacionados"
+
+#: template/home.php:81
+msgid "Search result"
+msgstr "Resultado de la búsqueda"
+
+#: template/home.php:94
+msgid "Enter one or more words"
+msgstr "Ingrese una o más palabras"
+
+#: template/home.php:95
+msgid "Search"
+msgstr "Buscar"
+
+#: template/home.php:104
+msgid "No results found"
+msgstr "No se han encontrado resultados"
+
+#: template/home.php:107
+msgid "Total"
+msgstr "Total"
+
+#: template/home.php:135
+msgid "Filters"
+msgstr "Filtros"
+
+#: template/home.php:145
+msgid "Selected filters"
+msgstr "Filtros seleccionados"
+
+#: template/metadata.php:31
+msgid "Act country/region"
+msgstr "País/región del acto"
+
+#: template/metadata.php:38
+msgid "Organ issuer"
+msgstr "Órgano Emisor"
+
+#: template/metadata.php:44
+msgid "Act scope"
+msgstr "Esfera del acto"
+
+#: template/metadata.php:55
+msgid "Source"
+msgstr "Fuente"
+
+#: template/metadata.php:87
+#: template/metadata.php:120
+#: template-functions.php:70
+msgid "of"
+msgstr "de"
+
+#: template/metadata.php:157
+msgid "Text in"
+msgstr "Texto en"
+
+#. Plugin Name of the plugin/theme
+msgid "LeisRef"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/bireme/leisref-wp-plugin/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "VHL Legislation Directory WordPress plugin"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "BIREME/OPAS/OMS"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://reddes.bvsalud.org/"
+msgstr ""
+
+#~ msgid "Legislation Directory"
+#~ msgstr "Directorio de legislación"
+
+#~ msgid "Ementa"
+#~ msgstr "Ementa"
+
+#~ msgid "Legislation found"
+#~ msgstr "Legislación encontrada"
