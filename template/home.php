@@ -243,7 +243,7 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
                                         <input type="hidden" name="filter" id="filter" value="" >
 
                                         <?php foreach ( $applied_filter_list as $filter => $filter_values ) :?>
-                                            <strong><?php echo translate_label($memoria_azul_texts, $filter, 'filter') ?></strong>
+                                            <strong class="filter-label"><?php echo translate_label($memoria_azul_texts, $filter, 'filter') ?></strong>
                                             <ul>
                                             <?php foreach ( $filter_values as $value ) :?>
                                                 <input type="hidden" name="apply_filter" class="apply_filter"

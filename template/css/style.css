@@ -136,6 +136,7 @@ input[type=radio]{float:left; margin:3px 5px 0 0;}
 .filter-item-del{background-image: url('image/del.png');width:36px; line-height:20px !important; position:absolute; right:0; top:1px; overflow:hidden; border-radius:11px; text-align:center; }
 .more-items {text-align: right;}
 .more-items a {color: #000;}
+strong.filter-label{display: inline-block;}
 
 /* FOOTER */
 .footer{width:98%; background:rgb(211,211,211); border-top:1px solid rgb(75,95,120); margin-top:50px;padding:1%;}
