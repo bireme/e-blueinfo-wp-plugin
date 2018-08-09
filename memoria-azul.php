@@ -29,7 +29,7 @@ if(!class_exists('Memoria_Azul_Plugin')) {
     class Memoria_Azul_Plugin {
 
         private $plugin_slug = 'memoria-azul';
-        private $service_url = 'http://fi-admin.bvsalud.org/';
+        private $service_url = 'http://fi-admin.data.bvsalud.org/';
         private $similar_docs_url = 'http://similardocs.bireme.org/SDService';
 
         /**
@@ -106,23 +106,38 @@ if(!class_exists('Memoria_Azul_Plugin')) {
                 $pagename = substr($wp->request, $pos_slug);
             }
 
+            // check if request contains doc slug string
+            $doc_slug = '/doc/';
+            $pos_doc_slug = strpos($pagename, $doc_slug);
+            if ( $pos_doc_slug !== false ){
+                $pagename = substr($pagename, 0, $pos_doc_slug + strlen($doc_slug));
+                $pagename = rtrim($pagename, '/');
+            }
+
             if ( is_404() && $pos_slug !== false ){
 
                 $memoria_azul_service_url = $this->service_url;
                 $memoria_azul_plugin_slug = $this->plugin_slug;
                 $similar_docs_url = $this->similar_docs_url;
 
-                if ($pagename == $this->plugin_slug || $pagename == $this->plugin_slug . '/resource'
-                    || $pagename == $this->plugin_slug . '/memoria-azul-feed') {
+                if ($pagename == $this->plugin_slug
+                 || $pagename == $this->plugin_slug . '/doc'
+                 || $pagename == $this->plugin_slug . '/collection'
+                 || $pagename == $this->plugin_slug . '/browse'
+                 || $pagename == $this->plugin_slug . '/search') {
 
     		        add_action( 'wp_enqueue_scripts', array(&$this, 'template_styles_scripts') );
 
     		        if ($pagename == $this->plugin_slug){
     		            $template = MEMORIA_AZUL_PLUGIN_PATH . '/template/home.php';
-    		        }elseif ($pagename == $this->plugin_slug . '/memoria-azul-feed'){
-    		            $template = MEMORIA_AZUL_PLUGIN_PATH . '/template/rss.php';
+                    }elseif ($pagename == $this->plugin_slug . '/collection'){
+    		            $template = MEMORIA_AZUL_PLUGIN_PATH . '/template/collection.php';
+                    }elseif ($pagename == $this->plugin_slug . '/browse'){
+    		            $template = MEMORIA_AZUL_PLUGIN_PATH . '/template/browse.php';
+                    }elseif ($pagename == $this->plugin_slug . '/search'){
+    		            $template = MEMORIA_AZUL_PLUGIN_PATH . '/template/search.php';
     		        }else{
-    		            $template = MEMORIA_AZUL_PLUGIN_PATH . '/template/detail.php';
+    		            $template = MEMORIA_AZUL_PLUGIN_PATH . '/template/doc.php';
     		        }
     		        // force status to 200 - OK
     		        status_header(200);
@@ -193,8 +208,10 @@ if(!class_exists('Memoria_Azul_Plugin')) {
 		}
 
 		function template_styles_scripts(){
-		    wp_enqueue_style ('memoria-azul-page', MEMORIA_AZUL_PLUGIN_URL . 'template/css/style.css', array(), MEMORIA_AZUL_VERSION);
+            wp_enqueue_style ('memoria-azul-page', MEMORIA_AZUL_PLUGIN_URL . 'template/css/style.css', array(), MEMORIA_AZUL_VERSION);
             wp_enqueue_script('memoria-azul-page', MEMORIA_AZUL_PLUGIN_URL . 'template/js/functions.js', array(), MEMORIA_AZUL_VERSION);
+            wp_enqueue_script('memoria-azul-loadmore', MEMORIA_AZUL_PLUGIN_URL . 'template/js/loadmore.js', array(), MEMORIA_AZUL_VERSION);
+            wp_enqueue_script('memoria-azul-bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', array(), MEMORIA_AZUL_VERSION);
 		}
 
 		function register_settings(){
