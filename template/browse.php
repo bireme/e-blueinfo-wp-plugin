@@ -178,6 +178,7 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
     <p class="totop">
         <a href="#top"><?php _e('back to top', 'memoria-azul') ?></a>
     </p>
+    <span class="loadmore-last"><?php _e('No more documents', 'memoria-azul'); ?></span>
 </div>
 <!-- ./Load More -->
 <script type="text/javascript">
@@ -191,6 +192,11 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
         itemSelector: '.image-flip',
         pageParam : 'offset',
         pageStartParam: ''
+    });
+
+    $(document).on("loadmore:last", function() {
+        var msg = $('.loadmore-last').text();
+        alert(msg);
     });
 </script>
 <?php endif; ?>

@@ -12,6 +12,7 @@ $memoria_azul_config         = get_option('memoria_azul_config');
 $memoria_azul_initial_filter = $memoria_azul_config['initial_filter'];
 $memoria_azul_addthis_id     = $memoria_azul_config['addthis_profile_id'];
 $alternative_links     = (bool)$memoria_azul_config['alternative_links'];
+
 /*
 $referer = wp_get_referer();
 $path = parse_url($referer);
@@ -39,8 +40,10 @@ if ($memoria_azul_initial_filter != ''){
 $community_id  = ( !empty($_GET['community']) ? $_GET['community'] : '' );
 $collection_id = ( !empty($_GET['collection']) ? $_GET['collection'] : '' );
 $count  = ( !empty($_GET['count']) ? $_GET['count'] : 6 );
+$format = ( !empty($_GET['format']) ? $_GET['format'] : 'json' );
 
-$resource_id = end(explode('/', $current_slug));
+$explode = explode('/', $current_slug);
+$resource_id = end($explode);
 
 $site_language = strtolower(get_bloginfo('language'));
 $lang = substr($site_language,0,2);
@@ -56,27 +59,29 @@ if ($response){
     $doc = $response_json->objects;
 
     $author = '-';
-    if ( $doc[0]->individual_author_monographic ) {
+    if ( isset($doc[0]->individual_author_monographic) ) {
         $author = $doc[0]->individual_author_monographic;
-    } elseif ( $doc[0]->corporate_author_monographic ) {
+    } elseif ( isset($doc[0]->corporate_author_monographic) ) {
         $author = $doc[0]->corporate_author_monographic;
-    } elseif ( $doc[0]->individual_author_collection ) {
+    } elseif ( isset($doc[0]->individual_author_collection) ) {
         $author = $doc[0]->individual_author_collection;
-    } elseif ( $doc[0]->corporate_author_collection ) {
+    } elseif ( isset($doc[0]->corporate_author_collection) ) {
         $author = $doc[0]->corporate_author_collection;
-    } elseif ( $doc[0]->individual_author ) {
+    } elseif ( isset($doc[0]->individual_author) ) {
         $author = $doc[0]->individual_author;
-    } elseif ( $doc[0]->corporate_author ) {
+    } elseif ( isset($doc[0]->corporate_author) ) {
         $author = $doc[0]->corporate_author;
     }
 
     $abstract  = '-';
-    $abstracts = wp_list_pluck( $doc[0]->abstract, 'text', '_i' );
-    if ( !empty($abstracts) ) {
-        if ( array_key_exists($lang, $abstracts) ) {
-            $abstract = $abstracts[$lang];
-        } else {
-            $abstract = $doc[0]->abstract[0]->text;
+    if ( !empty($doc[0]->abstract) ) {
+        $abstracts = wp_list_pluck( $doc[0]->abstract, 'text', '_i' );
+        if ( !empty($abstracts) ) {
+            if ( array_key_exists($lang, $abstracts) ) {
+                $abstract = $abstracts[$lang];
+            } else {
+                $abstract = $doc[0]->abstract[0]->text;
+            }
         }
     }
 /*
@@ -99,7 +104,7 @@ if ($response){
     // echo "<pre>"; print_r($response_json); echo "</pre>"; die();
 }
 
-$feed_url = real_site_url($memoria_azul_plugin_slug) . 'memoria-azul-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
+// $feed_url = real_site_url($memoria_azul_plugin_slug) . 'memoria-azul-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
 
 $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_config['home_url_' . $lang] : real_site_url();
 ?>

@@ -77,14 +77,13 @@ if ($response){
 $params = $count != 2 ? '&count=' . $count : '';
 $params .= !empty($_GET['sort']) ? '&sort=' . $_GET['sort'] : '';
 
-$page_url_params = real_site_url($memoria_azul_plugin_slug) . '?output=com' . $params;
+$page_url_params = real_site_url($memoria_azul_plugin_slug) . '?' . $params;
 $feed_url = real_site_url($memoria_azul_plugin_slug) . 'memoria-azul-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
 
 $pages = new Paginator($total, $start, $count);
 $pages->paginate($page_url_params);
 
 $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_config['home_url_' . $lang] : real_site_url();
-
 ?>
 
 <?php get_header('memoria-azul');?>
@@ -109,9 +108,9 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
             <div class="searchBarMain">
         		<i class="material-icons searchBarSearchIcon noUserSelect">search</i>
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($memoria_azul_plugin_slug); ?>memoria-azul-search">
-                    <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
+        		    <input type="text" name="q" value="<?php echo $query; ?>" id="searchBarInput" placeholder="<?php _e('Search...', 'memoria-azul'); ?>">
                     <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
-        		    <input type="text" name="q" value="<?php echo $query; ?>" id="searchBarInput" placeholder="Pesquisar...">
+                    <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
                 </form>
         		<i class="material-icons clearSearchBarField noUserSelect" onClick="resetInput()">clear</i>
         	</div>
@@ -172,6 +171,7 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
     <p class="totop">
         <a href="#top"><?php _e('back to top', 'memoria-azul') ?></a>
     </p>
+    <span class="loadmore-last"><?php _e('No more documents', 'memoria-azul'); ?></span>
 </div>
 <!-- ./Load More -->
 <script type="text/javascript">
@@ -187,6 +187,11 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
             pageParam : 'offset',
             pageStartParam: ''
         });
+    });
+
+    $(document).on("loadmore:last", function() {
+        var msg = $('.loadmore-last').text();
+        alert(msg);
     });
 </script>
 <?php endif; ?>
