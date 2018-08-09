@@ -87,6 +87,7 @@ if ( !function_exists('translate_label') ) {
     function translate_label($texts, $label, $group=NULL) {
         // labels on texts.ini must be array key without spaces
         $label_norm = preg_replace('/[&,\'\s]+/', '_', $label);
+
         if($group == NULL) {
             if(isset($texts[$label_norm]) and $texts[$label_norm] != "") {
                 return $texts[$label_norm];
@@ -96,6 +97,7 @@ if ( !function_exists('translate_label') ) {
                 return $texts[$group][$label_norm];
             }
         }
+
         // case translation not found return original label ucfirst
         return ucfirst($label);
     }
@@ -103,9 +105,7 @@ if ( !function_exists('translate_label') ) {
 
 if ( !function_exists('get_site_meta_tags') ) {
     function get_site_meta_tags($url){
-
         $site_title = array();
-
         $fp = @file_get_contents($url);
 
         if ($fp) {
@@ -124,32 +124,42 @@ if ( !function_exists('get_site_meta_tags') ) {
                 }
             }
         }
+
         return $site_meta_tags;
     }
 }
 
 if ( !function_exists('real_site_url') ) {
     function real_site_url($path = ''){
-
         $site_url = get_site_url();
 
         // check for multi-language-framework plugin
         if ( function_exists('mlf_parseURL') ) {
             global $mlf_config;
-
             $current_language = substr( strtolower(get_bloginfo('language')),0,2 );
 
             if ( $mlf_config['default_language'] != $current_language ){
                 $site_url .= '/' . $current_language;
             }
         }
+
         if ($path != ''){
             $site_url .= '/' . $path;
         }
+
         $site_url .= '/';
 
-
         return $site_url;
+    }
+}
+
+if ( !function_exists('short_string') ) {
+    function short_string($string, $len=400){
+        if ( strlen($string) > $len ) {
+            $string = substr(utf8_decode($string), 0, $len) . "...";
+        }
+
+        return utf8_encode($string);
     }
 }
 
