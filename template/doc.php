@@ -37,8 +37,8 @@ if ($memoria_azul_initial_filter != ''){
     $filter = $user_filter;
 }
 
-$community_id  = ( !empty($_GET['community']) ? $_GET['community'] : '' );
-$collection_id = ( !empty($_GET['collection']) ? $_GET['collection'] : '' );
+$community_id  = ( !empty($_GET['community']) ? $_GET['community'] : NULL );
+$collection_id = ( !empty($_GET['collection']) ? $_GET['collection'] : NULL );
 $count  = ( !empty($_GET['count']) ? $_GET['count'] : 6 );
 $format = ( !empty($_GET['format']) ? $_GET['format'] : 'json' );
 
@@ -96,12 +96,20 @@ if ($response){
 */
 }
 
+$community_request = $memoria_azul_service_url . 'api/community/?community=' . $community_id . '&format=' . $format . '&lang=' . $lang;
+
+$response = @file_get_contents($community_request);
+if ($response){
+    $community = json_decode($response);
+    // echo "<pre>"; print_r($community); echo "</pre>"; die();
+}
+
 $collection_request = $memoria_azul_service_url . 'api/collection/?collection=' . $collection_id . '&format=' . $format . '&lang=' . $lang;
 
 $response = @file_get_contents($collection_request);
 if ($response){
     $collection = json_decode($response);
-    // echo "<pre>"; print_r($response_json); echo "</pre>"; die();
+    // echo "<pre>"; print_r($collection); echo "</pre>"; die();
 }
 
 // $feed_url = real_site_url($memoria_azul_plugin_slug) . 'memoria-azul-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
@@ -115,8 +123,12 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
 <ol class="breadcrumb">
     <li><a href="<?php echo $home_url ?>"><?php _e('Home','memoria-azul'); ?></a></li>
     <li><a href="<?php echo real_site_url($memoria_azul_plugin_slug); ?>"><?php echo $memoria_azul_plugin_title; ?> </a></li>
-    <li><a href="<?php echo real_site_url($memoria_azul_plugin_slug) . 'collection/?community=' . $community_id; ?>"><?php echo $collection->objects{0}->parent; ?> </a></li>
+    <?php if ( isset($community_id, $community) ) : ?>
+    <li><a href="<?php echo real_site_url($memoria_azul_plugin_slug) . 'collection/?community=' . $community_id; ?>"><?php echo $community->objects{0}->name; ?> </a></li>
+    <?php endif; ?>
+    <?php if ( isset($community_id, $collection_id, $collection) ) : ?>
     <li><a href="<?php echo real_site_url($memoria_azul_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id; ?>"><?php echo $collection->objects{0}->name; ?> </a></li>
+    <?php endif; ?>
     <?php if ($query == '' && $filter == ''): ?>
     <li class="active"><?php echo $doc[0]->reference_title; ?></li>
     <?php else: ?>
@@ -164,7 +176,7 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
                                     <p class="card-text"><?php echo $doc[0]->publisher; ?></p>
                                 </div>
                                 <div>
-                                    <?php if ( $doc[0]->electronic_address[0]->_u ) : ?>
+                                    <?php if ( isset($doc[0]->electronic_address[0]->_u) ) : ?>
                                     <span><?php _e('Document Access', 'memoria-azul'); ?></span>
                                     <p class="card-text"><a href="<?php echo $doc[0]->electronic_address[0]->_u; ?>"><?php _e('Download link', 'memoria-azul'); ?></a></p>
                                     <?php endif; ?>
