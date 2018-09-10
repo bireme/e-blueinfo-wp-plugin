@@ -78,12 +78,12 @@ $params = $count != 2 ? '&count=' . $count : '';
 $params .= !empty($_GET['sort']) ? '&sort=' . $_GET['sort'] : '';
 
 $page_url_params = real_site_url($memoria_azul_plugin_slug) . '?' . $params;
-$feed_url = real_site_url($memoria_azul_plugin_slug) . 'memoria-azul-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
-
+// $feed_url = real_site_url($memoria_azul_plugin_slug) . 'memoria-azul-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
+$home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_config['home_url_' . $lang] : real_site_url();
+/*
 $pages = new Paginator($total, $start, $count);
 $pages->paginate($page_url_params);
-
-$home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_config['home_url_' . $lang] : real_site_url();
+*/
 ?>
 
 <?php get_header('memoria-azul');?>
@@ -106,7 +106,7 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
         <!-- Search Bar -->
         <header class="page-header">
             <div class="searchBarMain">
-        		<i class="material-icons searchBarSearchIcon noUserSelect">search</i>
+        		<i class="material-icons searchBarSearchIcon noUserSelect" onclick="__gaTracker('send','event','Browse','Search',document.getElementById('searchBarInput').value);">search</i>
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($memoria_azul_plugin_slug); ?>search">
         		    <input type="text" name="q" value="<?php echo $query; ?>" id="searchBarInput" placeholder="<?php _e('Search...', 'memoria-azul'); ?>">
                     <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
@@ -121,10 +121,10 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
             <h4><?php _e('No results found','memoria-azul'); ?></h4>
             <?php else :?>
             <div class="h-label col-xs-12 col-sm-12 col-md-12 border-bottom">
-                <?php if ( ( $query != '' || $user_filter != '' ) && strval($total) > 0) :?>
-                <h4><?php _e('Results', 'memoria-azul'); echo ': ' . $total ?></h4>
+                <?php if ( ( $query != '' || $user_filter != '' ) && strval($total) > 0) : ?>
+                <h4><?php _e('Results', 'memoria-azul'); echo ': ' . $total; ?></h4>
                 <?php else: ?>
-                <h4><?php _e('Total', 'memoria-azul'); echo ': ' . $total ?></h4>
+                <h4><?php _e('Total', 'memoria-azul'); echo ': ' . $total; ?></h4>
                 <?php endif; ?>
             </div>
                 <?php foreach ( $community_list as $index => $community) : $index++; $id = "com".$community->id; ?>
@@ -132,7 +132,7 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
                 <div class="col-xs-12 col-sm-6 col-md-4 item">
                     <div id="<?php echo $id; ?>" class="image-flip">
                         <div class="mainflip">
-                            <div class="frontside">
+                            <div class="frontside" onclick="__gaTracker('send','event','Community','View','<?php echo $community->name; ?>');">
                                 <div class="card">
                                     <div class="card-body text-center">
                                         <p><img class="img-fluid" src="<?php echo $community->image; ?>" alt="card image"></p>

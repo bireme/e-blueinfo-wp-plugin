@@ -143,7 +143,7 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
         <!-- Search Bar -->
         <header class="page-header">
             <div class="searchBarMain">
-        		<i class="material-icons searchBarSearchIcon noUserSelect">search</i>
+        		<i class="material-icons searchBarSearchIcon noUserSelect" onclick="__gaTracker('send','event','Browse','Search',document.getElementById('searchBarInput').value);">search</i>
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($memoria_azul_plugin_slug); ?>search">
                     <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
                     <input type="hidden" name="collection" id="collection" value="<?php echo $collection_id; ?>">
@@ -162,7 +162,11 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
                     <div class="card">
                         <div class="card-body">
                             <!-- <p><img class="img-fluid" src="http://dab.saude.gov.br/imgs/portaldab/biblioteca/publicacoes/praticas_reabilitacao_ab.png" alt="card image"></p> -->
-                            <p class="thumb"><img class="img-fluid" src="http://dab.saude.gov.br/imgs/portaldab/biblioteca/publicacoes/praticas_reabilitacao_ab.jpg" alt="card image"></p>
+                            <?php if ( isset($doc[0]->electronic_address[0]->_u) ) : ?>
+                            <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '?id=' . $doc[0]->id . '&url=' . $doc[0]->electronic_address[0]->_u; ?>" alt="card image"></p>
+                            <?php else : ?>
+                            <p class="thumb"><img class="img-fluid" src="http://placehold.it/270x350" alt="card image"></p>
+                            <?php endif; ?>
                             <!-- <a class="redirect" href="/wordpress/memoria-azul/memoria-azul-doc" onclick="return false;"><h4 class="card-title">Título do Documento</h4></a> -->
                             <div class="meta">
                                 <div>
@@ -178,7 +182,7 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
                                 <div>
                                     <?php if ( isset($doc[0]->electronic_address[0]->_u) ) : ?>
                                     <span><?php _e('Document Access', 'memoria-azul'); ?></span>
-                                    <p class="card-text"><a href="<?php echo $doc[0]->electronic_address[0]->_u; ?>"><?php _e('Download link', 'memoria-azul'); ?></a></p>
+                                    <p class="card-text"><a href="<?php echo $doc[0]->electronic_address[0]->_u; ?>" onclick="__gaTracker('send','event','My Document','Full Text','<?php echo $doc[0]->electronic_address[0]->_u; ?>');"><?php _e('Download link', 'memoria-azul'); ?></a></p>
                                     <?php endif; ?>
                                     <span><?php _e('Abstract', 'memoria-azul'); ?></span>
                                     <p class="card-text"><?php echo $abstract; ?></p>

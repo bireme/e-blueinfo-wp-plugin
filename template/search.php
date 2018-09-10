@@ -141,7 +141,7 @@ $pages->paginate($page_url_params);
         <!-- Search Bar -->
         <header class="page-header">
             <div class="searchBarMain">
-        		<i class="material-icons searchBarSearchIcon noUserSelect">search</i>
+        		<i class="material-icons searchBarSearchIcon noUserSelect" onclick="__gaTracker('send','event','Search Results','Search',document.getElementById('searchBarInput').value);">search</i>
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($memoria_azul_plugin_slug); ?>search">
                     <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
                     <input type="hidden" name="collection" id="collection" value="<?php echo $collection_id; ?>">
@@ -183,7 +183,7 @@ $pages->paginate($page_url_params);
                     <div class="col-xs-12 col-sm-12 col-md-12 item">
                         <div id="<?php echo $id; ?>" class="image-flip">
                             <div class="mainflip">
-                                <div class="doc-meta">
+                                <div class="doc-meta" onclick="__gaTracker('send','event','Search Results','Full Text','<?php echo $doc->ur[0]; ?>');">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="meta">
@@ -195,8 +195,8 @@ $pages->paginate($page_url_params);
                                                 <?php if ( isset($snippets->{$doc->id}->_text_) ) : ?>
                                                 <p class="paragraph"><?php echo get_highlight($snippets->{$doc->id}->_text_); ?></p>
                                                 <?php endif; ?>
-                                                <a class="btn btn-primary btn-sm btn-details redirect" href="<?php echo real_site_url($memoria_azul_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id . '&lang=' . $lang; ?>"><?php _e('See details', 'memoria-azul'); ?></a>
-                                                <a class="btn btn-primary btn-sm btn-meta redirect" href="<?php echo real_site_url($memoria_azul_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id . '&lang=' . $lang; ?>"><i class="fa fa-info-circle"></i></a>
+                                                <a class="btn btn-primary btn-sm btn-details redirect" href="<?php echo real_site_url($memoria_azul_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id . '&lang=' . $lang; ?>" onclick="__gaTracker('send','event','Search Results','View','<?php echo real_site_url($memoria_azul_plugin_slug) . 'doc/' . $doc->id; ?>');"><?php _e('See details', 'memoria-azul'); ?></a>
+                                                <a class="btn btn-primary btn-sm btn-meta redirect" href="<?php echo real_site_url($memoria_azul_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id . '&lang=' . $lang; ?>" onclick="__gaTracker('send','event','Search Results','View','<?php echo real_site_url($memoria_azul_plugin_slug) . 'doc/' . $doc->id; ?>');"><i class="fa fa-info-circle"></i></a>
                                             </div>
                                         </div>
                                     </div>
