@@ -14,9 +14,9 @@ define('MEMORIA_AZUL_SYMBOLIC_LINK', false );
 define('MEMORIA_AZUL_PLUGIN_DIRNAME', 'memoria-azul' );
 
 if(MEMORIA_AZUL_SYMBOLIC_LINK == true) {
-    define('MEMORIA_AZUL_PLUGIN_PATH',  ABSPATH . 'wp-content/plugins/' . MEMORIA_AZUL_PLUGIN_DIRNAME );
+    define( 'MEMORIA_AZUL_PLUGIN_PATH',  ABSPATH . 'wp-content/plugins/' . MEMORIA_AZUL_PLUGIN_DIRNAME );
 } else {
-    define('MEMORIA_AZUL_PLUGIN_PATH',  plugin_dir_path(__FILE__) );
+    define( 'MEMORIA_AZUL_PLUGIN_PATH',  plugin_dir_path(__FILE__) );
 }
 
 define('MEMORIA_AZUL_PLUGIN_DIR',   plugin_basename( MEMORIA_AZUL_PLUGIN_PATH ) );
@@ -28,9 +28,11 @@ require_once(MEMORIA_AZUL_PLUGIN_PATH . '/template-functions.php');
 if(!class_exists('Memoria_Azul_Plugin')) {
     class Memoria_Azul_Plugin {
 
-        private $plugin_slug = 'memoria-azul';
-        private $service_url = 'http://fi-admin.data.bvsalud.org/';
-        private $similar_docs_url = 'http://similardocs.bireme.org/SDService';
+        private $plugin_slug       = 'memoria-azul';
+        private $service_url       = 'http://fi-admin.bvsalud.org/';
+        private $similar_docs_url  = 'http://similardocs.bireme.org/SDService';
+        private $thumb_service_url = 'http://serverofi5.bireme.br:9090/thumbnailServer/getDocument';
+        private $pdf_service_url   = 'http://serverofi5.bireme.br:8989/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu';
 
         /**
          * Construct the plugin object
@@ -97,7 +99,7 @@ if(!class_exists('Memoria_Azul_Plugin')) {
 		}
 
 		function theme_redirect() {
-		    global $wp, $memoria_azul_service_url, $memoria_azul_plugin_slug, $memoria_azul_texts, $similar_docs_url;
+		    global $wp, $memoria_azul_service_url, $memoria_azul_plugin_slug, $memoria_azul_texts, $similar_docs_url, $pdf_service_url, $thumb_service_url;
 		    $pagename = '';
 
             // check if request contains plugin slug string
@@ -119,6 +121,8 @@ if(!class_exists('Memoria_Azul_Plugin')) {
                 $memoria_azul_service_url = $this->service_url;
                 $memoria_azul_plugin_slug = $this->plugin_slug;
                 $similar_docs_url = $this->similar_docs_url;
+                $pdf_service_url = $this->pdf_service_url;
+                $thumb_service_url = $this->thumb_service_url;
 
                 if ($pagename == $this->plugin_slug
                  || $pagename == $this->plugin_slug . '/doc'
