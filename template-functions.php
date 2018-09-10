@@ -163,4 +163,20 @@ if ( !function_exists('short_string') ) {
     }
 }
 
+if ( !function_exists('get_highlight') ) {
+    function get_highlight($snippets){
+        $pattern = '/\.(?=\.{3})|\G(?!^)\./'; // remove dots from snippets
+
+        if ( count($snippets) > 1 ) {
+            $replace = preg_replace($pattern, '', end($snippets));
+            $text = '...' . trim($replace) . '...';
+        } else {
+            $replace = preg_replace($pattern, '', $snippets[0]);
+            $text = '...' . trim($replace) . '...';
+        }
+
+        return $text;
+    }
+}
+
 ?>
