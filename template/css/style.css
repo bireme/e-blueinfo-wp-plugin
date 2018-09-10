@@ -58,6 +58,8 @@
     float: left;
     margin-right: 1rem;
     margin-bottom: 0;
+    max-width: 270px;
+    /* max-height: 350px; */
 }
 
 #memoria-azul.doc-data .card .card-body span {
@@ -81,6 +83,10 @@
     margin-bottom: 8px;
 }
 
+#memoria-azul .card .card-body .paragraph em {
+    font-weight: bold;
+}
+
 #memoria-azul .doc-meta a {
     text-decoration: none;
 }
@@ -91,6 +97,10 @@
 
 #memoria-azul.doc-data .card div.meta div:last-child {
     margin-top: 1rem;
+}
+
+h4.results {
+    margin: 0 auto;
 }
 
 .site-header {
@@ -235,6 +245,10 @@ section .section-title {
     padding-top: .75rem;
 }
 
+.doc .card .thumb img {
+    /* max-width: 160px; */
+    /* max-height: 210px; */
+}
 .frontside .card .card-title {
     padding: 0;
 }
@@ -539,6 +553,7 @@ and (min-device-width : 813px) {
     #memoria-azul.doc-data .card div.meta div {
         display: table-cell;
         width: 50%;
+        padding-right: 2rem;
     }
 
     #memoria-azul .doc-meta .btn-meta {
