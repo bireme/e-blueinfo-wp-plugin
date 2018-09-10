@@ -85,6 +85,7 @@
 
 #memoria-azul .card .card-body .paragraph em {
     font-weight: bold;
+    background: #ffff00;
 }
 
 #memoria-azul .doc-meta a {

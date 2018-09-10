@@ -34,6 +34,8 @@ $sort   = ( !empty($_GET['sort']) ? $order[$_GET['sort']] : 'da desc' );
 $count  = ( !empty($_GET['count']) ? $_GET['count'] : 6 );
 $total  = 0;
 $filter = '';
+$com_name = '-';
+$col_name = '-';
 
 if ($memoria_azul_initial_filter != ''){
     if ($user_filter != ''){
@@ -92,6 +94,7 @@ $community_request = $memoria_azul_service_url . 'api/community/?community=' . $
 $response = @file_get_contents($community_request);
 if ($response){
     $community = json_decode($response);
+    $com_name = $community->objects{0}->name;
     // echo "<pre>"; print_r($community); echo "</pre>"; die();
 }
 
@@ -100,6 +103,7 @@ $collection_request = $memoria_azul_service_url . 'api/collection/?collection=' 
 $response = @file_get_contents($collection_request);
 if ($response){
     $collection = json_decode($response);
+    $col_name = $collection->objects{0}->name;
     // echo "<pre>"; print_r($collection); echo "</pre>"; die();
 }
 
@@ -160,23 +164,37 @@ $pages->paginate($page_url_params);
                 <?php foreach ( $docs as $index => $doc ) : $index++; $id = "s".$doc->id; ?>
                     <?php
                         if ( !isset($community) ) {
-                            $community_request = $memoria_azul_service_url . 'api/community/?community=' . $doc->com . '&format=' . $format . '&lang=' . $lang;
+                            $com_name = array();
 
-                            $response = @file_get_contents($community_request);
-                            if ($response){
-                                $community = json_decode($response);
-                                // echo "<pre>"; print_r($community); echo "</pre>"; die();
+                            foreach ($doc->com as $com) {
+                                $community_request = $memoria_azul_service_url . 'api/community/?community=' . $com . '&format=' . $format . '&lang=' . $lang;
+
+                                $response = @file_get_contents($community_request);
+                                if ($response){
+                                    $community = json_decode($response);
+                                    $com_name[] = $community->objects{0}->name;
+                                    // echo "<pre>"; print_r($community); echo "</pre>"; die();
+                                }
                             }
+
+                            $com_name = ( $com_name ) ? implode('; ', $com_name) : '-';
                         }
 
                         if ( !isset($collection) ) {
-                            $collection_request = $memoria_azul_service_url . 'api/collection/?collection=' . $doc->col . '&format=' . $format . '&lang=' . $lang;
+                            $col_name = array();
 
-                            $response = @file_get_contents($collection_request);
-                            if ($response){
-                                $collection = json_decode($response);
-                                // echo "<pre>"; print_r($collection); echo "</pre>"; die();
+                            foreach ($doc->col as $col) {
+                                $collection_request = $memoria_azul_service_url . 'api/collection/?collection=' . $col . '&format=' . $format . '&lang=' . $lang;
+
+                                $response = @file_get_contents($collection_request);
+                                if ($response){
+                                    $collection = json_decode($response);
+                                    $col_name[] = $collection->objects{0}->name;
+                                    // echo "<pre>"; print_r($collection); echo "</pre>"; die();
+                                }
                             }
+
+                            $col_name = ( $col_name ) ? implode('; ', $col_name) : '-';
                         }
                     ?>
                     <!-- Document -->
@@ -189,9 +207,9 @@ $pages->paginate($page_url_params);
                                             <div class="meta">
                                                 <a class="full-text" href="<?php echo $doc->ur[0]; ?>"><h4 class="card-title"><?php echo substr($doc->ti[0], 4); ?></h4></a>
                                                 <strong><?php _e('Community', 'memoria-azul'); ?></strong>
-                                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                                <p class="card-text"><?php echo $com_name; ?></p>
                                                 <strong><?php _e('Collection', 'memoria-azul'); ?></strong>
-                                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                                <p class="card-text"><?php echo $col_name; ?></p>
                                                 <?php if ( isset($snippets->{$doc->id}->_text_) ) : ?>
                                                 <p class="paragraph"><?php echo get_highlight($snippets->{$doc->id}->_text_); ?></p>
                                                 <?php endif; ?>
