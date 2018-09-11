@@ -142,6 +142,15 @@ if ( !function_exists('real_site_url') ) {
                 $site_url .= '/' . $current_language;
             }
         }
+        // check for polylang plugin
+        elseif ( defined( 'POLYLANG_VERSION' ) ) {
+            $default_language = pll_default_language();
+            $current_language = pll_current_language();
+            
+            if ( $default_language != $current_language ){
+                $site_url .= '/' . $current_language;
+            }
+        }
 
         if ($path != ''){
             $site_url .= '/' . $path;

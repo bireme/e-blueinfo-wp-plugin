@@ -2,220 +2,292 @@
 # This file is distributed under the same license as the LeisRef package.
 msgid ""
 msgstr ""
-"Project-Id-Version: LeisRef 0.1\n"
+"Project-Id-Version: Memória Azul 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/leisref\n"
-"POT-Creation-Date: 2018-02-06 14:48:26+00:00\n"
-"PO-Revision-Date: 2018-02-06 12:49-0300\n"
+"POT-Creation-Date: 2018-09-11 11:34-0300\n"
+"PO-Revision-Date: 2018-09-11 11:35-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Spanish\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: leisref.php:92
-msgid "Legislation Settings"
-msgstr "Ajustes Legislación"
-
-#: leisref.php:92
-#: leisref.php:179
-msgid "Legislation"
-msgstr "Legislación"
-
-#: leisref.php:139
-msgid "Legislation sidebar"
-msgstr "Legislación sidebar"
-
-#: lib/Paginator.php:38
-#: lib/Paginator.php:39
-#: lib/Paginator.php:50
-#: lib/Paginator.php:56
-#: lib/Paginator.php:65
-#: lib/Paginator.php:66
-#: lib/Paginator.php:72
-#: lib/Paginator.php:73
+#: lib/Paginator.php:37 lib/Paginator.php:38 lib/Paginator.php:49
+#: lib/Paginator.php:55 lib/Paginator.php:64 lib/Paginator.php:65
+#: lib/Paginator.php:71 lib/Paginator.php:72
 msgid "go to page"
 msgstr "ir a la página"
 
-#: settings.php:9
-msgid "Legislation settings"
-msgstr "Legislación ajustes"
+#: memoria-azul.php:94
+msgid "Memória Azul Settings"
+msgstr "Configuraciones - Memória Azul"
 
-#: settings.php:18
+#: memoria-azul.php:94 memoria-azul.php:199
+msgid "Memória Azul"
+msgstr "Memória Azul"
+
+#: memoria-azul.php:158
+msgid "Memória Azul sidebar"
+msgstr "Sidebar Memória Azul"
+
+#: settings.php:8
+msgid "Memória Azul settings"
+msgstr "Configuraciones - Memória Azul"
+
+#: settings.php:17
 msgid "Plugin page"
 msgstr "Pagina del plugin"
 
-#: settings.php:22
+#: settings.php:21
 msgid "Filter query"
 msgstr "Filtro de búsqueda"
 
-#: settings.php:26
+#: settings.php:25
 msgid "AddThis profile ID"
-msgstr ""
+msgstr "ID del perfil AddThis"
 
-#: settings.php:30
+#: settings.php:29
 msgid "Google Analytics code"
 msgstr "Código del Google Analytics"
 
-#: settings.php:34
+#: settings.php:33 template/detail.php:187
 msgid "Fulltext"
 msgstr "Texto completo"
 
-#: settings.php:38
+#: settings.php:37
 msgid "Present alternative fulltext links"
 msgstr "Presentar enlaces alternativos de texto completo"
 
-#: settings.php:53
+#: settings.php:52
 msgid "Home URL"
 msgstr "Enlace de la página inicial"
 
-#: settings.php:58
+#: settings.php:57 settings.php:64
 msgid "Page title"
 msgstr "Titulo"
 
-#: settings.php:74
+#: settings.php:73
 msgid "Display filters"
 msgstr "Mostrar filtros"
 
-#: settings.php:80
+#: settings.php:79
 msgid "Subject"
 msgstr "Asunto"
 
-#: settings.php:85
+#: settings.php:84
 msgid "Act type"
 msgstr "Tipo del acto"
 
-#: settings.php:90
+#: settings.php:89
 msgid "Country/region"
 msgstr "País/región"
 
-#: settings.php:96
+#: settings.php:95
 msgid "Database"
 msgstr "Base de datos"
 
-#: settings.php:102
+#: settings.php:101 template/metadata.php:69 template/search.php:211
 msgid "Collection"
 msgstr "Colección"
 
-#: settings.php:107
-#: template/metadata.php:61
+#: settings.php:106 template/metadata.php:62
 msgid "Language"
 msgstr "Idioma"
 
-#: settings.php:112
+#: settings.php:111 template/doc.php:177
 msgid "Year"
 msgstr "Año"
 
-#: settings.php:122
+#: settings.php:120
 msgid "Save changes"
 msgstr "Guardar cambios"
 
-#: template/detail.php:35
-#: template/home.php:69
-msgid "Portuguese"
-msgstr "Português"
-
-#: template/detail.php:36
-#: template/home.php:70
-msgid "Spanish"
-msgstr "Español"
-
-#: template/detail.php:37
-#: template/home.php:71
-msgid "English"
-msgstr "Inglês"
-
-#: template/detail.php:46
-#: template/home.php:76
-msgid "Home"
-msgstr "Inicio"
-
-#: template/detail.php:48
-msgid "Act"
-msgstr "Ato"
-
-#: template/detail.php:60
-msgid "Share"
-msgstr "Compartir"
-
-#: template/detail.php:88
-msgid "Related articles"
-msgstr "Artículos relacionados"
-
-#: template/home.php:81
-msgid "Search result"
-msgstr "Resultado de la búsqueda"
-
-#: template/home.php:94
-msgid "Enter one or more words"
-msgstr "Ingrese una o más palabras"
-
-#: template/home.php:95
-msgid "Search"
-msgstr "Buscar"
-
-#: template/home.php:104
-msgid "No results found"
-msgstr "No se han encontrado resultados"
-
-#: template/home.php:107
-msgid "Total"
-msgstr "Total"
-
-#: template/home.php:135
-msgid "Filters"
-msgstr "Filtros"
-
-#: template/home.php:145
-msgid "Selected filters"
-msgstr "Filtros seleccionados"
-
-#: template/metadata.php:31
-msgid "Act country/region"
-msgstr "País/región del acto"
-
-#: template/metadata.php:38
-msgid "Organ issuer"
-msgstr "Órgano Emisor"
-
-#: template/metadata.php:44
-msgid "Act scope"
-msgstr "Esfera del acto"
-
-#: template/metadata.php:55
-msgid "Source"
-msgstr "Fuente"
-
-#: template/metadata.php:87
-#: template/metadata.php:120
-#: template-functions.php:70
+#: template-functions.php:71 template/metadata.php:103
+#: template/metadata.php:137
 msgid "of"
 msgstr "de"
 
-#: template/metadata.php:157
+#: template/browse.php:101 template/collection.php:94 template/detail.php:75
+#: template/doc.php:124 template/home.php:93 template/search.php:126
+msgid "Home"
+msgstr "Inicio"
+
+#: template/browse.php:107 template/collection.php:99 template/doc.php:135
+#: template/home.php:98 template/search.php:137
+msgid "Search result"
+msgstr "Resultado de la búsqueda"
+
+#: template/browse.php:122 template/collection.php:113 template/doc.php:150
+#: template/home.php:111 template/search.php:152
+msgid "Search..."
+msgstr "Buscar..."
+
+#: template/browse.php:132 template/collection.php:123 template/home.php:121
+msgid "No results found"
+msgstr "No se han encontrado resultados"
+
+#: template/browse.php:136 template/collection.php:127 template/home.php:125
+#: template/search.php:159
+msgid "Results"
+msgstr "Resultados"
+
+#: template/browse.php:138 template/collection.php:129 template/home.php:127
+msgid "Total"
+msgstr "Total"
+
+#: template/browse.php:183 template/collection.php:173 template/home.php:170
+#: template/search.php:239
+msgid "Load More"
+msgstr "Mostrar Más"
+
+#: template/browse.php:185 template/collection.php:175 template/home.php:172
+#: template/search.php:241
+msgid "back to top"
+msgstr "volver al inicio"
+
+#: template/browse.php:187 template/collection.php:177 template/home.php:174
+#: template/search.php:243
+msgid "No more documents"
+msgstr "No hay más documentos"
+
+#: template/browse.php:192 template/collection.php:182 template/home.php:180
+#: template/search.php:248
+msgid "Loading..."
+msgstr "Cargando..."
+
+#: template/collection.php:120
+msgid "Collections"
+msgstr "Colecciones"
+
+#: template/detail.php:89
+msgid "Enter one or more words"
+msgstr "Ingrese una o más palabras"
+
+#: template/detail.php:90
+msgid "Search"
+msgstr "Buscar"
+
+#: template/detail.php:91
+msgid "Tip! You can do your search using boolean operators."
+msgstr "¡Sugerencia! Puede hacer su búsqueda utilizando operadores booleanos."
+
+#: template/detail.php:139
+msgid "Publication year"
+msgstr "Año de publicación"
+
+#: template/detail.php:146 template/doc.php:187
+msgid "Abstract"
+msgstr "Resumen"
+
+#: template/detail.php:180
+msgid "Fulltext (primary link)"
+msgstr "Texto completo (enlace primario)"
+
+#: template/detail.php:180
+msgid "Fulltext (alternative link)"
+msgstr "Texto completo (enlace alternativo)"
+
+#: template/detail.php:201
+msgid "Related"
+msgstr "Relacionados"
+
+#: template/doc.php:173
+msgid "Title"
+msgstr "Título"
+
+#: template/doc.php:175
+msgid "Author"
+msgstr "Autor"
+
+#: template/doc.php:179
+msgid "Publisher"
+msgstr "Editor"
+
+#: template/doc.php:184
+msgid "Document Access"
+msgstr "Acceso al documento"
+
+#: template/doc.php:185
+msgid "Download link"
+msgstr "Enlace para descarga"
+
+#: template/home.php:118
+msgid "Communities"
+msgstr "Comunidades"
+
+#: template/metadata.php:33
+msgid "Act country/region"
+msgstr "País/región del acto"
+
+#: template/metadata.php:39
+msgid "Organ issuer"
+msgstr "Órgano Emisor"
+
+#: template/metadata.php:45
+msgid "Act scope"
+msgstr "Esfera del acto"
+
+#: template/metadata.php:56
+msgid "Source"
+msgstr "Fuente"
+
+#: template/metadata.php:76
+msgid "Publication date"
+msgstr "Fecha de publicación"
+
+#: template/metadata.php:174
 msgid "Text in"
 msgstr "Texto en"
 
-#. Plugin Name of the plugin/theme
-msgid "LeisRef"
-msgstr ""
+#: template/search.php:162
+msgid "No results found. Try searching with another keywords."
+msgstr "Ningún resultado encontrado. Intente buscar con otras palabras clave."
 
-#. Plugin URI of the plugin/theme
-msgid "https://github.com/bireme/leisref-wp-plugin/"
-msgstr ""
+#: template/search.php:209
+msgid "Community"
+msgstr "Coumindades"
 
-#. Description of the plugin/theme
-msgid "VHL Legislation Directory WordPress plugin"
-msgstr ""
+#: template/search.php:216
+msgid "See details"
+msgstr "Ver detalles"
 
-#. Author of the plugin/theme
-msgid "BIREME/OPAS/OMS"
-msgstr ""
+#~ msgid "Legislation Settings"
+#~ msgstr "Ajustes Legislación"
 
-#. Author URI of the plugin/theme
-msgid "http://reddes.bvsalud.org/"
-msgstr ""
+#~ msgid "Legislation"
+#~ msgstr "Legislación"
+
+#~ msgid "Legislation sidebar"
+#~ msgstr "Legislación sidebar"
+
+#~ msgid "Legislation settings"
+#~ msgstr "Legislación ajustes"
+
+#~ msgid "Portuguese"
+#~ msgstr "Português"
+
+#~ msgid "Spanish"
+#~ msgstr "Español"
+
+#~ msgid "English"
+#~ msgstr "Inglês"
+
+#~ msgid "Act"
+#~ msgstr "Ato"
+
+#~ msgid "Share"
+#~ msgstr "Compartir"
+
+#~ msgid "Filters"
+#~ msgstr "Filtros"
+
+#~ msgid "Selected filters"
+#~ msgstr "Filtros seleccionados"
 
 #~ msgid "Legislation Directory"
 #~ msgstr "Directorio de legislación"
