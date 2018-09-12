@@ -206,9 +206,9 @@ $pages->paginate($page_url_params);
                                         <div class="card-body">
                                             <div class="meta">
                                                 <a class="full-text" href="<?php echo $doc->ur[0]; ?>"><h4 class="card-title"><?php echo substr($doc->ti[0], 4); ?></h4></a>
-                                                <strong><?php _e('Community', 'memoria-azul'); ?></strong>
+                                                <strong><?php _e('Communities', 'memoria-azul'); ?></strong>
                                                 <p class="card-text"><?php echo $com_name; ?></p>
-                                                <strong><?php _e('Collection', 'memoria-azul'); ?></strong>
+                                                <strong><?php _e('Collections', 'memoria-azul'); ?></strong>
                                                 <p class="card-text"><?php echo $col_name; ?></p>
                                                 <?php if ( isset($snippets->{$doc->id}->_text_) ) : ?>
                                                 <p class="paragraph"><?php echo get_highlight($snippets->{$doc->id}->_text_); ?></p>
