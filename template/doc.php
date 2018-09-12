@@ -3,7 +3,7 @@
 Template Name: Memória Azul Detail
 */
 
-global $wp, $memoria_azul_service_url, $memoria_azul_plugin_slug, $memoria_azul_plugin_title, $similar_docs_url;
+global $wp, $memoria_azul_service_url, $memoria_azul_plugin_slug, $memoria_azul_plugin_title, $similar_docs_url, $thumb_service_url;
 
 $current_slug = add_query_arg( array(), $wp->request );
 $current_url = home_url(add_query_arg(array(),$wp->request));

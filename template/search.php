@@ -2,7 +2,7 @@
 /*
 Template Name: Memória Azul Collection Page
 */
-global $memoria_azul_service_url, $memoria_azul_plugin_slug, $memoria_azul_plugin_title, $memoria_azul_texts, $pdf_service_url, $thumb_service_url;
+global $memoria_azul_service_url, $memoria_azul_plugin_slug, $memoria_azul_plugin_title, $memoria_azul_texts, $pdf_service_url;
 
 require_once(MEMORIA_AZUL_PLUGIN_PATH . '/lib/Paginator.php');
 
