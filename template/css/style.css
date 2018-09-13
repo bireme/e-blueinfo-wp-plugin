@@ -247,8 +247,8 @@ section .section-title {
 }
 
 .doc .card .thumb img {
-    /* max-width: 160px; */
-    /* max-height: 210px; */
+    max-width: 270px;
+    /* max-height: 350px; */
 }
 .frontside .card .card-title {
     padding: 0;
@@ -567,8 +567,8 @@ and (max-device-width : 812px) {
     #memoria-azul.doc-data .card .thumb {
         width: 100%;
         text-align: center;
-        margin-bottom: 1rem;
-        margin-right: 0;
+        margin: 0 auto 1rem;
+        float: none;
     }
 
     #memoria-azul .doc-meta .btn-details {
