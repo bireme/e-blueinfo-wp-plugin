@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Memória Azul 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/leisref\n"
-"POT-Creation-Date: 2018-09-11 10:56-0300\n"
+"POT-Creation-Date: 2018-09-17 11:35-0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -91,11 +91,11 @@ msgstr ""
 msgid "Database"
 msgstr ""
 
-#: settings.php:101 template/metadata.php:69 template/search.php:211
+#: settings.php:101
 msgid "Collection"
 msgstr ""
 
-#: settings.php:106 template/metadata.php:62
+#: settings.php:106
 msgid "Language"
 msgstr ""
 
@@ -107,8 +107,7 @@ msgstr ""
 msgid "Save changes"
 msgstr ""
 
-#: template-functions.php:71 template/metadata.php:103
-#: template/metadata.php:137
+#: template-functions.php:71
 msgid "of"
 msgstr ""
 
@@ -150,8 +149,7 @@ msgstr ""
 msgid "back to top"
 msgstr ""
 
-#: template/browse.php:187 template/collection.php:177 template/home.php:174
-#: template/search.php:243
+#: template/browse.php:187 template/search.php:243
 msgid "No more documents"
 msgstr ""
 
@@ -160,8 +158,12 @@ msgstr ""
 msgid "Loading..."
 msgstr ""
 
-#: template/collection.php:120
+#: template/collection.php:120 template/search.php:211
 msgid "Collections"
+msgstr ""
+
+#: template/collection.php:177
+msgid "No more collections"
 msgstr ""
 
 #: template/detail.php:89
@@ -216,40 +218,16 @@ msgstr ""
 msgid "Download link"
 msgstr ""
 
-#: template/home.php:118
+#: template/home.php:118 template/search.php:209
 msgid "Communities"
 msgstr ""
 
-#: template/metadata.php:33
-msgid "Act country/region"
-msgstr ""
-
-#: template/metadata.php:39
-msgid "Organ issuer"
-msgstr ""
-
-#: template/metadata.php:45
-msgid "Act scope"
-msgstr ""
-
-#: template/metadata.php:56
-msgid "Source"
-msgstr ""
-
-#: template/metadata.php:76
-msgid "Publication date"
-msgstr ""
-
-#: template/metadata.php:174
-msgid "Text in"
+#: template/home.php:174
+msgid "No more communities"
 msgstr ""
 
 #: template/search.php:162
 msgid "No results found. Try searching with another keywords."
-msgstr ""
-
-#: template/search.php:209
-msgid "Community"
 msgstr ""
 
 #: template/search.php:216

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Memória Azul 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/leisref\n"
-"POT-Creation-Date: 2018-09-11 11:34-0300\n"
-"PO-Revision-Date: 2018-09-12 11:34-0300\n"
+"POT-Creation-Date: 2018-09-17 11:35-0300\n"
+"PO-Revision-Date: 2018-09-17 11:36-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -91,11 +91,11 @@ msgstr "País/región"
 msgid "Database"
 msgstr "Base de datos"
 
-#: settings.php:101 template/metadata.php:69 template/search.php:211
+#: settings.php:101
 msgid "Collection"
 msgstr "Colección"
 
-#: settings.php:106 template/metadata.php:62
+#: settings.php:106
 msgid "Language"
 msgstr "Idioma"
 
@@ -107,8 +107,7 @@ msgstr "Año"
 msgid "Save changes"
 msgstr "Guardar cambios"
 
-#: template-functions.php:71 template/metadata.php:103
-#: template/metadata.php:137
+#: template-functions.php:71
 msgid "of"
 msgstr "de"
 
@@ -150,8 +149,7 @@ msgstr "Mostrar Más"
 msgid "back to top"
 msgstr "volver al inicio"
 
-#: template/browse.php:187 template/collection.php:177 template/home.php:174
-#: template/search.php:243
+#: template/browse.php:187 template/search.php:243
 msgid "No more documents"
 msgstr "No hay más documentos"
 
@@ -160,9 +158,13 @@ msgstr "No hay más documentos"
 msgid "Loading..."
 msgstr "Cargando..."
 
-#: template/collection.php:120
+#: template/collection.php:120 template/search.php:211
 msgid "Collections"
 msgstr "Colecciones"
+
+#: template/collection.php:177
+msgid "No more collections"
+msgstr "No hay más colecciones"
 
 #: template/detail.php:89
 msgid "Enter one or more words"
@@ -216,45 +218,42 @@ msgstr "Acceso al documento"
 msgid "Download link"
 msgstr "Enlace para descarga"
 
-#: template/home.php:118
+#: template/home.php:118 template/search.php:209
 msgid "Communities"
 msgstr "Comunidades"
 
-#: template/metadata.php:33
-msgid "Act country/region"
-msgstr "País/región del acto"
-
-#: template/metadata.php:39
-msgid "Organ issuer"
-msgstr "Órgano Emisor"
-
-#: template/metadata.php:45
-msgid "Act scope"
-msgstr "Esfera del acto"
-
-#: template/metadata.php:56
-msgid "Source"
-msgstr "Fuente"
-
-#: template/metadata.php:76
-msgid "Publication date"
-msgstr "Fecha de publicación"
-
-#: template/metadata.php:174
-msgid "Text in"
-msgstr "Texto en"
+#: template/home.php:174
+msgid "No more communities"
+msgstr "No hay más comunidades"
 
 #: template/search.php:162
 msgid "No results found. Try searching with another keywords."
 msgstr "Ningún resultado encontrado. Intente buscar con otras palabras clave."
 
-#: template/search.php:209
-msgid "Community"
-msgstr "Comunidade"
-
 #: template/search.php:216
 msgid "See details"
 msgstr "Ver detalles"
+
+#~ msgid "Act country/region"
+#~ msgstr "País/región del acto"
+
+#~ msgid "Organ issuer"
+#~ msgstr "Órgano Emisor"
+
+#~ msgid "Act scope"
+#~ msgstr "Esfera del acto"
+
+#~ msgid "Source"
+#~ msgstr "Fuente"
+
+#~ msgid "Publication date"
+#~ msgstr "Fecha de publicación"
+
+#~ msgid "Text in"
+#~ msgstr "Texto en"
+
+#~ msgid "Community"
+#~ msgstr "Comunidade"
 
 #~ msgid "Legislation Settings"
 #~ msgstr "Ajustes Legislación"
