@@ -174,7 +174,7 @@ $pages->paginate($page_url_params);
     <p class="totop">
         <a href="#top"><?php _e('back to top', 'memoria-azul') ?></a>
     </p>
-    <span class="loadmore-last"><?php _e('No more documents', 'memoria-azul'); ?></span>
+    <span class="loadmore-last"><?php _e('No more collections', 'memoria-azul'); ?></span>
 </div>
 <!-- ./Load More -->
 <script type="text/javascript">
