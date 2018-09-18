@@ -1,5 +1,4 @@
 if (navigator.userAgent.indexOf('gonative') > -1) {
-  alert('xxx');
   var json = [
                 {
                   "url": memoria_azul_script_vars.home,
