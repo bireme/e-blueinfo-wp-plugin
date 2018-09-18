@@ -13,7 +13,7 @@ define('MEMORIA_AZUL_VERSION', '0.1' );
 define('MEMORIA_AZUL_SYMBOLIC_LINK', false );
 define('MEMORIA_AZUL_PLUGIN_DIRNAME', 'memoria-azul' );
 
-if(MEMORIA_AZUL_SYMBOLIC_LINK == true) {
+if (MEMORIA_AZUL_SYMBOLIC_LINK == true) {
     define( 'MEMORIA_AZUL_PLUGIN_PATH',  ABSPATH . 'wp-content/plugins/' . MEMORIA_AZUL_PLUGIN_DIRNAME );
 } else {
     define( 'MEMORIA_AZUL_PLUGIN_PATH',  plugin_dir_path(__FILE__) );
@@ -212,10 +212,50 @@ if(!class_exists('Memoria_Azul_Plugin')) {
 		}
 
 		function template_styles_scripts(){
+            global $memoria_azul_plugin_slug, $polylang, $wp;
+            $home = real_site_url($memoria_azul_plugin_slug);
+            $languages = array();
+            $pagename = '';
+
+            // check if request contains plugin slug string
+            $pos_slug = strpos($wp->request, $this->plugin_slug);
+            if ( $pos_slug !== false ){
+                $pagename = substr($wp->request, $pos_slug);
+                $pagename = rtrim($pagename, '/') . '/';
+            }
+
+            if ( defined( 'POLYLANG_VERSION' ) ) {
+                $pll_languages = pll_the_languages( array( 'raw' => 1 ) );
+
+                foreach ($pll_languages as $slug => $lang) {
+                    $url = add_query_arg( $_SERVER['QUERY_STRING'], '', pll_home_url($slug) . $pagename );
+                    $languages[$slug] = array(
+                        'label' => $lang['name'],
+                        'url'  => $url
+                    );
+                }
+            }
+
             wp_enqueue_style ('memoria-azul-page', MEMORIA_AZUL_PLUGIN_URL . 'template/css/style.css', array(), MEMORIA_AZUL_VERSION);
             wp_enqueue_script('memoria-azul-page', MEMORIA_AZUL_PLUGIN_URL . 'template/js/functions.js', array(), MEMORIA_AZUL_VERSION);
+            wp_enqueue_script('memoria-azul-menu', MEMORIA_AZUL_PLUGIN_URL . 'app/js/menu.js', array(), MEMORIA_AZUL_VERSION);
             wp_enqueue_script('memoria-azul-loadmore', MEMORIA_AZUL_PLUGIN_URL . 'template/js/loadmore.js', array(), MEMORIA_AZUL_VERSION);
             wp_enqueue_script('memoria-azul-bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', array(), MEMORIA_AZUL_VERSION);
+
+            if ( $languages ) {
+                wp_localize_script('memoria-azul-menu', 'memoria_azul_script_vars', array(
+            			'home' => $home,
+                        'home_label' => __('Home','memoria-azul'),
+                        'lang_label' => __('Languages', 'memoria-azul'),
+            			'languages' => $languages
+            		)
+            	);
+            } else {
+                wp_localize_script('memoria-azul-page', 'memoria_azul_script_vars', array(
+            			'home' => $home
+            		)
+            	);
+            }
 		}
 
 		function register_settings(){
