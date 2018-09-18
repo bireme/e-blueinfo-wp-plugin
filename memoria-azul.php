@@ -238,7 +238,7 @@ if(!class_exists('Memoria_Azul_Plugin')) {
 
             wp_enqueue_style ('memoria-azul-page', MEMORIA_AZUL_PLUGIN_URL . 'template/css/style.css', array(), MEMORIA_AZUL_VERSION);
             wp_enqueue_script('memoria-azul-page', MEMORIA_AZUL_PLUGIN_URL . 'template/js/functions.js', array(), MEMORIA_AZUL_VERSION);
-            wp_enqueue_script('memoria-azul-menu', MEMORIA_AZUL_PLUGIN_URL . 'app/js/menu.js', array(), MEMORIA_AZUL_VERSION);
+            wp_enqueue_script('memoria-azul-menu', MEMORIA_AZUL_PLUGIN_URL . 'app/js/menu.js', array(), MEMORIA_AZUL_VERSION, true);
             wp_enqueue_script('memoria-azul-loadmore', MEMORIA_AZUL_PLUGIN_URL . 'template/js/loadmore.js', array(), MEMORIA_AZUL_VERSION);
             wp_enqueue_script('memoria-azul-bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', array(), MEMORIA_AZUL_VERSION);
 
