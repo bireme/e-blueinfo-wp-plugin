@@ -5,7 +5,7 @@
     "enableWindowOpen": true,
     "useCrosswalkWebView": false,
     "forceScreenOrientation": null,
-    "initialUrl": "http://sites.teste.bvsalud.org/memoria-azul/app",
+    "initialUrl": "http://sites.teste.bvsalud.org/memoria-azul/",
     "appName": "Memória Azul",
     "iosBundleId": "org.bvsalud.memoria.azul",
     "androidPackageName": "org.bvsalud.memoria.azul",
@@ -50,12 +50,12 @@
           "items": [
             {
               "label": "Sample Home",
-              "url": "http://sites.teste.bvsalud.org/memoria-azul/app/home",
+              "url": "http://sites.teste.bvsalud.org/memoria-azul/home",
               "subLinks": []
             },
             {
               "label": "Sample About",
-              "url": "http://sites.teste.bvsalud.org/memoria-azul/app/about",
+              "url": "http://sites.teste.bvsalud.org/memoria-azul/about",
               "subLinks": []
             }
           ],
