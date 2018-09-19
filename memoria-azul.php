@@ -252,7 +252,8 @@ if(!class_exists('Memoria_Azul_Plugin')) {
             	);
             } else {
                 wp_localize_script('memoria-azul-page', 'memoria_azul_script_vars', array(
-            			'home' => $home
+            			'home' => $home,
+                        'home_label' => __('Home','memoria-azul')
             		)
             	);
             }
