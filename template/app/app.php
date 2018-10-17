@@ -35,6 +35,12 @@
                         </div>
                     </div>
                 </div>
+                <select class="countries" onchange="location=this.value;">
+                    <option><?php _e('Please choose a country', 'memoria-azul'); ?></option>
+                    <?php foreach ($countries as $country) : ?>
+                    <option value="<?php echo real_site_url($memoria_azul_plugin_slug) . '?country=' . $country->id; ?>"><?php echo get_country_name($country->name, $lang); ?></option>
+                    <?php endforeach; ?>
+                </select>
               </div>
             </div>
     	</div>
