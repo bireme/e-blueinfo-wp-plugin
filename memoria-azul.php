@@ -41,15 +41,15 @@ if(!class_exists('Memoria_Azul_Plugin')) {
         public function __construct() {
             // register actions
 
-            add_action( 'init', array(&$this, 'load_translation'));
-            add_action( 'admin_menu', array(&$this, 'admin_menu'));
-            add_action( 'plugins_loaded', array(&$this, 'plugin_init'));
-            add_action( 'wp_head', array(&$this, 'google_analytics_code'));
-            add_action( 'template_redirect', array(&$this, 'theme_redirect'));
-            add_action( 'widgets_init', array(&$this, 'register_sidebars'));
-            add_filter( 'get_search_form', array(&$this, 'search_form'));
+            add_action( 'init', array(&$this, 'load_translation') );
+            add_action( 'admin_menu', array(&$this, 'admin_menu') );
+            add_action( 'plugins_loaded', array(&$this, 'plugin_init') );
+            add_action( 'wp_head', array(&$this, 'google_analytics_code') );
+            add_action( 'template_redirect', array(&$this, 'theme_redirect') );
+            add_action( 'widgets_init', array(&$this, 'register_sidebars') );
+            add_filter( 'get_search_form', array(&$this, 'search_form') );
             add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array(&$this, 'settings_link') );
-            add_filter( 'document_title_parts', array(&$this, 'theme_slug_render_title'));
+            add_filter( 'document_title_parts', array(&$this, 'theme_slug_render_title') );
 
         } // END public function __construct
 
@@ -106,6 +106,11 @@ if(!class_exists('Memoria_Azul_Plugin')) {
             setCookie( 'memoria-azul', time(), 0, '/' );
 
             $template = MEMORIA_AZUL_PLUGIN_PATH . 'template/app/app.php';
+
+            // force reload the page on hitting back button
+            header('Cache-Control: no-cache, no-store, must-revalidate'); // HTTP 1.1.
+            header('Pragma: no-cache'); // HTTP 1.0.
+            header('Expires: 0'); // Proxies.
 
             // force status to 200 - OK
             status_header(200);
