@@ -146,7 +146,7 @@ if ( !function_exists('real_site_url') ) {
         elseif ( defined( 'POLYLANG_VERSION' ) ) {
             $default_language = pll_default_language();
             $current_language = pll_current_language();
-            
+
             if ( $default_language != $current_language ){
                 $site_url .= '/' . $current_language;
             }
@@ -185,6 +185,20 @@ if ( !function_exists('get_highlight') ) {
         }
 
         return $text;
+    }
+}
+
+if ( !function_exists('get_country_name') ) {
+    function get_country_name($names, $lang){
+        $country_name = '';
+
+        foreach ($names as $name) {
+            if (strpos($name, $lang) !== false) {
+                $country_name = explode('^', $name)[1];
+            }
+        }
+
+        return $country_name;
     }
 }
 

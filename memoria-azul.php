@@ -28,11 +28,12 @@ require_once(MEMORIA_AZUL_PLUGIN_PATH . '/template-functions.php');
 if(!class_exists('Memoria_Azul_Plugin')) {
     class Memoria_Azul_Plugin {
 
-        private $plugin_slug       = 'memoria-azul';
-        private $service_url       = 'http://fi-admin.bvsalud.org/';
-        private $similar_docs_url  = 'http://similardocs.bireme.org/SDService';
-        private $thumb_service_url = 'http://serverofi5.bireme.br:9090/thumbnailServer/getDocument';
-        private $pdf_service_url   = 'http://serverofi5.bireme.br:8989/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu';
+        private $plugin_slug         = 'memoria-azul';
+        private $service_url         = 'http://fi-admin.bvsalud.org/';
+        private $similar_docs_url    = 'http://similardocs.bireme.org/SDService';
+        private $thumb_service_url   = 'http://serverofi5.bireme.br:9090/thumbnailServer/getDocument';
+        private $country_service_url = 'http://fi-admin.bvsalud.org/api/community/get_country_list/?format=json';
+        private $pdf_service_url     = 'http://serverofi5.bireme.br:8989/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu';
 
         /**
          * Construct the plugin object
@@ -87,7 +88,29 @@ if(!class_exists('Memoria_Azul_Plugin')) {
 		        $this->plugin_slug = $memoria_azul_config['plugin_slug'];
 		    }
 
+            /* app page redirect */
+            if ( ! is_admin() && ! $_COOKIE['memoria-azul'] && strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') === false ) {
+                add_action( 'template_redirect', array(&$this, 'app_page_redirect'), 1 );
+            }
 		}
+
+        function app_page_redirect() {
+            global $memoria_azul_plugin_slug, $country_service_url;
+            $memoria_azul_plugin_slug = $this->plugin_slug;
+            $country_service_url = $this->country_service_url;
+
+            // generate app cookie
+            setCookie( 'memoria-azul', time(), 0, '/' );
+
+            $template = MEMORIA_AZUL_PLUGIN_PATH . 'template/app/app.php';
+
+            // force status to 200 - OK
+            status_header(200);
+
+            // redirect to page and finish execution
+            include($template);
+            die();
+        }
 
 		function admin_menu() {
 
