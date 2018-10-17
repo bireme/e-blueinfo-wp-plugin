@@ -50,13 +50,3 @@ body {
         margin: 0 auto;
     }
 }
-
-@media screen and (max-width: 414px) {
-    #adv-search {
-      display: none;
-    }
-    .countries {
-        display: block;
-        width: 100%;
-    }
-}

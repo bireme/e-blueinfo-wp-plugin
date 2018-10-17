@@ -16,6 +16,11 @@
     <style type="text/css">
 		<?php require_once('style.css'); ?>
     </style>
+    <?php if ( strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') !== false ) : ?>
+    <style type="text/css">
+		<?php require_once('style-app.css'); ?>
+    </style>
+    <?php endif; ?>
 
 	<!-- === Embedding Scripts === -->
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
