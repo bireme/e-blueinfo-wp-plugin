@@ -194,7 +194,8 @@ if ( !function_exists('get_country_name') ) {
 
         foreach ($names as $name) {
             if (strpos($name, $lang) !== false) {
-                $country_name = explode('^', $name)[1];
+                $arr = explode('^', $name);
+                $country_name = $arr[1];
             }
         }
 
