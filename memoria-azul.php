@@ -88,8 +88,11 @@ if(!class_exists('Memoria_Azul_Plugin')) {
 		        $this->plugin_slug = $memoria_azul_config['plugin_slug'];
 		    }
 
-            /* app page redirect */
-            if ( ! is_admin() && ! $_COOKIE['memoria-azul'] && strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') === false ) {
+            // check if request contains plugin slug string
+            $pos_slug = strpos($_SERVER['REQUEST_URI'], $this->plugin_slug);
+
+            if ( ! is_admin() && ! $_COOKIE['memoria-azul'] && $pos_slug !== false ) {
+                /* app page redirect */
                 add_action( 'template_redirect', array(&$this, 'app_page_redirect'), 1 );
             }
 		}
