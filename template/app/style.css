@@ -43,6 +43,9 @@ body {
 .dropdown-menu {
     width: 100%;
 }
+.countries {
+    display: none;
+}
 
 @media screen and (min-width: 768px) {
     #adv-search {
