@@ -176,9 +176,8 @@ if(!class_exists('Memoria_Azul_Plugin')) {
                         if ( ! wp_get_referer() && ! $_COOKIE['memoria-azul-redirect'] ) {
                             if ( defined( 'POLYLANG_VERSION' ) ) {
                                 $default_language = pll_default_language();
-                                $current_language = pll_current_language();
 
-                                if ( $default_language != $current_language ){
+                                if ( $default_language != $_COOKIE['memoria-azul-lang'] ){
                                     setCookie( 'memoria-azul-redirect', time(), 0, '/' );
 
                                     $home_url = pll_home_url($_COOKIE['memoria-azul-lang']) . $pagename;
