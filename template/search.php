@@ -123,7 +123,7 @@ $pages->paginate($page_url_params);
 
 <!-- Breadcrumb -->
 <ol class="breadcrumb">
-    <li><a href="<?php echo $home_url ?>"><?php _e('Home','memoria-azul'); ?></a></li>
+    <li><a href="<?php echo $home_url; ?>"><?php _e('Home','memoria-azul'); ?></a></li>
     <li><a href="<?php echo real_site_url($memoria_azul_plugin_slug); ?>"><?php echo $memoria_azul_plugin_title; ?> </a></li>
     <?php if ( isset($community_id, $community) ) : ?>
     <li><a href="<?php echo real_site_url($memoria_azul_plugin_slug) . 'collection/?community=' . $community_id; ?>"><?php echo $community->objects{0}->name; ?> </a></li>

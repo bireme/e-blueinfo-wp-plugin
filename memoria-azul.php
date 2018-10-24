@@ -175,13 +175,18 @@ if(!class_exists('Memoria_Azul_Plugin')) {
 
                         if ( ! wp_get_referer() && ! $_COOKIE['memoria-azul-redirect'] ) {
                             if ( defined( 'POLYLANG_VERSION' ) ) {
-                                setCookie( 'memoria-azul-redirect', time(), 0, '/' );
+                                $default_language = pll_default_language();
+                                $current_language = pll_current_language();
 
-                                $home_url = pll_home_url($_COOKIE['memoria-azul-lang']) . $pagename;
+                                if ( $default_language != $current_language ){
+                                    setCookie( 'memoria-azul-redirect', time(), 0, '/' );
 
-                                // wp_safe_redirect( $home_url );
-                                wp_redirect( $home_url );
-                                exit();
+                                    $home_url = pll_home_url($_COOKIE['memoria-azul-lang']) . $pagename;
+
+                                    // wp_safe_redirect( $home_url );
+                                    wp_redirect( $home_url );
+                                    exit();
+                                }
                             }
                         }
 
