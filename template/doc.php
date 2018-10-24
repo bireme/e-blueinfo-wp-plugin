@@ -138,7 +138,7 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
 <!-- ./Breadcrumb -->
 
 <!-- Template -->
-<section id="memoria-azul" class="pb-5 doc-data">
+<section id="memoria-azul" class="pb-5 doc-data blueinfo-doc">
     <div class="container">
         <!-- Search Bar -->
         <header class="page-header">

@@ -140,7 +140,7 @@ $pages->paginate($page_url_params);
 <!-- ./Breadcrumb -->
 
 <!-- Template -->
-<section id="memoria-azul" class="pb-5">
+<section id="memoria-azul" class="pb-5 blueinfo-search">
     <div class="container">
         <!-- Search Bar -->
         <header class="page-header">
