@@ -43,12 +43,18 @@ body {
 .dropdown-menu {
     width: 100%;
 }
-.countries {
+.mobile {
     display: none;
+}
+.adv-lang {
+    display: none;
+}
+.h4 {
+    text-align: center;
 }
 
 @media screen and (min-width: 768px) {
-    #adv-search {
+    .adv-search {
         width: 500px;
         margin: 0 auto;
     }

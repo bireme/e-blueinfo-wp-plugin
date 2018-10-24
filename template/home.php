@@ -23,6 +23,10 @@ $lang = substr($site_language,0,2);
 $query = $_GET['s'] . $_GET['q'];
 $query = stripslashes( trim($query) );
 
+// set country
+$country = ( !empty($_GET['country']) ? $_GET['country'] : '' );
+$country = ( !empty($_COOKIE['memoria-azul-country']) ? $_COOKIE['memoria-azul-country'] : $country );
+
 $user_filter = stripslashes($_GET['filter']);
 $page   = ( !empty($_GET['page']) ? $_GET['page'] : 1 );
 $offset = ( !empty($_GET['offset']) ? $_GET['offset'] : 0 );
@@ -47,7 +51,7 @@ $start = ($page * $count) - $count;
 if ( $query ) {
     $memoria_azul_service_request = $memoria_azul_service_url . 'api/bibliographic/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&count=' . $count . '&sort=' . urlencode($sort) . '&lang=' . $lang;
 } else {
-    $memoria_azul_service_request = $memoria_azul_service_url . 'api/community/?format=' . $format . '&offset=' . $offset . '&limit=' . $count . '&lang=' . $lang;
+    $memoria_azul_service_request = $memoria_azul_service_url . 'api/community/?country=' . $country . '&format=' . $format . '&offset=' . $offset . '&limit=' . $count . '&lang=' . $lang;
 }
 
 if ( $user_filter != '' ) {

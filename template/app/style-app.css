@@ -1,7 +1,13 @@
-#adv-search {
+.desktop {
   display: none;
 }
-.countries {
+.mobile {
     display: block;
+}
+.countries {
+    display: none;
+    width: 100%;
+}
+.languages {
     width: 100%;
 }

@@ -133,6 +133,9 @@ if(!class_exists('Memoria_Azul_Plugin')) {
 		    global $wp, $memoria_azul_service_url, $memoria_azul_plugin_slug, $memoria_azul_texts, $similar_docs_url, $pdf_service_url, $thumb_service_url;
 		    $pagename = '';
 
+            $site_language = strtolower(get_bloginfo('language'));
+            $lang = substr($site_language,0,2);
+
             // check if request contains plugin slug string
             $pos_slug = strpos($wp->request, $this->plugin_slug);
             if ( $pos_slug !== false ){
@@ -164,7 +167,25 @@ if(!class_exists('Memoria_Azul_Plugin')) {
     		        add_action( 'wp_enqueue_scripts', array(&$this, 'template_styles_scripts') );
 
     		        if ($pagename == $this->plugin_slug){
-    		            $template = MEMORIA_AZUL_PLUGIN_PATH . '/template/home.php';
+                        if ( ! $_COOKIE['memoria-azul-country'] && ! $_COOKIE['memoria-azul-lang'] ) {
+                            // generate country and lang cookie
+                            setCookie( 'memoria-azul-lang', $lang, 0, '/' );
+                            setCookie( 'memoria-azul-country', $_GET['country'], 0, '/' );
+                        }
+
+                        if ( ! wp_get_referer() && ! $_COOKIE['memoria-azul-redirect'] ) {
+                            if ( defined( 'POLYLANG_VERSION' ) ) {
+                                setCookie( 'memoria-azul-redirect', time(), 0, '/' );
+
+                                $home_url = pll_home_url($_COOKIE['memoria-azul-lang']) . $pagename;
+
+                                // wp_safe_redirect( $home_url );
+                                wp_redirect( $home_url );
+                                exit();
+                            }
+                        }
+
+                        $template = MEMORIA_AZUL_PLUGIN_PATH . '/template/home.php';
                     }elseif ($pagename == $this->plugin_slug . '/collection'){
     		            $template = MEMORIA_AZUL_PLUGIN_PATH . '/template/collection.php';
                     }elseif ($pagename == $this->plugin_slug . '/browse'){
@@ -174,6 +195,7 @@ if(!class_exists('Memoria_Azul_Plugin')) {
     		        }else{
     		            $template = MEMORIA_AZUL_PLUGIN_PATH . '/template/doc.php';
     		        }
+
     		        // force status to 200 - OK
     		        status_header(200);
 
