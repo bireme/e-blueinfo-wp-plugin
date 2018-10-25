@@ -91,7 +91,7 @@ if(!class_exists('Memoria_Azul_Plugin')) {
             // check if request contains plugin slug string
             $pos_slug = strpos($_SERVER['REQUEST_URI'], $this->plugin_slug);
 
-            if ( ! is_admin() && ! $_COOKIE['memoria-azul'] && $pos_slug !== false ) {
+            if ( ! is_admin() && ! $_COOKIE['memoria-azul'] && strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') !== false && $pos_slug !== false ) {
                 /* app page redirect */
                 add_action( 'template_redirect', array(&$this, 'app_page_redirect'), 1 );
             }
@@ -167,24 +167,25 @@ if(!class_exists('Memoria_Azul_Plugin')) {
     		        add_action( 'wp_enqueue_scripts', array(&$this, 'template_styles_scripts') );
 
     		        if ($pagename == $this->plugin_slug){
-                        if ( ! $_COOKIE['memoria-azul-country'] && ! $_COOKIE['memoria-azul-lang'] ) {
-                            // generate country and lang cookie
-                            setCookie( 'memoria-azul-lang', $lang, 0, '/' );
-                            setCookie( 'memoria-azul-country', $_GET['country'], 0, '/' );
-                        }
+                        if ( strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') !== false ) {
+                            if ( ! $_COOKIE['memoria-azul-country'] && ! $_COOKIE['memoria-azul-lang'] ) {
+                                // generate country and lang cookie
+                                setCookie( 'memoria-azul-lang', $lang, 0, '/' );
+                                setCookie( 'memoria-azul-country', $_GET['country'], 0, '/' );
+                            }
 
-                        if ( ! wp_get_referer() && ! $_COOKIE['memoria-azul-redirect'] ) {
-                            if ( defined( 'POLYLANG_VERSION' ) ) {
-                                $default_language = pll_default_language();
+                            if ( ! wp_get_referer() && ! $_COOKIE['memoria-azul-redirect'] ) {
+                                if ( defined( 'POLYLANG_VERSION' ) ) {
+                                    $default_language = pll_default_language();
 
-                                if ( $default_language != $_COOKIE['memoria-azul-lang'] ){
-                                    setCookie( 'memoria-azul-redirect', time(), 0, '/' );
+                                    if ( $default_language != $_COOKIE['memoria-azul-lang'] ) {
+                                        setCookie( 'memoria-azul-redirect', time(), 0, '/' );
 
-                                    $home_url = pll_home_url($_COOKIE['memoria-azul-lang']) . $pagename;
+                                        $home_url = pll_home_url($_COOKIE['memoria-azul-lang']) . $pagename;
 
-                                    // wp_safe_redirect( $home_url );
-                                    wp_redirect( $home_url );
-                                    exit();
+                                        wp_redirect( $home_url );
+                                        exit();
+                                    }
                                 }
                             }
                         }
