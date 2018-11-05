@@ -7,8 +7,10 @@ var searchForm = $("#searchForm");
 var imageFlip  = ".image-flip";
 var fsCard  =  ".frontside .card";
 var bsCard  =  ".backside";
+var colCard =  ".col .card";
 var docCard =  ".doc .card";
 var docMetaCard  =  ".doc-meta .card";
+var colRedirect  =  colCard + " a.redirect";
 var docRedirect  =  docCard + " a.redirect";
 var docMetaRedirect = docMetaCard + " a.redirect";
 
@@ -30,6 +32,10 @@ $(document).ready(function() {
     });
 
     $(document).on( "click", fsCard, function(e) {
+        window.location.href = $(this).find('a.redirect').attr('href');
+    });
+
+    $(document).on( "click", colCard, function(e) {
         window.location.href = $(this).find('a.redirect').attr('href');
     });
 

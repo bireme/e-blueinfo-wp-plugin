@@ -66,7 +66,7 @@ if ( $user_filter != '' ) {
     }
 }
 
-//print $memoria_azul_service_request;
+// print $memoria_azul_service_request;
 
 $response = @file_get_contents($memoria_azul_service_request);
 if ($response){
@@ -94,7 +94,7 @@ $pages->paginate($page_url_params);
 
 <!-- Breadcrumb -->
 <ol class="breadcrumb">
-    <li><a href="<?php echo $home_url ?>"><?php _e('Home','memoria-azul'); ?></a></li>
+    <li><a href="<?php echo $home_url; ?>"><?php _e('Home','memoria-azul'); ?></a></li>
     <?php if ($query == '' && $filter == ''): ?>
     <li class="active"><?php echo $memoria_azul_plugin_title; ?></li>
     <?php else: ?>
@@ -119,7 +119,9 @@ $pages->paginate($page_url_params);
         		<i class="material-icons clearSearchBarField noUserSelect" onClick="resetInput()">clear</i>
         	</div>
         </header>
+        <?php if ( isset($total) && strval($total) > 1 ) :?>
         <h3 class="section-title"><?php _e('Communities', 'memoria-azul'); ?></h3>
+        <?php endif; ?>
         <div class="row">
             <?php if ( isset($total) && strval($total) == 0 ) :?>
             <h4><?php _e('No results found','memoria-azul'); ?></h4>

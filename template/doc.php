@@ -154,7 +154,12 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
         		<i class="material-icons clearSearchBarField noUserSelect" onClick="resetInput()">clear</i>
         	</div>
         </header>
-        <!-- <h3 class="section-title">Documentos</h3> -->
+        <?php if ( isset($community_id, $community) ) : ?>
+        <h3 class="section-title parent-title"><?php echo $community->objects{0}->name; ?></h3>
+        <?php endif; ?>
+        <?php if ( isset($community_id, $collection_id, $collection) ) : ?>
+        <h3 class="section-title"><?php echo $collection->objects{0}->name; ?></h3>
+        <?php endif; ?>
         <div class="row">
             <!-- Collection -->
             <div class="col-xs-12 col-sm-12 col-md-12">

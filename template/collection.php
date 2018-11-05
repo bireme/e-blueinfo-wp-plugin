@@ -63,7 +63,7 @@ if ( $user_filter != '' ) {
     }
 }
 
-//print $memoria_azul_service_request;
+// print $memoria_azul_service_request;
 
 $response = @file_get_contents($memoria_azul_service_request);
 if ($response){
@@ -117,6 +117,7 @@ $pages->paginate($page_url_params);
         		<i class="material-icons clearSearchBarField noUserSelect" onClick="resetInput()">clear</i>
         	</div>
         </header>
+        <h3 class="section-title parent-title"><?php echo $response_json->objects{0}->parent; ?></h3>
         <h3 class="section-title"><?php _e('Collections', 'memoria-azul'); ?></h3>
         <div class="row">
             <?php if ( isset($total) && strval($total) == 0 ) : ?>
@@ -134,22 +135,13 @@ $pages->paginate($page_url_params);
                 <div class="col-xs-12 col-sm-6 col-md-4 item">
                     <div id="<?php echo $id; ?>" class="image-flip">
                         <div class="mainflip">
-                            <div class="frontside" onclick="__gaTracker('send','event','Collection','View','<?php echo $collection->name; ?>');">
-                                <div class="card">
-                                    <div class="card-body text-center">
-                                        <p><i class="fa fa-book fa-5x"></i></p>
-                                        <h4 class="card-title"><?php echo $collection->name; ?></h4>
-                                        <!-- <p class="card-text">This is basic card with image on top, title, description and button.</p> -->
-                                        <!-- <a class="btn btn-primary btn-sm redirect desktop" href="<?php echo real_site_url($memoria_azul_plugin_slug); ?>resource-list/?collection=<?php echo $collection->id; ?>" ontouchstart="toggleCard('<?php echo $id; ?>'); return false;"><i class="fa fa-info-circle"></i></a> -->
-                                        <a class="btn btn-primary btn-sm redirect desktop" href="<?php echo real_site_url($memoria_azul_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>" ontouchstart="toggleCard('<?php echo $id; ?>'); return false;"><i class="fa fa-info-circle"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="backside" ontouchstart="document.getElementById('<?php echo $id; ?>').classList.toggle('hover');">
+                            <div class="col">
+                            <!-- <div class="col" onclick="__gaTracker('send','event','Collection','View','<?php echo $collection->name; ?>');"> -->
                                 <div class="card">
                                     <div class="card-body text-center">
                                         <h4 class="card-title"><?php echo $collection->name; ?></h4>
                                         <p class="card-text"><?php echo $collection->description; ?></p>
+                                        <a class="redirect hide" href="<?php echo real_site_url($memoria_azul_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>"><i class="fa fa-angle-right"></i></a>
                                     </div>
                                 </div>
                             </div>

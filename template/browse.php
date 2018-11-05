@@ -126,6 +126,7 @@ $pages->paginate($page_url_params);
         		<i class="material-icons clearSearchBarField noUserSelect" onClick="resetInput()">clear</i>
         	</div>
         </header>
+        <h3 class="section-title parent-title"><?php echo $collection->objects{0}->parent; ?></h3>
         <h3 class="section-title"><?php _e($collection->objects{0}->name, 'memoria-azul'); ?></h3>
         <div class="row">
             <?php if ( isset($total) && strval($total) == 0 ) : ?>
