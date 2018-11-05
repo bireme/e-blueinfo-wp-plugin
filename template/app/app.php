@@ -100,6 +100,7 @@
                 </div>
             </div>
             <div class="col-md-12 mobile">
+                <?php if ( $languages ) : ?>
                 <select class="languages">
                     <option></option>
                     <?php foreach ($languages as $slug => $name) : ?>
@@ -107,6 +108,7 @@
                     <?php endforeach; ?>
                 </select>
                 <hr />
+                <?php endif; ?>
                 <select class="countries en" onchange="location=this.value;">
                     <option>Please choose a country</option>
                     <?php foreach ($countries as $country) : ?>

@@ -130,7 +130,7 @@ if(!class_exists('Memoria_Azul_Plugin')) {
 		}
 
 		function theme_redirect() {
-		    global $wp, $memoria_azul_service_url, $memoria_azul_plugin_slug, $memoria_azul_texts, $similar_docs_url, $pdf_service_url, $thumb_service_url;
+		    global $wp, $memoria_azul_service_url, $memoria_azul_plugin_slug, $memoria_azul_texts, $similar_docs_url, $pdf_service_url, $thumb_service_url, $country_service_url;
 		    $pagename = '';
 
             $site_language = strtolower(get_bloginfo('language'));
@@ -157,20 +157,26 @@ if(!class_exists('Memoria_Azul_Plugin')) {
                 $similar_docs_url = $this->similar_docs_url;
                 $pdf_service_url = $this->pdf_service_url;
                 $thumb_service_url = $this->thumb_service_url;
+                $country_service_url = $this->country_service_url;
 
                 if ($pagename == $this->plugin_slug
                  || $pagename == $this->plugin_slug . '/doc'
                  || $pagename == $this->plugin_slug . '/collection'
                  || $pagename == $this->plugin_slug . '/browse'
-                 || $pagename == $this->plugin_slug . '/search') {
+                 || $pagename == $this->plugin_slug . '/search'
+                 || $pagename == $this->plugin_slug . '/country') {
 
     		        add_action( 'wp_enqueue_scripts', array(&$this, 'template_styles_scripts') );
 
     		        if ($pagename == $this->plugin_slug){
                         if ( strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') !== false ) {
-                            if ( ! $_COOKIE['memoria-azul-country'] && ! $_COOKIE['memoria-azul-lang'] ) {
-                                // generate country and lang cookie
+                            // generate lang cookie
+                            if ( ! $_COOKIE['memoria-azul-lang'] ) {
                                 setCookie( 'memoria-azul-lang', $lang, 0, '/' );
+                            }
+
+                            // generate country cookie
+                            if ( ! $_COOKIE['memoria-azul-country'] ) {
                                 setCookie( 'memoria-azul-country', $_GET['country'], 0, '/' );
                             }
 
@@ -197,6 +203,8 @@ if(!class_exists('Memoria_Azul_Plugin')) {
     		            $template = MEMORIA_AZUL_PLUGIN_PATH . '/template/browse.php';
                     }elseif ($pagename == $this->plugin_slug . '/search'){
     		            $template = MEMORIA_AZUL_PLUGIN_PATH . '/template/search.php';
+                    }elseif ($pagename == $this->plugin_slug . '/country'){
+                        $template = MEMORIA_AZUL_PLUGIN_PATH . '/template/app/country.php';
     		        }else{
     		            $template = MEMORIA_AZUL_PLUGIN_PATH . '/template/doc.php';
     		        }
