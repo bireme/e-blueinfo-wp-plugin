@@ -132,6 +132,6 @@
     	</div>
     </div>
 
-    <script src="<?php echo MEMORIA_AZUL_PLUGIN_URL . 'app/js/en/menu.js'; ?>"></script>
+    <script src="<?php echo MEMORIA_AZUL_PLUGIN_URL . 'app/js/en/main.menu.js'; ?>"></script>
 
 <?php require_once('footer.php'); ?>
