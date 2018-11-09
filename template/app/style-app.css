@@ -1,5 +1,5 @@
 .desktop {
-  display: none;
+    display: none;
 }
 .mobile {
     display: block;
@@ -7,6 +7,9 @@
 .countries {
     display: none;
     width: 100%;
+}
+.countries-list {
+	width: 100%;
 }
 .languages {
     width: 100%;

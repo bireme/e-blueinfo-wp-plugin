@@ -259,7 +259,7 @@ if(!class_exists('Memoria_Azul_Plugin')) {
 
 		function page_title(){
 		    global $wp;
-		    $pagename = $wp->query_vars["pagename"];
+		    $pagename = $wp->request;
 
 		    if ( strpos($pagename, $this->plugin_slug) === 0 ) { //pagename starts with plugin slug
 		        return __('Memória Azul', 'memoria-azul') . ' | ';
@@ -268,7 +268,7 @@ if(!class_exists('Memoria_Azul_Plugin')) {
 
 		function search_form( $form ) {
 		    global $wp;
-		    $pagename = $wp->query_vars["pagename"];
+		    $pagename = $wp->request;
 
 		    if ($pagename == $this->plugin_slug || preg_match('/detail\//', $pagename)) {
 		        $form = preg_replace('/action="([^"]*)"(.*)/','action="' . home_url($this->plugin_slug) . '"',$form);
@@ -283,6 +283,9 @@ if(!class_exists('Memoria_Azul_Plugin')) {
             $languages = array();
             $pagename = '';
 
+            $site_language = strtolower(get_bloginfo('language'));
+            $lang = substr($site_language,0,2);
+
             // check if request contains plugin slug string
             $pos_slug = strpos($wp->request, $this->plugin_slug);
             if ( $pos_slug !== false ){
@@ -293,10 +296,10 @@ if(!class_exists('Memoria_Azul_Plugin')) {
             if ( defined( 'POLYLANG_VERSION' ) ) {
                 $pll_languages = pll_the_languages( array( 'raw' => 1 ) );
 
-                foreach ($pll_languages as $slug => $lang) {
+                foreach ($pll_languages as $slug => $language) {
                     $url = add_query_arg( $_SERVER['QUERY_STRING'], '', pll_home_url($slug) . $pagename );
                     $languages[$slug] = array(
-                        'label' => $lang['name'],
+                        'label' => $language['name'],
                         'url'  => $url
                     );
                 }
@@ -304,7 +307,7 @@ if(!class_exists('Memoria_Azul_Plugin')) {
 
             wp_enqueue_style ('memoria-azul-page', MEMORIA_AZUL_PLUGIN_URL . 'template/css/style.css', array(), MEMORIA_AZUL_VERSION);
             wp_enqueue_script('memoria-azul-page', MEMORIA_AZUL_PLUGIN_URL . 'template/js/functions.js', array(), MEMORIA_AZUL_VERSION);
-            wp_enqueue_script('memoria-azul-menu', MEMORIA_AZUL_PLUGIN_URL . 'app/js/menu.js', array(), MEMORIA_AZUL_VERSION, true);
+            wp_enqueue_script('memoria-azul-menu', MEMORIA_AZUL_PLUGIN_URL . 'app/js/' . $lang . '/menu.js', array(), MEMORIA_AZUL_VERSION, true);
             wp_enqueue_script('memoria-azul-loadmore', MEMORIA_AZUL_PLUGIN_URL . 'template/js/loadmore.js', array(), MEMORIA_AZUL_VERSION);
             wp_enqueue_script('memoria-azul-bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', array(), MEMORIA_AZUL_VERSION);
 
@@ -338,7 +341,7 @@ if(!class_exists('Memoria_Azul_Plugin')) {
 		function google_analytics_code(){
 		    global $wp;
 
-		    $pagename = $wp->query_vars["pagename"];
+		    $pagename = $wp->request;
 		    $plugin_config = get_option('memoria_azul_config');
 
 		    // check if is defined GA code and pagename starts with plugin slug

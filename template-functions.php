@@ -192,10 +192,12 @@ if ( !function_exists('get_country_name') ) {
     function get_country_name($names, $lang){
         $country_name = '';
 
-        foreach ($names as $name) {
-            if (strpos($name, $lang) !== false) {
-                $arr = explode('^', $name);
-                $country_name = $arr[1];
+        if ( $names ) {
+            foreach ($names as $name) {
+                if (strpos($name, $lang) !== false) {
+                    $arr = explode('^', $name);
+                    $country_name = $arr[1];
+                }
             }
         }
 
