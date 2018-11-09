@@ -5,10 +5,10 @@
     "enableWindowOpen": true,
     "useCrosswalkWebView": false,
     "forceScreenOrientation": null,
-    "initialUrl": "http://sites.teste.bvsalud.org/memoria-azul/",
-    "appName": "Memória Azul",
-    "iosBundleId": "org.bvsalud.memoria.azul",
-    "androidPackageName": "org.bvsalud.memoria.azul",
+    "initialUrl": "http://sites.teste.bvsalud.org/e-blueinfo/",
+    "appName": "e-BlueInfo",
+    "iosBundleId": "org.bvsalud.eblueinfo",
+    "androidPackageName": "org.bvsalud.eblueinfo",
     "androidVersionName": "1.0.0"
   },
   "navigation": {
@@ -37,12 +37,7 @@
       "menus": [
         {
           "name": "default",
-          "items": [
-            {
-              "label": "",
-              "url": ""
-            }
-          ],
+          "items": [],
           "active": true
         },
         {
@@ -50,12 +45,12 @@
           "items": [
             {
               "label": "Sample Home",
-              "url": "http://sites.teste.bvsalud.org/memoria-azul/home",
+              "url": "http://sites.teste.bvsalud.org/e-blueinfo/home",
               "subLinks": []
             },
             {
               "label": "Sample About",
-              "url": "http://sites.teste.bvsalud.org/memoria-azul/about",
+              "url": "http://sites.teste.bvsalud.org/e-blueinfo/about",
               "subLinks": []
             }
           ],
@@ -80,14 +75,57 @@
     },
     "navigationLevels": {
       "levels": [
-        {}
-      ]
+        {
+          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo/?",
+          "level": 1
+        },
+        {
+          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/?(country=[\\d]*)?",
+          "level": 1
+        },
+        {
+          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/collection.+",
+          "level": 2
+        },
+        {
+          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/country/?",
+          "level": 2
+        },
+        {
+          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/about.+",
+          "level": 2
+        },
+        {
+          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/supporters.+",
+          "level": 2
+        },
+        {
+          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/pdf.+",
+          "level": 2
+        },
+        {
+          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/browse.+",
+          "level": 3
+        },
+        {
+          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/doc.+",
+          "level": 4
+        },
+        {
+          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/search.+",
+          "level": 5
+        }
+      ],
+      "active": true
     },
     "navigationTitles": {
       "titles": [
-        {}
+        {
+          "regex": ".*",
+          "title": "e-BlueInfo"
+        }
       ],
-      "active": false
+      "active": true
     },
     "regexInternalExternal": {
       "rules": [
@@ -145,6 +183,10 @@
         },
         {
           "regex": "https?://([-\\w]+\\.)*google\\.com/maps/search/.*",
+          "internal": false
+        },
+        {
+          "regex": "https?://feedback\\.bireme\\.org.*",
           "internal": false
         },
         {
