@@ -58,19 +58,19 @@ p {margin-bottom: 0px;}
     color: rgb(0,153,255);
 }
 
-#e-blueinfo {
+#eblueinfo {
     background: #1c547e !important;
 }
 
-#e-blueinfo.doc-data {
+#eblueinfo.doc-data {
     padding-bottom: 0 !important;
 }
 
-#e-blueinfo.doc-data .card {
+#eblueinfo.doc-data .card {
     margin: 30px 0;
 }
 
-#e-blueinfo.doc-data .card .thumb {
+#eblueinfo.doc-data .card .thumb {
     float: left;
     margin-right: 1rem;
     margin-bottom: 0;
@@ -78,41 +78,41 @@ p {margin-bottom: 0px;}
     /* max-height: 350px; */
 }
 
-#e-blueinfo.doc-data .card .card-body span {
+#eblueinfo.doc-data .card .card-body span {
     /* color: #007b5e !important; */
     font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
 }
 
-#e-blueinfo.doc-data .card .card-body .card-text {
+#eblueinfo.doc-data .card .card-body .card-text {
     font-size: 14px;
 }
 
-#e-blueinfo.doc-data .card .card-body .card-text a {
+#eblueinfo.doc-data .card .card-body .card-text a {
     font-weight: normal;
 }
 
-#e-blueinfo .card .card-body .paragraph {
+#eblueinfo .card .card-body .paragraph {
     color: #666;
     font-style: italic;
     margin-bottom: 8px;
 }
 
-#e-blueinfo .card .card-body .paragraph em {
+#eblueinfo .card .card-body .paragraph em {
     font-weight: bold;
     background: #ffff00;
 }
 
-#e-blueinfo .doc-meta a {
+#eblueinfo .doc-meta a {
     text-decoration: none;
 }
 
-#e-blueinfo .doc-meta .card .card-body .card-text {
+#eblueinfo .doc-meta .card .card-body .card-text {
     margin-bottom: 8px;
 }
 
-#e-blueinfo.doc-data .card div.meta div:last-child {
+#eblueinfo.doc-data .card div.meta div:last-child {
     margin-top: 1rem;
 }
 
@@ -133,7 +133,7 @@ h4.results {
 
 .site-content{ padding: 0px !important;}
 
-.blueinfo-list .btn {display: inline-table !important; margin: 118px 10px 0px;}
+.eblueinfo-list .btn {display: inline-table !important; margin: 118px 10px 0px;}
 
 .btn-primary:hover,
 .btn-primary:focus {
@@ -160,7 +160,7 @@ section .section-title {
 	padding: 15px 0px 15px 33px !important;
 }
 
-.blueinfo-list .card {
+.eblueinfo-list .card {
     border: none;
     background: #ffffff;
 	margin-bottom: -24px;
@@ -173,9 +173,9 @@ section .section-title {
 
 .site-footer .wrap{display: none;}
 
-.blueinfo-list .card-body {padding: 0px !important; display: inline-flex;}
+.eblueinfo-list .card-body {padding: 0px !important; display: inline-flex;}
 
-.blueinfo-doc .img-fluid {    max-width: 180px; border-radius: 10px;}
+.eblueinfo-doc .img-fluid {    max-width: 180px; border-radius: 10px;}
 
 
 /* .image-flip:hover .backside, */
@@ -281,7 +281,7 @@ section .section-title {
     padding-top: .75rem;
 }
 
-.blueinfo-list .thumb img {
+.eblueinfo-list .thumb img {
     max-width: 120px;
 	float: left !important;
 	padding: 10px 0px 0px 20px;
@@ -557,14 +557,19 @@ section .section-title {
     -moz-border-radius-topleft: 4px;
 }
 
-.blueinfo-doc .meta span {color: #3a66a2 !important;}
+.eblueinfo-doc .meta span {color: #3a66a2 !important;}
 
-.blueinfo-doc p.card-text{margin-bottom: 10px;}
+.eblueinfo-doc p.card-text {margin-bottom: 10px;}
 
+.eblueinfo-col .col {margin-bottom: 15px;}
 
-.blueinfo-col .col{margin-bottom: 15px;}
+.eblueinfo-col .card-text {text-align: left; margin-left:10px;}
 
-.blueinfo .card-text{text-align: left; margin-left:10px;}
+.eblueinfo-footer {
+    text-align: center;
+    background: #fff;
+    padding: 10px 0;
+}
 
 /* Media Queries */
 @media only screen
@@ -593,35 +598,35 @@ and (min-device-width : 813px) {
         transform: rotateY(180deg);
     }
 
-    #e-blueinfo.doc-data .card div.meta {
+    #eblueinfo.doc-data .card div.meta {
         display: table;
     }
 
-    #e-blueinfo.doc-data .card div.meta div {
+    #eblueinfo.doc-data .card div.meta div {
         display: table-cell;
         width: 50%;
         padding-right: 2rem;
     }
 
-    #e-blueinfo .doc-meta .btn-meta {
+    #eblueinfo .doc-meta .btn-meta {
         display: none;
     }
 }
 
 @media only screen
 and (max-device-width : 812px) {
-    #e-blueinfo.doc-data .card .thumb {
+    #eblueinfo.doc-data .card .thumb {
         width: 100%;
         text-align: center;
         margin: 0 auto 1rem;
         float: none;
     }
 
-    #e-blueinfo .doc-meta .btn-details {
+    #eblueinfo .doc-meta .btn-details {
         display: none;
     }
 
-    #e-blueinfo .doc-meta .btn-meta {
+    #eblueinfo .doc-meta .btn-meta {
         display: table;
         margin: 0 auto;
     }

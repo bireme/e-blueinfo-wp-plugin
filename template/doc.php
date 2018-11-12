@@ -138,7 +138,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <!-- ./Breadcrumb -->
 
 <!-- Template -->
-<section id="e-blueinfo" class="pb-5 doc-data blueinfo-doc">
+<section id="eblueinfo" class="pb-5 doc-data eblueinfo-doc">
     <div class="container">
         <!-- Search Bar -->
         <header class="page-header">
@@ -202,5 +202,10 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
     </div>
 </section>
 <!-- ./Template -->
+<!-- Footer -->
+<div class="eblueinfo-footer">
+    <img class="img-fluid" src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/bireme_' . $lang . '_banner.png'; ?>" alt="footer image" />
+</div>
+<!-- ./Footer -->
 <script type="text/javascript" src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/js/scripts.js' ?>"></script>
 <?php get_footer(); ?>

@@ -140,7 +140,7 @@ $pages->paginate($page_url_params);
 <!-- ./Breadcrumb -->
 
 <!-- Template -->
-<section id="e-blueinfo" class="pb-5 blueinfo-search">
+<section id="eblueinfo" class="pb-5 eblueinfo-search">
     <div class="container">
         <!-- Search Bar -->
         <header class="page-header">
@@ -262,4 +262,9 @@ $pages->paginate($page_url_params);
     });
 </script>
 <?php endif; ?>
+<!-- Footer -->
+<div class="eblueinfo-footer">
+    <img class="img-fluid" src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/bireme_' . $lang . '_banner.png'; ?>" alt="footer image" />
+</div>
+<!-- ./Footer -->
 <?php get_footer(); ?>
