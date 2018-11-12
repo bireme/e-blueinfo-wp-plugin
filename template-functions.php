@@ -68,7 +68,7 @@ if ( !function_exists('format_act_date') ) {
             } else {
                 $month_name = strftime("%B", strtotime($string));
             }
-            $date_formated = substr($string,8,2) . ' ' . __('of','memoria-azul') . ' ' . $month_name . ' ' . __('of', 'memoria-azul') . ' ' . substr($string,0,4);
+            $date_formated = substr($string,8,2) . ' ' . __('of','e-blueinfo') . ' ' . $month_name . ' ' . __('of', 'e-blueinfo') . ' ' . substr($string,0,4);
         }else{
             $date_formated =  substr($string,6,2)  . '/' . substr($string,4,2) . '/' . substr($string,0,4);
         }

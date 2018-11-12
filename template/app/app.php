@@ -1,5 +1,5 @@
 <?php
-    global $memoria_azul_plugin_slug, $country_service_url;
+    global $eblueinfo_plugin_slug, $country_service_url;
 
 	$site_language = strtolower(get_bloginfo('language'));
 	$lang = substr($site_language,0,2);
@@ -19,13 +19,13 @@
         }
     }
 
-    $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_config['home_url_' . $lang] : real_site_url();
+    $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['home_url_' . $lang] : real_site_url();
 ?>
 <?php require_once('header.php'); ?>
 
     <div class="container">
     	<div class="row">
-    		<h2 class="app-title"><?php _e('Memória Azul', 'memoria-azul'); ?></h2>
+    		<h2 class="app-title"><?php _e('e-BlueInfo', 'e-blueinfo'); ?></h2>
             <hr />
             <p class="h4">Please choose a language</p>
             <p class="h4">Por favor, escolha um idioma</p>
@@ -60,7 +60,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-country" role="menu">
                                 <?php foreach ($countries as $country) : ?>
-                                <li><a href="<?php echo get_site_url() . '/en/' . $memoria_azul_plugin_slug . '?country=' . $country->id; ?>"><?php echo get_country_name($country->name, 'en'); ?></a></li>
+                                <li><a href="<?php echo get_site_url() . '/en/' . $eblueinfo_plugin_slug . '?country=' . $country->id; ?>"><?php echo get_country_name($country->name, 'en'); ?></a></li>
                                 <?php endforeach; ?>
                             </ul>
                         </div>
@@ -76,7 +76,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-country" role="menu">
                                 <?php foreach ($countries as $country) : ?>
-                                <li><a href="<?php echo get_site_url() . '/pt/' . $memoria_azul_plugin_slug . '?country=' . $country->id; ?>"><?php echo get_country_name($country->name, 'pt'); ?></a></li>
+                                <li><a href="<?php echo get_site_url() . '/pt/' . $eblueinfo_plugin_slug . '?country=' . $country->id; ?>"><?php echo get_country_name($country->name, 'pt'); ?></a></li>
                                 <?php endforeach; ?>
                             </ul>
                         </div>
@@ -92,7 +92,7 @@
                             </button>
                             <ul class="dropdown-menu dropdown-country" role="menu">
                                 <?php foreach ($countries as $country) : ?>
-                                <li><a href="<?php echo get_site_url() . '/es/' . $memoria_azul_plugin_slug . '?country=' . $country->id; ?>"><?php echo get_country_name($country->name, 'es'); ?></a></li>
+                                <li><a href="<?php echo get_site_url() . '/es/' . $eblueinfo_plugin_slug . '?country=' . $country->id; ?>"><?php echo get_country_name($country->name, 'es'); ?></a></li>
                                 <?php endforeach; ?>
                             </ul>
                         </div>
@@ -112,19 +112,19 @@
                 <select class="countries en" onchange="location=this.value;">
                     <option>Please choose a country</option>
                     <?php foreach ($countries as $country) : ?>
-                    <option value="<?php echo get_site_url() . '/en/' . $memoria_azul_plugin_slug . '?country=' . $country->id; ?>"><?php echo get_country_name($country->name, 'en'); ?></option>
+                    <option value="<?php echo get_site_url() . '/en/' . $eblueinfo_plugin_slug . '?country=' . $country->id; ?>"><?php echo get_country_name($country->name, 'en'); ?></option>
                     <?php endforeach; ?>
                 </select>
                 <select class="countries pt" onchange="location=this.value;">
                     <option>Por favor, escolha um país</option>
                     <?php foreach ($countries as $country) : ?>
-                    <option value="<?php echo get_site_url() . '/pt/' . $memoria_azul_plugin_slug . '?country=' . $country->id; ?>"><?php echo get_country_name($country->name, 'pt'); ?></option>
+                    <option value="<?php echo get_site_url() . '/pt/' . $eblueinfo_plugin_slug . '?country=' . $country->id; ?>"><?php echo get_country_name($country->name, 'pt'); ?></option>
                     <?php endforeach; ?>
                 </select>
                 <select class="countries es" onchange="location=this.value;">
                     <option>Por favor, elija un país</option>
                     <?php foreach ($countries as $country) : ?>
-                    <option value="<?php echo get_site_url() . '/es/' . $memoria_azul_plugin_slug . '?country=' . $country->id; ?>"><?php echo get_country_name($country->name, 'es'); ?></option>
+                    <option value="<?php echo get_site_url() . '/es/' . $eblueinfo_plugin_slug . '?country=' . $country->id; ?>"><?php echo get_country_name($country->name, 'es'); ?></option>
                     <?php endforeach; ?>
                 </select>
               </div>
@@ -132,6 +132,6 @@
     	</div>
     </div>
 
-    <script src="<?php echo MEMORIA_AZUL_PLUGIN_URL . 'app/js/en/main.menu.js'; ?>"></script>
+    <script src="<?php echo EBLUEINFO_PLUGIN_URL . 'app/js/en/main.menu.js'; ?>"></script>
 
 <?php require_once('footer.php'); ?>

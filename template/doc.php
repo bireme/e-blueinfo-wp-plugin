@@ -1,17 +1,17 @@
 <?php
 /*
-Template Name: Memória Azul Detail
+Template Name: e-BlueInfo Detail
 */
 
-global $wp, $memoria_azul_service_url, $memoria_azul_plugin_slug, $memoria_azul_plugin_title, $similar_docs_url, $thumb_service_url;
+global $wp, $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_plugin_title, $similar_docs_url, $thumb_service_url;
 
 $current_slug = add_query_arg( array(), $wp->request );
 $current_url = home_url(add_query_arg(array(),$wp->request));
 
-$memoria_azul_config         = get_option('memoria_azul_config');
-$memoria_azul_initial_filter = $memoria_azul_config['initial_filter'];
-$memoria_azul_addthis_id     = $memoria_azul_config['addthis_profile_id'];
-$alternative_links     = (bool)$memoria_azul_config['alternative_links'];
+$eblueinfo_config         = get_option('eblueinfo_config');
+$eblueinfo_initial_filter = $eblueinfo_config['initial_filter'];
+$eblueinfo_addthis_id     = $eblueinfo_config['addthis_profile_id'];
+$alternative_links     = (bool)$eblueinfo_config['alternative_links'];
 
 /*
 $referer = wp_get_referer();
@@ -27,11 +27,11 @@ if ( array_key_exists( 'query', $path ) ) {
 */
 $filter = '';
 $user_filter = stripslashes($output['filter']);
-if ($memoria_azul_initial_filter != ''){
+if ($eblueinfo_initial_filter != ''){
     if ($user_filter != ''){
-        $filter = $memoria_azul_initial_filter . ' AND ' . $user_filter;
+        $filter = $eblueinfo_initial_filter . ' AND ' . $user_filter;
     }else{
-        $filter = $memoria_azul_initial_filter;
+        $filter = $eblueinfo_initial_filter;
     }
 }else{
     $filter = $user_filter;
@@ -48,11 +48,11 @@ $resource_id = end($explode);
 $site_language = strtolower(get_bloginfo('language'));
 $lang = substr($site_language,0,2);
 
-$memoria_azul_service_request = $memoria_azul_service_url . 'api/bibliographic/?id=' . $resource_id . '&lang=' . $lang;
+$eblueinfo_service_request = $eblueinfo_service_url . 'api/bibliographic/?id=' . $resource_id . '&lang=' . $lang;
 
-//print $memoria_azul_service_request;
+//print $eblueinfo_service_request;
 
-$response = @file_get_contents($memoria_azul_service_request);
+$response = @file_get_contents($eblueinfo_service_request);
 if ($response){
     $response_json = json_decode($response);
     // echo "<pre>"; print_r($response_json); echo "</pre>"; die();
@@ -96,7 +96,7 @@ if ($response){
 */
 }
 
-$community_request = $memoria_azul_service_url . 'api/community/?community=' . $community_id . '&format=' . $format . '&lang=' . $lang;
+$community_request = $eblueinfo_service_url . 'api/community/?community=' . $community_id . '&format=' . $format . '&lang=' . $lang;
 
 $response = @file_get_contents($community_request);
 if ($response){
@@ -104,7 +104,7 @@ if ($response){
     // echo "<pre>"; print_r($community); echo "</pre>"; die();
 }
 
-$collection_request = $memoria_azul_service_url . 'api/collection/?collection=' . $collection_id . '&format=' . $format . '&lang=' . $lang;
+$collection_request = $eblueinfo_service_url . 'api/collection/?collection=' . $collection_id . '&format=' . $format . '&lang=' . $lang;
 
 $response = @file_get_contents($collection_request);
 if ($response){
@@ -112,42 +112,42 @@ if ($response){
     // echo "<pre>"; print_r($collection); echo "</pre>"; die();
 }
 
-// $feed_url = real_site_url($memoria_azul_plugin_slug) . 'memoria-azul-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
+// $feed_url = real_site_url($eblueinfo_plugin_slug) . 'e-blueinfo-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
 
-$home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_config['home_url_' . $lang] : real_site_url();
+$home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['home_url_' . $lang] : real_site_url();
 ?>
 
-<?php get_header('memoria-azul'); ?>
+<?php get_header('e-blueinfo'); ?>
 
 <!-- Breadcrumb -->
 <ol class="breadcrumb">
-    <li><a href="<?php echo $home_url ?>"><?php _e('Home','memoria-azul'); ?></a></li>
-    <li><a href="<?php echo real_site_url($memoria_azul_plugin_slug); ?>"><?php echo $memoria_azul_plugin_title; ?> </a></li>
+    <li><a href="<?php echo $home_url ?>"><?php _e('Home','e-blueinfo'); ?></a></li>
+    <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php echo $eblueinfo_plugin_title; ?> </a></li>
     <?php if ( isset($community_id, $community) ) : ?>
-    <li><a href="<?php echo real_site_url($memoria_azul_plugin_slug) . 'collection/?community=' . $community_id; ?>"><?php echo $community->objects{0}->name; ?> </a></li>
+    <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'collection/?community=' . $community_id; ?>"><?php echo $community->objects{0}->name; ?> </a></li>
     <?php endif; ?>
     <?php if ( isset($community_id, $collection_id, $collection) ) : ?>
-    <li><a href="<?php echo real_site_url($memoria_azul_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id; ?>"><?php echo $collection->objects{0}->name; ?> </a></li>
+    <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id; ?>"><?php echo $collection->objects{0}->name; ?> </a></li>
     <?php endif; ?>
     <?php if ($query == '' && $filter == ''): ?>
     <li class="active"><?php echo $doc[0]->reference_title; ?></li>
     <?php else: ?>
-    <li class="active"><?php _e('Search result', 'memoria-azul'); ?></li>
+    <li class="active"><?php _e('Search result', 'e-blueinfo'); ?></li>
     <?php endif; ?>
 </ol>
 <!-- ./Breadcrumb -->
 
 <!-- Template -->
-<section id="memoria-azul" class="pb-5 doc-data blueinfo-doc">
+<section id="e-blueinfo" class="pb-5 doc-data blueinfo-doc">
     <div class="container">
         <!-- Search Bar -->
         <header class="page-header">
             <div class="searchBarMain">
         		<i class="material-icons searchBarSearchIcon noUserSelect" onclick="__gaTracker('send','event','Browse','Search',document.getElementById('searchBarInput').value);">search</i>
-                <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($memoria_azul_plugin_slug); ?>search">
+                <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search">
                     <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
                     <input type="hidden" name="collection" id="collection" value="<?php echo $collection_id; ?>">
-        		    <input type="text" name="q" value="" id="searchBarInput" placeholder="<?php _e('Search...', 'memoria-azul'); ?>">
+        		    <input type="text" name="q" value="" id="searchBarInput" placeholder="<?php _e('Search...', 'e-blueinfo'); ?>">
                     <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
                     <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
                 </form>
@@ -172,24 +172,24 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
                             <?php else : ?>
                             <p class="thumb"><img class="img-fluid" src="http://placehold.it/270x350" alt="card image"></p>
                             <?php endif; ?>
-                            <!-- <a class="redirect" href="/wordpress/memoria-azul/memoria-azul-doc" onclick="return false;"><h4 class="card-title">Título do Documento</h4></a> -->
+                            <!-- <a class="redirect" href="/wordpress/e-blueinfo/e-blueinfo-doc" onclick="return false;"><h4 class="card-title">Título do Documento</h4></a> -->
                             <div class="meta">
                                 <div>
-                                    <span><?php _e('Title', 'memoria-azul'); ?></span>
+                                    <span><?php _e('Title', 'e-blueinfo'); ?></span>
                                     <p class="card-text"><?php echo $doc[0]->reference_title; ?></p>
-                                    <span><?php _e('Author', 'memoria-azul'); ?></span>
+                                    <span><?php _e('Author', 'e-blueinfo'); ?></span>
                                     <p class="card-text"><?php echo $author[0]->text; ?></p>
-                                    <span><?php _e('Year', 'memoria-azul'); ?></span>
+                                    <span><?php _e('Year', 'e-blueinfo'); ?></span>
                                     <p class="card-text"><?php echo substr($doc[0]->publication_date_normalized, 0, 4); ?></p>
-                                    <span><?php _e('Publisher', 'memoria-azul'); ?></span>
+                                    <span><?php _e('Publisher', 'e-blueinfo'); ?></span>
                                     <p class="card-text"><?php echo $doc[0]->publisher; ?></p>
                                 </div>
                                 <div>
                                     <?php if ( isset($doc[0]->electronic_address[0]->_u) ) : ?>
-                                    <span><?php _e('Document Access', 'memoria-azul'); ?></span>
-                                    <p class="card-text"><a href="<?php echo $doc[0]->electronic_address[0]->_u; ?>" onclick="__gaTracker('send','event','My Document','Full Text','<?php echo $doc[0]->electronic_address[0]->_u; ?>');"><?php _e('Download link', 'memoria-azul'); ?></a></p>
+                                    <span><?php _e('Document Access', 'e-blueinfo'); ?></span>
+                                    <p class="card-text"><a href="<?php echo $doc[0]->electronic_address[0]->_u; ?>" onclick="__gaTracker('send','event','My Document','Full Text','<?php echo $doc[0]->electronic_address[0]->_u; ?>');"><?php _e('Download link', 'e-blueinfo'); ?></a></p>
                                     <?php endif; ?>
-                                    <span><?php _e('Abstract', 'memoria-azul'); ?></span>
+                                    <span><?php _e('Abstract', 'e-blueinfo'); ?></span>
                                     <p class="card-text"><?php echo $abstract; ?></p>
                                 </div>
                             </div>
@@ -202,5 +202,5 @@ $home_url = isset($memoria_azul_config['home_url_' . $lang]) ? $memoria_azul_con
     </div>
 </section>
 <!-- ./Template -->
-<script type="text/javascript" src="<?php echo MEMORIA_AZUL_PLUGIN_URL . 'template/js/scripts.js' ?>"></script>
+<script type="text/javascript" src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/js/scripts.js' ?>"></script>
 <?php get_footer(); ?>
