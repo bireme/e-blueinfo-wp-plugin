@@ -80,7 +80,7 @@
           "level": 1
         },
         {
-          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/?(country=[\\d]*)?",
+          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/?(\\?country=[\\d]*)?",
           "level": 1
         },
         {
@@ -199,8 +199,8 @@
     "toolbarNavigation": null
   },
   "styling": {
-    "icon": "images/logo1_white_padded.png",
-    "iosHeaderImage": "images/logo1.png",
+    "icon": "https://gonativeio.s3.amazonaws.com/uploads/zx9qrk8552pw8_1542210446105.png",
+    "iosHeaderImage": "https://gonativeio.s3.amazonaws.com/uploads/mn16yacqvtewj_1542212839520.png",
     "showActionBar": true,
     "showNavigationBar": true,
     "iosSidebarFont": "Default",
@@ -226,7 +226,13 @@
     "iosTitleColor": "#333333",
     "iosTintColor": "#0091fe",
     "iosSidebarTextColor": "#333333",
-    "androidLaunchImages": {},
+    "androidLaunchImages": {
+      "mdpi": "https://s3.amazonaws.com/gonativeio/images_generated/1542212764775_py20fdrjr2b2a_180x180.9.png",
+      "hdpi": "https://s3.amazonaws.com/gonativeio/images_generated/1542212764775_qnmtfa3vdxbbp_270x270.9.png",
+      "xhdpi": "https://s3.amazonaws.com/gonativeio/images_generated/1542212764775_txjazq69p2uur_360x360.9.png",
+      "xxhdpi": "https://s3.amazonaws.com/gonativeio/images_generated/1542212764775_xw9xvv9ht4xcw_540x540.9.png",
+      "xxxhdpi": "https://s3.amazonaws.com/gonativeio/images_generated/1542212764775_r9uu590e0w11w_720x720.9.png"
+    },
     "iosLaunchImages": {
       "ios_launch_640x960": "https://s3.amazonaws.com/gonativeio/images_generated/1533153770238_zvtr1vczgjad4_640x960.png",
       "ios_launch_640x1136": "https://s3.amazonaws.com/gonativeio/images_generated/1533153770239_0gryufjkn1hcw_640x1136.png",
@@ -240,7 +246,12 @@
       "ios_launch_1125x2436": "https://s3.amazonaws.com/gonativeio/images_generated/1533153770239_5pv23ce533jx0_1125x2436.png",
       "ios_launch_2436x1125": "https://s3.amazonaws.com/gonativeio/images_generated/1533153770239_r5x9t5fvt92g2_2436x1125.png"
     },
-    "androidStatusBarBackgroundColor": "#909090"
+    "androidStatusBarBackgroundColor": "#909090",
+    "iosLaunchScreen": {
+      "backgroundColor": "#FFFFFF",
+      "backgroundImage": "https://s3.amazonaws.com/gonativeio/public/ios_launch_screen_background_default_FFFFFF_1_2x2.png",
+      "centerImage": "https://s3.amazonaws.com/gonativeio/images_generated/1542212713122_n3z9u4uvj9tbu.png"
+    }
   },
   "forms": {
     "search": {},
