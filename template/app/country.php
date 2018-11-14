@@ -47,7 +47,7 @@
             <div class="col-md-12 mobile">
                 <select class="countries-list" onchange="location=this.value;">
                     <?php foreach ($countries as $country) : $selected = ( $country_id == $country->id ) ? 'selected' : ''; ?>
-                    <option value="<?php echo get_site_url() . '/' . $lang . '/' . $eblueinfo_plugin_slug . '?country=' . $country->id; ?>" <?php echo $selected; ?>><?php echo get_country_name($country->name, $lang); ?></option>
+                    <option data-country="<?php echo $country->id; ?>" value="<?php echo get_site_url() . '/' . $lang . '/' . $eblueinfo_plugin_slug . '?country=' . $country->id; ?>" <?php echo $selected; ?>><?php echo get_country_name($country->name, $lang); ?></option>
                     <?php endforeach; ?>
                 </select>
               </div>

@@ -72,14 +72,23 @@ if(!class_exists('EBlueInfo_Plugin')) {
         function load_translation(){
             global $eblueinfo_texts;
 
+            // force locale
+            add_filter( 'locale', array(&$this, 'force_locale') );
+
 		    // load internal plugin translations
 		    load_plugin_textdomain( 'e-blueinfo', false,  EBLUEINFO_PLUGIN_DIR . '/languages' );
+            
             // load plugin translations
             $site_language = strtolower(get_bloginfo('language'));
             $lang = substr($site_language,0,2);
 
             $eblueinfo_texts = @parse_ini_file(EBLUEINFO_PLUGIN_PATH . "/languages/texts_" . $lang . ".ini", true);
 		}
+
+        function force_locale($locale) {
+            // $locale = 'pt_BR';
+            return $locale;
+        }
 
 		function plugin_init() {
 		    $eblueinfo_config = get_option('eblueinfo_config');
@@ -209,6 +218,11 @@ if(!class_exists('EBlueInfo_Plugin')) {
     		            $template = EBLUEINFO_PLUGIN_PATH . '/template/doc.php';
     		        }
 
+                    // force reload the page on hitting back button
+                    header('Cache-Control: no-cache, no-store, must-revalidate'); // HTTP 1.1.
+                    header('Pragma: no-cache'); // HTTP 1.0.
+                    header('Expires: 0'); // Proxies.
+
     		        // force status to 200 - OK
     		        status_header(200);
 
@@ -285,6 +299,10 @@ if(!class_exists('EBlueInfo_Plugin')) {
 
             $site_language = strtolower(get_bloginfo('language'));
             $lang = substr($site_language,0,2);
+
+            if ( $_COOKIE['e-blueinfo-lang'] ) {
+                $lang = $_COOKIE['e-blueinfo-lang'];
+            }
 
             // check if request contains plugin slug string
             $pos_slug = strpos($wp->request, $this->plugin_slug);
