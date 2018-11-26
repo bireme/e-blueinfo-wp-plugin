@@ -86,7 +86,13 @@ if(!class_exists('EBlueInfo_Plugin')) {
         }
 
         function force_locale($locale) {
-            // $locale = 'pt_BR';
+            if ( defined( 'POLYLANG_VERSION' && $_COOKIE['e-blueinfo-lang'] ) ) {
+                $slugs   = pll_languages_list( array( 'fields' => 'slug' ) );
+                $locales = pll_languages_list( array( 'fields' => 'locale' ) );
+                $langs   = array_combine($slugs, $locales);
+                $locale  = $langs[$_COOKIE['e-blueinfo-lang']];
+            }
+
             return $locale;
         }
 
