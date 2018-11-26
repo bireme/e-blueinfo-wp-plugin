@@ -1,22 +1,22 @@
 {
   "general": {
+    "userAgentRegexes": [],
+    "replaceStrings": [],
     "userAgentAdd": "gonative",
     "useWKWebView": true,
     "enableWindowOpen": true,
     "useCrosswalkWebView": false,
     "forceScreenOrientation": null,
-    "initialUrl": "http://sites.teste.bvsalud.org/e-blueinfo/",
+    "initialUrl": "http://sites.bvsalud.org/e-blueinfo/",
     "appName": "e-BlueInfo",
     "iosBundleId": "org.bvsalud.eblueinfo",
     "androidPackageName": "org.bvsalud.eblueinfo",
-    "androidVersionName": "1.0.0"
+    "androidVersionName": "1.0.0",
+    "publicKey": "ppzllb",
+    "deviceRegKey": "3mfgutf7z20tkakg40vj7yr710"
   },
   "navigation": {
-    "androidPullToRefresh": false,
-    "iosPullToRefresh": true,
-    "androidShowRefreshButton": false,
-    "iosShowRefreshButton": false,
-    "deepLinkDomains": [],
+    "iosSettings": {},
     "tabNavigation": {
       "tabSelectionConfig": [
         {
@@ -26,39 +26,17 @@
       ],
       "tabMenus": [
         {
-          "id": "1",
           "items": [
-            {}
-          ]
+            {
+              "subLinks": []
+            }
+          ],
+          "id": "1"
         }
       ]
     },
     "sidebarNavigation": {
-      "menus": [
-        {
-          "name": "default",
-          "items": [],
-          "active": true
-        },
-        {
-          "name": "loggedIn",
-          "items": [
-            {
-              "label": "Sample Home",
-              "url": "http://sites.teste.bvsalud.org/e-blueinfo/home",
-              "subLinks": []
-            },
-            {
-              "label": "Sample About",
-              "url": "http://sites.teste.bvsalud.org/e-blueinfo/about",
-              "subLinks": []
-            }
-          ],
-          "active": false
-        }
-      ],
       "menuSelectionConfig": {
-        "testURL": null,
         "redirectLocations": [
           {
             "regex": null,
@@ -70,62 +48,32 @@
             "menuName": "default",
             "loggedIn": true
           }
-        ]
-      }
-    },
-    "navigationLevels": {
-      "levels": [
+        ],
+        "testURL": null
+      },
+      "menus": [
         {
-          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo/?",
-          "level": 1
+          "items": [],
+          "name": "default",
+          "active": true
         },
         {
-          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/?(\\?country=[\\d]*)?",
-          "level": 1
-        },
-        {
-          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/collection.+",
-          "level": 2
-        },
-        {
-          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/country/?",
-          "level": 2
-        },
-        {
-          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/about.+",
-          "level": 2
-        },
-        {
-          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/supporters.+",
-          "level": 2
-        },
-        {
-          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/pdf.+",
-          "level": 2
-        },
-        {
-          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/browse.+",
-          "level": 3
-        },
-        {
-          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/doc.+",
-          "level": 4
-        },
-        {
-          "regex": "https?://sites.teste.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/search.+",
-          "level": 5
+          "items": [
+            {
+              "subLinks": [],
+              "label": "Sample Home",
+              "url": "http://sites.bvsalud.org/e-blueinfo/home"
+            },
+            {
+              "subLinks": [],
+              "label": "Sample About",
+              "url": "http://sites.bvsalud.org/e-blueinfo/about"
+            }
+          ],
+          "name": "loggedIn",
+          "active": false
         }
-      ],
-      "active": true
-    },
-    "navigationTitles": {
-      "titles": [
-        {
-          "regex": ".*",
-          "title": "e-BlueInfo"
-        }
-      ],
-      "active": true
+      ]
     },
     "regexInternalExternal": {
       "rules": [
@@ -196,10 +144,88 @@
       ],
       "active": true
     },
+    "androidPullToRefresh": false,
+    "iosPullToRefresh": true,
+    "navigationTitles": {
+      "titles": [
+        {
+          "regex": ".*",
+          "title": "e-BlueInfo"
+        }
+      ],
+      "active": true
+    },
+    "ignorePageFinishedRegexes": [],
+    "redirects": [],
+    "androidShowRefreshButton": false,
+    "iosShowRefreshButton": false,
+    "deepLinkDomains": [],
+    "navigationLevels": {
+      "levels": [
+        {
+          "regex": "https?://sites.bvsalud.org/e-blueinfo/?",
+          "level": 1
+        },
+        {
+          "regex": "https?://sites.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/?(\\?country=[\\d]*)?",
+          "level": 1
+        },
+        {
+          "regex": "https?://sites.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/collection.+",
+          "level": 2
+        },
+        {
+          "regex": "https?://sites.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/country/?",
+          "level": 2
+        },
+        {
+          "regex": "https?://sites.bvsalud.org/e-blueinfo(/[\\w]{2})?/about.+",
+          "level": 2
+        },
+        {
+          "regex": "https?://sites.bvsalud.org/e-blueinfo(/[\\w]{2})?/supporters.+",
+          "level": 2
+        },
+        {
+          "regex": "https?://sites.bvsalud.org/e-blueinfo(/[\\w]{2})?/pdf.+",
+          "level": 2
+        },
+        {
+          "regex": "https?://sites.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/browse.+",
+          "level": 3
+        },
+        {
+          "regex": "https?://sites.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/doc.+",
+          "level": 4
+        },
+        {
+          "regex": "https?://sites.bvsalud.org/e-blueinfo(/[\\w]{2})?/app/search.+",
+          "level": 5
+        }
+      ],
+      "active": true
+    },
     "toolbarNavigation": null
   },
   "styling": {
-    "icon": "https://gonativeio.s3.amazonaws.com/uploads/zx9qrk8552pw8_1542210446105.png",
+    "iosLaunchScreen": {
+      "backgroundColor": "#FFFFFF",
+      "backgroundImage": "https://s3.amazonaws.com/gonativeio/public/ios_launch_screen_background_default_FFFFFF_1_2x2.png",
+      "centerImage": "https://s3.amazonaws.com/gonativeio/images_generated/1542212713122_n3z9u4uvj9tbu.png"
+    },
+    "androidLaunchImages": {
+      "mdpi": "https://s3.amazonaws.com/gonativeio/images_generated/1542212764775_py20fdrjr2b2a_180x180.9.png",
+      "hdpi": "https://s3.amazonaws.com/gonativeio/images_generated/1542212764775_qnmtfa3vdxbbp_270x270.9.png",
+      "xhdpi": "https://s3.amazonaws.com/gonativeio/images_generated/1542212764775_txjazq69p2uur_360x360.9.png",
+      "xxhdpi": "https://s3.amazonaws.com/gonativeio/images_generated/1542212764775_xw9xvv9ht4xcw_540x540.9.png",
+      "xxxhdpi": "https://s3.amazonaws.com/gonativeio/images_generated/1542212764775_r9uu590e0w11w_720x720.9.png"
+    },
+    "transitionInteractiveDelayMax": 0.2,
+    "menuAnimationDuration": 0.15,
+    "androidShowSplash": true,
+    "disableAnimations": false,
+    "hideWebviewAlpha": 0.5,
+    "icon": "https://gonativeio.s3.amazonaws.com/uploads/2g9fcebaum4uy_1542408844612.png",
     "iosHeaderImage": "https://gonativeio.s3.amazonaws.com/uploads/mn16yacqvtewj_1542212839520.png",
     "showActionBar": true,
     "showNavigationBar": true,
@@ -208,11 +234,6 @@
     "navigationTitleImage": false,
     "iosTheme": "light",
     "androidTheme": "light",
-    "menuAnimationDuration": 0.15,
-    "transitionInteractiveDelayMax": 0.2,
-    "hideWebviewAlpha": 0.5,
-    "disableAnimations": false,
-    "androidShowSplash": true,
     "androidSidebarBackgroundColor": "#FFFFFF",
     "androidSidebarForegroundColor": "#777777",
     "androidActionBarBackgroundColor": "#bdbdbd",
@@ -226,40 +247,21 @@
     "iosTitleColor": "#333333",
     "iosTintColor": "#0091fe",
     "iosSidebarTextColor": "#333333",
-    "androidLaunchImages": {
-      "mdpi": "https://s3.amazonaws.com/gonativeio/images_generated/1542212764775_py20fdrjr2b2a_180x180.9.png",
-      "hdpi": "https://s3.amazonaws.com/gonativeio/images_generated/1542212764775_qnmtfa3vdxbbp_270x270.9.png",
-      "xhdpi": "https://s3.amazonaws.com/gonativeio/images_generated/1542212764775_txjazq69p2uur_360x360.9.png",
-      "xxhdpi": "https://s3.amazonaws.com/gonativeio/images_generated/1542212764775_xw9xvv9ht4xcw_540x540.9.png",
-      "xxxhdpi": "https://s3.amazonaws.com/gonativeio/images_generated/1542212764775_r9uu590e0w11w_720x720.9.png"
-    },
-    "iosLaunchImages": {
-      "ios_launch_640x960": "https://s3.amazonaws.com/gonativeio/images_generated/1533153770238_zvtr1vczgjad4_640x960.png",
-      "ios_launch_640x1136": "https://s3.amazonaws.com/gonativeio/images_generated/1533153770239_0gryufjkn1hcw_640x1136.png",
-      "ios_launch_768x1024": "https://s3.amazonaws.com/gonativeio/images_generated/1533153770239_9uyepwr6knzp0_768x1024.png",
-      "ios_launch_1024x768": "https://s3.amazonaws.com/gonativeio/images_generated/1533153770239_25dghrfv3kepj_1024x768.png",
-      "ios_launch_1536x2048": "https://s3.amazonaws.com/gonativeio/images_generated/1533153770239_4ua7e6tdc4bhy_1536x2048.png",
-      "ios_launch_2048x1536": "https://s3.amazonaws.com/gonativeio/images_generated/1533153770239_19tb9m66jfp9a_2048x1536.png",
-      "ios_launch_750x1334": "https://s3.amazonaws.com/gonativeio/images_generated/1533153770239_fu2vb6tegd5v0_750x1334.png",
-      "ios_launch_1242x2208": "https://s3.amazonaws.com/gonativeio/images_generated/1533153770239_1hw01eb0jaeay_1242x2208.png",
-      "ios_launch_2208x1242": "https://s3.amazonaws.com/gonativeio/images_generated/1533153770239_4jy0gqd2eewka_2208x1242.png",
-      "ios_launch_1125x2436": "https://s3.amazonaws.com/gonativeio/images_generated/1533153770239_5pv23ce533jx0_1125x2436.png",
-      "ios_launch_2436x1125": "https://s3.amazonaws.com/gonativeio/images_generated/1533153770239_r5x9t5fvt92g2_2436x1125.png"
-    },
     "androidStatusBarBackgroundColor": "#909090",
-    "iosLaunchScreen": {
-      "backgroundColor": "#FFFFFF",
-      "backgroundImage": "https://s3.amazonaws.com/gonativeio/public/ios_launch_screen_background_default_FFFFFF_1_2x2.png",
-      "centerImage": "https://s3.amazonaws.com/gonativeio/images_generated/1542212713122_n3z9u4uvj9tbu.png"
-    }
+    "androidNotificationIcon": "https://gonativeio.s3.amazonaws.com/uploads/mt25b08zdxcar_1542880473836.png"
   },
   "forms": {
+    "interceptForms": {
+      "forms": []
+    },
     "search": {},
     "loginConfig": {
+      "formInputs": [],
       "formSelector": null,
       "loginIsFirstPage": false
     },
     "signupConfig": {
+      "formInputs": [],
       "active": false,
       "formSelector": null
     }
@@ -269,6 +271,7 @@
     "androidDownloadToPublicStorage": false,
     "enableWebRTC": false
   },
+  "publishing": {},
   "performance": {
     "webviewPools": [
       {
@@ -280,7 +283,6 @@
       }
     ]
   },
-  "publishing": {},
   "services": {
     "push": {
       "active": false
@@ -296,8 +298,9 @@
       "active": false
     },
     "oneSignal": {
-      "active": false,
-      "notificationExtension": false
+      "active": true,
+      "notificationExtension": true,
+      "applicationId": "8e90abce-ae00-4afb-8791-e834b24aa29f"
     },
     "registration": {
       "active": false,
