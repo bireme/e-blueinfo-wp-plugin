@@ -3,27 +3,55 @@
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+body {
+    background: #1e567e  !important;
+}
 
-.site {font-family: "Trebuchet MS", Arial, Helvetica, sans-serif !important; padding-top: 47px;}
+.site {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif !important; 
+}
 
-.site-content-contain{background-color: #1c547e !important;}
+.site-content-contain {
+    background-color: #1c547e !important;
+}
+
+.site-branding {
+    display: none;
+}
 
 .site-title a {
     text-decoration: none;
 }
 
-h3{ padding: 0px !important; font-size: 17px; padding: 13px !important; margin-bottom: 0px !important;}
+#page {
+    padding-top: 50px !important;
+}
 
-h4 {margin: 0px !important; font-size:16px !important;
+h3 {
+    padding: 0px !important;
+    font-size: 17px;
+    padding: 13px !important;
+    margin-bottom: 0px !important;
+}
+
+h4 {
+    margin: 0px !important;
+    font-size: 16px !important;
     text-align: left;
-    padding-left: 16px !important;}
+    padding-left: 16px !important;
+}
 
-p {margin-bottom: 0px;}
+p {
+    margin-bottom: 0px;
+}
 
-.container{ padding-left: 0px !important; padding-right: 0px !important;}
+.container {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
 
 .breadcrumb{
-    padding:10px 10px 10px 0px !important;
+    padding: 10px 10px 10px 0px !important;
     width: 964px;
     margin: 0 auto 1rem;
     float: none;
@@ -36,7 +64,7 @@ p {margin-bottom: 0px;}
 }
 
 .breadcrumb>li:first-child {
-    margin-left: 10px
+    margin-left: 10px;
 }
 
 .breadcrumb>li+li:before {
@@ -58,6 +86,10 @@ p {margin-bottom: 0px;}
     color: rgb(0,153,255);
 }
 
+.eblueinfo-com h4 {
+    padding-bottom: 10px;
+}
+
 #eblueinfo {
     background: #1c547e !important;
 }
@@ -66,9 +98,6 @@ p {margin-bottom: 0px;}
     padding-bottom: 0 !important;
 }
 
-#eblueinfo.doc-data .card {
-    margin: 30px 0;
-}
 
 #eblueinfo.doc-data .card .thumb {
     float: left;
@@ -116,7 +145,13 @@ p {margin-bottom: 0px;}
     margin-top: 1rem;
 }
 
-.card-body{padding: 0px !important;}
+.card-body {
+    padding: 0px !important;
+}
+
+.eblueinfo-doc .card-body {
+    padding: 10px !important;
+}
 
 h4.results {
     margin: 0 auto;
@@ -129,11 +164,18 @@ h4.results {
 	background-color: #00599c !important;
 }
 
-.site-title, .site-title a{ color: #fff !important;}
+.site-title, .site-title a {
+    color: #fff !important;
+}
 
-.site-content{ padding: 0px !important;}
+.site-content {
+    padding: 0px !important;
+}
 
-.eblueinfo-list .btn {display: inline-table !important; margin: 118px 10px 0px;}
+.eblueinfo-list .btn {
+    display: inline-table !important;
+    margin: 118px 10px 0px;
+}
 
 .btn-primary:hover,
 .btn-primary:focus {
@@ -153,10 +195,10 @@ section {
     /* padding: 60px 0; */
 }
 
-section .section-title {
+.section-title {
     text-align: left;
     color: #fff;
-	background: #003863;
+	background: #1d537d !important;
 	padding: 15px 0px 15px 33px !important;
 }
 
@@ -167,16 +209,43 @@ section .section-title {
 	border-left: 25px solid #e3ecf3;
 }
 
+.eblueinfo-col .card-title {
+    background: #bbd8f6;
+    height: 30px;
+    padding-top: 6px;
+    color: #003863 !important;
+}
+	
+.eblueinfo-col .card-text {
+    margin-left: 18px !important;
+}
+
 .image-flip {
     cursor: pointer;
 }
 
-.site-footer .wrap{display: none;}
+.site-footer .wrap {
+    display: none;
+}
 
-.eblueinfo-list .card-body {padding: 0px !important; display: inline-flex;}
+.eblueinfo-list .card-body {
+    padding: 0px !important;
+    display: inline-flex;
+}
 
-.eblueinfo-doc .img-fluid {    max-width: 180px; border-radius: 10px;}
+.eblueinfo-doc .img-fluid {
+    max-width: 180px;
+    border-radius: 10px;
+}
 
+.parent-title {
+    background: #003762!important;
+    color: #8fc3eb !important;
+}
+
+.eblueinfo-com .card-text {
+    padding-left: 10px !important;
+}
 
 /* .image-flip:hover .backside, */
 .image-flip.hover .backside {
@@ -260,7 +329,7 @@ section .section-title {
 
 .frontside .card,
 .backside .card {
-    xheight: 200px;
+    /* height: 200px; */
 }
 
 .backside .card a {
@@ -287,10 +356,25 @@ section .section-title {
 	padding: 10px 0px 0px 20px;
     /* max-height: 350px; */
 }
+
 .frontside .card .card-title {
     color: #0d5db4;
-    width: 100%;
-    padding: 10px 0px;
+    width: 75%;
+    padding: 10px 0px; 
+	float: left;
+}
+
+.pb-5 {
+    padding-bottom: 0rem !important; 
+}
+
+.eblueinfo-com .btn-primary {
+    margin-top: 4px;
+}
+
+.eblueinfo-doc .meta {
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .backside .card .card-title {
@@ -315,16 +399,17 @@ section .section-title {
 }
 
 .frontside .card .card-body {
+/*
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-self: center;
     align-items: center;
+*/
 }
 
 .frontside .card .card-body img {
-	xpadding-top: 50px !important;
-
+	/* padding-top: 50px !important; */
 }
 
 .backside ul.list-inline {
@@ -360,6 +445,7 @@ section .section-title {
     position: fixed;
     bottom: 10px;
     right: 20px;
+	background: #f7f1f1;
 }
 
 .totop a {
@@ -370,9 +456,9 @@ section .section-title {
 #loadMore {
     padding: 10px;
     text-align: center;
-    background-color: #33739E;
+    background-color: #1a80cc;
     color: #fff;
-    border-width: 0 1px 1px 0;
+    border-width: 0px;
     border-style: solid;
     border-color: #fff;
     box-shadow: 0 1px 1px #ccc;
@@ -385,11 +471,12 @@ section .section-title {
 /* Search bar (header) */
 .searchBarMain {
 	background: #fff;
-	width: 80%;
+	width:60%;
+	margin-left: 27% !important;
 	max-width: 680px;
 	margin: 0 auto;
-	height: 42px;
-	margin-top: 11px;
+	height: 34px;
+	margin-top: 16px;
 	border-radius: 2px;
 	box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.14);
 	-webkit-transition: all 0.2s ease-in-out;
@@ -453,7 +540,7 @@ section .section-title {
 .page-header {
 	width: 100% !important;
 	position: fixed;
-	background: #1a80cc;
+    background: #1a80cc url(/e-blueinfo/wp-content/uploads/2018/11/icon2.png)top left no-repeat;
 	top: 0;
     left: 0;
 	z-index: 500;
@@ -557,18 +644,31 @@ section .section-title {
     -moz-border-radius-topleft: 4px;
 }
 
-.eblueinfo-doc .meta span {color: #3a66a2 !important;}
+.eblueinfo-doc .meta span {
+    color: #3a66a2 !important;
+}
 
-.eblueinfo-doc p.card-text {margin-bottom: 10px;}
+.eblueinfo-doc p.card-text {
+    margin-bottom: 10px;
+}
 
-.eblueinfo-col .col {margin-bottom: 15px;}
+.eblueinfo-col .col {
+    margin-bottom: 15px;
+}
 
-.eblueinfo-col .card-text {text-align: left; margin-left:10px;}
+.eblueinfo-col .card-text {
+    text-align: left;
+    margin-left: 10px;
+    font-size: 13px;
+    color: #7f8182;
+    padding-top: 13px;
+}
 
 .eblueinfo-footer {
     text-align: center;
-    background: #fff;
+    background: #dcd9d9;
     padding: 10px 0;
+	margin-top: 50px;
 }
 
 /* Media Queries */

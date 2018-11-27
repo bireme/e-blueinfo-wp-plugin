@@ -1,16 +1,39 @@
-.desktop {
+body {
+    background: #1a80cc url(/e-blueinfo/wp-content/uploads/2018/11/logo_home2.png) top center no-repeat;
+}
+
+.h4 {
+    color: #fff; 
+    font-variant: petite-caps;
+}
+	
+hr {
+    border: 0px !important;
+}
+
+.row {
+    background: #1e567e !important;
+    margin-top: 120px;
+}
+
+.app-title {
     display: none;
 }
+
 .mobile {
     display: block;
+	margin-bottom: 50px;
 }
+
 .countries {
     display: none;
     width: 100%;
 }
+
 .countries-list {
 	width: 100%;
 }
+
 .languages {
     width: 100%;
 }
