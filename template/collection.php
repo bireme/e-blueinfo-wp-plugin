@@ -140,8 +140,10 @@ $pages->paginate($page_url_params);
                                 <div class="card">
                                     <div class="card-body text-center">
                                         <h4 class="card-title"><?php echo $collection->name; ?></h4>
+                                        <?php if ( $collection->description ) : ?>
                                         <p class="card-text"><?php echo $collection->description; ?></p>
                                         <a class="redirect hide" href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>"><i class="fa fa-angle-right"></i></a>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
