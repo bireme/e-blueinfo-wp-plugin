@@ -51,17 +51,17 @@ $start = ($page * $count) - $count;
 
 if ( !empty($collection_id) ) {
     if ( empty($query) ) {
-        $query = 'col:' . $collection_id;
+        $query = 'col:' . $collection_id . '|*';
     } else {
-        $query = 'col:' . $collection_id . ' AND ' . $query;
+        $query = 'col:' . $collection_id . '|* AND ' . $query;
     }
 }
 
 if ( !empty($community_id) ) {
     if ( empty($query) && empty($collection_id) ) {
-        $query = 'com:' . $community_id;
+        $query = 'com:' . $community_id . '|*';
     } else {
-        $query = 'com:' . $community_id . ' AND ' . $query;
+        $query = 'com:' . $community_id . '|* AND ' . $query;
     }
 }
 

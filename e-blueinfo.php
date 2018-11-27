@@ -31,9 +31,9 @@ if(!class_exists('EBlueInfo_Plugin')) {
         private $plugin_slug         = 'e-blueinfo';
         private $service_url         = 'http://fi-admin.bvsalud.org/';
         private $similar_docs_url    = 'http://similardocs.bireme.org/SDService';
-        private $thumb_service_url   = 'http://serverofi5.bireme.br:9090/thumbnailServer/getDocument';
+        private $thumb_service_url   = 'http://basalto01.bireme.br:9090/thumbnailServer/getDocument';
         private $country_service_url = 'http://fi-admin.bvsalud.org/api/community/get_country_list/?format=json';
-        private $pdf_service_url     = 'http://serverofi5.bireme.br:8989/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu';
+        private $pdf_service_url     = 'http://basalto01.bireme.br:9292/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu';
 
         /**
          * Construct the plugin object
@@ -86,7 +86,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
         }
 
         function force_locale($locale) {
-            if ( defined( 'POLYLANG_VERSION' && $_COOKIE['e-blueinfo-lang'] ) ) {
+            if ( defined( 'POLYLANG_VERSION' ) && $_COOKIE['e-blueinfo-lang'] ) {
                 $slugs   = pll_languages_list( array( 'fields' => 'slug' ) );
                 $locales = pll_languages_list( array( 'fields' => 'locale' ) );
                 $langs   = array_combine($slugs, $locales);

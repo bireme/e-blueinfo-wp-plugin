@@ -1,3 +1,4 @@
+<?php $pos = explode('/', $wp->request); ?>
 <!DOCTYPE html>
 
 <html <?php language_attributes(); ?>>
@@ -16,7 +17,7 @@
     <style type="text/css">
 		<?php require_once('style.css'); ?>
     </style>
-    <?php if ( strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') !== false ) : ?>
+    <?php if ( strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') !== false || ( strpos($wp->request, 'country') !== false && 'country' == end($pos) ) ) : ?>
     <style type="text/css">
 		<?php require_once('style-app.css'); ?>
     </style>
