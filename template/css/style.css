@@ -3,6 +3,10 @@
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+html, body, #page, .site-content-contain, #content {
+    height: 100%;
+}
+
 body {
     background: #1e567e  !important;
 }
@@ -92,6 +96,7 @@ p {
 
 #eblueinfo {
     background: #1c547e !important;
+    padding-top: 1rem;
 }
 
 #eblueinfo.doc-data {
@@ -160,7 +165,7 @@ h4.results {
 }
 
 .site-header {
-    margin-top: 1em;
+    /*margin-top: 1em;*/
 	background-color: #00599c !important;
 }
 
@@ -169,6 +174,8 @@ h4.results {
 }
 
 .site-content {
+    display: flex;
+    flex-direction: column;
     padding: 0px !important;
 }
 
@@ -224,7 +231,7 @@ section {
     cursor: pointer;
 }
 
-.site-footer .wrap {
+.site-footer {
     display: none;
 }
 
@@ -350,6 +357,9 @@ section {
     padding-top: .75rem;
 }
 
+
+
+
 .eblueinfo-list .thumb img {
     max-width: 120px;
 	float: left !important;
@@ -379,7 +389,7 @@ section {
 }
 
 .eblueinfo-com {
-    padding-top: 2.5em;
+    padding-top: 2.5em !important;
 }
 
 .eblueinfo-com .btn-primary {
@@ -439,6 +449,7 @@ section {
 }
 
 .load-more {
+    display: table;
     margin: 2em auto 0;
 }
 
@@ -464,6 +475,8 @@ section {
     bottom: 10px;
     right: 20px;
 	background: #f7f1f1;
+    border-radius: 10px;
+    padding: 0 10px;
 }
 
 .totop a {
@@ -558,7 +571,7 @@ section {
 .page-header {
 	width: 100% !important;
 	position: fixed;
-    background: #1a80cc url(/e-blueinfo/wp-content/uploads/2018/11/icon2.png)top left no-repeat;
+    background: #1a80cc url(/e-blueinfo/wp-content/plugins/e-blueinfo/template/images/icon2.png) top left no-repeat;
 	top: 0;
     left: 0;
 	z-index: 500;
@@ -683,10 +696,15 @@ section {
 }
 
 .eblueinfo-footer {
+    /*position: absolute;*/
+    bottom: 0;
+    left: 0;
+    right: 0;
     text-align: center;
     background: #dcd9d9;
     padding: 10px 0;
-	margin-top: 50px;
+    margin-top: auto;
+	/*margin-top: 50px;*/
 }
 
 /* Media Queries */
