@@ -368,6 +368,20 @@ section {
     padding-bottom: 0rem !important; 
 }
 
+#eblueinfo .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#eblueinfo .row .item {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.eblueinfo-com {
+    padding-top: 2.5em;
+}
+
 .eblueinfo-com .btn-primary {
     margin-top: 4px;
 }
@@ -475,7 +489,7 @@ section {
 /* Search bar (header) */
 .searchBarMain {
 	background: #fff;
-	width:60%;
+	width: 65%;
 	margin-left: 27% !important;
 	max-width: 680px;
 	margin: 0 auto;
@@ -715,6 +729,11 @@ and (min-device-width : 813px) {
     #eblueinfo .doc-meta .btn-meta {
         display: none;
     }
+
+    .searchBarMain {
+        height: auto;
+        margin-top: 12px;
+    }
 }
 
 @media only screen
@@ -745,5 +764,9 @@ and (max-device-width : 812px) {
 
     .row .h-label > h4 {
         text-align: center;
+    }
+
+    .searchBarMain {
+        margin-left: 30% !important;
     }
 }

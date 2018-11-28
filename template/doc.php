@@ -162,7 +162,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <?php endif; ?>
         <div class="row">
             <!-- Collection -->
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 item">
                 <div class="mainflip">
                     <div class="card">
                         <div class="card-body">
