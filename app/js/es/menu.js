@@ -7,12 +7,12 @@ if (navigator.userAgent.indexOf('gonative') > -1) {
                   "isSubmenu": false,
                   "subLinks": [
                     {
-                      "url": "http://sites.teste.bvsalud.org/e-blueinfo/about-es/",
+                      "url": "http://sites.bvsalud.org/e-blueinfo/about-es/",
                       "label": "¿Por qué e-BlueInfo?",
                       "subLinks": []
                     },
                     {
-                      "url": "http://sites.teste.bvsalud.org/e-blueinfo/supporters-es/",
+                      "url": "http://sites.bvsalud.org/e-blueinfo/supporters-es/",
                       "label": "Apoyadores Institucionales",
                       "subLinks": []
                     }
@@ -25,7 +25,7 @@ if (navigator.userAgent.indexOf('gonative') > -1) {
                   "isSubmenu": false,
                   "subLinks": [
                     {
-                      "url": "http://sites.teste.bvsalud.org/e-blueinfo/pdf-es/",
+                      "url": "http://sites.bvsalud.org/e-blueinfo/pdf-es/",
                       "label": "Cómo mejorar la lectura de los archivos PDF",
                       "subLinks": []
                     },
@@ -60,7 +60,7 @@ if (navigator.userAgent.indexOf('gonative') > -1) {
                   ]
                 },
                 {
-                  "url": "http://sites.teste.bvsalud.org/e-blueinfo/es/app/country",
+                  "url": "http://sites.bvsalud.org/e-blueinfo/es/app/country",
                   "label": "Cambiar País",
                   "subLinks": []
                 }
