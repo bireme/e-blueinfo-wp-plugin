@@ -73,6 +73,7 @@ if ($response){
     $start = $response_json->meta->offset;
     $next  = $response_json->meta->next;
     $collection_list = $response_json->objects;
+    usort($collection_list, "cmp");
 }
 
 $params = $count != 2 ? '&count=' . $count : '';

@@ -215,4 +215,10 @@ if ( !function_exists('remove_prefix') ) {
     }
 }
 
+if ( !function_exists('cmp') ) {
+    function cmp($a, $b) {
+        return strcmp($a->name, $b->name);
+    }
+}
+
 ?>
