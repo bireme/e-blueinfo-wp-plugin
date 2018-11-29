@@ -23,7 +23,7 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on( "click", bsCard, function(e) {
+    $(document).on( "click ontouchstart", bsCard, function(e) {
         href = $(this).prev($(fsCard)).find('a.redirect.desktop').attr('href');
 
         if ( href ) {
@@ -31,39 +31,37 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on( "click", fsCard, function(e) {
+    $(document).on( "click ontouchstart", fsCard, function(e) {
         window.location.href = $(this).find('a.redirect').attr('href');
     });
 
-    $(document).on( "click", colCard, function(e) {
+    $(document).on( "click ontouchstart", colCard, function(e) {
         window.location.href = $(this).find('a.redirect').attr('href');
     });
 
-    $(document).on( "click", docMetaCard, function(e) {
+    $(document).on( "click ontouchstart", docMetaCard, function(e) {
         window.location.href = $(this).find('a.full-text').attr('href');
     });
 
-    $(document).on( "click", docCard, function(e) {
+    $(document).on( "click ontouchstart", docCard, function(e) {
         window.location.href = $(this).find('a.full-text').attr('href');
     });
 
-    $(document).on( "click", docRedirect, function(e) {
-        // e.stopPropagation();
+    $(document).on( "click ontouchstart", docRedirect, function(e) {
         e.stopImmediatePropagation();
     });
 
-    $(document).on( "click", docMetaRedirect, function(e) {
-        // e.stopPropagation();
+    $(document).on( "click ontouchstart", docMetaRedirect, function(e) {
         e.stopImmediatePropagation();
     });
 
-    submitSearchBtn.on( "click", function(e) {
+    submitSearchBtn.on( "click ontouchstart", function(e) {
         searchForm.submit();
     });
 });
 
 $(function () {
-    $('a[href=#top]').click(function () {
+    $('a[href=#top]').on( "click ontouchstart", function () {
         $('body,html').animate({
             scrollTop: 0
         }, 600);

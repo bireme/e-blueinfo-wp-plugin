@@ -205,4 +205,14 @@ if ( !function_exists('get_country_name') ) {
     }
 }
 
+if ( !function_exists('remove_prefix') ) {
+    function remove_prefix($name){
+        $name = explode(' ', $name);
+        $prefix = array_shift($name);
+        $name = implode(' ', $name);
+
+        return $name;
+    }
+}
+
 ?>

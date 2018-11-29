@@ -81,6 +81,8 @@ if ($response){
     $start = $response_json->meta->offset;
     $next  = $response_json->meta->next;
     $community_list = $response_json->objects;
+    $community_ids = wp_list_pluck($community_list, 'id');
+    $community_ids = implode(',', $community_ids);
 }
 
 $params = $count != 2 ? '&count=' . $count : '';
@@ -117,6 +119,7 @@ $pages->paginate($page_url_params);
             <div class="searchBarMain">
         		<i class="material-icons searchBarSearchIcon noUserSelect" onclick="__gaTracker('send','event','Browse','Search',document.getElementById('searchBarInput').value);">search</i>
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search">
+                    <input type="hidden" name="community" id="community" value="<?php echo $community_ids; ?>">
         		    <input type="text" name="q" value="<?php echo $query; ?>" id="searchBarInput" placeholder="<?php _e('Search...', 'e-blueinfo'); ?>">
                     <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
                     <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">

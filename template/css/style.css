@@ -705,6 +705,27 @@ section {
     padding: 10px 0;
     margin-top: auto;
 	/*margin-top: 50px;*/
+} 
+
+.eblueinfo-search .row {
+    padding: 20px !important;
+}
+
+.eblueinfo-search .card-body {
+    padding: 15px !important;
+}
+
+.eblueinfo-search h4 {
+    padding-left: 0px !important;
+}
+
+.eblueinfo-search .card .card-body .paragraph {
+    font-style: normal !important;
+    font-size: 13px;
+}
+
+.eblueinfo-search .card .card-body strong {
+    font-size: 14px !important;
 }
 
 /* Media Queries */

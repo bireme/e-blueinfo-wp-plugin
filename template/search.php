@@ -25,7 +25,8 @@ $query = stripslashes( trim($query) );
 $q = $query;
 
 $user_filter   = stripslashes($_GET['filter']);
-$community_id  = ( !empty($_GET['community']) ? $_GET['community'] : '' );
+$community_id  = ( !empty($_GET['community']) ? explode(',', $_GET['community']) : '' );
+$com_id = ( count($community_id) == 1 ) ? $community_id[0] : '';
 $collection_id = ( !empty($_GET['collection']) ? $_GET['collection'] : '' );
 $page   = ( !empty($_GET['page']) ? $_GET['page'] : 1 );
 $offset = ( !empty($_GET['offset']) ? $_GET['offset'] : 0 );
@@ -58,20 +59,22 @@ if ( !empty($collection_id) ) {
 }
 
 if ( !empty($community_id) ) {
+    $com_ids = implode('|* OR com:', $community_id);
     if ( empty($query) && empty($collection_id) ) {
-        $query = 'com:' . $community_id . '|*';
+        $query = 'com:' . $com_ids . '|*';
     } else {
-        $query = 'com:' . $community_id . '|* AND ' . $query;
+        $query = '(com:' . $com_ids . '|*) AND ' . $query;
     }
+    $community_id = implode(',', $community_id);
 }
 
-$eblueinfo_service_request = $pdf_service_url . '&q=' . urlencode($query) . '&start=' . $offset . '&rows=' . $count . '&sort=' . urlencode($sort) . '&lang=' . $lang;
+// echo "<pre>"; print_r($query); echo "</pre>"; die();
 
 if ( $user_filter != '' ) {
     $user_filter_list = preg_split("/ AND /", $user_filter);
     $applied_filter_list = array();
     foreach($user_filter_list as $filter){
-        preg_match('/([a-z_]+):(.+)/',$filter, $filter_parts);
+        preg_match('/([a-z_]+):(.+)/', $filter, $filter_parts);
         if ($filter_parts){
             // convert to internal format
             $applied_filter_list[$filter_parts[1]][] = str_replace('"', '', $filter_parts[2]);
@@ -79,6 +82,7 @@ if ( $user_filter != '' ) {
     }
 }
 
+$eblueinfo_service_request = $pdf_service_url . '&q=' . urlencode($query) . '&start=' . $offset . '&rows=' . $count . '&sort=' . urlencode($sort) . '&lang=' . $lang;
 $response = @file_get_contents($eblueinfo_service_request);
 if ($response){
     $response_json = json_decode($response);
@@ -89,8 +93,7 @@ if ($response){
     $snippets = $response_json->highlighting;
 }
 
-$community_request = $eblueinfo_service_url . 'api/community/?community=' . $community_id . '&format=' . $format . '&lang=' . $lang;
-
+$community_request = $eblueinfo_service_url . 'api/community/?community=' . $com_id . '&format=' . $format . '&lang=' . $lang;
 $response = @file_get_contents($community_request);
 if ($response){
     $community = json_decode($response);
@@ -99,7 +102,6 @@ if ($response){
 }
 
 $collection_request = $eblueinfo_service_url . 'api/collection/?collection=' . $collection_id . '&format=' . $format . '&lang=' . $lang;
-
 $response = @file_get_contents($collection_request);
 if ($response){
     $collection = json_decode($response);
@@ -125,11 +127,11 @@ $pages->paginate($page_url_params);
 <ol class="breadcrumb">
     <li><a href="<?php echo $home_url; ?>"><?php _e('Home','e-blueinfo'); ?></a></li>
     <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php echo $eblueinfo_plugin_title; ?> </a></li>
-    <?php if ( isset($community_id, $community) ) : ?>
-    <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'collection/?community=' . $community_id; ?>"><?php echo $community->objects{0}->name; ?> </a></li>
+    <?php if ( isset($com_id, $com_name) ) : ?>
+    <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'collection/?community=' . $com_id; ?>"><?php echo $com_name; ?> </a></li>
     <?php endif; ?>
-    <?php if ( isset($community_id, $collection_id, $collection) ) : ?>
-    <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id; ?>"><?php echo $collection->objects{0}->name; ?> </a></li>
+    <?php if ( isset($com_id, $collection_id, $col_name) ) : ?>
+    <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $com_id . '&collection=' . $collection_id; ?>"><?php echo $col_name; ?> </a></li>
     <?php endif; ?>
     <?php if ($q == '' && $filter == ''): ?>
     <li class="active"><?php echo $doc[0]->reference_title; ?></li>
@@ -159,43 +161,12 @@ $pages->paginate($page_url_params);
         <h3 class="section-title"><?php _e('Results', 'e-blueinfo'); echo ': ' . $total; ?></h3>
         <div class="row">
             <?php if ( isset($total) && strval($total) == 0 ) : ?>
-            <h4 class="results"><?php _e('No results found. Try searching with another keywords.','e-blueinfo'); ?></h4>
+            <h4 class="results"><?php _e('No results found. Try searching with another keywords.', 'e-blueinfo'); ?></h4>
             <?php else : ?>
                 <?php foreach ( $docs as $index => $doc ) : $index++; $id = "s".$doc->id; ?>
                     <?php
-                        if ( !isset($community) ) {
-                            $com_name = array();
-
-                            foreach ($doc->com as $com) {
-                                $community_request = $eblueinfo_service_url . 'api/community/?community=' . $com . '&format=' . $format . '&lang=' . $lang;
-
-                                $response = @file_get_contents($community_request);
-                                if ($response){
-                                    $community = json_decode($response);
-                                    $com_name[] = $community->objects{0}->name;
-                                    // echo "<pre>"; print_r($community); echo "</pre>"; die();
-                                }
-                            }
-
-                            $com_name = ( $com_name ) ? implode('; ', $com_name) : '-';
-                        }
-
-                        if ( !isset($collection) ) {
-                            $col_name = array();
-
-                            foreach ($doc->col as $col) {
-                                $collection_request = $eblueinfo_service_url . 'api/collection/?collection=' . $col . '&format=' . $format . '&lang=' . $lang;
-
-                                $response = @file_get_contents($collection_request);
-                                if ($response){
-                                    $collection = json_decode($response);
-                                    $col_name[] = $collection->objects{0}->name;
-                                    // echo "<pre>"; print_r($collection); echo "</pre>"; die();
-                                }
-                            }
-
-                            $col_name = ( $col_name ) ? implode('; ', $col_name) : '-';
-                        }
+                        $com_name = ( $doc->com ) ? implode('; ', array_map("remove_prefix", $doc->com)) : '-';
+                        $col_name = ( $doc->col ) ? implode('; ', array_map("remove_prefix", $doc->col)) : '-';
                     ?>
                     <!-- Document -->
                     <div class="col-xs-12 col-sm-12 col-md-12 item">
