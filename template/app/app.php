@@ -8,7 +8,7 @@
 	$response = @file_get_contents($country_service_url);
 	if ($response){
 	    $countries = json_decode($response);
-	    // echo "<pre>"; print_r($countries); echo "</pre>";
+	    // echo "<pre>"; print_r($countries); echo "</pre>"; die();
 	}
 
     if ( defined( 'POLYLANG_VERSION' ) ) {
@@ -40,22 +40,25 @@
                 </select>
                 <hr />
                 <?php endif; ?>
+                <?php $countries_en = normalize_country_object($countries, 'en'); ?>
                 <select class="countries en" onchange="location=this.value;">
                     <option>Please choose a country</option>
-                    <?php foreach ($countries as $country) : ?>
-                    <option value="<?php echo get_site_url() . '/en/' . $eblueinfo_plugin_slug . '?country=' . $country->id; ?>"><?php echo get_country_name($country->name, 'en'); ?></option>
+                    <?php foreach ($countries_en as $id => $name) : ?>
+                    <option value="<?php echo get_site_url() . '/en/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
                     <?php endforeach; ?>
                 </select>
+                <?php $countries_pt = normalize_country_object($countries, 'en'); ?>
                 <select class="countries pt" onchange="location=this.value;">
                     <option>Por favor, escolha um país</option>
-                    <?php foreach ($countries as $country) : ?>
-                    <option value="<?php echo get_site_url() . '/pt/' . $eblueinfo_plugin_slug . '?country=' . $country->id; ?>"><?php echo get_country_name($country->name, 'pt'); ?></option>
+                    <?php foreach ($countries_pt as $id => $name) : ?>
+                    <option value="<?php echo get_site_url() . '/pt/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
                     <?php endforeach; ?>
                 </select>
+                <?php $countries_es = normalize_country_object($countries, 'es'); ?>
                 <select class="countries es" onchange="location=this.value;">
                     <option>Por favor, elija un país</option>
-                    <?php foreach ($countries as $country) : ?>
-                    <option value="<?php echo get_site_url() . '/es/' . $eblueinfo_plugin_slug . '?country=' . $country->id; ?>"><?php echo get_country_name($country->name, 'es'); ?></option>
+                    <?php foreach ($countries_es as $id => $name) : ?>
+                    <option value="<?php echo get_site_url() . '/es/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
                     <?php endforeach; ?>
                 </select>
               </div>

@@ -13,11 +13,12 @@
 	$response = @file_get_contents($country_service_url);
 	if ($response){
 	    $countries = json_decode($response);
-	    // echo "<pre>"; print_r($countries); echo "</pre>";
+        $countries = normalize_country_object($countries, $lang);
+        // echo "<pre>"; print_r($countries); echo "</pre>"; die();
 	}
 
     $country_id = ( $_COOKIE['e-blueinfo-country'] ) ? $_COOKIE['e-blueinfo-country'] : false;
-    $country_name = array_map( function ($arr) use ($country_id) { if ( $arr->id == $country_id ) return $arr->name; }, $countries );
+    // $country_name = array_map( function ($arr) use ($country_id) { if ( $arr->id == $country_id ) return $arr->name; }, $countries );
 ?>
 <?php require_once('header.php'); ?>
 
@@ -29,8 +30,8 @@
             <div class="col-md-12 mobile">
                 <select class="countries-list" onchange="location=this.value;">
                     <option></option>
-                    <?php foreach ($countries as $country) : $selected = ( $country_id == $country->id ) ? 'selected' : ''; ?>
-                    <option data-country="<?php echo $country->id; ?>" value="<?php echo get_site_url() . '/' . $lang . '/' . $eblueinfo_plugin_slug . '?country=' . $country->id; ?>" <?php echo $selected; ?>><?php echo get_country_name($country->name, $lang); ?></option>
+                    <?php foreach ($countries as $id => $name) : $selected = ( $country_id == $id ) ? 'selected' : ''; ?>
+                    <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/' . $lang . '/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>" <?php echo $selected; ?>><?php echo $name; ?></option>
                     <?php endforeach; ?>
                 </select>
               </div>

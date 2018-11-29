@@ -194,7 +194,7 @@ if ( !function_exists('get_country_name') ) {
 
         if ( $names ) {
             foreach ($names as $name) {
-                if (strpos($name, $lang) !== false) {
+                if (strpos($name, $lang) === 0) {
                     $arr = explode('^', $name);
                     $country_name = $arr[1];
                 }
@@ -202,6 +202,35 @@ if ( !function_exists('get_country_name') ) {
         }
 
         return $country_name;
+    }
+}
+
+if ( !function_exists('normalize_country_object') ) {
+    function normalize_country_object($object, $lang){
+        $obj = array();
+
+        if ( $object ) {
+            $ids = wp_list_pluck( $object, 'id' );
+            $names = wp_list_pluck( $object, 'name' );
+            $obj = array_combine($ids, $names);
+
+            foreach ($obj as $key => $value) {
+                $labels = '';
+                
+                foreach ($value as $k => $v) {
+                    if (strpos($v, $lang) === 0) {
+                        $arr = explode('^', $v);
+                        $labels = $arr[1];
+                    }
+                }
+
+                $obj[$key] = $labels;
+            }
+        }
+
+        asort($obj);
+
+        return $obj;
     }
 }
 
