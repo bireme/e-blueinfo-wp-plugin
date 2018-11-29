@@ -47,7 +47,7 @@
                     <option value="<?php echo get_site_url() . '/en/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
                     <?php endforeach; ?>
                 </select>
-                <?php $countries_pt = normalize_country_object($countries, 'en'); ?>
+                <?php $countries_pt = normalize_country_object($countries, 'pt'); ?>
                 <select class="countries pt" onchange="location=this.value;">
                     <option>Por favor, escolha um país</option>
                     <?php foreach ($countries_pt as $id => $name) : ?>
