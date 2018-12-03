@@ -42,24 +42,6 @@ if (navigator.userAgent.indexOf('gonative') > -1) {
                   ]
                 },
                 {
-                  "label": "Service Terms",
-                  "grouping": "[grouping]",
-                  "isGrouping": true,
-                  "isSubmenu": false,
-                  "subLinks": [
-                    {
-                      "url": "http://politicas.bireme.org/terminos/en/",
-                      "label": "Terms of Use",
-                      "subLinks": []
-                    },
-                    {
-                      "url": "http://politicas.bireme.org/privacidad/en/",
-                      "label": "Privacy Policy",
-                      "subLinks": []
-                    }
-                  ]
-                },
-                {
                   "url": "http://sites.bvsalud.org/e-blueinfo/app/country",
                   "label": "Change Country",
                   "subLinks": []
