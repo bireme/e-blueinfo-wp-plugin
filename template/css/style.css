@@ -180,8 +180,9 @@ h4.results {
 }
 
 .eblueinfo-list .btn {
-    display: inline-table !important;
-    margin: 118px 10px 0px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
 }
 
 .btn-primary:hover,
@@ -767,6 +768,10 @@ and (min-device-width : 813px) {
 
     #eblueinfo .doc-meta .btn-meta {
         display: none;
+    }
+
+    #eblueinfo .row .item {
+        padding: 0 5px;
     }
 
     .searchBarMain {
