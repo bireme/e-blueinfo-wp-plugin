@@ -1,0 +1,92 @@
+.menu_app .site-content-contain {
+    background: #1c547e;
+    color: #fff;
+}
+
+.menu_app .entry-title {
+    color: #fff !important;
+}
+
+.menu_app a,
+.menu_app a:hover,
+.menu_app a:visited,
+.menu_app a:focus {
+	  outline: 0;
+	  color: #fff;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.site-info {
+    display: none;
+}
+
+.menu_app .site-branding {
+    background: #1a80cc url(/e-blueinfo/wp-content/plugins/e-blueinfo/template/images/icon2.png) center no-repeat;
+    padding-bottom: 26px;
+}
+
+.menu_app .site-title a {
+    display: none;
+}
+
+.menu_app.en .site-footer {
+    background: url(/e-blueinfo/wp-content/plugins/e-blueinfo/template/images/bireme_en_banner.png) no-repeat center;
+    background-color: #dcd9d9;
+    height: 106px;
+}
+
+.menu_app.es .site-footer {
+    background: url(/e-blueinfo/wp-content/plugins/e-blueinfo/template/images/bireme_es_banner.png) no-repeat center;
+    background-color: #dcd9d9;
+    height: 106px;
+}
+
+.menu_app.pt .site-footer  {
+    background: url(/e-blueinfo/wp-content/plugins/e-blueinfo/template/images/bireme_pt_banner.png) no-repeat center;
+    background-color: #dcd9d9;
+    height: 106px;
+}
+
+.menu_app .navigation-top,
+.menu_app .site-navigation-fixed.navigation-top {
+	  position: absolute !important;
+    top: auto !important;
+	  bottom: 0 !important
+}
+
+.menu_app .navigation-top a {
+    color: #000;
+}
+
+.navigation-top {
+    top: 60px !important;
+}
+
+.navigation-top a {
+    text-decoration: none;
+}
+
+.navigation-top a:hover {
+    text-decoration: none;
+	  color: #767676;
+}
+
+@media only screen
+	and (min-device-width : 813px) {
+    .site-content-contain {
+		    padding-top: 4em;
+	  }
+}
+
+@media only screen
+	and (max-device-width : 812px) {
+    .menu_app.es .site-footer,.menu_app.en .site-footer, .menu_app.pt .site-footer {
+        background-size: contain;
+        height: 76px;
+	  }
+		
+	  .navigation-top {
+        display: none;
+    }
+}
