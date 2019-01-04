@@ -216,7 +216,7 @@ if ( !function_exists('normalize_country_object') ) {
 
             foreach ($obj as $key => $value) {
                 $labels = '';
-                
+
                 foreach ($value as $k => $v) {
                     if (strpos($v, $lang) === 0) {
                         $arr = explode('^', $v);
@@ -247,6 +247,212 @@ if ( !function_exists('remove_prefix') ) {
 if ( !function_exists('cmp') ) {
     function cmp($a, $b) {
         return strcmp($a->name, $b->name);
+    }
+}
+
+if ( !function_exists('simple_sliding_menu') ) {
+    function simple_sliding_menu($lang='en') {
+        $menu = array();
+        $menu['pt'] = array(
+            array(
+                'label' => "Sobre",
+                'url'   => "#",
+                'class' => "parent about"
+            ),
+            array(
+                'label' => "Por que e-BlueInfo?",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/about-pt/",
+                'class' => "submenu about"
+            ),
+            array(
+                'label' => "Apoiadores Institucionais",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/supporters-pt/",
+                'class' => "submenu about"
+            ),
+            array(
+                'label' => "Ajuda",
+                'url'   => "#",
+                'class' => "parent help"
+            ),
+            array(
+                'label' => "Como melhorar a leitura dos arquivos PDF",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/pdf-pt/",
+                'class' => "submenu help"
+            ),
+            array(
+                'label' => "Enviar comentário",
+                'url'   => "http://feedback.bireme.org/feedback/e-blueinfo?version=2.10-77&site=app&lang=pt",
+                'class' => "submenu help"
+            ),
+            array(
+                'label' => "Comunicar erro",
+                'url'   => "http://feedback.bireme.org/feedback/e-blueinfo?version=2.10-77&error=1&site=app&lang=pt",
+                'class' => "submenu help"
+            ),
+            array(
+                'label' => "Idioma",
+                'url'   => "#",
+                'class' => "parent lang"
+            ),
+            array(
+                'label' => "Português",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/pt/",
+                'class' => "submenu lang"
+            ),
+            array(
+                'label' => "Español",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/es/",
+                'class' => "submenu lang"
+            ),
+            array(
+                'label' => "English",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/",
+                'class' => "submenu lang"
+            ),
+            array(
+                'label' => "Alterar País",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/pt/app/country",
+                'class' => ""
+            )
+        );
+        $menu['es'] = array(
+            array(
+                'label' => "Sobre",
+                'url'   => "#",
+                'class' => "parent about"
+            ),
+            array(
+                'label' => "¿Por qué e-BlueInfo?",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/about-es/",
+                'class' => "submenu about"
+            ),
+            array(
+                'label' => "Apoyadores Institucionales",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/supporters-es/",
+                'class' => "submenu about"
+            ),
+            array(
+                'label' => "Ayuda",
+                'url'   => "#",
+                'class' => "parent help"
+            ),
+            array(
+                'label' => "Cómo mejorar la lectura de los archivos PDF",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/pdf-es/",
+                'class' => "submenu help"
+            ),
+            array(
+                'label' => "Enviar comentario",
+                'url'   => "http://feedback.bireme.org/feedback/e-blueinfo?version=2.10-77&site=app&lang=es",
+                'class' => "submenu help"
+            ),
+            array(
+                'label' => "Informar error",
+                'url'   => "http://feedback.bireme.org/feedback/e-blueinfo?version=2.10-77&error=1&site=app&lang=es",
+                'class' => "submenu help"
+            ),
+            array(
+                'label' => "Idioma",
+                'url'   => "#",
+                'class' => "parent lang"
+            ),
+            array(
+                'label' => "Português",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/pt/",
+                'class' => "submenu lang"
+            ),
+            array(
+                'label' => "Español",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/es/",
+                'class' => "submenu lang"
+            ),
+            array(
+                'label' => "English",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/",
+                'class' => "submenu lang"
+            ),
+            array(
+                'label' => "Cambias País",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/es/app/country",
+                'class' => ""
+            )
+        );
+        $menu['en'] = array(
+            array(
+                'label' => "About",
+                'url'   => "#",
+                'class' => "parent about"
+            ),
+            array(
+                'label' => "Why e-BlueInfo?",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/about-en/",
+                'class' => "submenu about"
+            ),
+            array(
+                'label' => "Institutional Supporters",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/supporters-en/",
+                'class' => "submenu about"
+            ),
+            array(
+                'label' => "Help",
+                'url'   => "#",
+                'class' => "parent help"
+            ),
+            array(
+                'label' => "How to improve the readability of PDF files",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/pdf-en/",
+                'class' => "submenu help"
+            ),
+            array(
+                'label' => "Leave comment",
+                'url'   => "http://feedback.bireme.org/feedback/e-blueinfo?version=2.10-77&site=app&lang=en",
+                'class' => "submenu help"
+            ),
+            array(
+                'label' => "Report error",
+                'url'   => "http://feedback.bireme.org/feedback/e-blueinfo?version=2.10-77&error=1&site=app&lang=en",
+                'class' => "submenu help"
+            ),
+            array(
+                'label' => "Language",
+                'url'   => "#",
+                'class' => "parent lang"
+            ),
+            array(
+                'label' => "Português",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/pt/",
+                'class' => "submenu lang"
+            ),
+            array(
+                'label' => "Español",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/es/",
+                'class' => "submenu lang"
+            ),
+            array(
+                'label' => "English",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/",
+                'class' => "submenu lang"
+            ),
+            array(
+                'label' => "Change Country",
+                'url'   => "http://sites.bvsalud.org/e-blueinfo/app/country",
+                'class' => ""
+            )
+        );
+        ?>
+        <div class="simple-sliding-menu">
+            <div class="menu-overlay"></div>
+            <i class="material-icons menu-open simpleSlidingMenu md-36">menu</i>
+            <div class="side-menu-wrapper">
+                <a href="#" class="menu-close">×</a>
+                <ul>
+                    <?php foreach ($menu[$lang] as $k => $v) : ?>
+                        <li><a class="<?php echo $v['class']; ?>" href="<?php echo $v['url']; ?>" rel="nofollow"><?php echo $v['label']; ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+        <?php
     }
 }
 

@@ -116,6 +116,7 @@ $pages->paginate($page_url_params);
     <div class="container">
         <!-- Search Bar -->
         <header class="page-header">
+            <?php simple_sliding_menu($lang); ?>
             <div class="searchBarMain">
         		<i class="material-icons searchBarSearchIcon noUserSelect" onclick="__gaTracker('send','event','Browse','Search',document.getElementById('searchBarInput').value);">search</i>
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search">
@@ -132,7 +133,7 @@ $pages->paginate($page_url_params);
         <?php endif; ?>
         <div class="row">
             <?php if ( isset($total) && strval($total) == 0 ) :?>
-            <h4><?php _e('No results found','e-blueinfo'); ?></h4>
+            <h4 class="results"><?php _e('No results found. Please choose a country in the main menu.','e-blueinfo'); ?></h4>
             <?php else :?>
             <div class="h-label col-xs-12 col-sm-12 col-md-12 border-bottom">
                 <?php if ( ( $query != '' || $user_filter != '' ) && strval($total) > 0) : ?>

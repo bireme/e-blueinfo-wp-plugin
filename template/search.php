@@ -26,8 +26,8 @@ $q = $query;
 
 $user_filter   = stripslashes($_GET['filter']);
 $community_id  = ( !empty($_GET['community']) ? explode(',', $_GET['community']) : '' );
-$com_id = ( count($community_id) == 1 ) ? $community_id[0] : '';
-$collection_id = ( !empty($_GET['collection']) ? $_GET['collection'] : '' );
+$com_id = ( !empty($community_id) && count($community_id) == 1 ) ? $community_id[0] : NULL;
+$collection_id = ( !empty($_GET['collection']) ? $_GET['collection'] : NULL );
 $page   = ( !empty($_GET['page']) ? $_GET['page'] : 1 );
 $offset = ( !empty($_GET['offset']) ? $_GET['offset'] : 0 );
 $format = ( !empty($_GET['format']) ? $_GET['format'] : 'json' );
@@ -146,6 +146,7 @@ $pages->paginate($page_url_params);
     <div class="container">
         <!-- Search Bar -->
         <header class="page-header">
+            <?php simple_sliding_menu($lang); ?>
             <div class="searchBarMain">
         		<i class="material-icons searchBarSearchIcon noUserSelect" onclick="__gaTracker('send','event','Search Results','Search',document.getElementById('searchBarInput').value);">search</i>
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search">
@@ -158,7 +159,9 @@ $pages->paginate($page_url_params);
         		<i class="material-icons clearSearchBarField noUserSelect" onClick="resetInput()">clear</i>
         	</div>
         </header>
-        <h3 class="section-title"><?php _e('Results', 'e-blueinfo'); echo ': ' . $total; ?></h3>
+        <?php if ( isset($total) && strval($total) > 0 ) : ?>
+        <h4 class="section-title results"><?php _e('Results', 'e-blueinfo'); echo ': ' . $total; ?></h4>
+        <?php endif; ?>
         <div class="row">
             <?php if ( isset($total) && strval($total) == 0 ) : ?>
             <h4 class="results"><?php _e('No results found. Try searching with another keywords.', 'e-blueinfo'); ?></h4>

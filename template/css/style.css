@@ -12,7 +12,7 @@ body {
 }
 
 .site {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif !important; 
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif !important;
 }
 
 .site-content-contain {
@@ -55,11 +55,11 @@ p {
 }
 
 .breadcrumb{
-    padding: 10px 10px 10px 0px !important;
+    padding: 10px !important;
     width: 964px;
-    margin: 0 auto 1rem;
+    margin: 3rem auto 1rem;
     float: none;
-	display: none !important;
+    display: block;
 }
 
 .breadcrumb>li {
@@ -97,6 +97,15 @@ p {
 #eblueinfo {
     background: #1c547e !important;
     padding-top: 1rem;
+}
+
+#eblueinfo h4.results ,
+#eblueinfo .row .h-label h4 {
+    text-align: center !important;
+    width: 100%;
+    color: #fff;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 #eblueinfo.doc-data {
@@ -158,15 +167,9 @@ p {
     padding: 10px !important;
 }
 
-h4.results {
-    margin: 0 auto;
-    padding: 0 2rem;
-    text-align: center;
-}
-
 .site-header {
     /*margin-top: 1em;*/
-	background-color: #00599c !important;
+    background-color: #00599c !important;
 }
 
 .site-title, .site-title a {
@@ -206,15 +209,15 @@ section {
 .section-title {
     text-align: left;
     color: #fff;
-	background: #1d537d !important;
-	padding: 15px 0px 15px 33px !important;
+    background: #1d537d !important;
+    padding: 15px 0px 15px 33px !important;
 }
 
 .eblueinfo-list .card {
     border: none;
     background: #ffffff;
-	margin-bottom: -24px;
-	border-left: 25px solid #e3ecf3;
+    margin-bottom: -24px;
+    border-left: 25px solid #e3ecf3;
 }
 
 .eblueinfo-col .card-title {
@@ -223,7 +226,7 @@ section {
     padding-top: 6px;
     color: #003863 !important;
 }
-	
+
 .eblueinfo-col .card-text {
     margin-left: 18px !important;
 }
@@ -287,9 +290,15 @@ section {
 }
 
 .doc,
-.doc-meta,
-.frontside {
+.doc-meta {
     position: relative;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.frontside {
+    /* position: relative; */
+    position: absolute;
     -webkit-transform: rotateY(0deg);
     -ms-transform: rotateY(0deg);
     z-index: 2;
@@ -298,11 +307,12 @@ section {
 }
 
 .backside {
-    position: absolute;
-    top: 0;
-    left: 0;
+    /* position: absolute; */
+    /* top: 0; */
+    /* left: 0; */
     background: white;
     width: 100%;
+    margin-bottom: 30px;
     -webkit-transform: rotateY(-180deg);
     -moz-transform: rotateY(-180deg);
     -o-transform: rotateY(-180deg);
@@ -363,20 +373,20 @@ section {
 
 .eblueinfo-list .thumb img {
     max-width: 120px;
-	float: left !important;
-	padding: 10px 0px 0px 20px;
+    float: left !important;
+    padding: 10px 0px 0px 20px;
     /* max-height: 350px; */
 }
 
 .frontside .card .card-title {
     color: #0d5db4;
     width: 75%;
-    padding: 10px 0px; 
-	float: left;
+    padding: 10px 0px;
+    float: left;
 }
 
 .pb-5 {
-    padding-bottom: 0rem !important; 
+    padding-bottom: 0rem !important;
 }
 
 #eblueinfo .row {
@@ -393,8 +403,11 @@ section {
     padding-top: 2.5em !important;
 }
 
+.eblueinfo-list .btn,
 .eblueinfo-com .btn-primary {
-    margin-top: 4px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
 }
 
 .eblueinfo-doc .meta {
@@ -414,7 +427,7 @@ section {
     /* background: -o-linear-gradient(bottom, #fff, #000); *
     /* -webkit-background-clip: text; */
     /* -webkit-text-fill-color: transparent; */
-	text-align: justify;
+    text-align: justify;
 }
 
 .backside .card .card-body {
@@ -434,7 +447,7 @@ section {
 }
 
 .frontside .card .card-body img {
-	/* padding-top: 50px !important; */
+    /* padding-top: 50px !important; */
 }
 
 .backside ul.list-inline {
@@ -442,7 +455,7 @@ section {
 }
 
 .h-label {
-    display:none !important;
+    display: none !important;
 }
 
 .hide {
@@ -475,7 +488,7 @@ section {
     position: fixed;
     bottom: 10px;
     right: 20px;
-	background: #f7f1f1;
+    background: #f7f1f1;
     border-radius: 10px;
     padding: 0 10px;
 }
@@ -502,83 +515,82 @@ section {
 
 /* Search bar (header) */
 .searchBarMain {
-	background: #fff;
-	width: 65%;
-	margin-left: 27% !important;
-	max-width: 680px;
-	margin: 0 auto;
-	height: 34px;
-	margin-top: 16px;
-	border-radius: 2px;
-	box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.14);
-	-webkit-transition: all 0.2s ease-in-out;
-	-moz-transition: all 0.2s ease-in-out;
-	-ms-transition: all 0.2s ease-in-out;
-	-o-transition: all 0.2s ease-in-out;
-	transition: all 0.2s ease-in-out;
-	position: fixed;
-	left: 0;
-	right: 0;
-	top: 0
+    background: #fff;
+    width: 65%;
+    max-width: 680px;
+    margin: 0 auto;
+    height: 34px;
+    margin-top: 16px;
+    border-radius: 2px;
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.14);
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0
 }
 
 .searchBarMain i.searchBarSearchIcon {
-	height: 100%;
-	line-height: 42px;
-	float: left;
-	width: 52px;
-	text-align: center;
-	color: rgba(68, 68, 68, 0.5);
+    height: 100%;
+    line-height: 42px;
+    float: left;
+    width: 52px;
+    text-align: center;
+    color: rgba(68, 68, 68, 0.5);
 }
 
 .searchBarMain input#searchBarInput {
-	height: 42px;
-	padding: 0;
-	margin: 0;
-	border: 0;
-	box-sizing: border-box;
-	background: transparent;
-	width: calc(100% - 52px);
-	outline: none;
-	padding-right: 32px;
-	font-size: 15px;
-	color: rgba(0, 0, 0, 0.76);
-	font-weight: 400;
-	font-family: 'Roboto', sans-serif;
+    height: 42px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    background: transparent;
+    width: calc(100% - 52px);
+    outline: none;
+    padding-right: 32px;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.76);
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
 }
 
 .searchBarMain i.clearSearchBarField {
-	position: absolute;
-	right: 12px;
-	top: 11px;
-	color: rgba(0, 0, 0, 0.84);
-	display: none;
-	font-size: 20px;
+    position: absolute;
+    right: 12px;
+    top: 11px;
+    color: rgba(0, 0, 0, 0.84);
+    display: none;
+    font-size: 20px;
 }
 
 .searchBarMain i.clearSearchBarField:hover {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 /* Disable selection with class "noUserSelect" */
 .noUserSelect {
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /* Page header (Top bar) */
 .page-header {
-	width: 100% !important;
-	position: fixed;
-    background: #1a80cc url(/e-blueinfo/wp-content/plugins/e-blueinfo/template/images/icon2.png) top left no-repeat;
-	top: 0;
+    width: 100% !important;
+    position: fixed;
+    background: #1a80cc url(../images/icon2.png) top left no-repeat;
+    top: 0;
     left: 0;
-	z-index: 500;
-	height: 64px;
-	max-height: 64px;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    z-index: 500;
+    height: 64px;
+    max-height: 64px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 /* Placeholder */
@@ -705,8 +717,8 @@ section {
     background: #dcd9d9;
     padding: 10px 0;
     margin-top: auto;
-	/*margin-top: 50px;*/
-} 
+    /*margin-top: 50px;*/
+}
 
 .eblueinfo-search .row {
     padding: 20px !important;
@@ -729,6 +741,97 @@ section {
     font-size: 14px !important;
 }
 
+/* Simple Sliding Menu */
+.side-menu-wrapper { /* style menu wrapper */
+    /* background: rgba(0,0,0,.95); */
+    background: #1e90ff;
+    padding: 40px 0 0 40px;
+    position: fixed; /* Fixed position */
+    top: 0;
+    left: 0; /* Sidebar initial position. "left" for left positioned menu */
+    height: 100%;
+    z-index: 2;
+    transition: 0.5s; /* CSS transition speed */
+    width: 250px;
+    /* font: 20px "Courier New", Courier, monospace; */
+    box-sizing: border-box;
+}
+.side-menu-wrapper > ul { /* css ul list style */
+    list-style:none;
+    padding:0;
+    margin:0;
+    overflow-y: auto; /* enable scroll for menu items */
+    height:95%;
+}
+.side-menu-wrapper > ul > li > a { /* links */
+    display: block;
+    /* border-bottom: 1px solid #131313; */
+    border-bottom: 1px solid #fff;
+    padding: 6px 4px 6px 4px;
+    /* color: #989898; */
+    color: #fff;
+    transition: 0.3s;
+    text-decoration: none;
+    outline: 0;
+}
+.side-menu-wrapper > ul > li > a:hover {
+    color: #00ced7;
+}
+.side-menu-wrapper > a.menu-close { /* close button */
+    padding: 8px 0 4px 23px;
+    /* color: #6B6B6B; */
+    color: #fff;
+    display: block;
+    margin: -30px 0 -10px -20px;
+    font-size: 35px;
+    text-decoration: none;
+    outline: 0;
+}
+.side-menu-wrapper > ul > li > a.submenu { /* submenu links */
+    display: none;
+    margin-left: 1rem;
+}
+
+.menu-overlay { /* overlay */
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.7);
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+/* MATERIAL ICONS */
+.material-icons.simpleSlidingMenu {
+    /* float: right; */
+    position: absolute;
+    top: 13px;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-60 { font-size: 60px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+/* ./MATERIAL ICONS */
+
 /* Media Queries */
 @media only screen
 and (min-device-width : 1025px) {
@@ -739,7 +842,7 @@ and (min-device-width : 1025px) {
 }
 
 @media only screen
-and (min-device-width : 813px) {
+and (min-device-width : 824px) {
     .image-flip:hover .backside {
         -webkit-transform: rotateY(0deg);
         -moz-transform: rotateY(0deg);
@@ -781,7 +884,7 @@ and (min-device-width : 813px) {
 }
 
 @media only screen
-and (max-device-width : 812px) {
+and (max-device-width : 823px) {
     #eblueinfo.doc-data .card .thumb {
         width: 100%;
         text-align: center;
@@ -810,7 +913,15 @@ and (max-device-width : 812px) {
         text-align: center;
     }
 
+    .material-icons.simpleSlidingMenu {
+        top: 15px;
+    }
+}
+
+@media only screen
+and (max-device-width : 414px) {
     .searchBarMain {
-        margin-left: 30% !important;
+        width: 57%;
+        margin-left: 27% !important;
     }
 }
