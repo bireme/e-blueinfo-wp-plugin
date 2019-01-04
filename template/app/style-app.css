@@ -1,5 +1,5 @@
 body {
-    background: #1a80cc url(../wp-content/plugins/e-blueinfo/template/images/logo_home2.png) top center no-repeat;
+    background: #1a80cc url(<?php echo EBLUEINFO_PLUGIN_URL; ?>template/images/logo_home2.png) top center no-repeat;
 }
 
 .h4 {
