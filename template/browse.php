@@ -157,14 +157,8 @@ $pages->paginate($page_url_params);
                             <div class="doc" onclick="__gaTracker('send','event','Browse','<?php echo $action; ?>','<?php echo $url; ?>');">
                                 <div class="card">
                                     <div class="card-body text-center">
-                                        <!-- <p><img class="img-fluid" src="http://placehold.it/160x210" alt="card image"></p> -->
-                                        <?php if ( 'View' == $action ) : ?>
-                                        <p class="thumb"><img class="img-fluid" src="http://placehold.it/270x350" alt="card image"></p>
-                                        <?php else : ?>
-                                        <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '?id=' . $doc->id . '&url=' . $url; ?>" alt="card image"></p>
-                                        <?php endif; ?>
+                                        <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '?id=' . $doc->id . '&url=' . $url; ?>" alt="card image" onerror="this.src='http://placehold.it/120x160'"></p>
                                         <a class="full-text" href="<?php echo $url; ?>"><h4 class="card-title"><?php echo $doc->reference_title; ?></h4></a>
-                                        <!-- <p class="card-text">This is basic card with image on top, title, description and button.</p> -->
                                         <a class="btn btn-primary btn-sm redirect" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id . '&lang=' . $lang; ?>" onclick="__gaTracker('send','event','Browse','View','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');"><i class="fa fa-info-circle"></i></a>
                                     </div>
                                 </div>

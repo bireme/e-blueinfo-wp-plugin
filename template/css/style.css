@@ -182,12 +182,6 @@ p {
     padding: 0px !important;
 }
 
-.eblueinfo-list .btn {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-}
-
 .btn-primary:hover,
 .btn-primary:focus {
     /* background-color: #108d6f !important; */
@@ -245,7 +239,8 @@ section {
 }
 
 .eblueinfo-doc .img-fluid {
-    max-width: 180px;
+    max-width: 270px;
+    max-height: 350px;
     border-radius: 10px;
 }
 
@@ -355,6 +350,10 @@ section {
     color: #007b5e !important;
 }
 
+.doc .card a.full-text {
+    width: 100%;
+}
+
 .doc .card a.full-text:hover {
     text-decoration: none;
 }
@@ -366,16 +365,14 @@ section {
 
 .doc .card .card-title {
     padding-top: .75rem;
+    padding-bottom: .75rem;
 }
-
-
-
 
 .eblueinfo-list .thumb img {
     max-width: 120px;
+    max-height: 160px;
     float: left !important;
-    padding: 10px 0px 0px 20px;
-    /* max-height: 350px; */
+    padding: 10px 0 10px 20px;
 }
 
 .frontside .card .card-title {
@@ -405,9 +402,13 @@ section {
 
 .eblueinfo-list .btn,
 .eblueinfo-com .btn-primary {
+/*
     position: absolute;
     right: 10px;
     bottom: 10px;
+*/
+    display: table;
+    margin: auto 5px 5px 5px;
 }
 
 .eblueinfo-doc .meta {
@@ -881,6 +882,10 @@ and (min-device-width : 824px) {
         height: auto;
         margin-top: 12px;
     }
+
+    #eblueinfo .row .item {
+        margin-bottom: 1rem;
+    }
 }
 
 @media only screen
@@ -915,6 +920,10 @@ and (max-device-width : 823px) {
 
     .material-icons.simpleSlidingMenu {
         top: 15px;
+    }
+
+    .eblueinfo-doc .img-fluid {
+        max-width: 180px;
     }
 }
 

@@ -167,13 +167,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                 <div class="mainflip">
                     <div class="card">
                         <div class="card-body">
-                            <!-- <p><img class="img-fluid" src="http://dab.saude.gov.br/imgs/portaldab/biblioteca/publicacoes/praticas_reabilitacao_ab.png" alt="card image"></p> -->
-                            <?php if ( isset($doc[0]->electronic_address[0]->_u) ) : ?>
-                            <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '?id=' . $doc[0]->id . '&url=' . $doc[0]->electronic_address[0]->_u; ?>" alt="card image"></p>
-                            <?php else : ?>
-                            <p class="thumb"><img class="img-fluid" src="http://placehold.it/270x350" alt="card image"></p>
-                            <?php endif; ?>
-                            <!-- <a class="redirect" href="/wordpress/e-blueinfo/e-blueinfo-doc" onclick="return false;"><h4 class="card-title">Título do Documento</h4></a> -->
+                            <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '?id=' . $doc[0]->id . '&url=' . $doc[0]->electronic_address[0]->_u; ?>" alt="card image" onerror="this.src='http://placehold.it/180x240'"></p>
                             <div class="meta">
                                 <div>
                                     <span><?php _e('Title', 'e-blueinfo'); ?></span>
