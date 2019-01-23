@@ -137,9 +137,8 @@ $pages->paginate($page_url_params);
                 <div class="col-xs-12 col-sm-6 col-md-4 item">
                     <div id="<?php echo $id; ?>" class="image-flip">
                         <div class="mainflip">
-                            <div class="col">
-                            <!-- <div class="col" onclick="__gaTracker('send','event','Collection','View','<?php echo $collection->name; ?>');"> -->
-                                <div class="card">
+                            <div class="col" onclick="__gaTracker('send','event','Collection','View','<?php echo $collection->name; ?>');">
+                                <div class="card" onclick="location=this.getElementsByClassName('redirect')[0].href;">
                                     <div class="card-body text-center">
                                         <h4 class="card-title"><?php echo $collection->name; ?></h4>
                                         <?php $class = ( $collection->description ) ? 'show' : 'hide'; ?>
