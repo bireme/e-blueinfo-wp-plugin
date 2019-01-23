@@ -377,7 +377,7 @@ section {
 
 .frontside .card .card-title {
     color: #0d5db4;
-    width: 75%;
+    width: 85%;
     padding: 10px 0px;
     float: left;
 }
@@ -400,15 +400,15 @@ section {
     padding-top: 2.5em !important;
 }
 
-.eblueinfo-list .btn,
+.eblueinfo-list .btn {
+    display: table;
+    margin: auto 5px 5px 5px;
+}
+
 .eblueinfo-com .btn-primary {
-/*
     position: absolute;
     right: 10px;
     bottom: 10px;
-*/
-    display: table;
-    margin: auto 5px 5px 5px;
 }
 
 .eblueinfo-doc .meta {

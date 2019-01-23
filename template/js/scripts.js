@@ -14,6 +14,12 @@ var colRedirect  =  colCard + " a.redirect";
 var docRedirect  =  docCard + " a.redirect";
 var docMetaRedirect = docMetaCard + " a.redirect";
 
+if (navigator.userAgent.indexOf('gonative') > -1) {
+    var evento = "touchstart";
+} else {
+    var evento = "click";
+}
+
 $(document).ready(function() {
     searchBarInput.on('keyup focus', function() {
         if( $(this).val().length === 0 ) {
@@ -23,7 +29,7 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on( "click touchstart", bsCard, function(e) {
+    $(document).on( evento, bsCard, function(e) {
         href = $(this).prev($(fsCard)).find('a.redirect.desktop').attr('href');
 
         if ( href ) {
@@ -31,33 +37,37 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on( "click touchstart", fsCard, function(e) {
+    $(document).on( evento, fsCard, function(e) {
         window.location.href = $(this).find('a.redirect').attr('href');
     });
 
-    $(document).on( "click touchstart", docMetaCard, function(e) {
+    $(document).on( evento, docMetaCard, function(e) {
         window.location.href = $(this).find('a.full-text').attr('href');
     });
 
-    $(document).on( "click touchstart", docCard, function(e) {
+    $(document).on( evento, docCard, function(e) {
         window.location.href = $(this).find('a.full-text').attr('href');
     });
 
-    $(document).on( "click touchstart", docRedirect, function(e) {
+    $(document).on( evento, docRedirect, function(e) {
         e.stopImmediatePropagation();
     });
 
-    $(document).on( "click touchstart", docMetaRedirect, function(e) {
+    $(document).on( evento, docMetaRedirect, function(e) {
         e.stopImmediatePropagation();
     });
 
-    submitSearchBtn.on( "click touchstart", function(e) {
+    submitSearchBtn.on( evento, function(e) {
         searchForm.submit();
     });
 });
 
 $(function () {
-    $('a[href=#top]').on( "click touchstart", function () {
+    $(document).on( evento, colCard, function(e) {
+        window.location.href = $(this).find('a.redirect').attr('href');
+    });
+
+    $('a[href=#top]').on( evento, function () {
         $('body,html').animate({
             scrollTop: 0
         }, 600);
