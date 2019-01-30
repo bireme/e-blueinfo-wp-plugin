@@ -14,11 +14,7 @@ var colRedirect  =  colCard + " a.redirect";
 var docRedirect  =  docCard + " a.redirect";
 var docMetaRedirect = docMetaCard + " a.redirect";
 
-if (navigator.userAgent.indexOf('gonative') > -1) {
-    var evento = "touchstart";
-} else {
-    var evento = "click";
-}
+var evento = "click";
 
 $(document).ready(function() {
     searchBarInput.on('keyup focus', function() {
@@ -30,6 +26,8 @@ $(document).ready(function() {
     });
 
     $(document).on( evento, bsCard, function(e) {
+        e.preventDefault();
+
         href = $(this).prev($(fsCard)).find('a.redirect.desktop').attr('href');
 
         if ( href ) {
@@ -38,14 +36,22 @@ $(document).ready(function() {
     });
 
     $(document).on( evento, fsCard, function(e) {
+        e.preventDefault();
+        window.location.href = $(this).find('a.redirect').attr('href');
+    });
+
+    $(document).on( evento, colCard, function(e) {
+        e.preventDefault();
         window.location.href = $(this).find('a.redirect').attr('href');
     });
 
     $(document).on( evento, docMetaCard, function(e) {
+        e.preventDefault();
         window.location.href = $(this).find('a.full-text').attr('href');
     });
 
     $(document).on( evento, docCard, function(e) {
+        e.preventDefault();
         window.location.href = $(this).find('a.full-text').attr('href');
     });
 
@@ -57,17 +63,13 @@ $(document).ready(function() {
         e.stopImmediatePropagation();
     });
 
-    submitSearchBtn.on( evento, function(e) {
+    submitSearchBtn.on( 'click', function(e) {
         searchForm.submit();
     });
 });
 
 $(function () {
-    $(document).on( evento, colCard, function(e) {
-        window.location.href = $(this).find('a.redirect').attr('href');
-    });
-
-    $('a[href=#top]').on( evento, function () {
+    $('a[href=#top]').on( 'click', function () {
         $('body,html').animate({
             scrollTop: 0
         }, 600);
