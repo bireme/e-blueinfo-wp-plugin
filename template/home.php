@@ -118,7 +118,7 @@ $pages->paginate($page_url_params);
         <header class="page-header">
             <?php simple_sliding_menu($lang); ?>
             <div class="searchBarMain">
-        		<i class="material-icons searchBarSearchIcon noUserSelect" onclick="__gaTracker('send','event','Browse','Search',document.getElementById('searchBarInput').value);">search</i>
+        		<i class="material-icons searchBarSearchIcon noUserSelect" onclick="__gaTracker('send','event','Community','Search',document.getElementById('searchBarInput').value);">search</i>
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search">
                     <input type="hidden" name="community" id="community" value="<?php echo $community_ids; ?>">
         		    <input type="text" name="q" value="<?php echo $query; ?>" id="searchBarInput" placeholder="<?php _e('Search...', 'e-blueinfo'); ?>">
