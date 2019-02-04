@@ -63,13 +63,13 @@ $(document).ready(function() {
         e.stopImmediatePropagation();
     });
 
-    submitSearchBtn.on( 'click', function(e) {
+    submitSearchBtn.on( evento, function(e) {
         searchForm.submit();
     });
 });
 
 $(function () {
-    $('a[href=#top]').on( 'click', function () {
+    $('a[href=#top]').on( evento, function () {
         $('body,html').animate({
             scrollTop: 0
         }, 600);
