@@ -23,6 +23,7 @@ $lang = substr($site_language,0,2);
 $query = $_GET['s'] . $_GET['q'];
 $query = stripslashes( trim($query) );
 $q = $query;
+$query = prepare_query($query);
 
 $user_filter   = stripslashes($_GET['filter']);
 $community_id  = ( !empty($_GET['community']) ? explode(',', $_GET['community']) : '' );
@@ -54,7 +55,7 @@ if ( !empty($collection_id) ) {
     if ( empty($query) ) {
         $query = 'col:' . $collection_id . '|*';
     } else {
-        $query = 'col:' . $collection_id . '|* AND ' . $query;
+        $query = '(col:' . $collection_id . '|*) AND ' . $query;
     }
 }
 

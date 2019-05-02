@@ -250,6 +250,19 @@ if ( !function_exists('cmp') ) {
     }
 }
 
+if ( !function_exists('prepare_query') ) {
+    function prepare_query($q){
+        if ( substr_count(trim($q), ' ') > 0 ) {
+            $q = str_replace(' ', ' AND ', $q);
+        }
+
+        $query = '((ti:QUERY^4) OR (ab:QUERY^2) OR (_text_:QUERY))';
+        $query = str_replace('QUERY', $q, $query);
+
+        return $query;
+    }
+}
+
 if ( !function_exists('simple_sliding_menu') ) {
     function simple_sliding_menu($lang='en') {
         $menu = array();
