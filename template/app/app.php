@@ -3,7 +3,7 @@
 
 	$site_language = strtolower(get_bloginfo('language'));
 	$lang = substr($site_language,0,2);
-    $languages= array();
+    $languages = array();
 
 	$response = @file_get_contents($country_service_url);
 	if ($response){
@@ -21,8 +21,20 @@
 
     $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['home_url_' . $lang] : real_site_url();
 ?>
+
 <?php require_once('header.php'); ?>
 
+<?php if ( $response ) : ?>
+    <div class="container">
+        <div class="row">
+            <h2 class="app-title"><?php _e('e-BlueInfo', 'e-blueinfo'); ?></h2>
+            <hr />
+            <p class="h4">System unavailable<br />Try to access later</p>
+            <p class="h4">Sistema indisponível<br />Tente acessar mais tarde</p>
+            <p class="h4 last">Sistema no disponible<br />Intente acceder más tarde</p>
+        </div>
+    </div>
+<?php else : ?>
     <div class="container">
     	<div class="row">
     		<h2 class="app-title"><?php _e('e-BlueInfo', 'e-blueinfo'); ?></h2>
@@ -65,6 +77,7 @@
             </div>
     	</div>
     </div>
+<?php endif; ?>
 
     <script src="<?php echo EBLUEINFO_PLUGIN_URL . 'app/js/en/main.menu.js'; ?>"></script>
 

@@ -16,6 +16,10 @@ hr {
     margin-top: 120px;
 }
 
+.row .h4.last {
+    padding-bottom: 1em;
+}
+
 .app-title {
     display: none;
 }
