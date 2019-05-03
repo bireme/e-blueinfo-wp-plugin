@@ -24,7 +24,7 @@
 
 <?php require_once('header.php'); ?>
 
-<?php if ( $response ) : ?>
+<?php if ( ! $response ) : ?>
     <div class="container">
         <div class="row">
             <h2 class="app-title"><?php _e('e-BlueInfo', 'e-blueinfo'); ?></h2>
