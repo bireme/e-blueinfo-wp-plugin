@@ -62,7 +62,7 @@ if ( !empty($collection_id) ) {
 if ( !empty($community_id) ) {
     $com_ids = implode('|* OR com:', $community_id);
     if ( empty($query) && empty($collection_id) ) {
-        $query = 'com:' . $com_ids . '|*';
+        $query = '(com:' . $com_ids . '|*)';
     } else {
         $query = '(com:' . $com_ids . '|*) AND ' . $query;
     }

@@ -256,7 +256,7 @@ if ( !function_exists('prepare_query') ) {
             $q = str_replace(' ', ' AND ', $q);
         }
 
-        $query = '((ti:QUERY^4) OR (ab:QUERY^2) OR (_text_:QUERY))';
+        $query = '((ti:QUERY)^4 OR (ab:QUERY)^2 OR (_text_:QUERY))';
         $query = str_replace('QUERY', $q, $query);
 
         return $query;
