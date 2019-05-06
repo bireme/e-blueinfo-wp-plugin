@@ -180,7 +180,8 @@ if(!class_exists('EBlueInfo_Plugin')) {
                  || $pagename == $this->plugin_slug . '/collection'
                  || $pagename == $this->plugin_slug . '/browse'
                  || $pagename == $this->plugin_slug . '/search'
-                 || $pagename == $this->plugin_slug . '/country') {
+                 || $pagename == $this->plugin_slug . '/country'
+                 || $pagename == $this->plugin_slug . '/language') {
 
                     add_action( 'wp_enqueue_scripts', array(&$this, 'template_styles_scripts') );
 
@@ -225,6 +226,8 @@ if(!class_exists('EBlueInfo_Plugin')) {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/browse.php';
                     }elseif ($pagename == $this->plugin_slug . '/search'){
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/search.php';
+                    }elseif ($pagename == $this->plugin_slug . '/language'){
+                        $template = EBLUEINFO_PLUGIN_PATH . '/template/app/language.php';
                     }elseif ($pagename == $this->plugin_slug . '/country'){
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/app/country.php';
                     }else{

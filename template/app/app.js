@@ -14,8 +14,13 @@ $(function () {
     });
 
     $('select.countries-list').on( "change", function(e) {
-        var country = $(this).data('country');
+        var country = $(this).find('option:selected').data('country');
         setCookie('e-blueinfo-country', country);
+    });
+
+    $('select.languages-list').on( "change", function(e) {
+        var lang = $(this).find('option:selected').data('lang');
+        setCookie('e-blueinfo-lang', lang);
     });
 });
 
