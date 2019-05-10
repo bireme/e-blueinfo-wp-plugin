@@ -42,11 +42,12 @@ if(!class_exists('EBlueInfo_Plugin')) {
             // register actions
 
             add_action( 'init', array(&$this, 'load_translation') );
+            add_action( 'wp', array(&$this, 'force_cookie_lang') );
             add_action( 'admin_menu', array(&$this, 'admin_menu') );
             add_action( 'plugins_loaded', array(&$this, 'plugin_init') );
             add_action( 'wp_head', array(&$this, 'google_analytics_code') );
-            add_action( 'template_redirect', array(&$this, 'theme_redirect') );
             add_action( 'widgets_init', array(&$this, 'register_sidebars') );
+            add_action( 'template_redirect', array(&$this, 'theme_redirect') );
             add_filter( 'get_search_form', array(&$this, 'search_form') );
             add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array(&$this, 'settings_link') );
             add_filter( 'document_title_parts', array(&$this, 'theme_slug_render_title') );
@@ -180,8 +181,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
                  || $pagename == $this->plugin_slug . '/collection'
                  || $pagename == $this->plugin_slug . '/browse'
                  || $pagename == $this->plugin_slug . '/search'
-                 || $pagename == $this->plugin_slug . '/country'
-                 || $pagename == $this->plugin_slug . '/language') {
+                 || $pagename == $this->plugin_slug . '/country') {
 
                     add_action( 'wp_enqueue_scripts', array(&$this, 'template_styles_scripts') );
 
@@ -226,8 +226,6 @@ if(!class_exists('EBlueInfo_Plugin')) {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/browse.php';
                     }elseif ($pagename == $this->plugin_slug . '/search'){
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/search.php';
-                    }elseif ($pagename == $this->plugin_slug . '/language'){
-                        $template = EBLUEINFO_PLUGIN_PATH . '/template/app/language.php';
                     }elseif ($pagename == $this->plugin_slug . '/country'){
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/app/country.php';
                     }else{
@@ -398,6 +396,25 @@ if(!class_exists('EBlueInfo_Plugin')) {
         </script>
         <?php
             } //endif
+        }
+
+        function force_cookie_lang() {
+            global $wp;
+            $url = home_url( add_query_arg( array(), $wp->request ) );
+            $site_language = strtolower(get_bloginfo('language'));
+            $lang = substr($site_language,0,2);
+
+            if ( defined( 'POLYLANG_VERSION' ) ) {
+                $lang = pll_current_language();
+            }
+
+            $fcl = ( isset($_GET['fcl']) && true == $_GET['fcl'] ) ? true : false;
+
+            if ( strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') !== false && $fcl ) {
+                setCookie( 'e-blueinfo-lang', $lang, 0, '/' );
+                header('Location: '.$url);
+                exit;
+            }
         }
 
     }

@@ -42,6 +42,29 @@ if (navigator.userAgent.indexOf('gonative') > -1) {
                   ]
                 },
                 {
+                  "label": "Idioma",
+                  "grouping": "[grouping]",
+                  "isGrouping": true,
+                  "isSubmenu": false,
+                  "subLinks": [
+                    {
+                      "url": "http://sites.bvsalud.org/e-blueinfo/pt/app?fcl=true",
+                      "label": "Português",
+                      "subLinks": []
+                    },
+                    {
+                      "url": "http://sites.bvsalud.org/e-blueinfo/es/app?fcl=true",
+                      "label": "Español",
+                      "subLinks": []
+                    },
+                    {
+                      "url": "http://sites.bvsalud.org/e-blueinfo/app?fcl=true",
+                      "label": "English",
+                      "subLinks": []
+                    }
+                  ]
+                },
+                {
                   "url": "http://sites.bvsalud.org/e-blueinfo/es/app/country",
                   "label": "Cambiar País",
                   "subLinks": []
