@@ -1,4 +1,21 @@
-<?php $pos = explode('/', $wp->request); ?>
+<?php
+    $eblueinfo_config = get_option('eblueinfo_config');
+
+    if ( function_exists( 'pll_the_languages' ) ) {
+        $current_lang = pll_current_language();
+        $eblueinfo_plugin_title = $eblueinfo_config['plugin_title_' . $current_lang];
+    }else{
+        $eblueinfo_plugin_title = $eblueinfo_config['plugin_title'];
+    }
+
+    $pos = explode('/', $wp->request);
+
+    if ( 'country' == end($pos) ) {
+        $title = $eblueinfo_plugin_title . " - " . __('Choose country', 'e-blueinfo') . " | " . get_bloginfo('name');
+    } else {
+        $title = $eblueinfo_plugin_title . " | " . get_bloginfo('name');
+    }
+?>
 <!DOCTYPE html>
 
 <html <?php language_attributes(); ?>>
@@ -10,7 +27,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- === Page Title === -->
-	<title><?php echo get_bloginfo('name'); ?></title>
+	<title><?php echo $title; ?></title>
 
 	<!-- === Embedding Stylesheets === -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">

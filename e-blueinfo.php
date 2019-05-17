@@ -281,9 +281,9 @@ if(!class_exists('EBlueInfo_Plugin')) {
                     $eblueinfo_plugin_title = $eblueinfo_config['plugin_title'];
                 }
 
-                $text = __('Communities', 'e-blueinfo');
-
-                if ($pagename == $this->plugin_slug . '/collection'){
+                if ($pagename == $this->plugin_slug){
+                    $text = __('Communities', 'e-blueinfo');
+                }elseif ($pagename == $this->plugin_slug . '/collection'){
                     $text = __('Collections', 'e-blueinfo');
                 }elseif ($pagename == $this->plugin_slug . '/browse'){
                     $text = __('Browse collection', 'e-blueinfo');
