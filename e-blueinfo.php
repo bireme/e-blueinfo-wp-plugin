@@ -273,13 +273,29 @@ if(!class_exists('EBlueInfo_Plugin')) {
 
             if ( is_404() && $pos_slug !== false ){
                 $eblueinfo_config = get_option('eblueinfo_config');
+
                 if ( function_exists( 'pll_the_languages' ) ) {
                     $current_lang = pll_current_language();
                     $eblueinfo_plugin_title = $eblueinfo_config['plugin_title_' . $current_lang];
                 }else{
                     $eblueinfo_plugin_title = $eblueinfo_config['plugin_title'];
                 }
-                $title_parts['title'] = $eblueinfo_plugin_title . " | " . get_bloginfo('name');
+
+                $text = __('Communities', 'e-blueinfo');
+
+                if ($pagename == $this->plugin_slug . '/collection'){
+                    $text = __('Collections', 'e-blueinfo');
+                }elseif ($pagename == $this->plugin_slug . '/browse'){
+                    $text = __('Browse collection', 'e-blueinfo');
+                }elseif ($pagename == $this->plugin_slug . '/search'){
+                    $text = __('Search result', 'e-blueinfo');
+                }elseif ($pagename == $this->plugin_slug . '/country'){
+                    $text = __('Please choose a country', 'e-blueinfo');
+                }else{
+                    $text = __('Document', 'e-blueinfo');
+                }
+
+                $title_parts['title'] = $eblueinfo_plugin_title . " - " . $text . " | " . get_bloginfo('name');
             }
 
             return $title_parts;

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Memória Azul 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/leisref\n"
-"POT-Creation-Date: 2019-01-02 15:16-0200\n"
-"PO-Revision-Date: 2019-01-02 15:17-0200\n"
+"POT-Creation-Date: 2019-05-17 15:30-0300\n"
+"PO-Revision-Date: 2019-05-17 15:33-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -17,26 +17,51 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: e-blueinfo.php:140
+#: e-blueinfo.php:141
 msgid "e-BlueInfo Settings"
 msgstr "e-BlueInfo Configuraciones"
 
-#: e-blueinfo.php:140 e-blueinfo.php:292 template/app/app.php:28
-#: template/app/country.php:27
+#: e-blueinfo.php:141 e-blueinfo.php:309 template/app/app.php:30
+#: template/app/app.php:40 template/app/country.php:27
 msgid "e-BlueInfo"
 msgstr ""
 
-#: e-blueinfo.php:251
+#: e-blueinfo.php:252
 msgid "e-BlueInfo sidebar"
 msgstr ""
 
-#: e-blueinfo.php:353 e-blueinfo.php:361 template/browse.php:101
+#: e-blueinfo.php:284 template/home.php:132 template/search.php:184
+msgid "Communities"
+msgstr "Comunidades"
+
+#: e-blueinfo.php:287 template/collection.php:123 template/search.php:186
+msgid "Collections"
+msgstr "Colecciones"
+
+#: e-blueinfo.php:289
+msgid "Browse collection"
+msgstr "Navegar por la colección"
+
+#: e-blueinfo.php:291 template/browse.php:107 template/collection.php:100
+#: template/doc.php:135 template/home.php:109 template/search.php:140
+msgid "Search result"
+msgstr "Resultado de la búsqueda"
+
+#: e-blueinfo.php:293 template/app/country.php:29
+msgid "Please choose a country"
+msgstr "Por favor, elija un país"
+
+#: e-blueinfo.php:295
+msgid "Document"
+msgstr "Documento"
+
+#: e-blueinfo.php:370 e-blueinfo.php:378 template/browse.php:101
 #: template/collection.php:95 template/doc.php:124 template/home.php:104
-#: template/search.php:128
+#: template/search.php:129
 msgid "Home"
 msgstr "Inicio"
 
-#: e-blueinfo.php:354
+#: e-blueinfo.php:371
 msgid "Languages"
 msgstr "Idiomas"
 
@@ -110,7 +135,7 @@ msgstr "Colección"
 msgid "Language"
 msgstr "Idioma"
 
-#: settings.php:111 template/doc.php:183
+#: settings.php:111 template/doc.php:177
 msgid "Year"
 msgstr "Año"
 
@@ -122,17 +147,8 @@ msgstr "Guardar cambios"
 msgid "of"
 msgstr "de"
 
-#: template/app/country.php:29
-msgid "Please choose a country"
-msgstr "Por favor, elija un país"
-
-#: template/browse.php:107 template/collection.php:100 template/doc.php:135
-#: template/home.php:109 template/search.php:139
-msgid "Search result"
-msgstr "Resultado de la búsqueda"
-
 #: template/browse.php:123 template/collection.php:115 template/doc.php:151
-#: template/home.php:124 template/search.php:155
+#: template/home.php:124 template/search.php:156
 msgid "Search..."
 msgstr "Buscar..."
 
@@ -141,7 +157,7 @@ msgid "No results found"
 msgstr "No se han encontrado resultados"
 
 #: template/browse.php:138 template/collection.php:130 template/home.php:140
-#: template/search.php:163
+#: template/search.php:164
 msgid "Results"
 msgstr "Resultados"
 
@@ -149,60 +165,52 @@ msgstr "Resultados"
 msgid "Total"
 msgstr "Total"
 
-#: template/browse.php:189 template/collection.php:168 template/home.php:185
-#: template/search.php:213
+#: template/browse.php:183 template/collection.php:167 template/home.php:185
+#: template/search.php:214
 msgid "Load More"
 msgstr "Mostrar Más"
 
-#: template/browse.php:191 template/collection.php:170 template/home.php:187
-#: template/search.php:215
+#: template/browse.php:185 template/collection.php:169 template/home.php:187
+#: template/search.php:216
 msgid "back to top"
 msgstr "volver al inicio"
 
-#: template/browse.php:193 template/search.php:217
+#: template/browse.php:187 template/search.php:218
 msgid "No more documents"
 msgstr "No hay más documentos"
 
-#: template/browse.php:198 template/collection.php:177 template/home.php:195
-#: template/search.php:222
+#: template/browse.php:192 template/collection.php:176 template/home.php:195
+#: template/search.php:223
 msgid "Loading..."
 msgstr "Cargando..."
 
-#: template/collection.php:123 template/search.php:185
-msgid "Collections"
-msgstr "Colecciones"
-
-#: template/collection.php:172
+#: template/collection.php:171
 msgid "No more collections"
 msgstr "No hay más colecciones"
 
-#: template/doc.php:179
+#: template/doc.php:173
 msgid "Title"
 msgstr "Título"
 
-#: template/doc.php:181
+#: template/doc.php:175
 msgid "Author"
 msgstr "Autor"
 
-#: template/doc.php:185
+#: template/doc.php:179
 msgid "Publisher"
 msgstr "Editor"
 
-#: template/doc.php:190
+#: template/doc.php:184
 msgid "Document Access"
 msgstr "Acceso al documento"
 
-#: template/doc.php:191
+#: template/doc.php:185
 msgid "Download link"
 msgstr "Enlace para descarga"
 
-#: template/doc.php:193
+#: template/doc.php:187
 msgid "Abstract"
 msgstr "Resumen"
-
-#: template/home.php:132 template/search.php:183
-msgid "Communities"
-msgstr "Comunidades"
 
 #: template/home.php:136
 msgid "No results found. Please choose a country in the main menu."
@@ -212,11 +220,11 @@ msgstr "Ningún resultado encontrado. Por favor, elija un país en el menú prin
 msgid "No more communities"
 msgstr "No hay más comunidades"
 
-#: template/search.php:167
+#: template/search.php:168
 msgid "No results found. Try searching with another keywords."
 msgstr "Ningún resultado encontrado. Intente buscar con otras palabras clave."
 
-#: template/search.php:190
+#: template/search.php:191
 msgid "See details"
 msgstr "Ver detalles"
 
