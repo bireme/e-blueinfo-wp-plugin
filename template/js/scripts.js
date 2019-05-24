@@ -79,8 +79,10 @@ $(function () {
 
 $(window).scroll(function () {
     if ($(this).scrollTop() > 50) {
+        $('.totop').fadeIn();
         $('.totop a').fadeIn();
     } else {
+        $('.totop').fadeOut();
         $('.totop a').fadeOut();
     }
 });
