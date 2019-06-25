@@ -79,6 +79,4 @@
     </div>
 <?php endif; ?>
 
-    <script src="<?php echo EBLUEINFO_PLUGIN_URL . 'app/js/en/main.menu.js'; ?>"></script>
-
 <?php require_once('footer.php'); ?>
