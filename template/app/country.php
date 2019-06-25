@@ -29,7 +29,6 @@
             <p class="h4"><?php _e('Please choose a country', 'e-blueinfo'); ?></p>
             <div class="col-md-12 mobile">
                 <select class="countries-list" onchange="location=this.value;">
-                    <option></option>
                     <?php foreach ($countries as $id => $name) : $selected = ( $country_id == $id ) ? 'selected' : ''; ?>
                     <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/' . $lang . '/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>" <?php echo $selected; ?>><?php echo $name; ?></option>
                     <?php endforeach; ?>
