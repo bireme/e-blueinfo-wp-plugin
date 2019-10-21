@@ -49,6 +49,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
             add_action( 'wp_head', array(&$this, 'google_analytics_code') );
             add_action( 'widgets_init', array(&$this, 'register_sidebars') );
             add_action( 'template_redirect', array(&$this, 'theme_redirect') );
+            add_action( 'wp_loaded', array(&$this, 'plugin_page_redirect') );
             add_filter( 'get_search_form', array(&$this, 'search_form') );
             add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array(&$this, 'settings_link') );
             add_filter( 'document_title_parts', array(&$this, 'theme_slug_render_title') );
@@ -111,6 +112,16 @@ if(!class_exists('EBlueInfo_Plugin')) {
             if ( ! is_admin() && ! $_COOKIE['e-blueinfo'] && strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') !== false && $pos_slug !== false ) {
                 /* app page redirect */
                 add_action( 'template_redirect', array(&$this, 'app_page_redirect'), 1 );
+            }
+        }
+
+        function plugin_page_redirect() {
+            $eblueinfo_config = get_option('eblueinfo_config');
+
+            if ( ! is_admin() && strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') === false ) {
+                $redirect = ( !empty($eblueinfo_config['redirect']) ) ? $eblueinfo_config['redirect'] : 'https://e-blueinfo.bvsalud.org/';
+                header('Location: '.$redirect);
+                exit;
             }
         }
 

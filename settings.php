@@ -15,7 +15,7 @@ function eblueinfo_page_admin() {
                     <tbody>
                         <tr valign="top">
                             <th scope="row"><?php _e('Plugin page', 'e-blueinfo'); ?>:</th>
-                            <td><input type="text" name="eblueinfo_config[plugin_slug]" value="<?php echo ($config['plugin_slug'] != '' ? $config['plugin_slug'] : 'e-blueinfo'); ?>" class="regular-text code"></td>
+                            <td><input type="text" name="eblueinfo_config[plugin_slug]" value="<?php echo (!empty($config['plugin_slug']) ? $config['plugin_slug'] : 'e-blueinfo'); ?>" class="regular-text code"></td>
                         </tr>
                         <tr valign="top">
                             <th scope="row"><?php _e('Filter query', 'e-blueinfo'); ?>:</th>
@@ -40,32 +40,31 @@ function eblueinfo_page_admin() {
                         </tr>
 
                         <?php
-                        if ( function_exists( 'pll_the_languages' ) ) {
-                            $available_languages = pll_languages_list();
-                            $available_languages_name = pll_languages_list(array('fields' => 'name'));
-                            $count = 0;
-                            foreach ($available_languages as $lang) {
-                                $key_name = 'plugin_title_' . $lang;
-                                $home_url = 'home_url_' . $lang;
+                            if ( function_exists( 'pll_the_languages' ) ) {
+                                $available_languages = pll_languages_list();
+                                $available_languages_name = pll_languages_list(array('fields' => 'name'));
+                                $count = 0;
+                                foreach ($available_languages as $lang) {
+                                    $key_name = 'plugin_title_' . $lang;
+                                    $home_url = 'home_url_' . $lang;
 
-                                echo '<tr valign="top">';
-                                echo '    <th scope="row"> ' . __("Home URL", "e-blueinfo") . ' (' . $available_languages_name[$count] . '):</th>';
-                                echo '    <td><input type="text" name="eblueinfo_config[' . $home_url . ']" value="' . $config[$home_url] . '" class="regular-text code"></td>';
-                                echo '</tr>';
+                                    echo '<tr valign="top">';
+                                    echo '    <th scope="row"> ' . __("Home URL", "e-blueinfo") . ' (' . $available_languages_name[$count] . '):</th>';
+                                    echo '    <td><input type="text" name="eblueinfo_config[' . $home_url . ']" value="' . $config[$home_url] . '" class="regular-text code"></td>';
+                                    echo '</tr>';
 
+                                    echo '<tr valign="top">';
+                                    echo '    <th scope="row"> ' . __("Page title", "e-blueinfo") . ' (' . $available_languages_name[$count] . '):</th>';
+                                    echo '    <td><input type="text" name="eblueinfo_config[' . $key_name . ']" value="' . $config[$key_name] . '" class="regular-text code"></td>';
+                                    echo '</tr>';
+                                    $count++;
+                                }
+                            }else{
                                 echo '<tr valign="top">';
-                                echo '    <th scope="row"> ' . __("Page title", "e-blueinfo") . ' (' . $available_languages_name[$count] . '):</th>';
-                                echo '    <td><input type="text" name="eblueinfo_config[' . $key_name . ']" value="' . $config[$key_name] . '" class="regular-text code"></td>';
+                                echo '   <th scope="row">' . __("Page title", "e-blueinfo") . ':</th>';
+                                echo '   <td><input type="text" name="eblueinfo_config[plugin_title]" value="' . $config["plugin_title"] . '" class="regular-text code"></td>';
                                 echo '</tr>';
-                                $count++;
                             }
-                        }else{
-                            echo '<tr valign="top">';
-                            echo '   <th scope="row">' . __("Page title", "e-blueinfo") . ':</th>';
-                            echo '   <td><input type="text" name="eblueinfo_config[plugin_title]" value="' . $config["plugin_title"] . '" class="regular-text code"></td>';
-                            echo '</tr>';
-                        }
-
                         ?>
 
                         <tr valign="top">
@@ -113,7 +112,10 @@ function eblueinfo_page_admin() {
                                 </fieldset>
                             </td>
                         </tr>
-
+                        <tr valign="top">
+                            <th scope="row"><?php _e('Redirect', 'e-blueinfo'); ?>:</th>
+                            <td><input type="text" name="eblueinfo_config[redirect]" value="<?php echo (!empty($config['redirect']) ? $config['redirect'] : 'https://e-blueinfo.bvsalud.org/'); ?>" class="regular-text code"></td>
+                        </tr>
                     </tbody>
                 </table>
                 <p class="submit">
