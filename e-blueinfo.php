@@ -11,7 +11,7 @@ Author URI: http://reddes.bvsalud.org/
 define('EBLUEINFO_VERSION', '0.1' );
 define('EBLUEINFO_SYMBOLIC_LINK', false );
 define('EBLUEINFO_PLUGIN_DIRNAME', 'e-blueinfo' );
-defined('EBLUEINFO_REDIRECT') or define('EBLUEINFO_REDIRECT', true);
+defined('EBLUEINFO_REDIRECT') or define('EBLUEINFO_REDIRECT', false);
 
 if (EBLUEINFO_SYMBOLIC_LINK == true) {
     define( 'EBLUEINFO_PLUGIN_PATH',  ABSPATH . 'wp-content/plugins/' . EBLUEINFO_PLUGIN_DIRNAME );
