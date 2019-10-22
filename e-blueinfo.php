@@ -9,9 +9,9 @@ Author URI: http://reddes.bvsalud.org/
 */
 
 define('EBLUEINFO_VERSION', '0.1' );
-
 define('EBLUEINFO_SYMBOLIC_LINK', false );
 define('EBLUEINFO_PLUGIN_DIRNAME', 'e-blueinfo' );
+defined('EBLUEINFO_REDIRECT') or define('EBLUEINFO_REDIRECT', true);
 
 if (EBLUEINFO_SYMBOLIC_LINK == true) {
     define( 'EBLUEINFO_PLUGIN_PATH',  ABSPATH . 'wp-content/plugins/' . EBLUEINFO_PLUGIN_DIRNAME );
@@ -116,15 +116,17 @@ if(!class_exists('EBlueInfo_Plugin')) {
         }
 
         function plugin_page_redirect() {
-            $eblueinfo_config = get_option('eblueinfo_config');
+            if ( EBLUEINFO_REDIRECT ) {
+                $eblueinfo_config = get_option('eblueinfo_config');
 
-            // check if request contains plugin slug string
-            $pos_slug = strpos($_SERVER['REQUEST_URI'], $this->plugin_slug);
+                // check if request contains plugin slug string
+                $pos_slug = strpos($_SERVER['REQUEST_URI'], $this->plugin_slug);
 
-            if ( ! is_admin() && strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') === false && $pos_slug !== false ) {
-                $redirect = ( !empty($eblueinfo_config['redirect']) ) ? $eblueinfo_config['redirect'] : 'https://e-blueinfo.bvsalud.org/';
-                header('Location: '.$redirect);
-                exit;
+                if ( ! is_admin() && strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') === false && $pos_slug !== false ) {
+                    $redirect = ( !empty($eblueinfo_config['redirect']) ) ? $eblueinfo_config['redirect'] : 'https://e-blueinfo.bvsalud.org/';
+                    header('Location: '.$redirect);
+                    exit;
+                }
             }
         }
 
