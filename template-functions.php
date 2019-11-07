@@ -208,6 +208,7 @@ if ( !function_exists('get_country_name') ) {
 if ( !function_exists('normalize_country_object') ) {
     function normalize_country_object($object, $lang){
         $obj = array();
+        $_unset = array(89);
 
         if ( $object ) {
             $ids = wp_list_pluck( $object, 'id' );
@@ -225,6 +226,12 @@ if ( !function_exists('normalize_country_object') ) {
                 }
 
                 $obj[$key] = $labels;
+            }
+        }
+
+        if ( isset($_unset) ) {
+            foreach ($_unset as $key => $value) {
+                unset($obj[$value]);
             }
         }
 
