@@ -12,6 +12,7 @@ define('EBLUEINFO_VERSION', '0.1' );
 define('EBLUEINFO_SYMBOLIC_LINK', false );
 define('EBLUEINFO_PLUGIN_DIRNAME', 'e-blueinfo' );
 defined('EBLUEINFO_REDIRECT') or define('EBLUEINFO_REDIRECT', false);
+defined('EBLUEINFO_FEEDBACK') or define('EBLUEINFO_FEEDBACK', false);
 
 if (EBLUEINFO_SYMBOLIC_LINK == true) {
     define( 'EBLUEINFO_PLUGIN_PATH',  ABSPATH . 'wp-content/plugins/' . EBLUEINFO_PLUGIN_DIRNAME );
@@ -47,6 +48,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
             add_action( 'admin_menu', array(&$this, 'admin_menu') );
             add_action( 'plugins_loaded', array(&$this, 'plugin_init') );
             add_action( 'wp_head', array(&$this, 'google_analytics_code') );
+            add_action( 'wp_footer', array(&$this, 'show_feedback_tab') );
             add_action( 'widgets_init', array(&$this, 'register_sidebars') );
             add_action( 'template_redirect', array(&$this, 'theme_redirect') );
             add_action( 'wp_loaded', array(&$this, 'plugin_page_redirect') );
@@ -447,6 +449,12 @@ if(!class_exists('EBlueInfo_Plugin')) {
                 setCookie( 'e-blueinfo-lang', $lang, 0, '/' );
                 header('Location: '.$url);
                 exit;
+            }
+        }
+
+        function show_feedback_tab() {
+            if ( EBLUEINFO_FEEDBACK ) {
+                require_once(EBLUEINFO_PLUGIN_PATH . '/template/feedback.php');
             }
         }
 

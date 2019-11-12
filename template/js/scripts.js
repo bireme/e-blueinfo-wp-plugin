@@ -68,6 +68,16 @@ $(document).ready(function() {
     });
 });
 
+/* Feedback Tab */
+$(function () {
+    $('#feedbackIcone').click(function(){
+        $('#feedback').toggleClass("feedback");
+    })
+    $('#feedbackFechar').click(function(){
+        $('#feedback').removeClass("feedback");
+    }) 
+});
+
 $(function () {
     $('a[href=#top]').on( evento, function () {
         $('body,html').animate({
