@@ -16,7 +16,7 @@
         'en' => array(
             'title'  => 'We want your opinion about the e-BlueInfo app',
             'invite' => 'We invite you to complete a survey that will take no more than 3 minutes',
-            'survey' => 'Go to survey'
+            'survey' => 'Go to survey (in Spanish)'
         ),
     );
 
