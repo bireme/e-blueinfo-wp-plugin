@@ -377,10 +377,10 @@ if(!class_exists('EBlueInfo_Plugin')) {
             wp_enqueue_script('e-blueinfo-menu', EBLUEINFO_PLUGIN_URL . 'app/js/' . $lang . '/menu.js', array(), EBLUEINFO_VERSION, true);
             wp_enqueue_script('e-blueinfo-loadmore', EBLUEINFO_PLUGIN_URL . 'template/js/loadmore.js', array(), EBLUEINFO_VERSION);
             wp_enqueue_script('e-blueinfo-bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', array(), EBLUEINFO_VERSION);
-            wp_enqueue_style ('e-blueinfo-page', EBLUEINFO_PLUGIN_URL . 'template/css/style.css', array(), EBLUEINFO_VERSION);
+            wp_enqueue_style ('e-blueinfo-page', EBLUEINFO_PLUGIN_URL . 'template/css/screen.css', array(), EBLUEINFO_VERSION);
 
             if ( strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') !== false ) {
-                wp_enqueue_style ('e-blueinfo-app', EBLUEINFO_PLUGIN_URL . 'template/css/style-app.css', array(), EBLUEINFO_VERSION);
+                wp_enqueue_style ('e-blueinfo-app', EBLUEINFO_PLUGIN_URL . 'template/css/screen-app.css', array(), EBLUEINFO_VERSION);
             }
 
             if ( $languages ) {
