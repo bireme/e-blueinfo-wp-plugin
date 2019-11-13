@@ -178,7 +178,7 @@ $pages->paginate($page_url_params);
 <!-- Pagination -->
 <?php // echo $pages->display_pages(); ?>
 <!-- ./Pagination -->
-<script type="text/javascript" src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/js/scripts.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/js/base.js'; ?>"></script>
 <?php if ( $next ) : ?>
 <!-- Load More -->
 <div class="load-more col-xs-3 col-sm-3 col-md-3">
