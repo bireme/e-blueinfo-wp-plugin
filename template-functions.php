@@ -263,7 +263,7 @@ if ( !function_exists('prepare_query') ) {
             $q = str_replace(' ', ' AND ', $q);
         }
 
-        $query = '((mh:QUERY)^50 OR (ti:QUERY)^30 OR (ab:QUERY)^10 OR (_text_:QUERY))';
+        $query = '(mh:(QUERY)^50 OR ti:(QUERY)^30 OR ab:(QUERY)^10 OR _text_:(QUERY))';
         $query = str_replace('QUERY', $q, $query);
 
         return $query;
