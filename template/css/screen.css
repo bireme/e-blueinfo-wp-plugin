@@ -216,8 +216,8 @@ section {
 
 .eblueinfo-col .card-title {
     background: #bbd8f6;
-    height: 30px;
-    padding-top: 6px;
+    height: auto;
+    padding: 5px 10px !important;
     color: #003863 !important;
 }
 
