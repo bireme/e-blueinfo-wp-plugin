@@ -48,7 +48,6 @@ if(!class_exists('EBlueInfo_Plugin')) {
             add_action( 'admin_menu', array(&$this, 'admin_menu') );
             add_action( 'plugins_loaded', array(&$this, 'plugin_init') );
             add_action( 'wp_head', array(&$this, 'google_analytics_code') );
-            add_action( 'wp_footer', array(&$this, 'show_feedback_tab') );
             add_action( 'widgets_init', array(&$this, 'register_sidebars') );
             add_action( 'template_redirect', array(&$this, 'theme_redirect') );
             add_action( 'wp_loaded', array(&$this, 'plugin_page_redirect') );
@@ -203,6 +202,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
                  || $pagename == $this->plugin_slug . '/country') {
 
                     add_action( 'wp_enqueue_scripts', array(&$this, 'template_styles_scripts') );
+                    add_action( 'wp_footer', array(&$this, 'show_feedback_tab') ); // feedback tab
 
                     if ($pagename == $this->plugin_slug){
                         if ( strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') !== false ) {
