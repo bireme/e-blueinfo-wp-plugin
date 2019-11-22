@@ -94,19 +94,12 @@ if ($response){
     $snippets = $response_json->highlighting;
 }
 
-$community_request = $eblueinfo_service_url . 'api/community/?community=' . $com_id . '&format=' . $format . '&lang=' . $lang;
-$response = @file_get_contents($community_request);
-if ($response){
-    $community = json_decode($response);
-    $com_name = $community->objects{0}->name;
-    // echo "<pre>"; print_r($community); echo "</pre>"; die();
-}
-
 $collection_request = $eblueinfo_service_url . 'api/collection/?collection=' . $collection_id . '&format=' . $format . '&lang=' . $lang;
 $response = @file_get_contents($collection_request);
 if ($response){
     $collection = json_decode($response);
     $col_name = $collection->objects{0}->name;
+    $com_name = $collection->objects{0}->parent;
     // echo "<pre>"; print_r($collection); echo "</pre>"; die();
 }
 

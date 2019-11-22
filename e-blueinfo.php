@@ -30,7 +30,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
     class EBlueInfo_Plugin {
 
         private $plugin_slug         = 'e-blueinfo';
-        private $service_url         = 'http://fi-admin.bvsalud.org/';
+        private $service_url         = 'http://fi-admin.data.bvsalud.org/';
         private $similar_docs_url    = 'http://similardocs.bireme.org/SDService';
         // private $thumb_service_url   = 'http://thumbnailserver.bvsalud.org/getDocument';
         private $thumb_service_url   = 'http://thumbs.bireme.org';

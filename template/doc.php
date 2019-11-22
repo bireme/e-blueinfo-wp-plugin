@@ -96,19 +96,12 @@ if ($response){
 */
 }
 
-$community_request = $eblueinfo_service_url . 'api/community/?community=' . $community_id . '&format=' . $format . '&lang=' . $lang;
-
-$response = @file_get_contents($community_request);
-if ($response){
-    $community = json_decode($response);
-    // echo "<pre>"; print_r($community); echo "</pre>"; die();
-}
-
 $collection_request = $eblueinfo_service_url . 'api/collection/?collection=' . $collection_id . '&format=' . $format . '&lang=' . $lang;
 
 $response = @file_get_contents($collection_request);
 if ($response){
     $collection = json_decode($response);
+    $community_name = $collection->objects{0}->parent;
     // echo "<pre>"; print_r($collection); echo "</pre>"; die();
 }
 
@@ -123,8 +116,8 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <ol class="breadcrumb">
     <li><a href="<?php echo $home_url ?>"><?php _e('Home','e-blueinfo'); ?></a></li>
     <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php echo $eblueinfo_plugin_title; ?> </a></li>
-    <?php if ( isset($community_id, $community) ) : ?>
-    <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'collection/?community=' . $community_id; ?>"><?php echo $community->objects{0}->name; ?> </a></li>
+    <?php if ( isset($community_id, $community_name) ) : ?>
+    <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'collection/?community=' . $community_id; ?>"><?php echo $community_name; ?> </a></li>
     <?php endif; ?>
     <?php if ( isset($community_id, $collection_id, $collection) ) : ?>
     <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id; ?>"><?php echo $collection->objects{0}->name; ?> </a></li>
@@ -155,8 +148,8 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         		<i class="material-icons clearSearchBarField noUserSelect" onClick="resetInput()">clear</i>
         	</div>
         </header>
-        <?php if ( isset($community_id, $community) ) : ?>
-        <h3 class="section-title parent-title"><?php echo $community->objects{0}->name; ?></h3>
+        <?php if ( isset($community_id, $community_name) ) : ?>
+        <h3 class="section-title parent-title"><?php echo $community_name; ?></h3>
         <?php endif; ?>
         <?php if ( isset($community_id, $collection_id, $collection) ) : ?>
         <h3 class="section-title"><?php echo $collection->objects{0}->name; ?></h3>
