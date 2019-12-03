@@ -248,7 +248,8 @@
     "iosTintColor": "#0091fe",
     "iosSidebarTextColor": "#333333",
     "androidStatusBarBackgroundColor": "#909090",
-    "androidNotificationIcon": "https://gonativeio.s3.amazonaws.com/uploads/mt25b08zdxcar_1542880473836.png"
+    "androidNotificationIcon": "https://gonativeio.s3.amazonaws.com/uploads/mt25b08zdxcar_1542880473836.png",
+    "customCSS": ".simple-sliding-menu {\n    display: none !important;\n}\n\n.searchBarMain {\n    width: 65% !important;\n    margin-left: 30% !important;\n}\n\n#feedback {\n    bottom: 100px !important;\n}"
   },
   "forms": {
     "interceptForms": {
