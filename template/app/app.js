@@ -13,7 +13,7 @@ $(function () {
         $('select.countries.'+lang).css('display', 'block');
     });
 
-    $('select.countries-list').on( "change", function(e) {
+    $('select.countries, select.countries-list').on( "change", function(e) {
         var country = $(this).find('option:selected').data('country');
         setCookie('e-blueinfo-country', country);
     });

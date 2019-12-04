@@ -56,21 +56,21 @@
                 <select class="countries en" onchange="location=this.value;">
                     <option>Please choose a country</option>
                     <?php foreach ($countries_en as $id => $name) : ?>
-                    <option value="<?php echo get_site_url() . '/en/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
+                    <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/en/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
                     <?php endforeach; ?>
                 </select>
                 <?php $countries_pt = normalize_country_object($countries, 'pt'); ?>
                 <select class="countries pt" onchange="location=this.value;">
                     <option>Por favor, escolha um país</option>
                     <?php foreach ($countries_pt as $id => $name) : ?>
-                    <option value="<?php echo get_site_url() . '/pt/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
+                    <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/pt/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
                     <?php endforeach; ?>
                 </select>
                 <?php $countries_es = normalize_country_object($countries, 'es'); ?>
                 <select class="countries es" onchange="location=this.value;">
                     <option>Por favor, elija un país</option>
                     <?php foreach ($countries_es as $id => $name) : ?>
-                    <option value="<?php echo get_site_url() . '/es/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
+                    <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/es/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
                     <?php endforeach; ?>
                 </select>
               </div>
