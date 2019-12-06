@@ -110,7 +110,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
             // check if request contains plugin slug string
             $pos_slug = strpos($_SERVER['REQUEST_URI'], $this->plugin_slug);
 
-            if ( ! is_admin() && ! $_COOKIE['e-blueinfo'] && strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') !== false && $pos_slug !== false ) {
+            if ( ! is_admin() && ! $_COOKIE['e-blueinfo'] && is_webview() && $pos_slug !== false ) {
                 /* app page redirect */
                 add_action( 'template_redirect', array(&$this, 'app_page_redirect'), 1 );
             }
@@ -123,7 +123,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
                 // check if request contains plugin slug string
                 $pos_slug = strpos($_SERVER['REQUEST_URI'], $this->plugin_slug);
 
-                if ( ! is_admin() && strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') === false && $pos_slug !== false ) {
+                if ( ! is_admin() && ! is_webview() && $pos_slug !== false ) {
                     $redirect = ( !empty($eblueinfo_config['redirect']) ) ? $eblueinfo_config['redirect'] : 'https://e-blueinfo.bvsalud.org/';
                     header('Location: '.$redirect);
                     exit;
@@ -205,7 +205,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
                     add_action( 'wp_footer', array(&$this, 'show_feedback_tab') ); // feedback tab
 
                     if ($pagename == $this->plugin_slug){
-                        if ( strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') !== false ) {
+                        if ( is_webview() ) {
                             // generate lang cookie
                             if ( ! $_COOKIE['e-blueinfo-lang'] ) {
                                 setCookie( 'e-blueinfo-lang', $lang, 0, '/' );
@@ -379,7 +379,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
             wp_enqueue_script('e-blueinfo-bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', array(), EBLUEINFO_VERSION);
             wp_enqueue_style ('e-blueinfo-page', EBLUEINFO_PLUGIN_URL . 'template/css/screen.css', array(), EBLUEINFO_VERSION);
 
-            if ( strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') !== false ) {
+            if ( is_webview() ) {
                 wp_enqueue_style ('e-blueinfo-app', EBLUEINFO_PLUGIN_URL . 'template/css/screen-app.css', array(), EBLUEINFO_VERSION);
             }
 
@@ -445,7 +445,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
 
             $fcl = ( isset($_GET['fcl']) && true == $_GET['fcl'] ) ? true : false;
 
-            if ( strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') !== false && $fcl ) {
+            if ( is_webview() && $fcl ) {
                 setCookie( 'e-blueinfo-lang', $lang, 0, '/' );
                 header('Location: '.$url);
                 exit;

@@ -266,6 +266,29 @@ if ( !function_exists('prepare_query') ) {
     }
 }
 
+if ( !function_exists('is_webview') ) {
+    function is_webview() {
+        $userAgent = strtolower($_SERVER['HTTP_USER_AGENT']);
+        $wv = strpos($userAgent, 'wv');
+        $safari = strpos($userAgent, 'safari');
+        $ios = preg_match('/iphone|ipod|ipad|macintosh/', $userAgent);
+
+        if ( $ios ) {
+            if ( $safari !== false ) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            if ( $wv !== false ) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+}
+
 if ( !function_exists('simple_sliding_menu') ) {
     function simple_sliding_menu($lang='en') {
         $menu = array();

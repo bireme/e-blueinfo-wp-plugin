@@ -1,5 +1,26 @@
+function is_webview () {
+    var userAgent = navigator.userAgent.toLowerCase(),
+    wv = /wv/.test( userAgent ),
+    safari = /safari/.test( userAgent ),
+    ios = /iphone|ipod|ipad|macintosh/.test( userAgent );
+
+    if ( ios ) {
+        if ( safari ) {
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        if ( wv ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
 $(function () {
-  if (navigator.userAgent.indexOf('gonative') > -1) {
+  if ( is_webview() ) {
     var json = [
                   {
                     "label": "About",
