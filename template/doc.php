@@ -164,7 +164,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                     <div class="card">
                         <div class="card-body">
                             <!-- <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '?id=' . $doc[0]->id . '&url=' . $doc[0]->electronic_address[0]->_u; ?>" alt="card image" onerror="this.src='http://placehold.it/180x240'"></p> -->
-                            <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '/' . $doc[0]->id . '/' . $doc[0]->id . '.jpg'; ?>" alt="card image" onerror="this.src='http://placehold.it/180x240'"></p>
+                            <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '/' . $doc[0]->id . '/' . $doc[0]->id . '.jpg'; ?>" alt="card image" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'"></p>
                             <div class="meta">
                                 <div>
                                     <span><?php _e('Title', 'e-blueinfo'); ?></span>

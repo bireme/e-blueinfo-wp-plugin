@@ -161,7 +161,7 @@ $pages->paginate($page_url_params);
                                 <div class="card">
                                     <div class="card-body text-center">
                                         <!-- <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '?id=' . $doc->id . '&url=' . $url; ?>" alt="card image" onerror="this.src='http://placehold.it/120x160'"></p> -->
-                                        <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '/' . $doc->id . '/' . $doc->id . '.jpg'; ?>" alt="card image" onerror="this.src='http://placehold.it/120x160'"></p>
+                                        <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '/' . $doc->id . '/' . $doc->id . '.jpg'; ?>" alt="card image" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'"></p>
                                         <a class="full-text" href="<?php echo $url; ?>"><h4 class="card-title"><?php echo $title; ?></h4></a>
                                         <a class="btn btn-primary btn-sm redirect" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id . '&lang=' . $lang; ?>" onclick="__gaTracker('send','event','Browse','View','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');"><i class="fa fa-info-circle"></i></a>
                                     </div>
