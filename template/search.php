@@ -161,7 +161,6 @@ $pages->paginate($page_url_params);
             <h4 class="results"><?php _e('No results found. Try searching with another keywords.', 'e-blueinfo'); ?></h4>
             <?php else : ?>
                 <?php foreach ( $docs as $index => $doc ) : $index++; $id = "s".$doc->id; ?>
-                    <?php // echo "<pre>"; print_r($doc); echo "</pre>"; ?>
                     <?php
                         $title = ( $doc->ti ) ? substr($doc->ti[0], 4) : $doc->fo[0];
                         $com_name = ( $doc->com ) ? implode('; ', array_map("remove_prefix", $doc->com)) : '-';
