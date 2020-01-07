@@ -161,7 +161,9 @@ $pages->paginate($page_url_params);
             <h4 class="results"><?php _e('No results found. Try searching with another keywords.', 'e-blueinfo'); ?></h4>
             <?php else : ?>
                 <?php foreach ( $docs as $index => $doc ) : $index++; $id = "s".$doc->id; ?>
+                    <?php // echo "<pre>"; print_r($doc); echo "</pre>"; ?>
                     <?php
+                        $title = ( $doc->ti ) ? substr($doc->ti[0], 4) : $doc->fo[0];
                         $com_name = ( $doc->com ) ? implode('; ', array_map("remove_prefix", $doc->com)) : '-';
                         $col_name = ( $doc->col ) ? implode('; ', array_map("remove_prefix", $doc->col)) : '-';
                     ?>
@@ -173,7 +175,7 @@ $pages->paginate($page_url_params);
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="meta">
-                                                <a class="full-text" href="<?php echo $doc->ur[0]; ?>"><h4 class="card-title"><?php echo substr($doc->ti[0], 4); ?></h4></a>
+                                                <a class="full-text" href="<?php echo $doc->ur[0]; ?>"><h4 class="card-title"><?php echo $title; ?></h4></a>
                                                 <strong><?php _e('Communities', 'e-blueinfo'); ?></strong>
                                                 <p class="card-text"><?php echo $com_name; ?></p>
                                                 <strong><?php _e('Collections', 'e-blueinfo'); ?></strong>

@@ -35,7 +35,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
         // private $thumb_service_url   = 'http://thumbnailserver.bvsalud.org/getDocument';
         private $thumb_service_url   = 'http://thumbs.bireme.org';
         private $country_service_url = 'http://fi-admin.bvsalud.org/api/community/get_country_list/?format=json';
-        private $pdf_service_url     = 'http://basalto01.bireme.br:9292/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu';
+        private $pdf_service_url     = 'http://basalto01.bireme.br:9292/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu,fo';
 
         /**
          * Construct the plugin object

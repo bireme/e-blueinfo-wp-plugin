@@ -58,6 +58,9 @@ if ($response){
     // echo "<pre>"; print_r($response_json); echo "</pre>"; die();
     $doc = $response_json->objects;
 
+    $ref_title = explode('|', $doc[0]->reference_title);
+    $title = ( count($ref_title) > 1 ) ? $ref_title[1] : $ref_title[0];
+
     $author = '-';
     if ( isset($doc[0]->individual_author_monographic) ) {
         $author = $doc[0]->individual_author_monographic;
@@ -123,7 +126,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
     <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id; ?>"><?php echo $collection->objects{0}->name; ?> </a></li>
     <?php endif; ?>
     <?php if ($query == '' && $filter == ''): ?>
-    <li class="active"><?php echo $doc[0]->reference_title; ?></li>
+    <li class="active"><?php echo $title; ?></li>
     <?php else: ?>
     <li class="active"><?php _e('Search result', 'e-blueinfo'); ?></li>
     <?php endif; ?>
@@ -165,7 +168,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                             <div class="meta">
                                 <div>
                                     <span><?php _e('Title', 'e-blueinfo'); ?></span>
-                                    <p class="card-text"><?php echo $doc[0]->reference_title; ?></p>
+                                    <p class="card-text"><?php echo $title; ?></p>
                                     <span><?php _e('Author', 'e-blueinfo'); ?></span>
                                     <p class="card-text"><?php echo $author[0]->text; ?></p>
                                     <span><?php _e('Year', 'e-blueinfo'); ?></span>
