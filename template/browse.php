@@ -2,7 +2,7 @@
 /*
 Template Name: e-BlueInfo Collection Page
 */
-global $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_plugin_title, $eblueinfo_texts, $thumb_service_url;
+global $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_plugin_title, $eblueinfo_texts, $thumb_service_url, $pdf_service_url;
 
 require_once(EBLUEINFO_PLUGIN_PATH . '/lib/Paginator.php');
 
@@ -22,6 +22,7 @@ $lang = substr($site_language,0,2);
 // set query using default param q (query) or s (wordpress search) or newexpr (metaiah)
 $query = $_GET['s'] . $_GET['q'];
 $query = stripslashes( trim($query) );
+$q = $query;
 
 $user_filter   = stripslashes($_GET['filter']);
 $community_id  = ( !empty($_GET['community']) ? $_GET['community'] : '' );
@@ -29,7 +30,7 @@ $collection_id = ( !empty($_GET['collection']) ? $_GET['collection'] : '' );
 $page   = ( !empty($_GET['page']) ? $_GET['page'] : 1 );
 $offset = ( !empty($_GET['offset']) ? $_GET['offset'] : 0 );
 $format = ( !empty($_GET['format']) ? $_GET['format'] : 'json' );
-$sort   = ( !empty($_GET['sort']) ? $order[$_GET['sort']] : 'created_date desc' );
+$sort   = ( !empty($_GET['sort']) ? $order[$_GET['sort']] : 'score desc,da desc' );
 $count  = ( !empty($_GET['count']) ? $_GET['count'] : 6 );
 $total  = 0;
 $filter = '';
@@ -46,11 +47,15 @@ if ($eblueinfo_initial_filter != ''){
 
 $start = ($page * $count) - $count;
 
-if ( $query ) {
-    $eblueinfo_service_request = $eblueinfo_service_url . 'api/bibliographic/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&count=' . $count . '&sort=' . urlencode($sort) . '&lang=' . $lang;
-} else {
-    $eblueinfo_service_request = $eblueinfo_service_url . 'api/bibliographic/?collection=' . $collection_id . '&format=' . $format . '&offset=' . $offset . '&limit=' . $count . '&lang=' . $lang;
+if ( !empty($collection_id) ) {
+    if ( empty($query) ) {
+        $query = 'col:' . $collection_id . '|*';
+    } else {
+        $query = '(col:' . $collection_id . '|*) AND ' . $query;
+    }
 }
+
+// echo "<pre>"; print_r($query); echo "</pre>"; die();
 
 if ( $user_filter != '' ) {
     $user_filter_list = preg_split("/ AND /", $user_filter);
@@ -64,14 +69,15 @@ if ( $user_filter != '' ) {
     }
 }
 
+$eblueinfo_service_request = $pdf_service_url . '&q=' . urlencode($query) . '&start=' . $offset . '&rows=' . $count . '&sort=' . urlencode($sort) . '&lang=' . $lang;
 $response = @file_get_contents($eblueinfo_service_request);
 if ($response){
     $response_json = json_decode($response);
     // echo "<pre>"; print_r($response_json); echo "</pre>"; die();
-    $total = $response_json->meta->total_count;
-    $start = $response_json->meta->offset;
-    $next  = $response_json->meta->next;
-    $docs = $response_json->objects;
+    $total = $response_json->response->numFound;
+    $start = $response_json->response->start;
+    $docs  = $response_json->response->docs;
+    $snippets = $response_json->highlighting;
 }
 
 $collection_request = $eblueinfo_service_url . 'api/collection/?collection=' . $collection_id . '&format=' . $format . '&lang=' . $lang;
@@ -101,7 +107,7 @@ $pages->paginate($page_url_params);
     <li><a href="<?php echo $home_url ?>"><?php _e('Home','e-blueinfo'); ?></a></li>
     <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php echo $eblueinfo_plugin_title; ?> </a></li>
     <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'collection/?community=' . $community_id; ?>"><?php echo $collection->objects{0}->parent; ?> </a></li>
-    <?php if ($query == '' && $filter == ''): ?>
+    <?php if ($q == '' && $filter == ''): ?>
     <li class="active"><?php echo $collection->objects{0}->name; ?></li>
     <?php else: ?>
     <li class="active"><?php _e('Search result', 'e-blueinfo'); ?></li>
@@ -120,7 +126,7 @@ $pages->paginate($page_url_params);
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search">
                     <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
                     <input type="hidden" name="collection" id="collection" value="<?php echo $collection_id; ?>">
-        		    <input type="text" name="q" value="<?php echo $query; ?>" id="searchBarInput" placeholder="<?php _e('Search...', 'e-blueinfo'); ?>">
+        		    <input type="text" name="q" value="<?php echo $q; ?>" id="searchBarInput" placeholder="<?php _e('Search...', 'e-blueinfo'); ?>">
                     <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
                     <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
                 </form>
@@ -142,35 +148,32 @@ $pages->paginate($page_url_params);
             </div>
                 <?php foreach ( $docs as $index => $doc ) : $index++; $id = "col".$doc->id; ?>
                     <?php
-                        $ref_title = explode('|', $doc->reference_title);
-                        $title = ( count($ref_title) > 1 ) ? $ref_title[1] : $ref_title[0];
-
-                        if ( isset($doc->electronic_address[0]->_u) ) {
+                        if ( isset($doc->ur[0]) ) {
                             $action = 'Full Text';
-                            $url = $doc->electronic_address[0]->_u;
+                            $url = $doc->ur[0];
                         } else {
                             $action = 'View';
                             $url = real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id;
                         }
                     ?>
-                <!-- Collection -->
-                <div class="col-xs-12 col-sm-6 col-md-4 item">
-                    <div id="<?php echo $id; ?>" class="image-flip">
-                        <div class="mainflip">
-                            <div class="doc" onclick="__gaTracker('send','event','Browse','<?php echo $action; ?>','<?php echo $url; ?>');">
-                                <div class="card">
-                                    <div class="card-body text-center">
-                                        <!-- <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '?id=' . $doc->id . '&url=' . $url; ?>" alt="card image" onerror="this.src='http://placehold.it/120x160'"></p> -->
-                                        <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '/' . $doc->id . '/' . $doc->id . '.jpg'; ?>" alt="card image" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'"></p>
-                                        <a class="full-text" href="<?php echo $url; ?>"><h4 class="card-title"><?php echo $title; ?></h4></a>
-                                        <a class="btn btn-primary btn-sm redirect" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id . '&lang=' . $lang; ?>" onclick="__gaTracker('send','event','Browse','View','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');"><i class="fa fa-info-circle"></i></a>
+                    <!-- Collection -->
+                    <div class="col-xs-12 col-sm-6 col-md-4 item">
+                        <div id="<?php echo $id; ?>" class="image-flip">
+                            <div class="mainflip">
+                                <div class="doc" onclick="__gaTracker('send','event','Browse','<?php echo $action; ?>','<?php echo $url; ?>');">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <!-- <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '?id=' . $doc->id . '&url=' . $url; ?>" alt="card image" onerror="this.src='http://placehold.it/120x160'"></p> -->
+                                            <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '/' . $doc->id . '/' . $doc->id . '.jpg'; ?>" alt="card image" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'"></p>
+                                            <a class="full-text" href="<?php echo $url; ?>"><h4 class="card-title"><?php echo $doc->ti[0]; ?></h4></a>
+                                            <a class="btn btn-primary btn-sm redirect" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id . '&lang=' . $lang; ?>" onclick="__gaTracker('send','event','Browse','View','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');"><i class="fa fa-info-circle"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- ./Collection -->
+                    <!-- ./Collection -->
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
@@ -181,7 +184,7 @@ $pages->paginate($page_url_params);
 <?php // echo $pages->display_pages(); ?>
 <!-- ./Pagination -->
 <script type="text/javascript" src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/js/base.js'; ?>"></script>
-<?php if ( $next ) : ?>
+<?php if ( $total > $count ) : ?>
 <!-- Load More -->
 <div class="load-more col-xs-3 col-sm-3 col-md-3">
     <a href="#" id="loadMore"><span class="text"><?php _e('Load More', 'e-blueinfo') ?></span></a>
