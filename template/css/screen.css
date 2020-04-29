@@ -989,3 +989,14 @@ and (max-device-width : 414px) {
         margin-left: 27% !important;
     }
 }
+
+@media (max-width: 578px) {
+    .frontside .card, .backside .card {
+        height: 280px;
+    }
+}
+@media (max-width: 400px) {
+    .frontside .card, .backside .card {
+        height: 240px;
+    }
+}
