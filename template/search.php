@@ -166,7 +166,7 @@ $pages->paginate($page_url_params);
             <article class="flexCol1 item cardSingle">
                 <div class="row padding3 cardBox">
                     <div class="col s3">
-                        <img src="<?php echo $thumb_service_url . '/' . $doc->id . '/' . $doc->id . '.jpg'; ?>" class="responsive-img" alt="" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'">
+                        <img class="thumbnail" src="<?php echo $thumb_service_url . '/' . $doc->id . '/' . $doc->id . '.jpg'; ?>" class="responsive-img" alt="" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'">
                     </div>
                     <div class="col s7">
                         <p><b><?php _e('Communities', 'e-blueinfo'); ?>:</b> <br /><?php echo $com_name; ?></p>

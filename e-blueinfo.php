@@ -25,6 +25,7 @@ define('EBLUEINFO_PLUGIN_URL',   plugin_dir_url(__FILE__) );
 
 require_once(EBLUEINFO_PLUGIN_PATH . '/settings.php');
 require_once(EBLUEINFO_PLUGIN_PATH . '/template-functions.php');
+require_once(EBLUEINFO_PLUGIN_PATH . '/similar.php');
 
 if(!class_exists('EBlueInfo_Plugin')) {
     class EBlueInfo_Plugin {
@@ -57,6 +58,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
             add_filter( 'get_search_form', array(&$this, 'search_form') );
             add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array(&$this, 'settings_link') );
             add_filter( 'document_title_parts', array(&$this, 'theme_slug_render_title') );
+            add_filter( 'body_class', array(&$this, 'custom_body_classes') );
 
         } // END public function __construct
 
@@ -393,7 +395,6 @@ if(!class_exists('EBlueInfo_Plugin')) {
             
             wp_enqueue_script('e-blueinfo-materialize', '//cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js', array(), EBLUEINFO_VERSION, true);
             wp_enqueue_script('e-blueinfo-page', EBLUEINFO_PLUGIN_URL . 'template/js/functions.js', array(), EBLUEINFO_VERSION, true);
-            wp_enqueue_script('e-blueinfo-slidebar', EBLUEINFO_PLUGIN_URL . 'template/js/slidebar.js', array(), EBLUEINFO_VERSION, true);
             wp_enqueue_script('e-blueinfo-loadmore', EBLUEINFO_PLUGIN_URL . 'template/js/loadmore.js', array(), EBLUEINFO_VERSION, true);
             wp_enqueue_script('e-blueinfo-cookie', EBLUEINFO_PLUGIN_URL . 'template/js/cookie.js', array(), EBLUEINFO_VERSION, true);
             wp_enqueue_script('e-blueinfo-slick', EBLUEINFO_PLUGIN_URL . 'template/js/slick.js', array(), EBLUEINFO_VERSION, true);
@@ -474,6 +475,14 @@ if(!class_exists('EBlueInfo_Plugin')) {
             if ( EBLUEINFO_FEEDBACK ) {
                 require_once(EBLUEINFO_PLUGIN_PATH . '/template/feedback.php');
             }
+        }
+
+        function custom_body_classes( $classes ) {
+            if ( $_COOKIE['e-blueinfo-color'] ) {
+                $classes[] = $_COOKIE['e-blueinfo-color'];
+            }
+
+            return $classes;
         }
 
     }

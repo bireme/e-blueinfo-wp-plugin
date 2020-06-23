@@ -1,3 +1,4 @@
+var $ = jQuery;
 //  --------------------------------- Text
 $(document).ready(function() {
   M.updateTextFields();
@@ -73,30 +74,21 @@ $('#cardSingle').click(function(){
  $('.cardSingle').show();
 })
 //  --------------------------------- Cores
-var cor = $.cookie('cor'); // carrega cookie da cor
-// Ao Abrir a pagina  
-$( window ).on( "load", function() {
-  $corSelecionada = cor;
-  if(cor != ''){ // ser for diferente de vazio adiciona cor
-    $('body').addClass($corSelecionada);
-  }else{ // se for igual vazio remover cores
-    $('body').removeClass("bgColor1 + bgColor2");
-  }
-});
+var theme = $.cookie('color'); // carrega cookie da cor
 // Ao clicar Cor Padrão
 $('#color0').click(function(){
-  $.cookie("cor","",{expires:1}); // seta cor vazia
+  $.cookie("e-blueinfo-color","",{ path: '/', expires: 365 * 10 }); // seta cor vazia
   $('body').removeClass('bgColor1 + bgColor2'); // remover classes de cores
 });
 // Ao clicar Cor Dark
 $('#color1').click(function(){
-  $.cookie("cor","bgColor1",{expires:1}); //seta cor 1
+  $.cookie("e-blueinfo-color","bgColor1",{ path: '/', expires: 365 * 10 }); //seta cor 1
   $('body').addClass('bgColor1'); // insere no body cor selecionada (1)
   $('body').removeClass('bgColor2'); // remover segunda cor
 });
 // Ao clicar Cor Blue
 $('#color2').click(function(){
-  $.cookie("cor","bgColor2",{expires:1}); // seta cor 2
+  $.cookie("e-blueinfo-color","bgColor2",{ path: '/', expires: 365 * 10 }); // seta cor 2
   $('body').addClass('bgColor2'); // insere no body cor selecionada (2)
   $('body').removeClass('bgColor1'); // remover primeira cor
 });

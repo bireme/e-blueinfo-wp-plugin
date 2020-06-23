@@ -12,6 +12,7 @@
 				<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>">Help</a></li>
 				<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'login/'; ?>">Login</a></li>
 				<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'tutorial/'; ?>">Tutorial</a></li>
+				<li><a href="#" data-target="slide-out" class="sidenav-trigger">Settings</a></li>
 				<!-- Start nested content -->
 				<li>
 				    <ul class="collapsible collapsible-accordion">
@@ -29,3 +30,20 @@
 				</li>
 			</ul>
 		</div>
+
+		<ul id="slide-out" class="sidenav white-text">
+			<li class="row">
+				<div class="col s10 offset-s1">
+					<h5>Setting Colors</h5>
+				</div>
+				<div id="color0" class="col s10 offset-s1 white blue-text text-lighten-1">
+					<h5>Colors 1</h5>
+				</div>
+				<div id="color1" class="col s10 offset-s1 blue darken-1 accent-4">
+					<h5>Colors 2</h5>
+				</div>
+				<div id="color2" class="col s10 offset-s1 blue lighten-1">
+					<h5>Colors 3</h5>
+				</div>
+			</li>
+		</ul>

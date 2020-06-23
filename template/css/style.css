@@ -271,6 +271,12 @@ a:active{
 .sidenav.sidenav-menu .collapsible-body {
 	background-color: rgba(0,0,0,0.05);
 }
+.thumbnail {
+	max-height: 160px;
+}
+.thumbnail-doc {
+	max-height: 360px;
+}
 /****************************** cor 01 ************************/
 .bgColor1{
 	background: url('../images/bgShape.png') #2962ff top right fixed no-repeat;

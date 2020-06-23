@@ -1,26 +1,26 @@
-var $j = jQuery;
+var $ = jQuery;
 
 function change_count(elem) {
     var form = document.searchForm;
     form.count.value = elem.value;
-    $j("#searchForm").submit();
+    $("#searchForm").submit();
 }
 
 function change_format(elem) {
     var form = document.searchForm;
     form.format.value = elem.value;
-    $j("#searchForm").submit();
+    $("#searchForm").submit();
 }
 
 function change_sort(obj){
     var sort = obj.options[obj.selectedIndex].value;
     var form = document.searchForm;
     form.sort.value = sort;
-    $j("#searchForm").submit();
+    $("#searchForm").submit();
 }
 
 function showHideFilters(){
-	$j('#filters').toggle();
+	$('#filters').toggle();
 }
 
 function animateMenu(obj) {
@@ -28,22 +28,22 @@ function animateMenu(obj) {
 }
 
 function show_more_list(){
-	$j('.more-items a').click(function() {
-		var element = $j(this).parent().prev().children('.hide');
+	$('.more-items a').click(function() {
+		var element = $(this).parent().prev().children('.hide');
 		if ( element.length ) {
 			element.each(function( index ) {
 				if ( index < 5 ) {
-  				$j(this).removeClass('hide');
+  				$(this).removeClass('hide');
         }
         else {
           return false;
         }
 			});
 
-      var el = $j(this).parent().prev().children('.hide');
+      var el = $(this).parent().prev().children('.hide');
 
       if ( !el.length ) {
-        $j(this).parent().hide();
+        $(this).parent().hide();
       }
 		}
 	});
@@ -51,17 +51,17 @@ function show_more_list(){
 
 function remove_filter(id) {
     // remove hidden field
-    $j("#"+id).remove();
+    $("#"+id).remove();
     var filter = '';
 
-    $j('.apply_filter').each(function(i){
+    $('.apply_filter').each(function(i){
         filter += this.value + ' AND ';
     });
     // remove last AND of string
     filter = filter.replace(/\sAND\s$/, "");
 
-    $j('#filter').val(filter);
-    $j("#formFilters").submit();
+    $('#filter').val(filter);
+    $("#formFilters").submit();
 }
 
 function setCookie(name,value,days) {
