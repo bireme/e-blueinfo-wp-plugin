@@ -88,111 +88,210 @@ $pages->paginate($page_url_params);
 */
 ?>
 
-<?php get_header('e-blueinfo');?>
+<!-- Header -->
+<?php get_header('e-blueinfo'); ?>
+<?php require_once('header.php'); ?>
+<section class="container">
+    <div class="row">
+        <?php require_once('menu.php'); ?>
+        <div class="col s10 m11">
+            <nav>
+                <div class="nav-wrapper">
+                    <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Collection','Search',document.getElementById('searchBarInput').value);">
+                        <div class="input-field">
+                            <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
+                            <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
+                            <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
 
-<!-- Breadcrumb -->
-<ol class="breadcrumb">
-    <li><a href="<?php echo $home_url ?>"><?php _e('Home','e-blueinfo'); ?></a></li>
-    <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php echo $eblueinfo_plugin_title; ?> </a></li>
-    <?php if ($query == '' && $filter == ''): ?>
-    <li class="active"><?php echo $response_json->objects{0}->parent; ?></li>
-    <?php else: ?>
-    <li class="active"><?php _e('Search result', 'e-blueinfo'); ?></li>
-    <?php endif; ?>
-</ol>
-<!-- ./Breadcrumb -->
-
-<!-- Template -->
-<section id="eblueinfo" class="pb-5 eblueinfo-col">
-    <div class="container">
-        <!-- Search Bar -->
-        <header class="page-header">
-            <?php simple_sliding_menu($lang); ?>
-            <div class="searchBarMain">
-        		<i class="material-icons searchBarSearchIcon noUserSelect" onclick="__gaTracker('send','event','Collection','Search',document.getElementById('searchBarInput').value);">search</i>
-                <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search">
-                    <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
-        		    <input type="text" name="q" value="<?php echo $query; ?>" id="searchBarInput" placeholder="<?php _e('Search...', 'e-blueinfo'); ?>">
-                    <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
-                    <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
-                </form>
-        		<i class="material-icons clearSearchBarField noUserSelect" onClick="resetInput()">clear</i>
-        	</div>
-        </header>
-        <h3 class="section-title parent-title"><?php echo $response_json->objects{0}->parent; ?></h3>
-        <h3 class="section-title"><?php _e('Collections', 'e-blueinfo'); ?></h3>
-        <div class="row">
-            <?php if ( isset($total) && strval($total) == 0 ) : ?>
-            <h4 class="results"><?php _e('No results found','e-blueinfo'); ?></h4>
-            <?php else : ?>
-            <div class="h-label col-xs-12 col-sm-12 col-md-12 border-bottom">
-                <?php if ( ( $query != '' || $user_filter != '' ) && strval($total) > 0) : ?>
-                <h4><?php _e('Results', 'e-blueinfo'); echo ': ' . $total; ?></h4>
-                <?php else: ?>
-                <h4><?php _e('Total', 'e-blueinfo'); echo ': ' . $total; ?></h4>
-                <?php endif; ?>
-            </div>
-                <?php foreach ( $collection_list as $index => $collection) : $index++; $id = "col".$collection->id; ?>
-                <!-- Collection -->
-                <div class="col-xs-12 col-sm-6 col-md-4 item">
-                    <div id="<?php echo $id; ?>" class="image-flip">
-                        <div class="mainflip">
-                            <div class="col" onclick="__gaTracker('send','event','Collection','View','<?php echo $collection->name; ?>');">
-                                <div class="card">
-                                    <div class="card-body text-center">
-                                        <h4 class="card-title"><?php echo $collection->name; ?></h4>
-                                        <?php $class = ( $collection->description ) ? 'show' : 'hide'; ?>
-                                        <p class="card-text <?php echo $class; ?>"><?php echo $collection->description; ?></p>
-                                        <a class="redirect <?php echo $class; ?>" href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>"><i class="fa fa-angle-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
+                            <a href="#!" id="speakBtn"><i class="material-icons">settings_voice</i></a>
+                            <input type="search" name="q" value="" id="searchBarInput">
+                            <label class="label-icon" for="searchBarInput"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
                         </div>
-                    </div>
+                    </form>
                 </div>
-                <!-- ./Collection -->
-                <?php endforeach; ?>
-            <?php endif; ?>
+            </nav>
         </div>
     </div>
 </section>
+<!-- ./Header -->
+
+<!-- Template -->
+<h1 class="title">Primary Health Care</h1>
+<section>
+    <div class="bannerHome">
+        <div><img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/banner1.jpg'; ?>" class="responsive-img" alt="" data-aos="fade-down"></div>
+        <div><img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/banner2.jpg'; ?>" class="responsive-img" alt="" data-aos="fade-up"></div>
+        <div><img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/banner3.jpg'; ?>" class="responsive-img" alt="" data-aos="fade-down"></div>
+    </div>
+</section>
+<section class="center-align">
+    Display by:
+    <label>
+        <input id="radioCategories" class="with-gap" name="exibir" type="radio" value="Categorias" checked />
+        <span>CATEGORIES</span>
+    </label>
+    <label>
+        <input id="radioThemes" class="with-gap" name="exibir" type="radio" value="Temas" />
+        <span>THEMES</span>
+    </label>
+</section>
+<br />
+
+<!--------------------- CATEGORIES -------------------------->
+<?php if ( isset($total) && strval($total) == 0 ) : ?>
+<section class="container containerAos">
+    <div class="row">
+        <div class="card-panel center-align">
+            <span class="blue-text text-darken-2"><?php _e('No results found','e-blueinfo'); ?></span>
+        </div>
+    </div>
+</section>
+<?php else : ?>
+<section id="categories" class="container containerAos">
+    <div class="row">
+        <?php foreach ( $collection_list as $index => $collection) : $index++; ?>
+        <article class="col s12">
+            <div class="card cardSingle">
+                <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>" onclick="__gaTracker('send','event','Collection','View','<?php echo $collection->name; ?>');">
+                    <div class="card-content">
+                        <b><?php echo $collection->name; ?></b> <br />
+                        <p><small><?php echo $collection->description; ?></small></p>
+                        <small>Last Update: 01/01/2020</small>
+                    </div>
+                </a>
+            </div>
+        </article>
+        <?php endforeach; ?>
+    </div>
+</section>
+<?php endif; ?>
+
+<!--------------------- THEMES -------------------------->
+<section id="themes" class="container containerAos" style="display: none">
+    <div class="row">
+        <article class="col s12">
+            <div class="card cardSingle">
+                <a href="collectionType.php">
+                    <div class="card-content">
+                        <b>Diseases</b> <br>
+                        <small>Last Update: 01/01/2020</small>
+                    </div>
+                </a>
+            </div>
+        </article>
+        <article class="col s12">
+            <div class="card cardSingle">
+                <a href="collectionType.php">
+                    <div class="card-content">
+                        <b>Treatments</b> <br>
+                        <small>Last Update: 01/01/2020</small>
+                    </div>
+                </a>
+            </div>
+        </article>
+        <article class="col s12">
+            <div class="card cardSingle">
+                <a href="collectionType.php">
+                    <div class="card-content">
+                        <b>Good Habits</b> <br>
+                        <small>Last Update: 01/01/2020</small>
+                    </div>
+                </a>
+            </div>
+        </article>
+        <article class="col s12">
+            <div class="card cardSingle">
+                <a href="collectionType.php">
+                    <div class="card-content">
+                        <b>Physical Activities</b> <br>
+                        <small>Last Update: 01/01/2020</small>
+                    </div>
+                </a>
+            </div>
+        </article>
+        <article class="col s12">
+            <div class="card cardSingle">
+                <a href="collectionType.php">
+                    <div class="card-content">
+                        <b>Sanitation</b> <br>
+                        <small>Last Update: 01/01/2020</small>
+                    </div>
+                </a>
+            </div>
+        </article>  
+    </div>
+</section>
 <!-- ./Template -->
-<!-- Pagination -->
-<?php // echo $pages->display_pages(); ?>
-<!-- ./Pagination -->
-<script type="text/javascript" src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/js/base.js'; ?>"></script>
+
 <?php if ( $next ) : ?>
 <!-- Load More -->
-<div class="load-more col-xs-3 col-sm-3 col-md-3">
-    <a href="#" id="loadMore"><span class="text"><?php _e('Load More', 'e-blueinfo') ?></span></a>
-    <p class="totop">
-        <a href="#top"><?php _e('back to top', 'e-blueinfo') ?></a>
-    </p>
+<div class="load-more col s3">
+    <a href="#" id="loadMore" onclick="return false;"><span class="text"><?php _e('Load More', 'e-blueinfo') ?></span></a>
     <span class="loadmore-last"><?php _e('No more collections', 'e-blueinfo'); ?></span>
 </div>
-<!-- ./Load More -->
 <script type="text/javascript">
-    $('.row').loadmore('', {
-        loadingText : '<?php _e('Loading...', 'e-blueinfo') ?>',
-        filterResult: '.row > .item',
-        useExistingButton: '#loadMore',
-        useOffset: true,
-        rowsPerPage: 1,
-        baseOffset: -1,
-        itemSelector: '.image-flip',
-        pageParam : 'offset',
-        pageStartParam: ''
-    });
+    (function($) { 
+        $(function () {
+            $('.row').loadmore('', {
+                loadingText : '<?php _e('Loading...', 'e-blueinfo') ?>',
+                filterResult: '.row > .item',
+                useExistingButton: '#loadMore',
+                useOffset: true,
+                rowsPerPage: 1,
+                baseOffset: -1,
+                itemSelector: '.image-flip',
+                pageParam : 'offset',
+                pageStartParam: ''
+            });
 
-    $(document).on("loadmore:last", function() {
-        var msg = $('.loadmore-last').text();
-        alert(msg);
-    });
+            $(document).on("loadmore:last", function() {
+                var msg = $('.loadmore-last').text();
+                alert(msg);
+            });
+        });
+    })(jQuery);
 </script>
+<!-- ./Load More -->
 <?php endif; ?>
+
+<!-- Slides Slick -->
+<script>
+    (function($) { 
+        $(function () {
+            $('.bannerHome').slick({
+                infinite: true,
+                centerMode: true,
+                centerPadding: '60px',
+                autoplay: true,
+                slidesToShow: 3,
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '40px',
+                            slidesToShow: 1
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '40px',
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+        });
+    })(jQuery);
+</script>
+<!-- ./Slides Slick -->
+
 <!-- Footer -->
-<div class="eblueinfo-footer">
-    <img class="img-fluid" src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/bireme_' . $lang . '_banner.png'; ?>" alt="footer image" />
-</div>
-<!-- ./Footer -->
+<?php require_once('footer.php'); ?>
 <?php get_footer(); ?>
+<!-- ./Footer -->

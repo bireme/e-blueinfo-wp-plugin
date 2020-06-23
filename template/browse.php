@@ -100,122 +100,168 @@ $pages->paginate($page_url_params);
 */
 ?>
 
-<?php get_header('e-blueinfo');?>
+<!-- Header -->
+<?php get_header('e-blueinfo'); ?>
+<?php require_once('header.php'); ?>
+<section class="container">
+    <div class="row">
+        <?php require_once('menu.php'); ?>
+        <div class="col s10 m11">
+            <nav>
+                <div class="nav-wrapper">
+                    <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Browse','Search',document.getElementById('searchBarInput').value);">
+                        <div class="input-field">
+                            <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
+                            <input type="hidden" name="collection" id="collection" value="<?php echo $collection_id; ?>">
+                            <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
+                            <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
 
-<!-- Breadcrumb -->
-<ol class="breadcrumb">
-    <li><a href="<?php echo $home_url ?>"><?php _e('Home','e-blueinfo'); ?></a></li>
-    <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php echo $eblueinfo_plugin_title; ?> </a></li>
-    <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'collection/?community=' . $community_id; ?>"><?php echo $collection->objects{0}->parent; ?> </a></li>
-    <?php if ($q == '' && $filter == ''): ?>
-    <li class="active"><?php echo $collection->objects{0}->name; ?></li>
-    <?php else: ?>
-    <li class="active"><?php _e('Search result', 'e-blueinfo'); ?></li>
-    <?php endif; ?>
-</ol>
-<!-- ./Breadcrumb -->
-
-<!-- Template -->
-<section id="eblueinfo" class="pb-5 eblueinfo-list">
-    <div class="container">
-        <!-- Search Bar -->
-        <header class="page-header">
-            <?php simple_sliding_menu($lang); ?>
-            <div class="searchBarMain">
-        		<i class="material-icons searchBarSearchIcon noUserSelect" onclick="__gaTracker('send','event','Browse','Search',document.getElementById('searchBarInput').value);">search</i>
-                <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search">
-                    <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
-                    <input type="hidden" name="collection" id="collection" value="<?php echo $collection_id; ?>">
-        		    <input type="text" name="q" value="<?php echo $q; ?>" id="searchBarInput" placeholder="<?php _e('Search...', 'e-blueinfo'); ?>">
-                    <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
-                    <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
-                </form>
-        		<i class="material-icons clearSearchBarField noUserSelect" onClick="resetInput()">clear</i>
-        	</div>
-        </header>
-        <h3 class="section-title parent-title"><?php echo $collection->objects{0}->parent; ?></h3>
-        <h3 class="section-title"><?php _e($collection->objects{0}->name, 'e-blueinfo'); ?></h3>
-        <div class="row">
-            <?php if ( isset($total) && strval($total) == 0 ) : ?>
-            <h4 class="results"><?php _e('No results found','e-blueinfo'); ?></h4>
-            <?php else : ?>
-            <div class="h-label col-xs-12 col-sm-12 col-md-12 border-bottom">
-                <?php if ( ( $query != '' || $user_filter != '' ) && strval($total) > 0) : ?>
-                <h4><?php _e('Results', 'e-blueinfo'); echo ': ' . $total; ?></h4>
-                <?php else: ?>
-                <h4><?php _e('Total', 'e-blueinfo'); echo ': ' . $total; ?></h4>
-                <?php endif; ?>
-            </div>
-                <?php foreach ( $docs as $index => $doc ) : $index++; $id = "col".$doc->id; ?>
-                    <?php
-                        if ( isset($doc->ur[0]) ) {
-                            $action = 'Full Text';
-                            $url = $doc->ur[0];
-                        } else {
-                            $action = 'View';
-                            $url = real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id;
-                        }
-                    ?>
-                    <!-- Collection -->
-                    <div class="col-xs-12 col-sm-6 col-md-4 item">
-                        <div id="<?php echo $id; ?>" class="image-flip">
-                            <div class="mainflip">
-                                <div class="doc" onclick="__gaTracker('send','event','Browse','<?php echo $action; ?>','<?php echo $url; ?>');">
-                                    <div class="card">
-                                        <div class="card-body text-center">
-                                            <!-- <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '?id=' . $doc->id . '&url=' . $url; ?>" alt="card image" onerror="this.src='http://placehold.it/120x160'"></p> -->
-                                            <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '/' . $doc->id . '/' . $doc->id . '.jpg'; ?>" alt="card image" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'"></p>
-                                            <a class="full-text" href="<?php echo $url; ?>"><h4 class="card-title"><?php echo $doc->ti[0]; ?></h4></a>
-                                            <a class="btn btn-primary btn-sm redirect" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id . '&lang=' . $lang; ?>" onclick="__gaTracker('send','event','Browse','View','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');"><i class="fa fa-info-circle"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <a href="#!" id="speakBtn"><i class="material-icons">settings_voice</i></a>
+                            <input type="search" name="q" value="" id="searchBarInput">
+                            <label class="label-icon" for="searchBarInput"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
                         </div>
-                    </div>
-                    <!-- ./Collection -->
-                <?php endforeach; ?>
-            <?php endif; ?>
+                    </form>
+                </div>
+            </nav>
         </div>
     </div>
 </section>
+<!-- ./Header -->
+
+<!-- Template -->
+<section class="container">
+    <div class="row">
+        <div class="col s12 m6">
+            <select class="center-align">
+                <option value="All" selected>All information sources (<?php echo $total; ?>)</option>
+                <option value="Option 1">Option 1</option>
+                <option value="Option 2">Option 2</option>
+                <option value="Option 3">Option 3</option>
+            </select>
+        </div>
+        <div class="col s12 m6">
+            <select class="center-align">
+                <option value="All" selected>All media (<?php echo $total; ?>)</option>
+                <option value="PDF">PDF</option>
+                <option value="Video">Video</option>
+                <option value="Audio">Audio</option>
+                <option value="PPT">PPT</option>
+                <option value="Image">Imagem</option>
+                <option value="Link">Link</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s4 m3 offset-l3 l2 center-align">
+            <div class="blue-grey lighten-4" id="cardSingle"><small>All</small></div>
+        </div>
+        <div class="col s4 m3 l2 center-align">
+            <div class="blue darken-1 white-text" id="cardLastVisited"><small>Last Visited</small></div>
+        </div>
+        <div class="col s4 m3 l2 center-align">
+            <div class="cyan lighten-3" id="cardVisited"><small>Visted</small></div>
+        </div>
+    </div>
+</section>
+
+<?php if ( isset($total) && strval($total) == 0 ) : ?>
+<section class="container containerAos">
+    <div class="row">
+        <div class="card-panel center-align">
+            <span class="blue-text text-darken-2"><?php _e('No results found','e-blueinfo'); ?></span>
+        </div>
+    </div>
+</section>
+<?php else : ?>
+<section class="container containerAos">
+    <div class="row flexContainer">
+        <?php foreach ( $docs as $index => $doc ) : $index++; ?>
+            <article class="flexCol1 item cardSingle cardLastVisited cardVisited">
+                <div class="row padding3 cardBox">
+                    <div class="cardBoxText">
+                        <a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id . '&lang=' . $lang; ?>" onclick="__gaTracker('send','event','Browse','View','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');">
+                            <div class="col s3">
+                                <img src="<?php echo $thumb_service_url . '/' . $doc->id . '/' . $doc->id . '.jpg'; ?>" class="responsive-img" alt="" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'">
+                            </div>
+                            <div class="col s7">
+                                <?php echo $doc->ti[0]; ?>
+                                <br /><br />
+                            </div>
+                        </a>
+                        <div class="col s2 right-align">
+                            <div class="iconActions"><a href="#modal" class="btn-floating waves-effect waves-light blue lightn-3 btn-small modal-trigger" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Browse','Favorites','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');"><i class="material-icons">star</i></a></div>
+                            <?php if ( isset($doc->ur[0]) ) : ?>
+                            <div class="iconActions"><a href="<?php echo $doc->ur[0]; ?>" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Browse','Full Text','<?php echo $doc->ur[0]; ?>');"><i class="material-icons">visibility</i></a></div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="col s12 blue-grey lighten-5 padding1 boxCardGray">
+                            <small>PDF</small> | <small>Update: 01/01/2020</small> | <small>Downloads: 0</small>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        <?php endforeach; ?>
+    </div>
+</section>
+<?php endif; ?>
+
+<!-- Modal Trigger -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <h4>Favorites</h4>
+        <p>All e-BlueInfo services are free, but to improve your experience there is a need for a quick registration. This allows us to record what you consider favorites, your downloads so you don't have to download again ...</p>
+        <a href="#!">Login</a>
+        <hr />
+        <h4>MyVHL</h4>
+        <p>With the same e-BlueInfo registration you have full and degree access to MyVHL</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat"><?php _e('Close','e-blueinfo'); ?></a>
+    </div>
+</div>
 <!-- ./Template -->
-<!-- Pagination -->
-<?php // echo $pages->display_pages(); ?>
-<!-- ./Pagination -->
-<script type="text/javascript" src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/js/base.js'; ?>"></script>
+
 <?php if ( $total > $count ) : ?>
 <!-- Load More -->
-<div class="load-more col-xs-3 col-sm-3 col-md-3">
-    <a href="#" id="loadMore"><span class="text"><?php _e('Load More', 'e-blueinfo') ?></span></a>
-    <p class="totop">
-        <a href="#top"><?php _e('back to top', 'e-blueinfo') ?></a>
-    </p>
+<div class="load-more col s3">
+    <a href="#" id="loadMore" onclick="return false;"><span class="text"><?php _e('Load More', 'e-blueinfo') ?></span></a>
     <span class="loadmore-last"><?php _e('No more documents', 'e-blueinfo'); ?></span>
 </div>
-<!-- ./Load More -->
 <script type="text/javascript">
-    $('.row').loadmore('', {
-        loadingText : '<?php _e('Loading...', 'e-blueinfo') ?>',
-        filterResult: '.row > .item',
-        useExistingButton: '#loadMore',
-        useOffset: true,
-        rowsPerPage: 1,
-        baseOffset: -1,
-        itemSelector: '.image-flip',
-        pageParam : 'offset',
-        pageStartParam: ''
-    });
+    (function($) { 
+        $(function () {
+            $('.flexContainer').loadmore('', {
+                loadingText : '<?php _e('Loading...', 'e-blueinfo') ?>',
+                filterResult: '.flexContainer > .item',
+                useExistingButton: '#loadMore',
+                useOffset: true,
+                rowsPerPage: 1,
+                baseOffset: -1,
+                itemSelector: '.cardBox',
+                pageParam : 'offset',
+                pageStartParam: ''
+            });
 
-    $(document).on("loadmore:last", function() {
-        var msg = $('.loadmore-last').text();
-        alert(msg);
-    });
+            $(document).on("loadmore:last", function() {
+                var msg = $('.loadmore-last').text();
+                alert(msg);
+            });
+
+            $('#cardSingle').on("click", function() {
+                $('.load-more').show();
+            });
+
+            $('#cardLastVisited, #cardVisited').on("click", function() {
+                $('.load-more').hide();
+            });
+        });
+    })(jQuery);
 </script>
+<!-- ./Load More -->
 <?php endif; ?>
+
 <!-- Footer -->
-<div class="eblueinfo-footer">
-    <img class="img-fluid" src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/bireme_' . $lang . '_banner.png'; ?>" alt="footer image" />
-</div>
-<!-- ./Footer -->
+<?php require_once('footer.php'); ?>
 <?php get_footer(); ?>
+<!-- ./Footer -->

@@ -51,6 +51,9 @@ if(!class_exists('EBlueInfo_Plugin')) {
             add_action( 'widgets_init', array(&$this, 'register_sidebars') );
             add_action( 'template_redirect', array(&$this, 'theme_redirect') );
             add_action( 'wp_loaded', array(&$this, 'plugin_page_redirect') );
+            add_action( 'wp_footer', array(&$this, 'show_feedback_tab') );
+            add_action( 'wp_enqueue_scripts', array(&$this, 'template_styles_scripts'), 20 );
+
             add_filter( 'get_search_form', array(&$this, 'search_form') );
             add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array(&$this, 'settings_link') );
             add_filter( 'document_title_parts', array(&$this, 'theme_slug_render_title') );
@@ -110,7 +113,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
             // check if request contains plugin slug string
             $pos_slug = strpos($_SERVER['REQUEST_URI'], $this->plugin_slug);
 
-            if ( ! is_admin() && ! $_COOKIE['e-blueinfo'] && is_webview() && $pos_slug !== false ) {
+            if ( ! is_admin() && ! $_COOKIE['e-blueinfo'] && $pos_slug !== false ) {
                 /* app page redirect */
                 add_action( 'template_redirect', array(&$this, 'app_page_redirect'), 1 );
             }
@@ -123,7 +126,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
                 // check if request contains plugin slug string
                 $pos_slug = strpos($_SERVER['REQUEST_URI'], $this->plugin_slug);
 
-                if ( ! is_admin() && ! is_webview() && $pos_slug !== false ) {
+                if ( ! is_admin() && $pos_slug !== false ) {
                     $redirect = ( !empty($eblueinfo_config['redirect']) ) ? $eblueinfo_config['redirect'] : 'https://e-blueinfo.bvsalud.org/';
                     header('Location: '.$redirect);
                     exit;
@@ -137,9 +140,9 @@ if(!class_exists('EBlueInfo_Plugin')) {
             $country_service_url = $this->country_service_url;
 
             // generate app cookie
-            setCookie( 'e-blueinfo', time(), 0, '/' );
+            setCookie( 'e-blueinfo', time(), time() + (10 * 365 * 24 * 60 * 60), '/' );
 
-            $template = EBLUEINFO_PLUGIN_PATH . 'template/app/app.php';
+            $template = EBLUEINFO_PLUGIN_PATH . 'template/home.php';
 
             // force reload the page on hitting back button
             header('Cache-Control: no-cache, no-store, must-revalidate'); // HTTP 1.1.
@@ -201,43 +204,38 @@ if(!class_exists('EBlueInfo_Plugin')) {
                  || $pagename == $this->plugin_slug . '/search'
                  || $pagename == $this->plugin_slug . '/country') {
 
-                    add_action( 'wp_enqueue_scripts', array(&$this, 'template_styles_scripts') );
-                    add_action( 'wp_footer', array(&$this, 'show_feedback_tab') ); // feedback tab
-
                     if ($pagename == $this->plugin_slug){
-                        if ( is_webview() ) {
-                            // generate lang cookie
-                            if ( ! $_COOKIE['e-blueinfo-lang'] ) {
-                                setCookie( 'e-blueinfo-lang', $lang, 0, '/' );
+                        // generate lang cookie
+                        if ( ! $_COOKIE['e-blueinfo-lang'] ) {
+                            setCookie( 'e-blueinfo-lang', $lang, time() + (10 * 365 * 24 * 60 * 60), '/' );
+                        }
+
+                        // generate country cookie
+                        if ( ! $_COOKIE['e-blueinfo-country'] ) {
+                            if ( $_GET['country'] ) {
+                                setCookie( 'e-blueinfo-country', $_GET['country'], time() + (10 * 365 * 24 * 60 * 60), '/' );
+                            } else {
+                                $template = EBLUEINFO_PLUGIN_PATH . '/template/home.php';
                             }
+                        }
 
-                            // generate country cookie
-                            if ( ! $_COOKIE['e-blueinfo-country'] ) {
-                                if ( $_GET['country'] ) {
-                                    setCookie( 'e-blueinfo-country', $_GET['country'], 0, '/' );
-                                } else {
-                                    $template = EBLUEINFO_PLUGIN_PATH . '/template/app/app.php';
-                                }
-                            }
+                        if ( ! wp_get_referer() && ! $_COOKIE['e-blueinfo-redirect'] ) {
+                            if ( defined( 'POLYLANG_VERSION' ) ) {
+                                $default_language = pll_default_language();
 
-                            if ( ! wp_get_referer() && ! $_COOKIE['e-blueinfo-redirect'] ) {
-                                if ( defined( 'POLYLANG_VERSION' ) ) {
-                                    $default_language = pll_default_language();
+                                if ( $default_language != $_COOKIE['e-blueinfo-lang'] ) {
+                                    setCookie( 'e-blueinfo-redirect', time(), time() + (10 * 365 * 24 * 60 * 60), '/' );
 
-                                    if ( $default_language != $_COOKIE['e-blueinfo-lang'] ) {
-                                        setCookie( 'e-blueinfo-redirect', time(), 0, '/' );
+                                    $home_url = pll_home_url($_COOKIE['e-blueinfo-lang']) . $pagename;
 
-                                        $home_url = pll_home_url($_COOKIE['e-blueinfo-lang']) . $pagename;
-
-                                        wp_redirect( $home_url );
-                                        exit();
-                                    }
+                                    wp_redirect( $home_url );
+                                    exit();
                                 }
                             }
                         }
 
                         if ( empty($template) ) {
-                            $template = EBLUEINFO_PLUGIN_PATH . '/template/home.php';
+                            $template = EBLUEINFO_PLUGIN_PATH . '/template/community.php';
                         }
                     }elseif ($pagename == $this->plugin_slug . '/collection'){
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/collection.php';
@@ -246,7 +244,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
                     }elseif ($pagename == $this->plugin_slug . '/search'){
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/search.php';
                     }elseif ($pagename == $this->plugin_slug . '/country'){
-                        $template = EBLUEINFO_PLUGIN_PATH . '/template/app/country.php';
+                        $template = EBLUEINFO_PLUGIN_PATH . '/template/country.php';
                     }else{
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/doc.php';
                     }
@@ -341,7 +339,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
         }
 
         function template_styles_scripts(){
-            global $eblueinfo_plugin_slug, $polylang, $wp;
+            global $eblueinfo_plugin_slug, $polylang, $wp, $wp_styles;
             $home = real_site_url($eblueinfo_plugin_slug);
             $languages = array();
             $pagename = '';
@@ -372,16 +370,36 @@ if(!class_exists('EBlueInfo_Plugin')) {
                 }
             }
 
-            wp_enqueue_script('e-blueinfo-page', EBLUEINFO_PLUGIN_URL . 'template/js/functions.js', array(), EBLUEINFO_VERSION);
-            wp_enqueue_script('e-blueinfo-slidebar', EBLUEINFO_PLUGIN_URL . 'template/js/slidebar.js', array(), EBLUEINFO_VERSION);
-            wp_enqueue_script('e-blueinfo-menu', EBLUEINFO_PLUGIN_URL . 'app/js/' . $lang . '/menu.js', array(), EBLUEINFO_VERSION, true);
-            wp_enqueue_script('e-blueinfo-loadmore', EBLUEINFO_PLUGIN_URL . 'template/js/loadmore.js', array(), EBLUEINFO_VERSION);
-            wp_enqueue_script('e-blueinfo-bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', array(), EBLUEINFO_VERSION);
-            wp_enqueue_style ('e-blueinfo-page', EBLUEINFO_PLUGIN_URL . 'template/css/style.css', array(), EBLUEINFO_VERSION);
+            // add_filter( 'style_loader_src', function($href){
+            //     if(strpos($href, "style.css") === false) {
+            //         return $href;
+            //     }
+            //     return false;
+            // });
 
-            if ( is_webview() ) {
-                wp_enqueue_style ('e-blueinfo-app', EBLUEINFO_PLUGIN_URL . 'template/css/style-app.css', array(), EBLUEINFO_VERSION);
+            foreach ($wp_styles->queue as $handle) {
+                wp_dequeue_style( $handle );
+                wp_deregister_style( $handle );
             }
+
+            wp_enqueue_style('e-blueinfo-materialize', '//cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css', array(), EBLUEINFO_VERSION);
+            wp_enqueue_style('e-blueinfo-google-fonts-asap', '//fonts.googleapis.com/css?family=Asap+Condensed&display=swap', array(), EBLUEINFO_VERSION);
+            wp_enqueue_style('e-blueinfo-google-fonts-bebas', '//fonts.googleapis.com/css?family=Bebas+Neue&display=swap', array(), EBLUEINFO_VERSION);
+            wp_enqueue_style('e-blueinfo-material-icons', '//fonts.googleapis.com/icon?family=Material+Icons', array(), EBLUEINFO_VERSION);
+            wp_enqueue_style('e-blueinfo-font-awesome', '//use.fontawesome.com/releases/v5.8.2/css/all.css', array(), EBLUEINFO_VERSION);
+            wp_enqueue_style('e-blueinfo-slick', EBLUEINFO_PLUGIN_URL . 'template/css/slick.css', array(), EBLUEINFO_VERSION);
+            wp_enqueue_style('e-blueinfo-aos', EBLUEINFO_PLUGIN_URL . 'template/css/aos.css', array(), EBLUEINFO_VERSION);
+            wp_enqueue_style('e-blueinfo-page', EBLUEINFO_PLUGIN_URL . 'template/css/style.css', array(), EBLUEINFO_VERSION);
+            
+            wp_enqueue_script('e-blueinfo-materialize', '//cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js', array(), EBLUEINFO_VERSION, true);
+            wp_enqueue_script('e-blueinfo-page', EBLUEINFO_PLUGIN_URL . 'template/js/functions.js', array(), EBLUEINFO_VERSION, true);
+            wp_enqueue_script('e-blueinfo-slidebar', EBLUEINFO_PLUGIN_URL . 'template/js/slidebar.js', array(), EBLUEINFO_VERSION, true);
+            wp_enqueue_script('e-blueinfo-loadmore', EBLUEINFO_PLUGIN_URL . 'template/js/loadmore.js', array(), EBLUEINFO_VERSION, true);
+            wp_enqueue_script('e-blueinfo-cookie', EBLUEINFO_PLUGIN_URL . 'template/js/cookie.js', array(), EBLUEINFO_VERSION, true);
+            wp_enqueue_script('e-blueinfo-slick', EBLUEINFO_PLUGIN_URL . 'template/js/slick.js', array(), EBLUEINFO_VERSION, true);
+            wp_enqueue_script('e-blueinfo-aos', EBLUEINFO_PLUGIN_URL . 'template/js/aos.js', array(), EBLUEINFO_VERSION, true);
+            wp_enqueue_script('e-blueinfo-main', EBLUEINFO_PLUGIN_URL . 'template/js/main.js', array(), EBLUEINFO_VERSION, true);
+            wp_enqueue_script('e-blueinfo-menu', EBLUEINFO_PLUGIN_URL . 'app/js/' . $lang . '/menu.js', array(), EBLUEINFO_VERSION, true);
 
             if ( $languages ) {
                 wp_localize_script('e-blueinfo-menu', 'eblueinfo_script_vars', array(
@@ -445,8 +463,8 @@ if(!class_exists('EBlueInfo_Plugin')) {
 
             $fcl = ( isset($_GET['fcl']) && true == $_GET['fcl'] ) ? true : false;
 
-            if ( is_webview() && $fcl ) {
-                setCookie( 'e-blueinfo-lang', $lang, 0, '/' );
+            if ( $fcl ) {
+                setCookie( 'e-blueinfo-lang', $lang, time() + (10 * 365 * 24 * 60 * 60), '/' );
                 header('Location: '.$url);
                 exit;
             }

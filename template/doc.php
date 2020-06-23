@@ -113,91 +113,139 @@ if ($response){
 $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['home_url_' . $lang] : real_site_url();
 ?>
 
+<!-- Header -->
 <?php get_header('e-blueinfo'); ?>
+<?php require_once('header.php'); ?>
+<section class="container">
+    <div class="row">
+        <?php require_once('menu.php'); ?>
+        <div class="col s10 m11">
+            <nav>
+                <div class="nav-wrapper">
+                    <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Document','Search',document.getElementById('searchBarInput').value);">
+                        <div class="input-field">
+                            <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
+                            <input type="hidden" name="collection" id="collection" value="<?php echo $collection_id; ?>">
+                            <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
+                            <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
 
-<!-- Breadcrumb -->
-<ol class="breadcrumb">
-    <li><a href="<?php echo $home_url ?>"><?php _e('Home','e-blueinfo'); ?></a></li>
-    <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php echo $eblueinfo_plugin_title; ?> </a></li>
-    <?php if ( isset($community_id, $community_name) ) : ?>
-    <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'collection/?community=' . $community_id; ?>"><?php echo $community_name; ?> </a></li>
-    <?php endif; ?>
-    <?php if ( isset($community_id, $collection_id, $collection) ) : ?>
-    <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id; ?>"><?php echo $collection->objects{0}->name; ?> </a></li>
-    <?php endif; ?>
-    <?php if ($query == '' && $filter == ''): ?>
-    <li class="active"><?php echo $title; ?></li>
-    <?php else: ?>
-    <li class="active"><?php _e('Search result', 'e-blueinfo'); ?></li>
-    <?php endif; ?>
-</ol>
-<!-- ./Breadcrumb -->
-
-<!-- Template -->
-<section id="eblueinfo" class="pb-5 doc-data eblueinfo-doc">
-    <div class="container">
-        <!-- Search Bar -->
-        <header class="page-header">
-            <?php simple_sliding_menu($lang); ?>
-            <div class="searchBarMain">
-        		<i class="material-icons searchBarSearchIcon noUserSelect" onclick="__gaTracker('send','event','Document','Search',document.getElementById('searchBarInput').value);">search</i>
-                <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search">
-                    <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
-                    <input type="hidden" name="collection" id="collection" value="<?php echo $collection_id; ?>">
-        		    <input type="text" name="q" value="" id="searchBarInput" placeholder="<?php _e('Search...', 'e-blueinfo'); ?>">
-                    <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
-                    <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
-                </form>
-        		<i class="material-icons clearSearchBarField noUserSelect" onClick="resetInput()">clear</i>
-        	</div>
-        </header>
-        <?php if ( isset($community_id, $community_name) ) : ?>
-        <h3 class="section-title parent-title"><?php echo $community_name; ?></h3>
-        <?php endif; ?>
-        <?php if ( isset($community_id, $collection_id, $collection) ) : ?>
-        <h3 class="section-title"><?php echo $collection->objects{0}->name; ?></h3>
-        <?php endif; ?>
-        <div class="row">
-            <!-- Collection -->
-            <div class="col-xs-12 col-sm-12 col-md-12 item">
-                <div class="mainflip">
-                    <div class="card">
-                        <div class="card-body">
-                            <!-- <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '?id=' . $doc[0]->id . '&url=' . $doc[0]->electronic_address[0]->_u; ?>" alt="card image" onerror="this.src='http://placehold.it/180x240'"></p> -->
-                            <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '/' . $doc[0]->id . '/' . $doc[0]->id . '.jpg'; ?>" alt="card image" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'"></p>
-                            <div class="meta">
-                                <div>
-                                    <span><?php _e('Title', 'e-blueinfo'); ?></span>
-                                    <p class="card-text"><?php echo $title; ?></p>
-                                    <span><?php _e('Author', 'e-blueinfo'); ?></span>
-                                    <p class="card-text"><?php echo $author[0]->text; ?></p>
-                                    <span><?php _e('Year', 'e-blueinfo'); ?></span>
-                                    <p class="card-text"><?php echo substr($doc[0]->publication_date_normalized, 0, 4); ?></p>
-                                    <span><?php _e('Publisher', 'e-blueinfo'); ?></span>
-                                    <p class="card-text"><?php echo $doc[0]->publisher; ?></p>
-                                </div>
-                                <div>
-                                    <?php if ( isset($doc[0]->electronic_address[0]->_u) ) : ?>
-                                    <span><?php _e('Document Access', 'e-blueinfo'); ?></span>
-                                    <p class="card-text"><a href="<?php echo $doc[0]->electronic_address[0]->_u; ?>" onclick="__gaTracker('send','event','Document','Full Text','<?php echo $doc[0]->electronic_address[0]->_u; ?>');"><?php _e('Download link', 'e-blueinfo'); ?></a></p>
-                                    <?php endif; ?>
-                                    <span><?php _e('Abstract', 'e-blueinfo'); ?></span>
-                                    <p class="card-text"><?php echo $abstract; ?></p>
-                                </div>
-                            </div>
+                            <a href="#!" id="speakBtn"><i class="material-icons">settings_voice</i></a>
+                            <input type="search" name="q" value="" id="searchBarInput">
+                            <label class="label-icon" for="searchBarInput"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </div>
-            <!-- ./Collection -->
+            </nav>
         </div>
     </div>
 </section>
-<!-- ./Template -->
-<!-- Footer -->
-<div class="eblueinfo-footer">
-    <img class="img-fluid" src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/bireme_' . $lang . '_banner.png'; ?>" alt="footer image" />
+<!-- ./Header -->
+
+<!-- Template -->
+<section class="container containerAos">
+    <div class="row">
+        <div class="col s12">
+            <div class="row">
+                <div class="col s6 m4 l3 text-center" data-aos="fade-left">
+                    <img src="<?php echo $thumb_service_url . '/' . $doc[0]->id . '/' . $doc[0]->id . '.jpg'; ?>" class="responsive-img" alt="" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'">
+                </div>
+                <div class="col s6 m8 l9 right-align">
+                    <div class="iconActions" data-aos="fade-right" data-aos-delay="300"><a href="#modal" class="btn-floating waves-effect waves-light blue lightn-3 btn-small modal-trigger" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Favorites','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc[0]->id; ?>');"><i class="material-icons">star</i></a></div>
+                    <?php if ( isset($doc[0]->electronic_address[0]->_u) ) : ?>
+                    <div class="iconActions" data-aos="fade-right" data-aos-delay="400"><a id="btShare" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Share', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Share','<?php echo $doc[0]->electronic_address[0]->_u; ?>');"><i class="material-icons">share</i></a></div>
+                    <div class="iconActions" data-aos="fade-right" data-aos-delay="500"><a href="<?php echo $doc[0]->electronic_address[0]->_u; ?>" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Full Text','<?php echo $doc[0]->electronic_address[0]->_u; ?>');"><i class="material-icons">visibility</i></a></div>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div data-aos="fade-right">
+                <h5 class="titleDefault"><?php _e('Title', 'e-blueinfo'); ?></h5>
+                <p><?php echo $title; ?></p>
+
+                <h5 class="titleDefault"><?php _e('Author', 'e-blueinfo'); ?></h5>
+                <p><?php echo $author[0]->text; ?></p>
+
+                <h5 class="titleDefault"><?php _e('Year', 'e-blueinfo'); ?></h5>
+                <p><?php echo substr($doc[0]->publication_date_normalized, 0, 4); ?></p>
+
+                <h5 class="titleDefault"><?php _e('Publisher', 'e-blueinfo'); ?></h5>
+                <p><?php echo $doc[0]->publisher; ?></p>
+
+                <h5 class="titleDefault"><?php _e('Abstract', 'e-blueinfo'); ?></h5>
+                <p><?php echo $abstract; ?></p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container containerAos">
+    <div class="row" data-aos="fade-right">
+        <div class="col s12">
+            <h2 class="title2 grey lighten-3">Similars</h2>
+        </div>
+        <div class="col s12">
+            <ul class="collection">
+                <li class="collection-item">HMGB2 is associated with pressure loading in chondrocytes of temporomandibular joint: In vitro and in vivo study.</li>
+                <li class="collection-item">Comparison of polysaccharides in articular cartilage regeneration associated with chondrogenic and autophagy-related gene expression.</li>
+                <li class="collection-item">Degrading products of chondroitin sulfate can induce hypertrophy-like changes and MMP-13/ADAMTS5 production in chondrocytes.</li>
+                <li class="collection-item">Obesity is associated with altered gene expression in human tastebuds.</li>
+                <li class="collection-item">Immunoinformatics and structural vaccinology driven prediction of multi-epitope vaccine against Mayaro virus and validation through in-silico expression.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Modal Trigger -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <h4>Favorites</h4>
+        <p>All e-BlueInfo services are free, but to improve your experience there is a need for a quick registration. This allows us to record what you consider favorites, your downloads so you don't have to download again ...</p>
+        <a href="#!">Login</a>
+        <hr />
+        <h4>MyVHL</h4>
+        <p>With the same e-BlueInfo registration you have full and degree access to MyVHL</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat"><?php _e('Close','e-blueinfo'); ?></a>
+    </div>
 </div>
-<!-- ./Footer -->
-<script type="text/javascript" src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/js/base.js' ?>"></script>
+<!-- ./Template -->
+
+<!-- AddThis -->
+<div id="bvsFrameBoxShare">
+    <div id="bvsFrameBoxContent">
+        <p class="share-label center-align"><b><?php _e('Share','e-blueinfo'); ?></b></p>
+        <script type="text/javascript">
+          var addthis_config = addthis_config||{};
+          var addthis_share = addthis_share||{};
+              addthis_share.title = "<?php echo $title; ?>";
+              addthis_share.url = "<?php echo $doc[0]->electronic_address[0]->_u; ?>";
+        </script>
+        <div class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="<?php echo $doc[0]->electronic_address[0]->_u; ?>">
+            <a class="bvsFrameImg addthis_button_link"><img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/link.svg'; ?>" width="50" alt=""></a>
+                <a class="bvsFrameImg addthis_button_facebook"><img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/facebook.svg'; ?>" width="50" alt=""></a>
+                <a class="bvsFrameImg addthis_button_twitter"><img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/twitter.svg'; ?>" width="50" alt=""></a>
+                <a class="bvsFrameImg addthis_button_whatsapp"><img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/whatsapp.svg'; ?>" width="50" alt=""></a>
+                <!--a class="addthis_button_compact"></a-->
+        </div>
+        <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#async=1"></script>
+        <script type="text/javascript">addthis.init();</script>
+    </div>
+</div>
+<script type="text/javascript">
+    (function($) { 
+        $(function () {
+            $("#bvsFrameBoxShare").click(function(){
+                $(this).hide(300);
+            });
+            $("#btShare").click(function(){
+                $("#bvsFrameBoxShare").show(300);
+            });
+        });
+    })(jQuery);
+</script>
+
+<!-- Footer -->
+<?php require_once('footer.php'); ?>
 <?php get_footer(); ?>
+<!-- ./Footer -->

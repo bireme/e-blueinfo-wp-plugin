@@ -1,10 +1,5 @@
 var $j = jQuery;
-/*
-$j(window).load(function(){
-	showTips();
-	show_more_list();
-});
-*/
+
 function change_count(elem) {
     var form = document.searchForm;
     form.count.value = elem.value;
@@ -23,13 +18,7 @@ function change_sort(obj){
     form.sort.value = sort;
     $j("#searchForm").submit();
 }
-/*
-function showTips(){
-	$j('.tooltip').tooltipster({
-		animation: 'fade',
-	});
-}
-*/
+
 function showHideFilters(){
 	$j('#filters').toggle();
 }
@@ -73,4 +62,37 @@ function remove_filter(id) {
 
     $j('#filter').val(filter);
     $j("#formFilters").submit();
+}
+
+function setCookie(name,value,days) {
+    var expires = "";
+
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    } else {
+        var date = new Date();
+        date.setFullYear(date.getFullYear()+10); // 10 years
+        expires = "; expires=" + date.toUTCString();
+    }
+
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+
+    return null;
+}
+
+function mudar(val){
+   $("#labelCode").text('CODE '+val + ' *');
 }
