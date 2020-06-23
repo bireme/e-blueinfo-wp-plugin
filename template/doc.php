@@ -148,7 +148,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <div class="col s12">
             <div class="row">
                 <div class="col s6 m4 l3 text-center" data-aos="fade-left">
-                    <img src="<?php echo $thumb_service_url . '/' . $doc[0]->id . '/' . $doc[0]->id . '.jpg'; ?>" class="responsive-img" alt="" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'">
+                    <img class="thumbnail-doc" src="<?php echo $thumb_service_url . '/' . $doc[0]->id . '/' . $doc[0]->id . '.jpg'; ?>" class="responsive-img" alt="" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'">
                 </div>
                 <div class="col s6 m8 l9 right-align">
                     <div class="iconActions" data-aos="fade-right" data-aos-delay="300"><a href="#modal" class="btn-floating waves-effect waves-light blue lightn-3 btn-small modal-trigger" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Favorites','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc[0]->id; ?>');"><i class="material-icons">star</i></a></div>
@@ -178,22 +178,37 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         </div>
     </div>
 </section>
+
+<?php $similar_docs = Similar::getSimilarDocs($title, $lang); ?>
+<?php if ( $similar_docs ) : ?>
+<section class="container containerAos">
+    <div class="row" data-aos="fade-right">
+        <div class="col s12">
+            <h2 class="title2 grey lighten-3"><?php _e('Similar', 'e-blueinfo'); ?></h2>
+        </div>
+        <div class="col s12">
+            <ul class="collection">
+                <?php foreach ($similar_docs as $similar) : ?>
+                <li class="collection-item"><a href="<?php echo $similar['url'] ?>" target="_blank"><?php echo $similar['title']; ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+</section>
+<?php else : ?>
 <section class="container containerAos">
     <div class="row" data-aos="fade-right">
         <div class="col s12">
             <h2 class="title2 grey lighten-3">Similars</h2>
         </div>
         <div class="col s12">
-            <ul class="collection">
-                <li class="collection-item">HMGB2 is associated with pressure loading in chondrocytes of temporomandibular joint: In vitro and in vivo study.</li>
-                <li class="collection-item">Comparison of polysaccharides in articular cartilage regeneration associated with chondrogenic and autophagy-related gene expression.</li>
-                <li class="collection-item">Degrading products of chondroitin sulfate can induce hypertrophy-like changes and MMP-13/ADAMTS5 production in chondrocytes.</li>
-                <li class="collection-item">Obesity is associated with altered gene expression in human tastebuds.</li>
-                <li class="collection-item">Immunoinformatics and structural vaccinology driven prediction of multi-epitope vaccine against Mayaro virus and validation through in-silico expression.</li>
-            </ul>
+            <div class="card-panel center-align">
+                <span class="blue-text text-darken-2"><?php _e('No similar found','e-blueinfo'); ?></span>
+            </div>
         </div>
     </div>
 </section>
+<?php endif; ?>
 
 <!-- Modal Trigger -->
 <div id="modal" class="modal">
