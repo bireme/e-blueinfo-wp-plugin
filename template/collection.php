@@ -48,7 +48,7 @@ $start = ($page * $count) - $count;
 if ( $query ) {
     $eblueinfo_service_request = $eblueinfo_service_url . 'api/bibliographic/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&count=' . $count . '&sort=' . urlencode($sort) . '&lang=' . $lang;
 } else {
-    $eblueinfo_service_request = $eblueinfo_service_url . 'api/collection/?community=' . $community_id . '&format=' . $format . '&offset=' . $offset . '&limit=' . $count . '&lang=' . $lang;
+    $eblueinfo_service_request = $eblueinfo_service_url . 'api/collection/?community=' . $community_id . '&format=' . $format . '&lang=' . $lang;
 }
 
 if ( $user_filter != '' ) {
@@ -69,11 +69,28 @@ $response = @file_get_contents($eblueinfo_service_request);
 if ($response){
     $response_json = json_decode($response);
     // echo "<pre>"; print_r($response_json); echo "</pre>"; die();
+    $community_name = $response_json->objects{0}->parent;
     $total = $response_json->meta->total_count;
     $start = $response_json->meta->offset;
     $next  = $response_json->meta->next;
     $collection_list = $response_json->objects;
     usort($collection_list, "cmp");
+    $collection_types = array_unique(array_column($collection_list, 'type'));
+    // Categories
+    $categories = array_filter($collection_list, function() { 
+        return $collection_list->type == 0; }
+    );
+    // Themes
+    $themes = array_filter($collection_list, function() { 
+        return $collection_list->type == 1; }
+    );
+}
+
+$eblueinfo_service_request = $eblueinfo_service_url . 'api/community/?country=' . $_COOKIE['e-blueinfo-country'] . '&format=json';
+$response = @file_get_contents($eblueinfo_service_request);
+if ($response){
+    $response_json = json_decode($response);
+    $community_list = $response_json->objects;
 }
 
 $params = $count != 2 ? '&count=' . $count : '';
@@ -117,28 +134,23 @@ $pages->paginate($page_url_params);
 <!-- ./Header -->
 
 <!-- Template -->
-<h1 class="title">Primary Health Care</h1>
-<section>
-    <div class="bannerHome">
-        <div><img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/banner1.jpg'; ?>" class="responsive-img" alt="" data-aos="fade-down"></div>
-        <div><img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/banner2.jpg'; ?>" class="responsive-img" alt="" data-aos="fade-up"></div>
-        <div><img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/banner3.jpg'; ?>" class="responsive-img" alt="" data-aos="fade-down"></div>
-    </div>
-</section>
+<h1 class="title"><?php echo $community_name; ?></h1>
+
+<?php if ( $collection_types && count($collection_types) == 2 ) : ?>
 <section class="center-align">
     Display by:
     <label>
         <input id="radioCategories" class="with-gap" name="exibir" type="radio" value="Categorias" checked />
-        <span>CATEGORIES</span>
+        <span><?php echo strtoupper(__('Categories','e-blueinfo')); ?></span>
     </label>
     <label>
         <input id="radioThemes" class="with-gap" name="exibir" type="radio" value="Temas" />
-        <span>THEMES</span>
+        <span><?php echo strtoupper(__('Themes','e-blueinfo')); ?></span>
     </label>
 </section>
+<?php endif; ?>
 <br />
 
-<!--------------------- CATEGORIES -------------------------->
 <?php if ( isset($total) && strval($total) == 0 ) : ?>
 <section class="container containerAos">
     <div class="row">
@@ -147,17 +159,19 @@ $pages->paginate($page_url_params);
         </div>
     </div>
 </section>
-<?php else : ?>
+<?php endif; ?>
+
+<!--------------------- CATEGORIES -------------------------->
+<?php if ( $categories ) : ?>
 <section id="categories" class="container containerAos">
     <div class="row">
-        <?php foreach ( $collection_list as $index => $collection) : $index++; ?>
+        <?php foreach ( $categories as $index => $collection) : $index++; ?>
         <article class="col s12">
             <div class="card cardSingle">
                 <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>" onclick="__gaTracker('send','event','Collection','View','<?php echo $collection->name; ?>');">
                     <div class="card-content">
                         <b><?php echo $collection->name; ?></b> <br />
                         <p><small><?php echo $collection->description; ?></small></p>
-                        <small>Last Update: 01/01/2020</small>
                     </div>
                 </a>
             </div>
@@ -168,60 +182,24 @@ $pages->paginate($page_url_params);
 <?php endif; ?>
 
 <!--------------------- THEMES -------------------------->
+<?php if ( $themes ) : ?>
 <section id="themes" class="container containerAos" style="display: none">
     <div class="row">
+        <?php foreach ( $themes as $index => $collection) : $index++; ?>
         <article class="col s12">
             <div class="card cardSingle">
-                <a href="collectionType.php">
+                <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>" onclick="__gaTracker('send','event','Collection','View','<?php echo $collection->name; ?>');">
                     <div class="card-content">
-                        <b>Diseases</b> <br>
-                        <small>Last Update: 01/01/2020</small>
+                        <b><?php echo $collection->name; ?></b> <br />
+                        <p><small><?php echo $collection->description; ?></small></p>
                     </div>
                 </a>
             </div>
         </article>
-        <article class="col s12">
-            <div class="card cardSingle">
-                <a href="collectionType.php">
-                    <div class="card-content">
-                        <b>Treatments</b> <br>
-                        <small>Last Update: 01/01/2020</small>
-                    </div>
-                </a>
-            </div>
-        </article>
-        <article class="col s12">
-            <div class="card cardSingle">
-                <a href="collectionType.php">
-                    <div class="card-content">
-                        <b>Good Habits</b> <br>
-                        <small>Last Update: 01/01/2020</small>
-                    </div>
-                </a>
-            </div>
-        </article>
-        <article class="col s12">
-            <div class="card cardSingle">
-                <a href="collectionType.php">
-                    <div class="card-content">
-                        <b>Physical Activities</b> <br>
-                        <small>Last Update: 01/01/2020</small>
-                    </div>
-                </a>
-            </div>
-        </article>
-        <article class="col s12">
-            <div class="card cardSingle">
-                <a href="collectionType.php">
-                    <div class="card-content">
-                        <b>Sanitation</b> <br>
-                        <small>Last Update: 01/01/2020</small>
-                    </div>
-                </a>
-            </div>
-        </article>  
+        <?php endforeach; ?>
     </div>
 </section>
+<?php endif; ?>
 <!-- ./Template -->
 
 <?php if ( $next ) : ?>
@@ -254,42 +232,6 @@ $pages->paginate($page_url_params);
 </script>
 <!-- ./Load More -->
 <?php endif; ?>
-
-<!-- Slides Slick -->
-<script>
-    (function($) { 
-        $(function () {
-            $('.bannerHome').slick({
-                infinite: true,
-                centerMode: true,
-                centerPadding: '60px',
-                autoplay: true,
-                slidesToShow: 3,
-                responsive: [
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            arrows: false,
-                            centerMode: true,
-                            centerPadding: '40px',
-                            slidesToShow: 1
-                        }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            arrows: false,
-                            centerMode: true,
-                            centerPadding: '40px',
-                            slidesToShow: 1
-                        }
-                    }
-                ]
-            });
-        });
-    })(jQuery);
-</script>
-<!-- ./Slides Slick -->
 
 <!-- Footer -->
 <?php require_once('footer.php'); ?>
