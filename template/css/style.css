@@ -35,7 +35,7 @@ body{
 	color: #000;
 }
 .bannerHome{
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
 }
 .bannerHome div{
 	padding: 0 1px;
@@ -276,6 +276,9 @@ a:active{
 }
 .thumbnail-doc {
 	max-height: 360px;
+}
+#wpadminbar {
+	display: none;
 }
 /****************************** cor 01 ************************/
 .bgColor1{

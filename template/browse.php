@@ -142,7 +142,7 @@ $pages->paginate($page_url_params);
         </div>
         <div class="col s12 m6">
             <select class="center-align">
-                <option value="All" selected>All media (<?php echo $total; ?>)</option>
+                <option value="All" selected>All media</option>
                 <option value="PDF">PDF</option>
                 <option value="Video">Video</option>
                 <option value="Audio">Audio</option>
