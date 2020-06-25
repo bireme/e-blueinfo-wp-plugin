@@ -172,6 +172,9 @@ $pages->paginate($page_url_params);
                     <div class="card-content">
                         <b><?php echo $collection->name; ?></b> <br />
                         <p><small><?php echo $collection->description; ?></small></p>
+                        <?php if ( is_timestamp($collection->updated_time) ) : ?>
+                            <small><?php _e('Last Update','e-blueinfo'); ?>: <?php echo $collection->updated_time; ?></small>
+                        <?php endif; ?>
                     </div>
                 </a>
             </div>
@@ -192,6 +195,9 @@ $pages->paginate($page_url_params);
                     <div class="card-content">
                         <b><?php echo $collection->name; ?></b> <br />
                         <p><small><?php echo $collection->description; ?></small></p>
+                        <?php if ( is_timestamp($collection->updated_time) ) : ?>
+                            <small><?php _e('Last Update','e-blueinfo'); ?>: <?php echo $collection->updated_time; ?></small>
+                        <?php endif; ?>
                     </div>
                 </a>
             </div>
