@@ -147,9 +147,9 @@ $pages->paginate($page_url_params);
                 <div class="card-content">
                     <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>collection/?community=<?php echo $community->id; ?>" onclick="__gaTracker('send','event','Community','View','<?php echo $community->name; ?>');">
                         <h5><b><?php echo $community->name; ?></b></h5>
-                        <small> 
-                            Last Update: 01/01/2020
-                        </small>
+                        <?php if ( is_timestamp($community->updated_time) ) : ?>
+                            <small><?php _e('Last Update','e-blueinfo'); ?>: <?php echo $community->updated_time; ?></small>
+                        <?php endif; ?>
                     </a>
                 </div>
             </div>
