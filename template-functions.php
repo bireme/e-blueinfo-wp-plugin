@@ -289,6 +289,14 @@ if ( !function_exists('is_webview') ) {
     }
 }
 
+if ( !function_exists('is_timestamp') ) {
+    function is_timestamp($timestamp) {
+        return ((string) (int) $timestamp === $timestamp) 
+            && ($timestamp <= PHP_INT_MAX)
+            && ($timestamp >= ~PHP_INT_MAX);
+    }
+}
+
 if ( !function_exists('simple_sliding_menu') ) {
     function simple_sliding_menu($lang='en') {
         $menu = array();
