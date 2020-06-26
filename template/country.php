@@ -32,12 +32,15 @@
         <div class="row">
             <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4 countries-list">
                 <h6 class="center-align"><b><?php _e('Please choose a country', 'e-blueinfo'); ?></b></h6>
-                <select onchange="location=this.value;">
+                <select>
                     <option disabled selected></option>
                     <?php foreach ($countries as $id => $name) : $selected = ( $country_id == $id ) ? 'selected' : ''; ?>
                     <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/' . $lang . '/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>" <?php echo $selected; ?>><?php echo $name; ?></option>
                     <?php endforeach; ?>
                 </select>
+            </div>
+            <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4 center-align">
+                <a id="btn-submit" class="btn waves-effect waves-light blue darken-4 bt100"><?php echo strtoupper(__('Select', 'e-blueinfo')); ?></a>
             </div>
         </div>
     </form>

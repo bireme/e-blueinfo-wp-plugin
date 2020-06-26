@@ -1,3 +1,5 @@
+$ = jQuery;
+
 function is_webview () {
     var userAgent = navigator.userAgent.toLowerCase(),
     wv = /wv/.test( userAgent ),

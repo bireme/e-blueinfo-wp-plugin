@@ -141,12 +141,34 @@ $(function () {
 
     $('select.languages').on( "change", function(e) {
         var lang = $(this).val();
+        var country = $('div.countries.'+lang+' select').find('option:selected').data('country');
+
         $('div.countries').css('display', 'none');
         $('div.countries.'+lang).css('display', 'block');
+
+        if ( country && lang ) {
+            $('#btn-submit').attr('disabled', false);
+        } else {
+            $('#btn-submit').attr('disabled', true);          
+        }
     });
 
-    $('div.countries select, div.countries-list select').on( "change", function(e) {
+    $('div.countries select').on( "change", function(e) {
         var country = $(this).find('option:selected').data('country');
-        setCookie('e-blueinfo-country', country);
+        var lang = $('select.languages').val();
+
+        if ( country && lang ) {
+            $('#btn-submit').attr('disabled', false);
+        } else {
+            $('#btn-submit').attr('disabled', true);          
+        }
+    });
+
+    $('#btn-submit').on( "click", function(e) {
+        var country = $('div.countries:visible select, div.countries-list select');
+        var data = country.find('option:selected').data('country');
+        var val = country.find('option:selected').val();
+        setCookie('e-blueinfo-country', data);
+        window.location.href = val;
     });
 });
