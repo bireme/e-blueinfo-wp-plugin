@@ -31,12 +31,12 @@ if(!class_exists('EBlueInfo_Plugin')) {
     class EBlueInfo_Plugin {
 
         private $plugin_slug         = 'e-blueinfo';
-        private $service_url         = 'http://fi-admin.data.bvsalud.org/';
+        private $service_url         = 'http://fi-admin-api.bvsalud.org/';
         private $similar_docs_url    = 'http://similardocs.bireme.org/SDService';
-        // private $thumb_service_url   = 'http://thumbnailserver.bvsalud.org/getDocument';
         private $thumb_service_url   = 'http://thumbs.bireme.org';
-        private $country_service_url = 'http://fi-admin.bvsalud.org/api/community/get_country_list/?format=json';
-        private $pdf_service_url     = 'http://basalto01.bireme.br:9292/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu,fo';
+        private $country_service_url = 'http://fi-admin-api.bvsalud.org/api/community/get_country_list/?format=json';
+        private $pdf_service_url     = 'http://basalto01.bireme.br:9292/solr/pdfs/select?fl=id,ti,com,col,ur,tu,fo';
+        // private $pdf_service_url     = 'http://basalto01.bireme.br:9292/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu,fo';
 
         /**
          * Construct the plugin object
@@ -267,16 +267,47 @@ if(!class_exists('EBlueInfo_Plugin')) {
         }
 
         function register_sidebars(){
-            $args = array(
-                'name' => __('e-BlueInfo sidebar', 'e-blueinfo'),
-                'id'   => 'e-blueinfo-home',
-                'description' => 'e-BlueInfo Area',
-                'before_widget' => '<section id="%1$s" class="row-fluid widget %2$s">',
-                'after_widget'  => '</section>',
-                'before_title'  => '<h2 class="widgettitle">',
-                'after_title'   => '</h2>',
-            );
-            register_sidebar( $args );
+            global $eblueinfo_service_url, $country_service_url;
+            $eblueinfo_service_url = $this->service_url;
+            $country_service_url = $this->country_service_url;
+
+            $site_language = strtolower(get_bloginfo('language'));
+            $lang = substr($site_language,0,2);
+
+            $response = @file_get_contents($country_service_url);
+            if ($response){
+                $countries = json_decode($response);
+                $countries = normalize_country_object($countries, $lang);
+            }
+
+            if ( $countries ) {
+                $count = 0;
+                foreach ($countries as $key => $value) {
+                    $eblueinfo_service_request = $eblueinfo_service_url . 'api/community/?country=' . $key . '&format=json';
+
+                    $response = @file_get_contents($eblueinfo_service_request);
+                    if ($response){
+                        $response_json = json_decode($response);
+                        $community_list = $response_json->objects;
+                    }
+
+                    if ( $community_list ) {
+                        foreach ( $community_list as $community ) {
+                            $count++;
+                            $args = array(
+                                'name' => __('e-BlueInfo Sidebar', 'e-blueinfo').' '.$count,
+                                'id'   => 'e-blueinfo-sidebar-'.$community->id,
+                                'description' => __('e-BlueInfo Sidebar', 'e-blueinfo').': '.$community->name.' ('.$value.')',
+                                'before_widget' => '<div id="%1$s" class="widget %2$s">',
+                                'after_widget'  => '</div>',
+                                'before_title'  => '<h2 class="widgettitle">',
+                                'after_title'   => '</h2>',
+                            );
+                            register_sidebar( $args );
+                        }
+                    }
+                }
+            }
         }
 
 

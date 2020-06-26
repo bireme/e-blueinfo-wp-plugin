@@ -135,7 +135,15 @@ $pages->paginate($page_url_params);
 
 <!-- Template -->
 <h1 class="title"><?php echo $community_name; ?></h1>
-
+<!-- Sidebar -->
+<section>
+    <?php if ( is_active_sidebar( 'e-blueinfo-sidebar-'.$community_id ) ) : ?>
+    <div id="sidebar" class="bannerHome">
+        <?php dynamic_sidebar( 'e-blueinfo-sidebar-'.$community_id ); ?>
+    </div>
+    <?php endif; ?>
+</section>
+<!-- ./Sidebar -->
 <?php if ( $collection_types && count($collection_types) == 2 ) : ?>
 <section class="center-align">
     Display by:
@@ -238,6 +246,42 @@ $pages->paginate($page_url_params);
 </script>
 <!-- ./Load More -->
 <?php endif; ?>
+
+<!-- Slides Slick -->
+<script>
+    (function($) { 
+        $(function () {
+            $('#sidebar').slick({
+                infinite: true,
+                centerMode: true,
+                centerPadding: '60px',
+                autoplay: true,
+                slidesToShow: 3,
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '40px',
+                            slidesToShow: 1
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            arrows: false,
+                            centerMode: true,
+                            centerPadding: '40px',
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+        });
+    })(jQuery);
+</script>
+<!-- ./Slides Slick -->
 
 <!-- Footer -->
 <?php require_once('footer.php'); ?>
