@@ -10,7 +10,7 @@
 				<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'downloads/'; ?>">My Downloads</a></li>
 				<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>">About</a></li>
 				<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>">Help</a></li>
-				<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'login/'; ?>">Login</a></li>
+				<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'auth/'; ?>">Login</a></li>
 				<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'tutorial/'; ?>">Tutorial</a></li>
 				<li><a href="#" data-target="slide-out" class="sidenav-trigger">Settings</a></li>
 				<!-- Start nested content -->

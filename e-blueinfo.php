@@ -36,6 +36,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
         private $thumb_service_url      = 'http://thumbs.bireme.org';
         private $country_service_url    = 'http://fi-admin-api.bvsalud.org/api/community/get_country_list/?format=json';
         private $infobutton_service_url = 'http://bvsinfobutton.homolog.bvsalud.org';
+        private $services_platform_url  = 'https://platserv2.teste.bvsalud.org';
         private $pdf_service_url        = 'http://basalto01.bireme.br:9292/solr/pdfs/select?fl=id,ti,com,col,ur,tu,fo';
         // private $pdf_service_url     = 'http://basalto01.bireme.br:9292/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu,fo';
 
@@ -170,7 +171,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
         }
 
         function theme_redirect() {
-            global $wp, $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_texts, $similar_docs_url, $pdf_service_url, $thumb_service_url, $country_service_url, $infobutton_service_url;
+            global $wp, $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_texts, $similar_docs_url, $pdf_service_url, $thumb_service_url, $country_service_url, $infobutton_service_url, $services_platform_url;
             $pagename = '';
             $template = '';
 
@@ -200,6 +201,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
                 $thumb_service_url = $this->thumb_service_url;
                 $country_service_url = $this->country_service_url;
                 $infobutton_service_url = $this->infobutton_service_url;
+                $services_platform_url = $this->services_platform_url;
 
                 if ($pagename == $this->plugin_slug
                  || $pagename == $this->plugin_slug . '/doc'
@@ -208,7 +210,8 @@ if(!class_exists('EBlueInfo_Plugin')) {
                  || $pagename == $this->plugin_slug . '/search'
                  || $pagename == $this->plugin_slug . '/country'
                  || $pagename == $this->plugin_slug . '/infobutton'
-                 || $pagename == $this->plugin_slug . '/infobutton/result') {
+                 || $pagename == $this->plugin_slug . '/infobutton/result'
+                 || $pagename == $this->plugin_slug . '/auth') {
 
                     if ($pagename == $this->plugin_slug){
                         // generate lang cookie
@@ -243,19 +246,21 @@ if(!class_exists('EBlueInfo_Plugin')) {
                         if ( empty($template) ) {
                             $template = EBLUEINFO_PLUGIN_PATH . '/template/community.php';
                         }
-                    }elseif ($pagename == $this->plugin_slug . '/collection'){
+                    } elseif ($pagename == $this->plugin_slug . '/collection') {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/collection.php';
-                    }elseif ($pagename == $this->plugin_slug . '/browse'){
+                    } elseif ($pagename == $this->plugin_slug . '/browse') {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/browse.php';
-                    }elseif ($pagename == $this->plugin_slug . '/search'){
+                    } elseif ($pagename == $this->plugin_slug . '/search') {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/search.php';
-                    }elseif ($pagename == $this->plugin_slug . '/country'){
+                    } elseif ($pagename == $this->plugin_slug . '/country') {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/country.php';
-                    }elseif ($pagename == $this->plugin_slug . '/infobutton'){
+                    } elseif ($pagename == $this->plugin_slug . '/infobutton') {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/infobutton-form.php';
-                    }elseif ($pagename == $this->plugin_slug . '/infobutton/result'){
+                    } elseif ($pagename == $this->plugin_slug . '/infobutton/result') {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/infobutton-result.php';
-                    }else{
+                    } elseif ($pagename == $this->plugin_slug . '/auth') {
+                        $template = EBLUEINFO_PLUGIN_PATH . '/template/login.php';
+                    } else {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/doc.php';
                     }
 
