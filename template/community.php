@@ -162,7 +162,7 @@ $pages->paginate($page_url_params);
 <section class="container containerAos">
     <div class="row">
         <div class="col s12">
-            <h5  style="padding: 10px 20px; color: #fff; background-color: #0d47a1;"><b>Other Evidence</b></h5>
+            <h5  style="padding: 10px 20px; color: #fff; background-color: #0d47a1;"><b><?php _e('Other Evidence', 'e-blueinfo'); ?></b></h5>
         </div>
         <article class="col s12 m6 l4" data-aos="fade-up" data-aos-delay="500">
             <div class="card">
@@ -171,8 +171,8 @@ $pages->paginate($page_url_params);
                     <a href="#modal-infobutton" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i class="fas fa-info"></i></a>
                 </div>
                 <div class="card-content">
-                    <a href="selectInfo.php">
-                        <h5><b>Seek evidence for other medical conditions</b></h5>
+                    <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>infobutton">
+                        <h5><b><?php _e('Seek evidence for other medical conditions', 'e-blueinfo'); ?></b></h5>
                     </a>
                 </div>
             </div>
@@ -198,7 +198,7 @@ $pages->paginate($page_url_params);
 <!-- InfoButton Modal Trigger -->
 <div id="modal-infobutton" class="modal modal-fixed-footer">
     <div class="modal-content">
-        <h4>InfoButton</h4>
+        <h4><?php _e('Contextualized Search', 'e-blueinfo'); ?></h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, suscipit, in quaerat accusantium eligendi necessitatibus laudantium nemo. Laudantium ducimus, placeat aspernatur, exercitationem doloribus alias nobis rem, assumenda veniam tenetur delectus in error deleniti fugit ipsum dolorum dolores quia magni adipisci, voluptatem ratione sed a excepturi sint. Nemo minus, consequatur maiores magnam doloribus tempora, veritatis mollitia qui eaque? Atque repellendus rem, expedita perspiciatis itaque. Corrupti animi tempora porro adipisci explicabo perferendis repellat, inventore corporis dolore minima, quia modi eligendi earum tempore qui quibusdam! Sed non quos quo nobis est, voluptatem possimus accusantium hic pariatur quisquam tempora quod, iusto et repellendus earum nam ex, enim libero dolores ducimus dolor sit. Quia, nesciunt, fuga! Qui enim a officia repellat adipisci, atque cum. Officia ipsam, laborum exercitationem. Itaque eaque in quos maiores. Impedit soluta dolore molestiae doloribus, voluptate dignissimos quos id quo amet, consequuntur, aliquid repudiandae eveniet quam illum tempore! Saepe dicta, inventore beatae?</p>
     </div>
     <div class="modal-footer">

@@ -277,6 +277,10 @@ a:active{
 .thumbnail-doc {
 	max-height: 360px;
 }
+.input-field div.error {
+    font-size: 0.8rem;
+    color: #FF0000;
+}
 #wpadminbar {
 	display: none;
 }

@@ -93,6 +93,6 @@ function getCookie(name) {
     return null;
 }
 
-function mudar(val){
-   $("#labelCode").text('CODE '+val + ' *');
+function change_code_text(sel){
+   $("#labelCode span").text(sel.options[sel.selectedIndex].text);
 }
