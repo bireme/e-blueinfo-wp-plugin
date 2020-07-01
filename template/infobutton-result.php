@@ -5,9 +5,6 @@ Template Name: e-BlueInfo InfoButton Result
 
 global $infobutton_service_url;
 
-$site_language = strtolower(get_bloginfo('language'));
-$lang = substr($site_language,0,2);
-
 $params = http_build_query($_GET);
 $query = str_replace('_', '.', $params);
 

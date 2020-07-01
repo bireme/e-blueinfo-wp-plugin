@@ -5,6 +5,11 @@ Template Name: e-BlueInfo InfoButton Form
 
 $site_language = strtolower(get_bloginfo('language'));
 $lang = substr($site_language,0,2);
+
+if ( $_COOKIE['e-blueinfo-lang'] ) {
+    $lang = $_COOKIE['e-blueinfo-lang'];
+}
+
 $lang_label = array(
     'pt' => 'Português',
     'es' => 'Español',
