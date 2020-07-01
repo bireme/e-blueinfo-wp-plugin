@@ -259,7 +259,13 @@ if(!class_exists('EBlueInfo_Plugin')) {
                     } elseif ($pagename == $this->plugin_slug . '/infobutton/result') {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/infobutton-result.php';
                     } elseif ($pagename == $this->plugin_slug . '/auth') {
-                        $template = EBLUEINFO_PLUGIN_PATH . '/template/login.php';
+                        if ( $_COOKIE['userData'] ) {
+                            echo '<script type="text/javascript">';
+                            echo '    history.go(-(history.length - 1));';
+                            echo '</script>';
+                        } else {
+                            $template = EBLUEINFO_PLUGIN_PATH . '/template/login.php';
+                        }
                     } else {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/doc.php';
                     }
