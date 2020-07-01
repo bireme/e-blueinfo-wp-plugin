@@ -77,12 +77,12 @@ if ($response){
     usort($collection_list, "cmp");
     $collection_types = array_unique(array_column($collection_list, 'type'));
     // Categories
-    $categories = array_filter($collection_list, function() { 
-        return $collection_list->type == 0; }
+    $categories = array_filter($collection_list, function($col) { 
+        return $col->type == 0; }
     );
     // Themes
-    $themes = array_filter($collection_list, function() { 
-        return $collection_list->type == 1; }
+    $themes = array_filter($collection_list, function($col) { 
+        return $col->type == 1; }
     );
 }
 
