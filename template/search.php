@@ -19,6 +19,10 @@ $eblueinfo_addthis_id     = $eblueinfo_config['addthis_profile_id'];
 $site_language = strtolower(get_bloginfo('language'));
 $lang = substr($site_language,0,2);
 
+if ( $_COOKIE['e-blueinfo-lang'] ) {
+    $lang = $_COOKIE['e-blueinfo-lang'];
+}
+
 // set query using default param q (query) or s (wordpress search) or newexpr (metaiah)
 $query = $_GET['s'] . $_GET['q'];
 $query = stripslashes( trim($query) );
@@ -166,7 +170,7 @@ $pages->paginate($page_url_params);
             <article class="flexCol1 item cardSingle">
                 <div class="row padding3 cardBox">
                     <div class="col s3">
-                        <img class="thumbnail" src="<?php echo $thumb_service_url . '/' . $doc->id . '/' . $doc->id . '.jpg'; ?>" class="responsive-img" alt="" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'">
+                        <img src="<?php echo $thumb_service_url . '/' . $doc->id . '/' . $doc->id . '.jpg'; ?>" class="thumbnail responsive-img" alt="" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'">
                     </div>
                     <div class="col s7">
                         <p><b><?php _e('Communities', 'e-blueinfo'); ?>:</b> <br /><?php echo $com_name; ?></p>
@@ -179,7 +183,7 @@ $pages->paginate($page_url_params);
                         <?php endif; ?>
                     </div>
                     <div class="col s12 blue-grey lighten-5 padding1">
-                        <a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id . '&lang=' . $lang; ?>" onclick="__gaTracker('send','event','Search Results','View','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');">
+                        <a class="e-blueinfo-doc" data-docid="<?php echo $doc->id; ?>" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="__gaTracker('send','event','Search Results','View','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');">
                             <p><?php echo $doc->ti[0]; ?></p>
                         </a>
                     </div>
@@ -235,6 +239,19 @@ $pages->paginate($page_url_params);
     })(jQuery);
 </script>
 <!-- ./Load More -->
+<?php endif; ?>
+
+<?php if ( $_COOKIE['userData'] ) : ?>
+<!-- Last Visited -->
+<script type="text/javascript">
+    (function($) { 
+        $( document ).on( "click", ".e-blueinfo-doc", function() {
+            var docid = $( this ).data('docid');
+            $.cookie('last_visited', docid, { path: '/', expires: 365 * 10 });
+        });
+    })(jQuery);
+</script>
+<!-- ./Last Visited -->
 <?php endif; ?>
 
 <!-- Footer -->

@@ -2,7 +2,7 @@
 /*
 Template Name: e-BlueInfo Collection Page
 */
-global $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_plugin_title, $eblueinfo_texts, $thumb_service_url, $pdf_service_url;
+global $wp, $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_plugin_title, $eblueinfo_texts, $thumb_service_url, $pdf_service_url;
 
 require_once(EBLUEINFO_PLUGIN_PATH . '/lib/Paginator.php');
 
@@ -19,6 +19,10 @@ $eblueinfo_addthis_id     = $eblueinfo_config['addthis_profile_id'];
 $site_language = strtolower(get_bloginfo('language'));
 $lang = substr($site_language,0,2);
 
+if ( $_COOKIE['e-blueinfo-lang'] ) {
+    $lang = $_COOKIE['e-blueinfo-lang'];
+}
+
 // set query using default param q (query) or s (wordpress search) or newexpr (metaiah)
 $query = $_GET['s'] . $_GET['q'];
 $query = stripslashes( trim($query) );
@@ -27,6 +31,7 @@ $q = $query;
 $user_filter   = stripslashes($_GET['filter']);
 $community_id  = ( !empty($_GET['community']) ? $_GET['community'] : '' );
 $collection_id = ( !empty($_GET['collection']) ? $_GET['collection'] : '' );
+$output  = ( $_GET['output'] ) ? $_GET['output'] : false;
 $page   = ( !empty($_GET['page']) ? $_GET['page'] : 1 );
 $offset = ( !empty($_GET['offset']) ? $_GET['offset'] : 0 );
 $format = ( !empty($_GET['format']) ? $_GET['format'] : 'json' );
@@ -34,6 +39,7 @@ $sort   = ( !empty($_GET['sort']) ? $order[$_GET['sort']] : 'score desc,da desc'
 $count  = ( !empty($_GET['count']) ? $_GET['count'] : 6 );
 $total  = 0;
 $filter = '';
+$class  = 'cardSingle';
 
 if ($eblueinfo_initial_filter != ''){
     if ($user_filter != ''){
@@ -52,6 +58,11 @@ if ( !empty($collection_id) ) {
         $query = 'col:' . $collection_id . '|*';
     } else {
         $query = '(col:' . $collection_id . '|*) AND ' . $query;
+    }
+
+    if ( $output && 'last_visited' == $output && $_COOKIE['last_visited'] ) {
+        $query = 'id:' . $_COOKIE['last_visited'];
+        $class = 'cardLastVisited';
     }
 }
 
@@ -152,17 +163,19 @@ $pages->paginate($page_url_params);
             </select>
         </div>
     </div>
+    <?php if ( $_COOKIE['userData'] ) : ?>
     <div class="row">
         <div class="col s4 m3 offset-l3 l2 center-align">
-            <div class="blue-grey lighten-4" id="cardSingle"><small>All</small></div>
+            <div class="blue-grey lighten-4" id="cardSingle" onclick="location='<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id; ?>';"><small>All</small></div>
         </div>
         <div class="col s4 m3 l2 center-align">
-            <div class="blue darken-1 white-text" id="cardLastVisited"><small>Last Visited</small></div>
+            <div class="blue darken-1 white-text" id="cardLastVisited" onclick="location='<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id . '&output=last_visited'; ?>';"><small>Last Visited</small></div>
         </div>
         <div class="col s4 m3 l2 center-align">
-            <div class="cyan lighten-3" id="cardVisited"><small>Visted</small></div>
+            <div class="cyan lighten-3" id="cardVisited" onclick="location='<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id . '&output=visited'; ?>';"><small>Visted</small></div>
         </div>
     </div>
+    <?php endif; ?>
 </section>
 
 <?php if ( isset($total) && strval($total) == 0 ) : ?>
@@ -177,10 +190,10 @@ $pages->paginate($page_url_params);
 <section class="container containerAos">
     <div class="row flexContainer">
         <?php foreach ( $docs as $index => $doc ) : $index++; ?>
-            <article class="flexCol1 item cardSingle cardLastVisited cardVisited">
+            <article class="flexCol1 item <?php echo $class; ?>">
                 <div class="row padding3 cardBox">
                     <div class="cardBoxText">
-                        <a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id . '&lang=' . $lang; ?>" onclick="__gaTracker('send','event','Browse','View','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');">
+                        <a class="e-blueinfo-doc" data-docid="<?php echo $doc->id; ?>" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="__gaTracker('send','event','Browse','View','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');">
                             <div class="col s3">
                                 <img src="<?php echo $thumb_service_url . '/' . $doc->id . '/' . $doc->id . '.jpg'; ?>" class="responsive-img" alt="" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'">
                             </div>
@@ -248,17 +261,30 @@ $pages->paginate($page_url_params);
                 alert(msg);
             });
 
-            $('#cardSingle').on("click", function() {
-                $('.load-more').show();
-            });
+            // $('#cardSingle').on("click", function() {
+            //     $('.load-more').show();
+            // });
 
-            $('#cardLastVisited, #cardVisited').on("click", function() {
-                $('.load-more').hide();
-            });
+            // $('#cardLastVisited, #cardVisited').on("click", function() {
+            //     $('.load-more').hide();
+            // });
         });
     })(jQuery);
 </script>
 <!-- ./Load More -->
+<?php endif; ?>
+
+<?php if ( $_COOKIE['userData'] ) : ?>
+<!-- Last Visited -->
+<script type="text/javascript">
+    (function($) { 
+        $( document ).on( "click", ".e-blueinfo-doc", function() {
+            var docid = $( this ).data('docid');
+            $.cookie('last_visited', docid, { path: '/', expires: 365 * 10 });
+        });
+    })(jQuery);
+</script>
+<!-- ./Last Visited -->
 <?php endif; ?>
 
 <!-- Footer -->
