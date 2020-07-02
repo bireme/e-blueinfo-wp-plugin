@@ -58,6 +58,7 @@ $('#radioCategories').click(function(){
   $('#categories').show();
 })
 /********************/
+/*
 $('#cardLastVisited').click(function(){
   $('.cardLastVisited').show();
   $('.cardVisited').hide();
@@ -73,6 +74,7 @@ $('#cardSingle').click(function(){
  $('.cardLastVisited').show();
  $('.cardSingle').show();
 })
+*/
 //  --------------------------------- Cores
 var theme = $.cookie('color'); // carrega cookie da cor
 // Ao clicar Cor Padrão

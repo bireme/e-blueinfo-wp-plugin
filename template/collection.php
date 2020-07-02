@@ -19,6 +19,10 @@ $eblueinfo_addthis_id     = $eblueinfo_config['addthis_profile_id'];
 $site_language = strtolower(get_bloginfo('language'));
 $lang = substr($site_language,0,2);
 
+if ( $_COOKIE['e-blueinfo-lang'] ) {
+    $lang = $_COOKIE['e-blueinfo-lang'];
+}
+
 // set query using default param q (query) or s (wordpress search) or newexpr (metaiah)
 $query = $_GET['s'] . $_GET['q'];
 $query = stripslashes( trim($query) );

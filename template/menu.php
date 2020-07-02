@@ -1,7 +1,6 @@
 <?php
-    global $wp, $services_platform_url;
-    $current_url = home_url( add_query_arg( array(), $wp->request ) );
-    $current_slug = add_query_arg( array(), $wp->request );
+    global $services_platform_url;
+    $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['home_url_' . $lang] : real_site_url();
 ?>
 
 <div class="col s2 m1">
@@ -11,7 +10,7 @@
 			<a href="community.php?"><img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/logoPB.png'; ?>" alt="" class="responsive-img"></a>
 		</div>
 		<?php if ( $_COOKIE['userData'] ) : ?>
-		<li><a href="<?php echo $services_platform_url.'/client/controller/logout/control/business/origin/'.base64_encode($current_url); ?>"><?php _e('Logout', 'e-blueinfo'); ?></a></li>
+		<li><a href="<?php echo $services_platform_url.'/client/controller/logout/control/business/origin/'.base64_encode($home_url); ?>"><?php _e('Logout', 'e-blueinfo'); ?></a></li>
 		<?php else : ?>
 		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'auth/'; ?>"><?php _e('Login', 'e-blueinfo'); ?></a></li>
 		<?php endif; ?>

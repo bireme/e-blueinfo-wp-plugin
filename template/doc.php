@@ -48,6 +48,10 @@ $resource_id = end($explode);
 $site_language = strtolower(get_bloginfo('language'));
 $lang = substr($site_language,0,2);
 
+if ( $_COOKIE['e-blueinfo-lang'] ) {
+    $lang = $_COOKIE['e-blueinfo-lang'];
+}
+
 $eblueinfo_service_request = $eblueinfo_service_url . 'api/bibliographic/?id=' . $resource_id . '&lang=' . $lang;
 
 //print $eblueinfo_service_request;
