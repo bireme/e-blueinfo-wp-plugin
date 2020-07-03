@@ -6,6 +6,11 @@ global $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_plugin_title, 
 
 require_once(EBLUEINFO_PLUGIN_PATH . '/lib/Paginator.php');
 
+if ( $_COOKIE['userData'] ) {
+    $userData = json_decode(base64_decode($_COOKIE['userData']), true);
+    $hash = md5($userData['email']);
+}
+
 $order = array(
         'RELEVANCE' => 'score desc',
         'YEAR_ASC'  => 'publication_year asc',
@@ -245,9 +250,11 @@ $pages->paginate($page_url_params);
 <!-- Last Visited -->
 <script type="text/javascript">
     (function($) { 
-        $( document ).on( "click", ".e-blueinfo-doc", function() {
+        $( document ).on( "mousedown", ".e-blueinfo-doc", function() {
+            var list = new cookieList("visited_<?php echo $hash; ?>");
             var docid = $( this ).data('docid');
-            $.cookie('last_visited', docid, { path: '/', expires: 365 * 10 });
+            $.cookie('last_visited_<?php echo $hash; ?>', docid, { path: '/', expires: 365 * 10 });
+            list.add(docid);
         });
     })(jQuery);
 </script>

@@ -132,6 +132,7 @@ $(function () {
     }) 
 });
 
+/* Main Script */
 $(function () {
     $('.dropdown-language li').on( "click", function(e) {
         var lang = $(this).data('lang');

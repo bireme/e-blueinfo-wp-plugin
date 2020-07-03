@@ -6,6 +6,11 @@ global $wp, $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_plugin_ti
 
 require_once(EBLUEINFO_PLUGIN_PATH . '/lib/Paginator.php');
 
+if ( $_COOKIE['userData'] ) {
+    $userData = json_decode(base64_decode($_COOKIE['userData']), true);
+    $hash = md5($userData['email']);
+}
+
 $order = array(
         'RELEVANCE' => 'score desc',
         'YEAR_ASC'  => 'publication_year asc',
@@ -60,9 +65,28 @@ if ( !empty($collection_id) ) {
         $query = '(col:' . $collection_id . '|*) AND ' . $query;
     }
 
-    if ( $output && 'last_visited' == $output && $_COOKIE['last_visited'] ) {
-        $query = 'id:' . $_COOKIE['last_visited'];
-        $class = 'cardLastVisited';
+    // Last Visited Cookie
+    if ( $output && 'last_visited' == $output ) {
+        $query = '';
+        if ( $_COOKIE['last_visited_'.$hash] ) {
+            $class = 'cardLastVisited';
+            $query = 'id:' . $_COOKIE['last_visited_'.$hash];
+        }
+    }
+    
+    // Visited Cookie
+    if ( $output && 'visited' == $output && $_COOKIE['visited_'.$hash] ) {
+        $query = '';
+        if ( $_COOKIE['visited_'.$hash] ) {
+            $query = '';
+            $count = 10;
+            $class = 'cardVisited';
+            $docs  = explode(',', $_COOKIE['visited_'.$hash]);
+            $docs  = preg_filter('/^/', 'id:', $docs);
+            $docs  = implode(' ', $docs);
+            $query = $docs;
+            unset($docs);
+        }
     }
 }
 
@@ -87,8 +111,12 @@ if ($response){
     // echo "<pre>"; print_r($response_json); echo "</pre>"; die();
     $total = $response_json->response->numFound;
     $start = $response_json->response->start;
-    $docs  = $response_json->response->docs;
     $snippets = $response_json->highlighting;
+
+    $docs  = $response_json->response->docs;
+    if ( $output && 'visited' == $output && $_COOKIE['visited'] ) {
+        $docs = array_reverse($docs);
+    }
 }
 
 $collection_request = $eblueinfo_service_url . 'api/collection/?collection=' . $collection_id . '&format=' . $format . '&lang=' . $lang;
@@ -172,7 +200,7 @@ $pages->paginate($page_url_params);
             <div class="blue darken-1 white-text" id="cardLastVisited" onclick="location='<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id . '&output=last_visited'; ?>';"><small>Last Visited</small></div>
         </div>
         <div class="col s4 m3 l2 center-align">
-            <div class="cyan lighten-3" id="cardVisited" onclick="location='<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id . '&output=visited'; ?>';"><small>Visted</small></div>
+            <div class="cyan lighten-3" id="cardVisited" onclick="location='<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id . '&output=visited'; ?>';"><small>Visited</small></div>
         </div>
     </div>
     <?php endif; ?>
@@ -182,7 +210,11 @@ $pages->paginate($page_url_params);
 <section class="container containerAos">
     <div class="row">
         <div class="card-panel center-align">
+            <?php if ( $output && 'last_visited' == $output || $output && 'visited' == $output ) : ?>
+            <span class="blue-text text-darken-2"><?php _e('No documents visited','e-blueinfo'); ?></span>
+            <?php else : ?>
             <span class="blue-text text-darken-2"><?php _e('No results found','e-blueinfo'); ?></span>
+            <?php endif; ?>
         </div>
     </div>
 </section>
@@ -260,14 +292,6 @@ $pages->paginate($page_url_params);
                 var msg = $('.loadmore-last').text();
                 alert(msg);
             });
-
-            // $('#cardSingle').on("click", function() {
-            //     $('.load-more').show();
-            // });
-
-            // $('#cardLastVisited, #cardVisited').on("click", function() {
-            //     $('.load-more').hide();
-            // });
         });
     })(jQuery);
 </script>
@@ -278,9 +302,11 @@ $pages->paginate($page_url_params);
 <!-- Last Visited -->
 <script type="text/javascript">
     (function($) { 
-        $( document ).on( "click", ".e-blueinfo-doc", function() {
+        $( document ).on( "mousedown", ".e-blueinfo-doc", function() {
+            var list = new cookieList("visited_<?php echo $hash; ?>");
             var docid = $( this ).data('docid');
-            $.cookie('last_visited', docid, { path: '/', expires: 365 * 10 });
+            $.cookie('last_visited_<?php echo $hash; ?>', docid, { path: '/', expires: 365 * 10 });
+            list.add(docid);
         });
     })(jQuery);
 </script>
