@@ -42,7 +42,7 @@ $page   = ( !empty($_GET['page']) ? $_GET['page'] : 1 );
 $offset = ( !empty($_GET['offset']) ? $_GET['offset'] : 0 );
 $format = ( !empty($_GET['format']) ? $_GET['format'] : 'json' );
 $sort   = ( !empty($_GET['sort']) ? $order[$_GET['sort']] : 'score desc,da desc' );
-$count  = ( !empty($_GET['count']) ? $_GET['count'] : 6 );
+$count  = ( !empty($_GET['count']) ? $_GET['count'] : 10 );
 $total  = 0;
 $filter = '';
 $com_name = '-';
@@ -182,14 +182,14 @@ $pages->paginate($page_url_params);
                         <p><b><?php _e('Collections', 'e-blueinfo'); ?>:</b> <br /><?php echo $col_name; ?></p>
                     </div>
                     <div class="col s2 right-align">
-                        <div class="iconActions"><a href="#modal" class="btn-floating waves-effect waves-light blue lightn-3 btn-small modal-trigger" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Search Results','Favorites','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');"><i class="material-icons">star</i></a></div>
+                        <div class="iconActions" data-author="<?php echo $doc->au[0]; ?>"><a href="#modal" class="btn-floating waves-effect waves-light blue lightn-3 btn-small modal-trigger" title="<?php _e('Add to Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Search Results','Favorites','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');"><i class="material-icons">star</i></a></div>
                         <?php if ( isset($doc->ur[0]) ) : ?>
                         <div class="iconActions"><a href="<?php echo $doc->ur[0]; ?>" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Search Results','Full Text','<?php echo $doc->ur[0]; ?>');"><i class="material-icons">visibility</i></a></div>
                         <?php endif; ?>
                     </div>
                     <div class="col s12 blue-grey lighten-5 padding1">
                         <a class="e-blueinfo-doc" data-docid="<?php echo $doc->id; ?>" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="__gaTracker('send','event','Search Results','View','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');">
-                            <p><?php echo $doc->ti[0]; ?></p>
+                            <p class="doc-title"><?php echo $doc->ti[0]; ?></p>
                         </a>
                     </div>
                 </div>
@@ -247,7 +247,7 @@ $pages->paginate($page_url_params);
 <?php endif; ?>
 
 <?php if ( $_COOKIE['userData'] ) : ?>
-<!-- Last Visited -->
+<!-- Visited and Last Visited -->
 <script type="text/javascript">
     (function($) { 
         $( document ).on( "mousedown", ".e-blueinfo-doc", function() {
@@ -258,7 +258,7 @@ $pages->paginate($page_url_params);
         });
     })(jQuery);
 </script>
-<!-- ./Last Visited -->
+<!-- ./Visited and Last Visited -->
 <?php endif; ?>
 
 <!-- Footer -->

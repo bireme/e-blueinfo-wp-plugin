@@ -37,7 +37,8 @@ if(!class_exists('EBlueInfo_Plugin')) {
         private $country_service_url    = 'http://fi-admin-api.bvsalud.org/api/community/get_country_list/?format=json';
         private $infobutton_service_url = 'http://bvsinfobutton.homolog.bvsalud.org';
         private $services_platform_url  = 'https://platserv2.teste.bvsalud.org';
-        private $pdf_service_url        = 'http://basalto01.bireme.br:9292/solr/pdfs/select?fl=id,ti,com,col,ur,tu,fo';
+        private $vhl_search_portal_url  = 'https://pesquisa.bvsalud.org';
+        private $pdf_service_url        = 'http://basalto01.bireme.br:9292/solr/pdfs/select?fl=id,ti,com,col,ur,tu,fo,au';
         // private $pdf_service_url     = 'http://basalto01.bireme.br:9292/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu,fo';
 
         /**
@@ -171,7 +172,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
         }
 
         function theme_redirect() {
-            global $wp, $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_texts, $similar_docs_url, $pdf_service_url, $thumb_service_url, $country_service_url, $infobutton_service_url, $services_platform_url;
+            global $wp, $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_texts, $similar_docs_url, $pdf_service_url, $thumb_service_url, $country_service_url, $infobutton_service_url, $services_platform_url, $vhl_search_portal_url;
             $pagename = '';
             $template = '';
 
@@ -194,14 +195,15 @@ if(!class_exists('EBlueInfo_Plugin')) {
 
             if ( is_404() && $pos_slug !== false ){
 
-                $eblueinfo_service_url = $this->service_url;
-                $eblueinfo_plugin_slug = $this->plugin_slug;
-                $similar_docs_url = $this->similar_docs_url;
-                $pdf_service_url = $this->pdf_service_url;
-                $thumb_service_url = $this->thumb_service_url;
-                $country_service_url = $this->country_service_url;
+                $eblueinfo_service_url  = $this->service_url;
+                $eblueinfo_plugin_slug  = $this->plugin_slug;
+                $similar_docs_url       = $this->similar_docs_url;
+                $pdf_service_url        = $this->pdf_service_url;
+                $thumb_service_url      = $this->thumb_service_url;
+                $country_service_url    = $this->country_service_url;
                 $infobutton_service_url = $this->infobutton_service_url;
-                $services_platform_url = $this->services_platform_url;
+                $services_platform_url  = $this->services_platform_url;
+                $vhl_search_portal_url  = $this->vhl_search_portal_url;
 
                 if ($pagename == $this->plugin_slug
                  || $pagename == $this->plugin_slug . '/doc'
@@ -391,8 +393,8 @@ if(!class_exists('EBlueInfo_Plugin')) {
         }
 
         function template_styles_scripts(){
-            global $eblueinfo_plugin_slug, $polylang, $wp, $wp_styles, $wp_scripts;
-            $home = real_site_url($eblueinfo_plugin_slug);
+            global $eblueinfo_plugin_slug, $services_platform_url, $vhl_search_portal_url, $wp, $wp_styles, $wp_scripts;
+            $site = real_site_url();
             $languages = array();
             $pagename = '';
 
@@ -451,9 +453,20 @@ if(!class_exists('EBlueInfo_Plugin')) {
             wp_enqueue_script('e-blueinfo-main', EBLUEINFO_PLUGIN_URL . 'template/js/main.js', array(), EBLUEINFO_VERSION, true);
             wp_enqueue_script('e-blueinfo-menu', EBLUEINFO_PLUGIN_URL . 'app/js/' . $lang . '/menu.js', array(), EBLUEINFO_VERSION, true);
 
+            wp_localize_script('e-blueinfo-page', 'eblueinfo_script_vars', array(
+                    'lang' => $lang,
+                    'site' => $site,
+                    'portal' => $vhl_search_portal_url,
+                    'servplat' => $services_platform_url,
+                    'fav_doc_success' => 'ADD_TO_COLLECTION_SUCCESS',
+                    'fav_doc_exists' => 'COLLECTION_EXISTS',
+                    'fav_doc_error' => 'ADD_TO_COLLECTION_ERROR'
+                )
+            );
+/*
             if ( $languages ) {
                 wp_localize_script('e-blueinfo-menu', 'eblueinfo_script_vars', array(
-                        'home' => $home,
+                        'home' => $site,
                         'home_label' => __('Home','e-blueinfo'),
                         'lang_label' => __('Languages', 'e-blueinfo'),
                         'languages' => $languages
@@ -461,11 +474,12 @@ if(!class_exists('EBlueInfo_Plugin')) {
                 );
             } else {
                 wp_localize_script('e-blueinfo-page', 'eblueinfo_script_vars', array(
-                        'home' => $home,
+                        'home' => $site,
                         'home_label' => __('Home','e-blueinfo')
                     )
                 );
             }
+*/
         }
 
         function register_settings(){

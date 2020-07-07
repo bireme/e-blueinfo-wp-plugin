@@ -150,35 +150,37 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <section class="container containerAos">
     <div class="row">
         <div class="col s12">
-            <div class="row">
-                <div class="col s6 m4 l3 text-center" data-aos="fade-left">
-                    <img class="thumbnail-doc" src="<?php echo $thumb_service_url . '/' . $doc[0]->id . '/' . $doc[0]->id . '.jpg'; ?>" class="responsive-img" alt="" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'">
+            <article class="doc-detail">
+                <div class="row">
+                    <div class="col s6 m4 l3 text-center" data-aos="fade-left">
+                        <img class="thumbnail-doc responsive-img" src="<?php echo $thumb_service_url . '/' . $doc[0]->id . '/' . $doc[0]->id . '.jpg'; ?>" alt="" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'">
+                    </div>
+                    <div class="col s6 m8 l9 right-align">
+                        <div class="iconActions btn-favorites" data-aos="fade-right" data-aos-delay="300" data-author="<?php echo $author[0]->text; ?>" data-altid="<?php echo $doc[0]->alternate_ids[0]; ?>"><a class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Favorites','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc[0]->id; ?>');"><i class="material-icons">star</i></a></div>
+                        <?php if ( isset($doc[0]->electronic_address[0]->_u) ) : ?>
+                        <div class="iconActions" data-aos="fade-right" data-aos-delay="400"><a id="btShare" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Share', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Share','<?php echo $doc[0]->electronic_address[0]->_u; ?>');"><i class="material-icons">share</i></a></div>
+                        <div class="iconActions" data-aos="fade-right" data-aos-delay="500"><a href="<?php echo $doc[0]->electronic_address[0]->_u; ?>" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Full Text','<?php echo $doc[0]->electronic_address[0]->_u; ?>');"><i class="material-icons">visibility</i></a></div>
+                        <?php endif; ?>
+                    </div>
                 </div>
-                <div class="col s6 m8 l9 right-align">
-                    <div class="iconActions" data-aos="fade-right" data-aos-delay="300"><a href="#modal" class="btn-floating waves-effect waves-light blue lightn-3 btn-small modal-trigger" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Favorites','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc[0]->id; ?>');"><i class="material-icons">star</i></a></div>
-                    <?php if ( isset($doc[0]->electronic_address[0]->_u) ) : ?>
-                    <div class="iconActions" data-aos="fade-right" data-aos-delay="400"><a id="btShare" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Share', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Share','<?php echo $doc[0]->electronic_address[0]->_u; ?>');"><i class="material-icons">share</i></a></div>
-                    <div class="iconActions" data-aos="fade-right" data-aos-delay="500"><a href="<?php echo $doc[0]->electronic_address[0]->_u; ?>" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Full Text','<?php echo $doc[0]->electronic_address[0]->_u; ?>');"><i class="material-icons">visibility</i></a></div>
-                    <?php endif; ?>
+                <div class="divider"></div>
+                <div data-aos="fade-right">
+                    <h5 class="titleDefault"><?php _e('Title', 'e-blueinfo'); ?></h5>
+                    <p class="doc-title"><?php echo $title; ?></p>
+
+                    <h5 class="titleDefault"><?php _e('Author', 'e-blueinfo'); ?></h5>
+                    <p><?php echo $author[0]->text; ?></p>
+
+                    <h5 class="titleDefault"><?php _e('Year', 'e-blueinfo'); ?></h5>
+                    <p><?php echo substr($doc[0]->publication_date_normalized, 0, 4); ?></p>
+
+                    <h5 class="titleDefault"><?php _e('Publisher', 'e-blueinfo'); ?></h5>
+                    <p><?php echo $doc[0]->publisher; ?></p>
+
+                    <h5 class="titleDefault"><?php _e('Abstract', 'e-blueinfo'); ?></h5>
+                    <p><?php echo $abstract; ?></p>
                 </div>
-            </div>
-            <div class="divider"></div>
-            <div data-aos="fade-right">
-                <h5 class="titleDefault"><?php _e('Title', 'e-blueinfo'); ?></h5>
-                <p><?php echo $title; ?></p>
-
-                <h5 class="titleDefault"><?php _e('Author', 'e-blueinfo'); ?></h5>
-                <p><?php echo $author[0]->text; ?></p>
-
-                <h5 class="titleDefault"><?php _e('Year', 'e-blueinfo'); ?></h5>
-                <p><?php echo substr($doc[0]->publication_date_normalized, 0, 4); ?></p>
-
-                <h5 class="titleDefault"><?php _e('Publisher', 'e-blueinfo'); ?></h5>
-                <p><?php echo $doc[0]->publisher; ?></p>
-
-                <h5 class="titleDefault"><?php _e('Abstract', 'e-blueinfo'); ?></h5>
-                <p><?php echo $abstract; ?></p>
-            </div>
+            </article>
         </div>
     </div>
 </section>
@@ -193,7 +195,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <div class="col s12">
             <ul class="collection">
                 <?php foreach ($similar_docs as $similar) : ?>
-                <li class="collection-item"><a href="<?php echo $similar['url'] ?>" target="_blank"><?php echo $similar['title']; ?></li>
+                <li class="collection-item"><a href="<?php echo $similar['url'] ?>" target="_blank"><?php echo $similar['title']; ?></a></li>
                 <?php endforeach; ?>
             </ul>
         </div>

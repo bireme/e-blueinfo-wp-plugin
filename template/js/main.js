@@ -175,3 +175,45 @@ $(function () {
         window.location.href = val;
     });
 });
+
+$('.btn-favorites').on( "click", function(){
+    var lang = eblueinfo_script_vars.lang;
+    var title = $(this).parents('article').find('.doc-title').text();
+    var id = $(this).data('altid');
+    var url = eblueinfo_script_vars.portal+'/portal/resource/'+lang+'/'+id;
+    var source = eblueinfo_script_vars.site;
+    var author = $(this).data('author');
+    author = author.replace(/[^ ]+/i,'');
+
+    var obj = new Object();
+    obj.url = $.trim(url);
+    obj.source = $.trim(source);
+    obj.author = $.trim(author).replace(/\s+/g, " ");
+    obj.title = $.trim(title);
+    obj.id = $.trim(id);
+
+    // alert(JSON.stringify(obj, null, 4)); return false;
+
+    obj.userTK = unescape($.cookie('userTK'));
+    // obj.userTK = decodeURI($.cookie('userTK'));
+
+    if ( obj.userTK == 'undefined' ) {
+        $('#modal').modal('open');
+    } else {
+        $.post(eblueinfo_script_vars.servplat + '/client/controller/servicesplatform/control/business/task/addDoc', obj, function(data){
+            if (isJSON(data)) {
+                response = $.parseJSON(data);
+            } else {
+                response = data;
+            }
+
+            if (data == true) {
+                alert(eblueinfo_script_vars.fav_doc_success);
+            } else if (typeof response == 'object') {
+                alert(eblueinfo_script_vars.fav_doc_exists);
+            } else {
+                alert(eblueinfo_script_vars.fav_doc_error);
+            }
+        });
+    }
+});

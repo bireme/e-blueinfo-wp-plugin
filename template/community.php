@@ -37,7 +37,7 @@ $page   = ( !empty($_GET['page']) ? $_GET['page'] : 1 );
 $offset = ( !empty($_GET['offset']) ? $_GET['offset'] : 0 );
 $format = ( !empty($_GET['format']) ? $_GET['format'] : 'json' );
 $sort   = ( !empty($_GET['sort']) ? $order[$_GET['sort']] : 'created_date desc' );
-$count  = ( !empty($_GET['count']) ? $_GET['count'] : 6 );
+$count  = ( !empty($_GET['count']) ? $_GET['count'] : 10 );
 $total  = 0;
 $filter = '';
 
@@ -56,7 +56,7 @@ $start = ($page * $count) - $count;
 if ( $query ) {
     $eblueinfo_service_request = $eblueinfo_service_url . 'api/bibliographic/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&count=' . $count . '&sort=' . urlencode($sort) . '&lang=' . $lang;
 } else {
-    $eblueinfo_service_request = $eblueinfo_service_url . 'api/community/?country=' . $country . '&format=' . $format . '&offset=' . $offset . '&limit=' . $count . '&lang=' . $lang;
+    $eblueinfo_service_request = $eblueinfo_service_url . 'api/community/?country=' . $country . '&format=' . $format . '&lang=' . $lang;
 }
 
 if ( $user_filter != '' ) {

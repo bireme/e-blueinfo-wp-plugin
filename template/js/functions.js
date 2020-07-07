@@ -97,6 +97,16 @@ function change_code_text(sel){
    $("#labelCode span").text(sel.options[sel.selectedIndex].text);
 }
 
+function isJSON(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+
+    return true;
+}
+
 var cookieList = function(cookieName) {
 // When the cookie is saved the items will be a comma seperated string
 // So we will split the cookie by comma to get the original array

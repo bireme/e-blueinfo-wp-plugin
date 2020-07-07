@@ -41,7 +41,7 @@ $page   = ( !empty($_GET['page']) ? $_GET['page'] : 1 );
 $offset = ( !empty($_GET['offset']) ? $_GET['offset'] : 0 );
 $format = ( !empty($_GET['format']) ? $_GET['format'] : 'json' );
 $sort   = ( !empty($_GET['sort']) ? $order[$_GET['sort']] : 'score desc,da desc' );
-$count  = ( !empty($_GET['count']) ? $_GET['count'] : 6 );
+$count  = ( !empty($_GET['count']) ? $_GET['count'] : 10 );
 $total  = 0;
 $filter = '';
 $class  = 'cardSingle';
@@ -230,12 +230,12 @@ $pages->paginate($page_url_params);
                                 <img src="<?php echo $thumb_service_url . '/' . $doc->id . '/' . $doc->id . '.jpg'; ?>" class="responsive-img" alt="" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'">
                             </div>
                             <div class="col s7">
-                                <?php echo $doc->ti[0]; ?>
+                                <p class="doc-title"><?php echo $doc->ti[0]; ?></p>
                                 <br /><br />
                             </div>
                         </a>
                         <div class="col s2 right-align">
-                            <div class="iconActions"><a href="#modal" class="btn-floating waves-effect waves-light blue lightn-3 btn-small modal-trigger" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Browse','Favorites','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');"><i class="material-icons">star</i></a></div>
+                            <div class="iconActions" data-author="<?php echo $doc->au[0]; ?>"><a href="#modal" class="btn-floating waves-effect waves-light blue lightn-3 btn-small modal-trigger" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Browse','Favorites','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');"><i class="material-icons">star</i></a></div>
                             <?php if ( isset($doc->ur[0]) ) : ?>
                             <div class="iconActions"><a href="<?php echo $doc->ur[0]; ?>" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Browse','Full Text','<?php echo $doc->ur[0]; ?>');"><i class="material-icons">visibility</i></a></div>
                             <?php endif; ?>
@@ -299,7 +299,7 @@ $pages->paginate($page_url_params);
 <?php endif; ?>
 
 <?php if ( $_COOKIE['userData'] ) : ?>
-<!-- Last Visited -->
+<!-- Visited and Last Visited -->
 <script type="text/javascript">
     (function($) { 
         $( document ).on( "mousedown", ".e-blueinfo-doc", function() {
@@ -310,7 +310,7 @@ $pages->paginate($page_url_params);
         });
     })(jQuery);
 </script>
-<!-- ./Last Visited -->
+<!-- ./Visited and Last Visited -->
 <?php endif; ?>
 
 <!-- Footer -->
