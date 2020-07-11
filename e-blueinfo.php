@@ -211,6 +211,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
                  || $pagename == $this->plugin_slug . '/browse'
                  || $pagename == $this->plugin_slug . '/search'
                  || $pagename == $this->plugin_slug . '/country'
+                 || $pagename == $this->plugin_slug . '/favorites'
                  || $pagename == $this->plugin_slug . '/infobutton'
                  || $pagename == $this->plugin_slug . '/infobutton/result'
                  || $pagename == $this->plugin_slug . '/auth') {
@@ -256,6 +257,8 @@ if(!class_exists('EBlueInfo_Plugin')) {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/search.php';
                     } elseif ($pagename == $this->plugin_slug . '/country') {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/country.php';
+                    } elseif ($pagename == $this->plugin_slug . '/favorites') {
+                        $template = EBLUEINFO_PLUGIN_PATH . '/template/favorites.php';
                     } elseif ($pagename == $this->plugin_slug . '/infobutton') {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/infobutton-form.php';
                     } elseif ($pagename == $this->plugin_slug . '/infobutton/result') {

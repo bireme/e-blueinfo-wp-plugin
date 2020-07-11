@@ -11,13 +11,13 @@
 		</div>
 		<?php if ( $_COOKIE['userData'] ) : ?>
 		<li><a href="<?php echo $services_platform_url.'/client/controller/logout/control/business/origin/'.base64_encode($home_url); ?>"><?php _e('Logout', 'e-blueinfo'); ?></a></li>
+		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'favorites/?community=' . $community_id . '&collection=' . $collection_id; ?>"><?php _e('Favorites', 'e-blueinfo'); ?></a></li>
+		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'downloads/?community=' . $community_id . '&collection=' . $collection_id; ?>"><?php _e('Downloads', 'e-blueinfo'); ?></a></li>
 		<?php else : ?>
 		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'auth/'; ?>"><?php _e('Login', 'e-blueinfo'); ?></a></li>
 		<?php endif; ?>
 		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'country/'; ?>"><?php _e('Country', 'e-blueinfo'); ?></a></li>
 		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php _e('Communities', 'e-blueinfo'); ?></a></li>
-		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'favorites/'; ?>"><?php _e('Favorites', 'e-blueinfo'); ?></a></li>
-		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'downloads/'; ?>"><?php _e('Downloads', 'e-blueinfo'); ?></a></li>
 		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php _e('About', 'e-blueinfo'); ?></a></li>
 		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php _e('Help', 'e-blueinfo'); ?></a></li>
 		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'tutorial/'; ?>"><?php _e('Tutorial', 'e-blueinfo'); ?></a></li>
