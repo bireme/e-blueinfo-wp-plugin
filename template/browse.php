@@ -2,7 +2,7 @@
 /*
 Template Name: e-BlueInfo Collection Page
 */
-global $wp, $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_plugin_title, $eblueinfo_texts, $thumb_service_url, $pdf_service_url;
+global $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_plugin_title, $eblueinfo_texts, $thumb_service_url, $pdf_service_url;
 
 require_once(EBLUEINFO_PLUGIN_PATH . '/lib/Paginator.php');
 

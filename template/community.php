@@ -33,6 +33,8 @@ $country = ( !empty($_GET['country']) ? $_GET['country'] : '' );
 $country = ( !empty($_COOKIE['e-blueinfo-country']) ? $_COOKIE['e-blueinfo-country'] : $country );
 
 $user_filter = stripslashes($_GET['filter']);
+$community_id = '';
+$collection_id = '';
 $page   = ( !empty($_GET['page']) ? $_GET['page'] : 1 );
 $offset = ( !empty($_GET['offset']) ? $_GET['offset'] : 0 );
 $format = ( !empty($_GET['format']) ? $_GET['format'] : 'json' );
@@ -82,19 +84,11 @@ if ($response){
     $next  = $response_json->meta->next;
     $community_list = $response_json->objects;
     $community_ids = wp_list_pluck($community_list, 'id');
-    $community_ids = implode(',', $community_ids);
+    $community_id = implode(',', $community_ids);
 }
 
-$params = $count != 2 ? '&count=' . $count : '';
-$params .= !empty($_GET['sort']) ? '&sort=' . $_GET['sort'] : '';
-
-$page_url_params = real_site_url($eblueinfo_plugin_slug) . '?' . $params;
-// $feed_url = real_site_url($eblueinfo_plugin_slug) . 'e-blueinfo-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
 $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['home_url_' . $lang] : real_site_url();
-/*
-$pages = new Paginator($total, $start, $count);
-$pages->paginate($page_url_params);
-*/
+
 ?>
 
 <!-- Header -->
@@ -108,7 +102,7 @@ $pages->paginate($page_url_params);
                 <div class="nav-wrapper">
                     <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Community','Search',document.getElementById('searchBarInput').value);">
                         <div class="input-field">
-                            <input type="hidden" name="community" id="community" value="<?php echo $community_ids; ?>">
+                            <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
                             <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
                             <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
 
@@ -206,37 +200,6 @@ $pages->paginate($page_url_params);
     </div>
 </div>
 <!-- ./Template -->
-
-<?php if ( $next ) : ?>
-<!-- Load More -->
-<div class="load-more col s3">
-    <a href="#" id="loadMore" onclick="return false;"><span class="text"><?php _e('Load More', 'e-blueinfo') ?></span></a>
-    <span class="loadmore-last"><?php _e('No more communities', 'e-blueinfo'); ?></span>
-</div>
-<script type="text/javascript">
-    (function($) { 
-        $(function () {
-            $('.row').loadmore('', {
-                loadingText : '<?php _e('Loading...', 'e-blueinfo') ?>',
-                filterResult: '.row > .item',
-                useExistingButton: '#loadMore',
-                useOffset: true,
-                rowsPerPage: 1,
-                baseOffset: -1,
-                itemSelector: '.image-flip',
-                pageParam : 'offset',
-                pageStartParam: ''
-            });
-
-            $(document).on("loadmore:last", function() {
-                var msg = $('.loadmore-last').text();
-                alert(msg);
-            });
-        });
-    })(jQuery);
-</script>
-<!-- ./Load More -->
-<?php endif; ?>
 
 <!-- Footer -->
 <?php require_once('footer.php'); ?>

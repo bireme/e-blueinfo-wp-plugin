@@ -38,7 +38,7 @@ $country_code = array(
 
 <!-- Template -->
 <h1 class="title"><?php _e('Contextualized Search', 'e-blueinfo'); ?></h1>
-<section id="categories" class="container containerAos">
+<section id="categories" class="container">
     <div class="row">
         <form id="infobutton-form" class="col s12" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>infobutton/result">
             <div class="row">
