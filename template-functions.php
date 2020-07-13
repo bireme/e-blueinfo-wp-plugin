@@ -251,6 +251,40 @@ if ( !function_exists('remove_prefix') ) {
     }
 }
 
+if ( !function_exists('get_abstract') ) {
+    function get_abstract($data, $lang){
+        $bool = false;
+        $abstract = '-';
+
+        if ( $data ) {
+            if ( count($data) > 1 ) {
+                foreach ($data as $key => $value) {
+                    $ab = explode(' ', $value);
+                    $prefix = array_shift($ab);
+                    $prefix = ltrim($prefix, '(');
+                    $prefix = rtrim($prefix, ')');
+
+                    if ( $prefix == $lang ) {
+                        $abstract = $value;
+                        $bool = true;
+                        break;
+                    }
+                }
+
+                if ( !$bool ) {
+                    $abstract = $data[0];
+                    // $abstract = remove_prefix($data[0]);
+                }
+            } else {
+                $abstract = $data[0];
+                // $abstract = remove_prefix($data[0]);
+            }
+        }
+
+        return $abstract;
+    }
+}
+
 if ( !function_exists('cmp') ) {
     function cmp($a, $b) {
         return strcmp($a->name, $b->name);

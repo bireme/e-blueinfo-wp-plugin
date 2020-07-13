@@ -38,7 +38,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
         private $infobutton_service_url = 'http://bvsinfobutton.homolog.bvsalud.org';
         private $services_platform_url  = 'https://platserv2.teste.bvsalud.org';
         private $vhl_search_portal_url  = 'https://pesquisa.bvsalud.org';
-        private $pdf_service_url        = 'http://basalto01.bireme.br:9292/solr/pdfs/select?fl=id,ti,com,col,ur,tu,fo,au';
+        private $pdf_service_url        = 'http://basalto01.bireme.br:9292/solr/pdfs/select?fl=id,ti,com,col,ur,tu,fo,au,ab';
         // private $pdf_service_url     = 'http://basalto01.bireme.br:9292/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu,fo';
 
         /**
@@ -212,6 +212,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
                  || $pagename == $this->plugin_slug . '/search'
                  || $pagename == $this->plugin_slug . '/country'
                  || $pagename == $this->plugin_slug . '/favorites'
+                 || $pagename == $this->plugin_slug . '/visited'
                  || $pagename == $this->plugin_slug . '/infobutton'
                  || $pagename == $this->plugin_slug . '/infobutton/result'
                  || $pagename == $this->plugin_slug . '/auth') {
@@ -259,6 +260,8 @@ if(!class_exists('EBlueInfo_Plugin')) {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/country.php';
                     } elseif ($pagename == $this->plugin_slug . '/favorites') {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/favorites.php';
+                    } elseif ($pagename == $this->plugin_slug . '/visited') {
+                        $template = EBLUEINFO_PLUGIN_PATH . '/template/visited.php';
                     } elseif ($pagename == $this->plugin_slug . '/infobutton') {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/infobutton-form.php';
                     } elseif ($pagename == $this->plugin_slug . '/infobutton/result') {
