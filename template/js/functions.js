@@ -119,14 +119,17 @@ var args = { path: '/', expires: 365 * 10 };
 // While hiding direct access to the declared items array
 return {
     "add": function(val) {
-        if(items.length==10) items.shift();
-        // Add to the items.
-        items.push(val);
-        // Save the items to a cookie.
-        $.cookie(cookieName, items.join(','), args);
+        indx = items.indexOf(val);
+        if(indx==-1){
+            if(items.length==10) items.shift();
+            // Add to the items.
+            items.push(val);
+            // Save the items to a cookie.
+            $.cookie(cookieName, items.join(','), args);
+        }
     },
     "remove": function (val) { 
-        indx = items.indexOf(val); 
+        indx = items.indexOf(val);
         if(indx!=-1) items.splice(indx, 1);
         $.cookie(cookieName, items.join(','), args);        },
     "clear": function() {

@@ -77,7 +77,6 @@ if ($response){
     $start = $response_json->response->start;
     $snippets = $response_json->highlighting;
     $docs  = $response_json->response->docs;
-    $docs = array_reverse($docs);
 }
 
 $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['home_url_' . $lang] : real_site_url();

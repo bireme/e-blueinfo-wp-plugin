@@ -75,7 +75,7 @@ if ( !empty($collection_id) ) {
     }
     
     // Visited Cookie
-    if ( $output && 'visited' == $output && $_COOKIE['visited_'.$hash] ) {
+    if ( $output && 'visited' == $output ) {
         $query = '';
         if ( $_COOKIE['visited_'.$hash] ) {
             $query = '';
@@ -112,11 +112,7 @@ if ($response){
     $total = $response_json->response->numFound;
     $start = $response_json->response->start;
     $snippets = $response_json->highlighting;
-
     $docs  = $response_json->response->docs;
-    if ( $output && 'visited' == $output && $_COOKIE['visited'] ) {
-        $docs = array_reverse($docs);
-    }
 }
 
 $collection_request = $eblueinfo_service_url . 'api/collection/?collection=' . $collection_id . '&format=' . $format . '&lang=' . $lang;

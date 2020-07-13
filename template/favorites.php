@@ -100,7 +100,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <div class="col s10 m11">
             <nav>
                 <div class="nav-wrapper">
-                    <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Community','Search',document.getElementById('searchBarInput').value);">
+                    <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Favorite Documents','Search',document.getElementById('searchBarInput').value);">
                         <div class="input-field">
                             <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
                             <input type="hidden" name="collection" id="collection" value="<?php echo $collection_id; ?>">
@@ -161,7 +161,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
             <article class="flexCol1 item cardSingle">
                 <div class="row padding3 cardBox">
                     <div class="cardBoxText">
-                        <a class="e-blueinfo-doc" data-docid="<?php echo $doc->id; ?>" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="__gaTracker('send','event','Browse','View','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');">
+                        <a class="e-blueinfo-doc" data-docid="<?php echo $doc->id; ?>" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="__gaTracker('send','event','Favorite Documents','View','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');">
                             <div class="col s3">
                                 <img src="<?php echo $thumb_service_url . '/' . $doc->id . '/' . $doc->id . '.jpg'; ?>" class="responsive-img" alt="" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'">
                             </div>
@@ -171,9 +171,8 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                             </div>
                         </a>
                         <div class="col s2 right-align">
-                            <div class="iconActions" data-author="<?php echo $doc->au[0]; ?>"><a href="#modal" class="btn-floating waves-effect waves-light blue lightn-3 btn-small modal-trigger" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Browse','Favorites','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');"><i class="material-icons">star</i></a></div>
                             <?php if ( isset($doc->ur[0]) ) : ?>
-                            <div class="iconActions"><a href="<?php echo $doc->ur[0]; ?>" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Browse','Full Text','<?php echo $doc->ur[0]; ?>');"><i class="material-icons">visibility</i></a></div>
+                            <div class="iconActions"><a href="<?php echo $doc->ur[0]; ?>" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Favorite Documents','Full Text','<?php echo $doc->ur[0]; ?>');"><i class="material-icons">visibility</i></a></div>
                             <?php endif; ?>
                         </div>
                         <div class="col s12 blue-grey lighten-5 padding1 boxCardGray">

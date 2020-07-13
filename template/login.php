@@ -60,10 +60,10 @@
         <br>
         <div class="row">
             <div class="col s6">
-                <a href="<?php echo $this->servplat_domain.'/connector/facebook/?origin='.base64_encode(HTTP_HOST); ?>" class="waves-effect waves-light waves-light btn blue darken-4 bt100"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="<?php echo $services_platform_url.'/connector/facebook/?origin='.base64_encode($current_url); ?>" class="waves-effect waves-light waves-light btn blue darken-4 bt100"><i class="fab fa-facebook-f"></i> Facebook</a>
             </div>
             <div class="col s6 right-align">
-                <a href="<?php echo $this->servplat_domain.'/connector/google/?origin='.base64_encode(HTTP_HOST); ?>" class="waves-effect waves-light waves-light btn red darken-2 bt100"><i class="fab fa-google"></i> Google</a>
+                <a href="<?php echo $services_platform_url.'/connector/google/?origin='.base64_encode($current_url); ?>" class="waves-effect waves-light waves-light btn red darken-2 bt100"><i class="fab fa-google"></i> Google</a>
             </div>
         </div>
     </div>
