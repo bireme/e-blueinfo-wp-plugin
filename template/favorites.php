@@ -34,8 +34,7 @@ $query = $_GET['s'] . $_GET['q'];
 $query = stripslashes( trim($query) );
 
 // set country
-$country = ( !empty($_GET['country']) ? $_GET['country'] : '' );
-$country = ( !empty($_COOKIE['e-blueinfo-country']) ? $_COOKIE['e-blueinfo-country'] : '' );
+$country = ( $_COOKIE['e-blueinfo-country'] ) ? $_COOKIE['e-blueinfo-country'] : '';
 
 $user_filter   = stripslashes($_GET['filter']);
 $community_id  = ( !empty($_GET['community']) ? $_GET['community'] : '' );
@@ -172,11 +171,11 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                         </a>
                         <div class="col s2 right-align">
                             <?php if ( isset($doc->ur[0]) ) : ?>
-                            <div class="iconActions"><a href="<?php echo $doc->ur[0]; ?>" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Favorite Documents','Full Text','<?php echo $doc->ur[0]; ?>');"><i class="material-icons">visibility</i></a></div>
+                            <div class="iconActions"><a href="<?php echo $doc->ur[0]; ?>" data-docid="<?php echo $doc->id; ?>" class="btn-ajax e-blueinfo-doc btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Favorite Documents','Full Text','<?php echo $doc->ur[0]; ?>');"><i class="material-icons">visibility</i></a></div>
                             <?php endif; ?>
                         </div>
                         <div class="col s12 blue-grey lighten-5 padding1 boxCardGray">
-                            <small>PDF</small> | <small>Update: 01/01/2020</small> | <small>Downloads: 0</small>
+                            <small>PDF</small> | <small>Update: 01/01/2020</small> | <small>Downloads: <?php echo $eblueinfo_data['country'.$country]['doc'.$doc->id]; ?></small>
                         </div>
                     </div>
                 </div>

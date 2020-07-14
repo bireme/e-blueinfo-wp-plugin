@@ -176,44 +176,64 @@ $(function () {
     });
 });
 
-$('.btn-favorites').on( "click", function(){
-    var lang = eblueinfo_script_vars.lang;
-    var title = $(this).parents('article').find('.doc-title').text();
-    var id = $(this).data('altid');
-    var url = eblueinfo_script_vars.portal+'/portal/resource/'+lang+'/'+id;
-    var source = eblueinfo_script_vars.site;
-    var author = $(this).data('author');
-    author = author.replace(/[^ ]+/i,'');
+/* Favorite Documents */
+$(function () {
+    $(document).on('click', '.btn-favorites', function(){
+        var lang = eblueinfo_script_vars.lang;
+        var title = $(this).parents('article').find('.doc-title').text();
+        var id = $(this).data('altid');
+        var url = eblueinfo_script_vars.portal+'/portal/resource/'+lang+'/'+id;
+        var source = eblueinfo_script_vars.site;
+        var author = $(this).data('author');
+        author = author.replace(/[^ ]+/i,'');
 
-    var obj = new Object();
-    obj.url = $.trim(url);
-    obj.source = $.trim(source);
-    obj.author = $.trim(author).replace(/\s+/g, " ");
-    obj.title = $.trim(title);
-    obj.id = $.trim(id);
+        var obj = new Object();
+        obj.url = $.trim(url);
+        obj.source = $.trim(source);
+        obj.author = $.trim(author).replace(/\s+/g, " ");
+        obj.title = $.trim(title);
+        obj.id = $.trim(id);
 
-    // alert(JSON.stringify(obj, null, 4)); return false;
+        // alert(JSON.stringify(obj, null, 4)); return false;
 
-    obj.userTK = unescape($.cookie('userTK'));
-    // obj.userTK = decodeURI($.cookie('userTK'));
+        obj.userTK = unescape($.cookie('userTK'));
+        // obj.userTK = decodeURI($.cookie('userTK'));
 
-    if ( obj.userTK == 'undefined' ) {
-        $('#modal').modal('open');
-    } else {
-        $.post(eblueinfo_script_vars.servplat + '/client/controller/servicesplatform/control/business/task/addDoc', obj, function(data){
-            if (isJSON(data)) {
-                response = $.parseJSON(data);
-            } else {
-                response = data;
-            }
+        if ( obj.userTK == 'undefined' ) {
+            $('#modal').modal('open');
+        } else {
+            $.post(eblueinfo_script_vars.servplat + '/client/controller/servicesplatform/control/business/task/addDoc', obj, function(data){
+                if (isJSON(data)) {
+                    response = $.parseJSON(data);
+                } else {
+                    response = data;
+                }
 
-            if (data == true) {
-                alert(eblueinfo_script_vars.fav_doc_success);
-            } else if (typeof response == 'object') {
-                alert(eblueinfo_script_vars.fav_doc_exists);
-            } else {
-                alert(eblueinfo_script_vars.fav_doc_error);
-            }
+                if (data == true) {
+                    alert(eblueinfo_script_vars.fav_doc_success);
+                } else if (typeof response == 'object') {
+                    alert(eblueinfo_script_vars.fav_doc_exists);
+                } else {
+                    alert(eblueinfo_script_vars.fav_doc_error);
+                }
+            });
+        }
+    });
+});
+
+/* Ajax Plugin Data */
+$(function () {
+    $(document).on('click', '.btn-ajax', function(){
+        var docid = $(this).data('docid');
+        $.ajax({ 
+            type: "POST",
+            url: eblueinfo_script_vars.ajaxurl,
+            data:{
+                action:'update_document_views',
+                docid: docid
+            },
+            // success:function(result){ console.log(result); },
+            // error:function(error){ console.log(error); }
         });
-    }
+    });
 });

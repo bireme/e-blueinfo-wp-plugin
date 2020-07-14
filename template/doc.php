@@ -25,6 +25,7 @@ if ( array_key_exists( 'query', $path ) ) {
     }
 }
 */
+
 $filter = '';
 $user_filter = stripslashes($output['filter']);
 if ($eblueinfo_initial_filter != ''){
@@ -159,7 +160,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                         <div class="iconActions btn-favorites" data-aos="fade-right" data-aos-delay="300" data-author="<?php echo $author[0]->text; ?>" data-altid="<?php echo $doc[0]->alternate_ids[0]; ?>"><a class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Favorites','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc[0]->id; ?>');"><i class="material-icons">star</i></a></div>
                         <?php if ( isset($doc[0]->electronic_address[0]->_u) ) : ?>
                         <div class="iconActions" data-aos="fade-right" data-aos-delay="400"><a id="btShare" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Share', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Share','<?php echo $doc[0]->electronic_address[0]->_u; ?>');"><i class="material-icons">share</i></a></div>
-                        <div class="iconActions" data-aos="fade-right" data-aos-delay="500"><a href="<?php echo $doc[0]->electronic_address[0]->_u; ?>" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Full Text','<?php echo $doc[0]->electronic_address[0]->_u; ?>');"><i class="material-icons">visibility</i></a></div>
+                        <div class="iconActions" data-aos="fade-right" data-aos-delay="500"><a href="<?php echo $doc[0]->electronic_address[0]->_u; ?>" data-docid="<?php echo $doc[0]->id; ?>" class="btn-ajax btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Full Text','<?php echo $doc[0]->electronic_address[0]->_u; ?>');"><i class="material-icons">visibility</i></a></div>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -253,6 +254,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <script type="text/javascript">addthis.init();</script>
     </div>
 </div>
+
 <script type="text/javascript">
     (function($) { 
         $(function () {

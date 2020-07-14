@@ -39,7 +39,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
         private $services_platform_url  = 'https://platserv2.teste.bvsalud.org';
         private $vhl_search_portal_url  = 'https://pesquisa.bvsalud.org';
         private $pdf_service_url        = 'http://basalto01.bireme.br:9292/solr/pdfs/select?fl=id,ti,com,col,ur,tu,fo,au,ab';
-        // private $pdf_service_url     = 'http://basalto01.bireme.br:9292/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu,fo';
+        // private $pdf_service_url     = 'http://basalto01.bireme.br:9292/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu,fo,au,ab';
 
         /**
          * Construct the plugin object
@@ -57,6 +57,8 @@ if(!class_exists('EBlueInfo_Plugin')) {
             add_action( 'wp_loaded', array(&$this, 'plugin_page_redirect') );
             add_action( 'wp_footer', array(&$this, 'show_feedback_tab') );
             add_action( 'wp_enqueue_scripts', array(&$this, 'template_styles_scripts'), 20 );
+            add_action( 'wp_ajax_update_document_views', array($this, 'update_document_views'));
+            add_action( 'wp_ajax_nopriv_update_document_views', array($this, 'update_document_views'));
 
             add_filter( 'get_search_form', array(&$this, 'search_form') );
             add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array(&$this, 'settings_link') );
@@ -460,6 +462,8 @@ if(!class_exists('EBlueInfo_Plugin')) {
             wp_enqueue_script('e-blueinfo-menu', EBLUEINFO_PLUGIN_URL . 'app/js/' . $lang . '/menu.js', array(), EBLUEINFO_VERSION, true);
 
             wp_localize_script('e-blueinfo-page', 'eblueinfo_script_vars', array(
+                    'ajaxurl' => admin_url( 'admin-ajax.php' ),
+                    'ajaxnonce' => wp_create_nonce( 'ajax_post_validation' ),
                     'lang' => $lang,
                     'site' => $site,
                     'portal' => $vhl_search_portal_url,
@@ -490,6 +494,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
 
         function register_settings(){
             register_setting('e-blueinfo-settings-group', 'eblueinfo_config');
+            register_setting('e-blueinfo-settings-group', 'eblueinfo_data');
         }
 
         function settings_link($links) {
@@ -502,10 +507,10 @@ if(!class_exists('EBlueInfo_Plugin')) {
             global $wp;
 
             $pagename = $wp->request;
-            $plugin_config = get_option('eblueinfo_config');
+            $eblueinfo_config = get_option('eblueinfo_config');
 
             // check if is defined GA code and pagename starts with plugin slug
-            if ($plugin_config['google_analytics_code'] != ''
+            if ($eblueinfo_config['google_analytics_code'] != ''
                 && strpos($pagename, $this->plugin_slug) === 0) {
 
         ?>
@@ -514,7 +519,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
                 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
-            __gaTracker('create', '<?php echo $plugin_config['google_analytics_code']; ?>', 'auto');
+            __gaTracker('create', '<?php echo $eblueinfo_config['google_analytics_code']; ?>', 'auto');
             __gaTracker('send', 'pageview');
         </script>
         <?php
@@ -552,6 +557,24 @@ if(!class_exists('EBlueInfo_Plugin')) {
             }
 
             return $classes;
+        }
+
+        function update_document_views(){
+            if ( $_COOKIE['e-blueinfo-country'] ) {
+                $eblueinfo_data = get_option('eblueinfo_data');
+                $country = $_COOKIE['e-blueinfo-country'];
+                $docid = $_POST['docid'];
+                $doc = $eblueinfo_data['country'.$country]['doc'.$docid];
+
+                if ( $doc ) {
+                    $eblueinfo_data['country'.$country]['doc'.$docid] = $doc + 1;
+                } else {
+                    $eblueinfo_data['country'.$country]['doc'.$docid] = 1;
+                }
+
+                update_option('eblueinfo_data', $eblueinfo_data);
+                wp_die();
+            }
         }
 
     }

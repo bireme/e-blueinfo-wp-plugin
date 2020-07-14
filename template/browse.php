@@ -17,6 +17,7 @@ $order = array(
         'YEAR_DESC' => 'publication_year desc'
     );
 
+$eblueinfo_data           = get_option('eblueinfo_data');
 $eblueinfo_config         = get_option('eblueinfo_config');
 $eblueinfo_initial_filter = $eblueinfo_config['initial_filter'];
 $eblueinfo_addthis_id     = $eblueinfo_config['addthis_profile_id'];
@@ -32,6 +33,9 @@ if ( $_COOKIE['e-blueinfo-lang'] ) {
 $query = $_GET['s'] . $_GET['q'];
 $query = stripslashes( trim($query) );
 $q = $query;
+
+// set country
+$country = ( $_COOKIE['e-blueinfo-country'] ) ? $_COOKIE['e-blueinfo-country'] : '';
 
 $user_filter   = stripslashes($_GET['filter']);
 $community_id  = ( !empty($_GET['community']) ? $_GET['community'] : '' );
@@ -233,11 +237,11 @@ $pages->paginate($page_url_params);
                         <div class="col s2 right-align">
                             <div class="iconActions" data-author="<?php echo $doc->au[0]; ?>"><a href="#modal" class="btn-floating waves-effect waves-light blue lightn-3 btn-small modal-trigger" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Browse','Favorites','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');"><i class="material-icons">star</i></a></div>
                             <?php if ( isset($doc->ur[0]) ) : ?>
-                            <div class="iconActions"><a href="<?php echo $doc->ur[0]; ?>" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Browse','Full Text','<?php echo $doc->ur[0]; ?>');"><i class="material-icons">visibility</i></a></div>
+                            <div class="iconActions"><a href="<?php echo $doc->ur[0]; ?>" data-docid="<?php echo $doc->id; ?>" class="btn-ajax e-blueinfo-doc btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Browse','Full Text','<?php echo $doc->ur[0]; ?>');"><i class="material-icons">visibility</i></a></div>
                             <?php endif; ?>
                         </div>
                         <div class="col s12 blue-grey lighten-5 padding1 boxCardGray">
-                            <small>PDF</small> | <small>Update: 01/01/2020</small> | <small>Downloads: 0</small>
+                            <small>PDF</small> | <small>Update: 01/01/2020</small> | <small>Downloads: <?php echo $eblueinfo_data['country'.$country]['doc'.$doc->id]; ?></small>
                         </div>
                     </div>
                 </div>
