@@ -196,7 +196,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <div class="col s12">
             <ul class="collection">
                 <?php foreach ($similar_docs as $similar) : ?>
-                <li class="collection-item"><a href="<?php echo $similar['url'] ?>" target="_blank"><?php echo $similar['title']; ?></a></li>
+                <li class="collection-item"><a href="<?php echo $similar['url']; ?>" target="_blank" onclick="__gaTracker('send','event','Document','Similar','<?php echo $similar['url']; ?>');"><?php echo $similar['title']; ?></a></li>
                 <?php endforeach; ?>
             </ul>
         </div>
