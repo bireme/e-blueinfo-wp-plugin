@@ -106,6 +106,15 @@ if ($response){
     }
 }
 
+$media_type_texts = array(
+    'pdf'   => __('PDF','e-blueinfo'),
+    'video' => __('Video','e-blueinfo'),
+    'audio' => __('Audio','e-blueinfo'),
+    'ppt'   => __('PPT','e-blueinfo'),
+    'image' => __('Image','e-blueinfo'),
+    'link'  => __('Link','e-blueinfo')
+);
+
 $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['home_url_' . $lang] : real_site_url();
 
 ?>
@@ -194,7 +203,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                             <?php endif; ?>
                         </div>
                         <div class="col s12 blue-grey lighten-5 padding1 boxCardGray">
-                            <small>PDF</small> | <small>Update: 01/01/2020</small> | <small>Downloads: <?php echo $eblueinfo_data['country'.$country]['doc'.$doc->id]; ?></small>
+                            <small><?php echo $media_type_texts[$doc->mt]; ?></small> | <small>Update: 01/01/2020</small> | <small>Downloads: <?php echo $eblueinfo_data['country'.$country]['doc'.$doc->id]; ?></small>
                         </div>
                     </div>
                 </div>

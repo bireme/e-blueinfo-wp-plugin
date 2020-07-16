@@ -139,16 +139,17 @@ if ($response){
     // echo "<pre>"; print_r($collection); echo "</pre>"; die();
 }
 
-$params = $count != 2 ? '&count=' . $count : '';
-$params .= !empty($_GET['sort']) ? '&sort=' . $_GET['sort'] : '';
+$media_type_texts = array(
+    'pdf'   => __('PDF','e-blueinfo'),
+    'video' => __('Video','e-blueinfo'),
+    'audio' => __('Audio','e-blueinfo'),
+    'ppt'   => __('PPT','e-blueinfo'),
+    'image' => __('Image','e-blueinfo'),
+    'link'  => __('Link','e-blueinfo')
+);
 
-$page_url_params = real_site_url($eblueinfo_plugin_slug) . 'browse/?collection=' . $collection_id . $params;
-// $feed_url = real_site_url($eblueinfo_plugin_slug) . 'e-blueinfo-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
 $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['home_url_' . $lang] : real_site_url();
-/*
-$pages = new Paginator($total, $start, $count);
-$pages->paginate($page_url_params);
-*/
+
 ?>
 
 <!-- Header -->
@@ -252,7 +253,7 @@ $pages->paginate($page_url_params);
                             <?php endif; ?>
                         </div>
                         <div class="col s12 blue-grey lighten-5 padding1 boxCardGray">
-                            <small>PDF</small> | <small>Update: 01/01/2020</small> | <small>Downloads: <?php echo $eblueinfo_data['country'.$country]['doc'.$doc->id]; ?></small>
+                            <small><?php echo $media_type_texts[$doc->mt]; ?></small> | <small>Update: 01/01/2020</small> | <small>Downloads: <?php echo $eblueinfo_data['country'.$country]['doc'.$doc->id]; ?></small>
                         </div>
                     </div>
                 </div>
