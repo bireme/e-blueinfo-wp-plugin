@@ -171,7 +171,7 @@ $(function () {
         var country = $('div.countries:visible select, div.countries-list select');
         var data = country.find('option:selected').data('country');
         var val = country.find('option:selected').val();
-        setCookie('e-blueinfo-country', data);
+        $.cookie('e-blueinfo-country', data, { path: '/', expires: 365 * 10 });
         window.location.href = val;
     });
 });
@@ -236,4 +236,30 @@ $(function () {
             // error:function(error){ console.log(error); }
         });
     });
+});
+
+/* Filter by information source */
+$('select.info-source').on( "change", function(e) {
+    var _is    = $(this).val();
+    var _mt    = getUrlParam('mt') ? getUrlParam('mt') : '';
+    var col    = getUrlParam('collection') ? getUrlParam('collection') : '';
+    var com    = getUrlParam('community') ? getUrlParam('community') : '';
+    var origin = window.location.origin;
+    var path   = window.location.pathname;
+    var href   = origin+path+'?community='+com+'&collection='+col+'&is='+_is+'&mt='+_mt;
+
+    window.location.href = href;
+});
+
+/* Filter by media type */
+$('select.media-type').on( "change", function(e) {
+    var _mt    = $(this).val();
+    var _is    = getUrlParam('is') ? getUrlParam('is') : '';
+    var col    = getUrlParam('collection') ? getUrlParam('collection') : '';
+    var com    = getUrlParam('community') ? getUrlParam('community') : '';
+    var origin = window.location.origin;
+    var path   = window.location.pathname;
+    var href   = origin+path+'?community='+com+'&collection='+col+'&is='+_is+'&mt='+_mt;
+
+    window.location.href = href;
 });

@@ -38,8 +38,8 @@ if(!class_exists('EBlueInfo_Plugin')) {
         private $infobutton_service_url = 'http://bvsinfobutton.homolog.bvsalud.org';
         private $services_platform_url  = 'https://platserv2.teste.bvsalud.org';
         private $vhl_search_portal_url  = 'https://pesquisa.bvsalud.org';
-        private $pdf_service_url        = 'http://basalto01.bireme.br:9292/solr/pdfs/select?fl=id,ti,com,col,ur,tu,fo,au,ab';
-        // private $pdf_service_url     = 'http://basalto01.bireme.br:9292/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu,fo,au,ab';
+        private $pdf_service_url        = 'http://basalto01.bireme.br:9293/solr/pdfs/select?fl=id,ti,com,col,ur,tu,fo,au,ab,mt,is';
+        // private $pdf_service_url     = 'http://basalto01.bireme.br:9293/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu,fo,au,ab,mt,is';
 
         /**
          * Construct the plugin object

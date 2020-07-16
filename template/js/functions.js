@@ -107,6 +107,21 @@ function isJSON(str) {
     return true;
 }
 
+function getUrlParam(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
+
 var cookieList = function(cookieName) {
 // When the cookie is saved the items will be a comma seperated string
 // So we will split the cookie by comma to get the original array

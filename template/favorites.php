@@ -39,6 +39,8 @@ $country = ( $_COOKIE['e-blueinfo-country'] ) ? $_COOKIE['e-blueinfo-country'] :
 $user_filter   = stripslashes($_GET['filter']);
 $community_id  = ( !empty($_GET['community']) ? $_GET['community'] : '' );
 $collection_id = ( !empty($_GET['collection']) ? $_GET['collection'] : '' );
+$info_source = ( $_GET['is'] ) ? $_GET['is'] : '';
+$media_type  = ( $_GET['mt'] ) ? $_GET['mt'] : '';
 $page   = ( !empty($_GET['page']) ? $_GET['page'] : 1 );
 $offset = ( !empty($_GET['offset']) ? $_GET['offset'] : 0 );
 $format = ( !empty($_GET['format']) ? $_GET['format'] : 'json' );
@@ -58,6 +60,24 @@ if ($eblueinfo_initial_filter != ''){
 }
 
 $start = ($page * $count) - $count;
+
+// Information Source filter
+if ( $info_source ) {
+    if ( empty($query) ) {
+        $query = 'is:' . $info_source;
+    } else {
+        $query = 'is:' . $info_source . ' AND ' . $query;
+    }
+}
+
+// Media Type filter
+if ( $media_type ) {
+    if ( empty($query) ) {
+        $query = 'mt:' . $media_type;
+    } else {
+        $query = 'mt:' . $media_type . ' AND ' . $query;
+    }
+}
 
 $eblueinfo_service_request = $services_platform_url . '/client/controller/api/favorites/?source=e-blueinfo&userID='.$userID;
 $response = @file_get_contents($eblueinfo_service_request);
@@ -124,22 +144,21 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <section class="container">
     <div class="row">
         <div class="col s12 m6">
-            <select class="center-align">
-                <option value="All" selected>All information sources (<?php echo $total; ?>)</option>
-                <option value="Option 1">Option 1</option>
-                <option value="Option 2">Option 2</option>
-                <option value="Option 3">Option 3</option>
+            <select class="info-source center-align">
+                <option value=""><?php _e('All information sources','e-blueinfo'); ?> <?php if ( empty($info_source) ) { echo '('.$total.')'; } ?></option>
+                <option value="biblio" <?php if ( 'biblio' == $info_source ) { echo 'selected'; } ?>><?php _e('Bibliographic','e-blueinfo'); ?> <?php if ( 'biblio' == $info_source ) { echo '('.$total.')'; } ?></option>
+                <option value="leisref" <?php if ( 'leisref' == $info_source ) { echo 'selected'; } ?>><?php _e('Legislation','e-blueinfo'); ?> <?php if ( 'leisref' == $info_source ) { echo '('.$total.')'; } ?></option>
             </select>
         </div>
         <div class="col s12 m6">
-            <select class="center-align">
-                <option value="All" selected>All media</option>
-                <option value="PDF">PDF</option>
-                <option value="Video">Video</option>
-                <option value="Audio">Audio</option>
-                <option value="PPT">PPT</option>
-                <option value="Image">Imagem</option>
-                <option value="Link">Link</option>
+            <select class="media-type center-align">
+                <option value=""><?php _e('All media','e-blueinfo'); ?></option>
+                <option value="pdf" <?php if ( 'pdf' == $media_type ) { echo 'selected'; } ?>><?php _e('PDF','e-blueinfo'); ?></option>
+                <option value="video" <?php if ( 'video' == $media_type ) { echo 'selected'; } ?>><?php _e('Video','e-blueinfo'); ?></option>
+                <option value="audio" <?php if ( 'audio' == $media_type ) { echo 'selected'; } ?>><?php _e('Audio','e-blueinfo'); ?></option>
+                <option value="ppt" <?php if ( 'ppt' == $media_type ) { echo 'selected'; } ?>><?php _e('PPT','e-blueinfo'); ?></option>
+                <option value="image" <?php if ( 'image' == $media_type ) { echo 'selected'; } ?>><?php _e('Image','e-blueinfo'); ?></option>
+                <option value="link" <?php if ( 'link' == $media_type ) { echo 'selected'; } ?>><?php _e('Link','e-blueinfo'); ?></option>
             </select>
         </div>
     </div>
