@@ -30,6 +30,9 @@ if ( $_COOKIE['e-blueinfo-lang'] ) {
 $query = $_GET['s'] . $_GET['q'];
 $query = stripslashes( trim($query) );
 
+// set country
+$country = ( $_COOKIE['e-blueinfo-country'] ) ? $_COOKIE['e-blueinfo-country'] : '';
+
 $user_filter   = stripslashes($_GET['filter']);
 $community_id  = ( !empty($_GET['community']) ? $_GET['community'] : '' );
 $collection_id = ( !empty($_GET['collection']) ? $_GET['collection'] : '' );
@@ -88,7 +91,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <div class="col s10 m11">
             <nav>
                 <div class="nav-wrapper">
-                    <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Visited Documents','Search',document.getElementById('searchBarInput').value);">
+                    <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Visited Documents','Search','<?php echo $countries[$country]; ?>|'+document.getElementById('searchBarInput').value);">
                         <div class="input-field">
                             <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
                             <input type="hidden" name="collection" id="collection" value="<?php echo $collection_id; ?>">
@@ -125,12 +128,12 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
             <article class="col s12" data-aos="fade-left">
                 <div class="card cardSingle">
                     <div class="card-content">
-                        <b><a class="doc-title" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="__gaTracker('send','event','Visited Documents','View','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');"><?php echo $doc->ti[0]; ?></a></b> <br />
+                        <b><a class="doc-title" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="__gaTracker('send','event','Visited Documents','View','<?php echo $countries[$country].'|'.$doc->ti[0]; ?>');"><?php echo $doc->ti[0]; ?></a></b> <br />
                         <p><small><?php echo short_string(get_abstract($doc->ab, $lang)); ?></small></p> <br />
 
-                        <a href="#modal" class="btn-floating waves-effect waves-light blue lightn-3 btn-small modal-trigger" title="<?php _e('Favorites', 'e-blueinfo'); ?>" data-author="<?php echo $doc->au[0]; ?>" onclick="__gaTracker('send','event','Visited Documents','Favorites','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');"><i class="material-icons">star</i></a>
+                        <a href="#modal" class="btn-floating waves-effect waves-light blue lightn-3 btn-small modal-trigger" title="<?php _e('Favorites', 'e-blueinfo'); ?>" data-author="<?php echo $doc->au[0]; ?>" onclick="__gaTracker('send','event','Visited Documents','Favorites','<?php echo $countries[$country].'|'.$doc->ti[0]; ?>');"><i class="material-icons">star</i></a>
                         <?php if ( isset($doc->ur[0]) ) : ?>
-                        <a href="<?php echo $doc->ur[0]; ?>" data-docid="<?php echo $doc->id; ?>" class="btn-ajax btn-floating waves-effect waves-light blue lightn-3 waves-light btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Visited Documents','Full Text','<?php echo $doc->ur[0]; ?>');"><i class="material-icons">visibility</i></a>
+                        <a href="<?php echo $doc->ur[0]; ?>" data-docid="<?php echo $doc->id; ?>" class="btn-ajax btn-floating waves-effect waves-light blue lightn-3 waves-light btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Visited Documents','Full Text','<?php echo $countries[$country].'|'.$doc->ti[0]; ?>');"><i class="material-icons">visibility</i></a>
                         <?php endif; ?>
                     </div>
                 </div>

@@ -38,6 +38,9 @@ if ($eblueinfo_initial_filter != ''){
     $filter = $user_filter;
 }
 
+// set country
+$country = ( $_COOKIE['e-blueinfo-country'] ) ? $_COOKIE['e-blueinfo-country'] : '';
+
 $community_id  = ( !empty($_GET['community']) ? $_GET['community'] : NULL );
 $collection_id = ( !empty($_GET['collection']) ? $_GET['collection'] : NULL );
 $count  = ( !empty($_GET['count']) ? $_GET['count'] : 6 );
@@ -127,7 +130,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <div class="col s10 m11">
             <nav>
                 <div class="nav-wrapper">
-                    <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Document','Search',document.getElementById('searchBarInput').value);">
+                    <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Document','Search','<?php echo $countries[$country]; ?>|'+document.getElementById('searchBarInput').value);">
                         <div class="input-field">
                             <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
                             <input type="hidden" name="collection" id="collection" value="<?php echo $collection_id; ?>">
@@ -157,10 +160,10 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                         <img class="thumbnail-doc responsive-img" src="<?php echo $thumb_service_url . '/' . $doc[0]->id . '/' . $doc[0]->id . '.jpg'; ?>" alt="" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'">
                     </div>
                     <div class="col s6 m8 l9 right-align">
-                        <div class="iconActions btn-favorites" data-aos="fade-right" data-aos-delay="300" data-author="<?php echo $author[0]->text; ?>" data-altid="<?php echo $doc[0]->alternate_ids[0]; ?>"><a class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Favorites','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc[0]->id; ?>');"><i class="material-icons">star</i></a></div>
+                        <div class="iconActions btn-favorites" data-aos="fade-right" data-aos-delay="300" data-author="<?php echo $author[0]->text; ?>" data-altid="<?php echo $doc[0]->alternate_ids[0]; ?>"><a class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Favorites','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">star</i></a></div>
                         <?php if ( isset($doc[0]->electronic_address[0]->_u) ) : ?>
-                        <div class="iconActions" data-aos="fade-right" data-aos-delay="400"><a id="btShare" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Share', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Share','<?php echo $doc[0]->electronic_address[0]->_u; ?>');"><i class="material-icons">share</i></a></div>
-                        <div class="iconActions" data-aos="fade-right" data-aos-delay="500"><a href="<?php echo $doc[0]->electronic_address[0]->_u; ?>" data-docid="<?php echo $doc[0]->id; ?>" class="btn-ajax btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Full Text','<?php echo $doc[0]->electronic_address[0]->_u; ?>');"><i class="material-icons">visibility</i></a></div>
+                        <div class="iconActions" data-aos="fade-right" data-aos-delay="400"><a id="btShare" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Share', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Share','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">share</i></a></div>
+                        <div class="iconActions" data-aos="fade-right" data-aos-delay="500"><a href="<?php echo $doc[0]->electronic_address[0]->_u; ?>" data-docid="<?php echo $doc[0]->id; ?>" class="btn-ajax btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Full Text','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">visibility</i></a></div>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -196,7 +199,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <div class="col s12">
             <ul class="collection">
                 <?php foreach ($similar_docs as $similar) : ?>
-                <li class="collection-item"><a href="<?php echo $similar['url']; ?>" target="_blank" onclick="__gaTracker('send','event','Document','Similar','<?php echo $similar['url']; ?>');"><?php echo $similar['title']; ?></a></li>
+                <li class="collection-item"><a href="<?php echo $similar['url']; ?>" target="_blank" onclick="__gaTracker('send','event','Document','Similar','<?php echo $countries[$country].'|'.$similar['title']; ?>');"><?php echo $similar['title']; ?></a></li>
                 <?php endforeach; ?>
             </ul>
         </div>

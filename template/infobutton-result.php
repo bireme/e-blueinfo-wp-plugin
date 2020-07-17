@@ -8,8 +8,10 @@ global $infobutton_service_url;
 $params = http_build_query($_GET);
 $query = str_replace('_', '.', $params);
 
-$infobutton_service_request = $infobutton_service_url . '/infobutton/search?' . $query . '&knowledgeResponseType=application/json';
+// set country
+$country = ( $_COOKIE['e-blueinfo-country'] ) ? $_COOKIE['e-blueinfo-country'] : '';
 
+$infobutton_service_request = $infobutton_service_url . '/infobutton/search?' . $query . '&knowledgeResponseType=application/json';
 $response = @file_get_contents($infobutton_service_request);
 if ($response){
     $response_json = json_decode($response);
@@ -45,7 +47,7 @@ if ($response){
 <section id="categories" class="container">
     <ul class="collection">
         <?php foreach ( $docs as $index => $doc ) : $index++; ?>
-        <li class="collection-item"><?php echo $index; ?> - <a href="<?php echo $doc->link->href; ?>" target="_blank" onclick="__gaTracker('send','event','InfoButton','View','<?php echo $doc->link->href; ?>');"><?php echo $doc->title->_value; ?></a></li>
+        <li class="collection-item"><?php echo $index; ?> - <a href="<?php echo $doc->link->href; ?>" target="_blank" onclick="__gaTracker('send','event','InfoButton','View','<?php echo $countries[$country].'|'.$doc->title->_value; ?>');"><?php echo $doc->title->_value; ?></a></li>
         <?php endforeach; ?>
     </ul>
 </section>

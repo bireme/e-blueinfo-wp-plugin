@@ -117,6 +117,17 @@ if(!class_exists('EBlueInfo_Plugin')) {
                 $this->plugin_slug = $eblueinfo_config['plugin_slug'];
             }
 
+            $countries = $eblueinfo_config['country_data'];
+            if ( !$countries ) {
+                $response = @file_get_contents($this->country_service_url);
+                if ($response){
+                    $response_json = json_decode($response);
+                    $countries = normalize_country_object($response_json, 'en');
+                    $eblueinfo_config['country_data'] = $countries;
+                    update_option('eblueinfo_config', $eblueinfo_config);
+                }
+            }
+
             // check if request contains plugin slug string
             $pos_slug = strpos($_SERVER['REQUEST_URI'], $this->plugin_slug);
 
@@ -175,8 +186,13 @@ if(!class_exists('EBlueInfo_Plugin')) {
 
         function theme_redirect() {
             global $wp, $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_texts, $similar_docs_url, $pdf_service_url, $thumb_service_url, $country_service_url, $infobutton_service_url, $services_platform_url, $vhl_search_portal_url;
+
             $pagename = '';
             $template = '';
+            
+            // country data
+            $eblueinfo_config = get_option('eblueinfo_config');
+            $countries = $eblueinfo_config['country_data'];
 
             $site_language = strtolower(get_bloginfo('language'));
             $lang = substr($site_language,0,2);

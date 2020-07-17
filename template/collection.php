@@ -25,6 +25,9 @@ if ( $_COOKIE['e-blueinfo-lang'] ) {
 $query = $_GET['s'] . $_GET['q'];
 $query = stripslashes( trim($query) );
 
+// set country
+$country = ( $_COOKIE['e-blueinfo-country'] ) ? $_COOKIE['e-blueinfo-country'] : '';
+
 $user_filter = stripslashes($_GET['filter']);
 $community_id = ( !empty($_GET['community']) ? $_GET['community'] : '' );
 $collection_id = '';
@@ -109,7 +112,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <div class="col s10 m11">
             <nav>
                 <div class="nav-wrapper">
-                    <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Collection','Search',document.getElementById('searchBarInput').value);">
+                    <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Collection','Search','<?php echo $countries[$country]; ?>|'+document.getElementById('searchBarInput').value);">
                         <div class="input-field">
                             <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
                             <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
@@ -171,7 +174,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <?php foreach ( $categories as $index => $collection) : $index++; ?>
         <article class="col s12">
             <div class="card cardSingle">
-                <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>" onclick="__gaTracker('send','event','Collection','View','<?php echo $collection->name; ?>');">
+                <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>" onclick="__gaTracker('send','event','Collection','View','<?php echo $countries[$country].'|'.$collection->name; ?>');">
                     <div class="card-content">
                         <b><?php echo $collection->name; ?></b> <br />
                         <p><small><?php echo $collection->description; ?></small></p>
@@ -194,7 +197,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <?php foreach ( $themes as $index => $collection) : $index++; ?>
         <article class="col s12">
             <div class="card cardSingle">
-                <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>" onclick="__gaTracker('send','event','Collection','View','<?php echo $collection->name; ?>');">
+                <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>" onclick="__gaTracker('send','event','Collection','View','<?php echo $countries[$country].'|'.$collection->name; ?>');">
                     <div class="card-content">
                         <b><?php echo $collection->name; ?></b> <br />
                         <p><small><?php echo $collection->description; ?></small></p>

@@ -34,6 +34,9 @@ $query = stripslashes( trim($query) );
 $q = $query;
 $query = prepare_query($query);
 
+// set country
+$country = ( $_COOKIE['e-blueinfo-country'] ) ? $_COOKIE['e-blueinfo-country'] : '';
+
 $user_filter   = stripslashes($_GET['filter']);
 $community_id  = ( !empty($_GET['community']) ? explode(',', $_GET['community']) : '' );
 $com_id = ( !empty($community_id) && count($community_id) == 1 ) ? $community_id[0] : NULL;
@@ -133,7 +136,7 @@ $pages->paginate($page_url_params);
         <div class="col s10 m11">
             <nav>
                 <div class="nav-wrapper">
-                    <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Search Results','Search',document.getElementById('searchBarInput').value);">
+                    <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Search Results','Search','<?php echo $countries[$country]; ?>|'+document.getElementById('searchBarInput').value);">
                         <div class="input-field">
                             <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
                             <input type="hidden" name="collection" id="collection" value="<?php echo $collection_id; ?>">
@@ -182,13 +185,13 @@ $pages->paginate($page_url_params);
                         <p><b><?php _e('Collections', 'e-blueinfo'); ?>:</b> <br /><?php echo $col_name; ?></p>
                     </div>
                     <div class="col s2 right-align">
-                        <div class="iconActions" data-author="<?php echo $doc->au[0]; ?>"><a href="#modal" class="btn-floating waves-effect waves-light blue lightn-3 btn-small modal-trigger" title="<?php _e('Add to Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Search Results','Favorites','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');"><i class="material-icons">star</i></a></div>
+                        <div class="iconActions" data-author="<?php echo $doc->au[0]; ?>"><a href="#modal" class="btn-floating waves-effect waves-light blue lightn-3 btn-small modal-trigger" title="<?php _e('Add to Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Search Results','Favorites','<?php echo $countries[$country].'|'.$doc->ti[0]; ?>');"><i class="material-icons">star</i></a></div>
                         <?php if ( isset($doc->ur[0]) ) : ?>
-                        <div class="iconActions"><a href="<?php echo $doc->ur[0]; ?>" data-docid="<?php echo $doc->id; ?>" class="btn-ajax e-blueinfo-doc btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Search Results','Full Text','<?php echo $doc->ur[0]; ?>');"><i class="material-icons">visibility</i></a></div>
+                        <div class="iconActions"><a href="<?php echo $doc->ur[0]; ?>" data-docid="<?php echo $doc->id; ?>" class="btn-ajax e-blueinfo-doc btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Search Results','Full Text','<?php echo $countries[$country].'|'.$doc->ti[0]; ?>');"><i class="material-icons">visibility</i></a></div>
                         <?php endif; ?>
                     </div>
                     <div class="col s12 blue-grey lighten-5 padding1">
-                        <a class="e-blueinfo-doc" data-docid="<?php echo $doc->id; ?>" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="__gaTracker('send','event','Search Results','View','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');">
+                        <a class="e-blueinfo-doc" data-docid="<?php echo $doc->id; ?>" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="__gaTracker('send','event','Search Results','View','<?php echo $countries[$country].'|'.$doc->ti[0]; ?>');">
                             <p class="doc-title"><?php echo $doc->ti[0]; ?></p>
                         </a>
                     </div>
