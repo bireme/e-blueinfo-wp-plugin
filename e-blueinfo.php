@@ -55,8 +55,6 @@ if(!class_exists('EBlueInfo_Plugin')) {
             add_action( 'widgets_init', array(&$this, 'register_sidebars') );
             add_action( 'template_redirect', array(&$this, 'theme_redirect') );
             add_action( 'wp_loaded', array(&$this, 'plugin_page_redirect') );
-            add_action( 'wp_footer', array(&$this, 'show_feedback_tab') );
-            add_action( 'wp_enqueue_scripts', array(&$this, 'template_styles_scripts'), 20 );
             add_action( 'wp_ajax_update_document_views', array($this, 'update_document_views'));
             add_action( 'wp_ajax_nopriv_update_document_views', array($this, 'update_document_views'));
 
@@ -234,6 +232,9 @@ if(!class_exists('EBlueInfo_Plugin')) {
                  || $pagename == $this->plugin_slug . '/infobutton'
                  || $pagename == $this->plugin_slug . '/infobutton/result'
                  || $pagename == $this->plugin_slug . '/auth') {
+
+                    add_action( 'wp_footer', array(&$this, 'show_feedback_tab') ); // feedback tab
+                    add_action( 'wp_enqueue_scripts', array(&$this, 'template_styles_scripts'), 20 );
 
                     if ($pagename == $this->plugin_slug){
                         // generate lang cookie
