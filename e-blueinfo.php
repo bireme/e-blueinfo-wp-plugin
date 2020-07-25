@@ -38,8 +38,8 @@ if(!class_exists('EBlueInfo_Plugin')) {
         private $infobutton_service_url = 'http://bvsinfobutton.homolog.bvsalud.org';
         private $services_platform_url  = 'https://platserv2.teste.bvsalud.org';
         private $vhl_search_portal_url  = 'https://pesquisa.bvsalud.org';
-        private $pdf_service_url        = 'http://basalto01.bireme.br:9293/solr/pdfs/select?fl=id,ti,com,col,ur,tu,fo,au,ab,mt,is';
-        // private $pdf_service_url     = 'http://basalto01.bireme.br:9293/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu,fo,au,ab,mt,is';
+        private $pdf_service_url        = 'http://basalto01.bireme.br:9293/solr/pdfs/select?fl=id,ti,com,col,ur,tu,fo,au,ab,mt,is,fi_admin_id,alternate_ids';
+        // private $pdf_service_url     = 'http://basalto01.bireme.br:9293/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu,fo,au,ab,mt,is,fi_admin_id,alternate_ids';
 
         /**
          * Construct the plugin object
@@ -581,12 +581,12 @@ if(!class_exists('EBlueInfo_Plugin')) {
                 $eblueinfo_data = get_option('eblueinfo_data');
                 $country = $_COOKIE['e-blueinfo-country'];
                 $docid = $_POST['docid'];
-                $doc = $eblueinfo_data['country'.$country]['doc'.$docid];
+                $doc = $eblueinfo_data['country'.$country]['doc_'.$docid];
 
                 if ( $doc ) {
-                    $eblueinfo_data['country'.$country]['doc'.$docid] = $doc + 1;
+                    $eblueinfo_data['country'.$country]['doc_'.$docid] = $doc + 1;
                 } else {
-                    $eblueinfo_data['country'.$country]['doc'.$docid] = 1;
+                    $eblueinfo_data['country'.$country]['doc_'.$docid] = 1;
                 }
 
                 update_option('eblueinfo_data', $eblueinfo_data);

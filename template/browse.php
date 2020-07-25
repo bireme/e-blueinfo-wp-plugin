@@ -127,8 +127,8 @@ if ($response){
     // echo "<pre>"; print_r($response_json); echo "</pre>"; die();
     $total = $response_json->response->numFound;
     $start = $response_json->response->start;
-    $snippets = $response_json->highlighting;
     $docs  = $response_json->response->docs;
+    $snippets = $response_json->highlighting;
 }
 
 $collection_request = $eblueinfo_service_url . 'api/collection/?collection=' . $collection_id . '&format=' . $format . '&lang=' . $lang;
@@ -234,6 +234,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <section class="container containerAos">
     <div class="row flexContainer">
         <?php foreach ( $docs as $index => $doc ) : $index++; ?>
+            <?php $altid = ( $doc->alternate_ids ) ? $doc->alternate_ids[0] : $doc->id; ?>
             <article class="flexCol1 item <?php echo $class; ?>">
                 <div class="row padding3 cardBox">
                     <div class="cardBoxText">
@@ -247,13 +248,13 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                             </div>
                         </a>
                         <div class="col s2 right-align">
-                            <div class="iconActions" data-author="<?php echo $doc->au[0]; ?>"><a href="#modal" class="btn-floating waves-effect waves-light blue lightn-3 btn-small modal-trigger" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Browse','Favorites','<?php echo $countries[$country].'|'.$doc->ti[0]; ?>');"><i class="material-icons">star</i></a></div>
+                            <div class="iconActions btn-favorites" data-author="<?php echo $doc->au[0]; ?>" data-altid="<?php echo $altid; ?>" data-docid="<?php echo $doc->id; ?>"><a class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Browse','Favorites','<?php echo $countries[$country].'|'.$doc->ti[0]; ?>');"><i class="material-icons">star</i></a></div>
                             <?php if ( isset($doc->ur[0]) ) : ?>
                             <div class="iconActions"><a href="<?php echo $doc->ur[0]; ?>" data-docid="<?php echo $doc->id; ?>" class="btn-ajax e-blueinfo-doc btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Browse','Full Text','<?php echo $countries[$country].'|'.$doc->ti[0]; ?>');"><i class="material-icons">visibility</i></a></div>
                             <?php endif; ?>
                         </div>
                         <div class="col s12 blue-grey lighten-5 padding1 boxCardGray">
-                            <small><?php echo $media_type_texts[$doc->mt]; ?></small> | <small>Update: 01/01/2020</small> | <small>Downloads: <?php echo $eblueinfo_data['country'.$country]['doc'.$doc->id]; ?></small>
+                            <small><?php echo $media_type_texts[$doc->mt]; ?></small> | <small>Update: 01/01/2020</small> | <small>Downloads: <?php echo $eblueinfo_data['country'.$country]['doc_'.$doc->id]; ?></small>
                         </div>
                     </div>
                 </div>

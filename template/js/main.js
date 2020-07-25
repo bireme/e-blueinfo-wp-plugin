@@ -181,8 +181,9 @@ $(function () {
     $(document).on('click', '.btn-favorites', function(){
         var lang = eblueinfo_script_vars.lang;
         var title = $(this).parents('article').find('.doc-title').text();
-        var id = $(this).data('altid');
-        var url = eblueinfo_script_vars.portal+'/portal/resource/'+lang+'/'+id;
+        var id = $(this).data('docid');
+        var altid = $(this).data('altid');
+        var url = eblueinfo_script_vars.portal+'/portal/resource/'+lang+'/'+altid;
         var source = eblueinfo_script_vars.site;
         var author = $(this).data('author');
         author = author.replace(/[^ ]+/i,'');
@@ -223,7 +224,7 @@ $(function () {
 
 /* Ajax Plugin Data */
 $(function () {
-    $(document).on('click', '.btn-ajax', function(){
+    $(document).on('mousedown', '.btn-ajax', function(){
         var docid = $(this).data('docid');
         $.ajax({ 
             type: "POST",

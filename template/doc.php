@@ -3,7 +3,7 @@
 Template Name: e-BlueInfo Detail
 */
 
-global $wp, $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_plugin_title, $similar_docs_url, $thumb_service_url;
+global $wp, $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_plugin_title, $similar_docs_url, $thumb_service_url, $pdf_service_url;
 
 $current_slug = add_query_arg( array(), $wp->request );
 $current_url = home_url(add_query_arg(array(),$wp->request));
@@ -47,6 +47,8 @@ $count  = ( !empty($_GET['count']) ? $_GET['count'] : 6 );
 $format = ( !empty($_GET['format']) ? $_GET['format'] : 'json' );
 
 $explode = explode('/', $current_slug);
+$docid = end($explode);
+$explode = explode('-', $docid);
 $resource_id = end($explode);
 
 $site_language = strtolower(get_bloginfo('language'));
@@ -57,14 +59,17 @@ if ( $_COOKIE['e-blueinfo-lang'] ) {
 }
 
 $eblueinfo_service_request = $eblueinfo_service_url . 'api/bibliographic/?id=' . $resource_id . '&lang=' . $lang;
+// $eblueinfo_service_request = $pdf_service_url . '&q=id:' . urlencode($resource_id) . '&lang=' . $lang;
 
-//print $eblueinfo_service_request;
+// print $eblueinfo_service_request;
 
 $response = @file_get_contents($eblueinfo_service_request);
 if ($response){
     $response_json = json_decode($response);
     // echo "<pre>"; print_r($response_json); echo "</pre>"; die();
     $doc = $response_json->objects;
+
+    $altid = ( $doc[0]->alternate_ids ) ? $doc[0]->alternate_ids[0] : $docid;
 
     $ref_title = explode('|', $doc[0]->reference_title);
     $title = ( count($ref_title) > 1 ) ? $ref_title[1] : $ref_title[0];
@@ -160,10 +165,10 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                         <img class="thumbnail-doc responsive-img" src="<?php echo $thumb_service_url . '/' . $doc[0]->id . '/' . $doc[0]->id . '.jpg'; ?>" alt="" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'">
                     </div>
                     <div class="col s6 m8 l9 right-align">
-                        <div class="iconActions btn-favorites" data-aos="fade-right" data-aos-delay="300" data-author="<?php echo $author[0]->text; ?>" data-altid="<?php echo $doc[0]->alternate_ids[0]; ?>"><a class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Favorites','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">star</i></a></div>
+                        <div class="iconActions btn-favorites" data-aos="fade-right" data-aos-delay="300" data-author="<?php echo $author[0]->text; ?>" data-altid="<?php echo $altid; ?>" data-docid="<?php echo $docid; ?>"><a class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Favorites','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">star</i></a></div>
                         <?php if ( isset($doc[0]->electronic_address[0]->_u) ) : ?>
                         <div class="iconActions" data-aos="fade-right" data-aos-delay="400"><a id="btShare" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Share', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Share','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">share</i></a></div>
-                        <div class="iconActions" data-aos="fade-right" data-aos-delay="500"><a href="<?php echo $doc[0]->electronic_address[0]->_u; ?>" data-docid="<?php echo $doc[0]->id; ?>" class="btn-ajax btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Full Text','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">visibility</i></a></div>
+                        <div class="iconActions" data-aos="fade-right" data-aos-delay="500"><a href="<?php echo $doc[0]->electronic_address[0]->_u; ?>" data-docid="<?php echo $docid; ?>" class="btn-ajax btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Full Text','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">visibility</i></a></div>
                         <?php endif; ?>
                     </div>
                 </div>

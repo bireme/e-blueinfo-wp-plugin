@@ -171,6 +171,7 @@ $pages->paginate($page_url_params);
     <div class="row flexContainer">
         <?php foreach ( $docs as $index => $doc ) : $index++; ?>
             <?php
+                $altid = ( $doc->alternate_ids ) ? $doc->alternate_ids[0] : $doc->id;
                 // $title = ( $doc->ti ) ? substr($doc->ti[0], 4) : $doc->fo[0];
                 $com_name = ( $doc->com ) ? implode('; ', array_map("remove_prefix", $doc->com)) : '-';
                 $col_name = ( $doc->col ) ? implode('; ', array_map("remove_prefix", $doc->col)) : '-';
@@ -185,7 +186,7 @@ $pages->paginate($page_url_params);
                         <p><b><?php _e('Collections', 'e-blueinfo'); ?>:</b> <br /><?php echo $col_name; ?></p>
                     </div>
                     <div class="col s2 right-align">
-                        <div class="iconActions" data-author="<?php echo $doc->au[0]; ?>"><a href="#modal" class="btn-floating waves-effect waves-light blue lightn-3 btn-small modal-trigger" title="<?php _e('Add to Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Search Results','Favorites','<?php echo $countries[$country].'|'.$doc->ti[0]; ?>');"><i class="material-icons">star</i></a></div>
+                        <div class="iconActions btn-favorites" data-author="<?php echo $doc->au[0]; ?>" data-altid="<?php echo $altid; ?>" data-docid="<?php echo $doc->id; ?>"><a class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Add to Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Search Results','Favorites','<?php echo $countries[$country].'|'.$doc->ti[0]; ?>');"><i class="material-icons">star</i></a></div>
                         <?php if ( isset($doc->ur[0]) ) : ?>
                         <div class="iconActions"><a href="<?php echo $doc->ur[0]; ?>" data-docid="<?php echo $doc->id; ?>" class="btn-ajax e-blueinfo-doc btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Search Results','Full Text','<?php echo $countries[$country].'|'.$doc->ti[0]; ?>');"><i class="material-icons">visibility</i></a></div>
                         <?php endif; ?>
