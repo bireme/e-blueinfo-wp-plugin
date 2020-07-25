@@ -18,6 +18,7 @@ $order = array(
         'YEAR_DESC' => 'publication_year desc'
     );
 
+$eblueinfo_data           = get_option('eblueinfo_data');
 $eblueinfo_config         = get_option('eblueinfo_config');
 $eblueinfo_initial_filter = $eblueinfo_config['initial_filter'];
 $eblueinfo_addthis_id     = $eblueinfo_config['addthis_profile_id'];
@@ -45,7 +46,7 @@ $page   = ( !empty($_GET['page']) ? $_GET['page'] : 1 );
 $offset = ( !empty($_GET['offset']) ? $_GET['offset'] : 0 );
 $format = ( !empty($_GET['format']) ? $_GET['format'] : 'json' );
 $sort   = ( !empty($_GET['sort']) ? $order[$_GET['sort']] : 'score desc,da desc' );
-$count  = ( !empty($_GET['count']) ? $_GET['count'] : -1 );
+$count  = ( !empty($_GET['count']) ? $_GET['count'] : 10 );
 $total  = 0;
 $filter = '';
 
@@ -61,12 +62,25 @@ if ($eblueinfo_initial_filter != ''){
 
 $start = ($page * $count) - $count;
 
+$eblueinfo_service_request = $services_platform_url . '/client/controller/api/favorites/?source=e-blueinfo&userID='.$userID;
+$response = @file_get_contents($eblueinfo_service_request);
+if ( $response ) {
+    $response_json = json_decode($response);
+    $count = $response_json->total;
+    $fav_docs = $response_json->docs;
+    $fav_docs_ids = wp_list_pluck($fav_docs, 'docID');
+    $docs  = preg_filter('/^/', 'id:', $fav_docs_ids);
+    $docs  = implode(' ', $docs);
+    $query = $docs;
+    unset($docs);
+}
+
 // Information Source filter
 if ( $info_source ) {
     if ( empty($query) ) {
         $query = 'is:' . $info_source;
     } else {
-        $query = 'is:' . $info_source . ' AND ' . $query;
+        $query = 'is:' . $info_source . ' AND (' . $query . ')';
     }
 }
 
@@ -75,20 +89,8 @@ if ( $media_type ) {
     if ( empty($query) ) {
         $query = 'mt:' . $media_type;
     } else {
-        $query = 'mt:' . $media_type . ' AND ' . $query;
+        $query = 'mt:' . $media_type . ' AND (' . $query . ')';
     }
-}
-
-$eblueinfo_service_request = $services_platform_url . '/client/controller/api/favorites/?source=e-blueinfo&userID='.$userID;
-$response = @file_get_contents($eblueinfo_service_request);
-if ( $response ) {
-    $response_json = json_decode($response);
-    $fav_docs = $response_json->docs;
-    $fav_docs_ids = wp_list_pluck($fav_docs, 'docID');
-    $docs  = preg_filter('/^/', 'id:', $fav_docs_ids);
-    $docs  = implode(' ', $docs);
-    $query = $docs;
-    unset($docs);
 }
 
 $eblueinfo_service_request = $pdf_service_url . '&q=' . urlencode($query) . '&start=' . $offset . '&rows=' . $count . '&sort=' . urlencode($sort) . '&lang=' . $lang;
@@ -98,12 +100,8 @@ if ($response){
     // echo "<pre>"; print_r($response_json); echo "</pre>"; die();
     $total = $response_json->response->numFound;
     $start = $response_json->response->start;
-    $snippets = $response_json->highlighting;
-
     $docs  = $response_json->response->docs;
-    if ( $output && 'visited' == $output && $_COOKIE['visited'] ) {
-        $docs = array_reverse($docs);
-    }
+    $snippets = $response_json->highlighting;
 }
 
 $media_type_texts = array(
@@ -203,7 +201,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                             <?php endif; ?>
                         </div>
                         <div class="col s12 blue-grey lighten-5 padding1 boxCardGray">
-                            <small><?php echo $media_type_texts[$doc->mt]; ?></small> | <small>Update: 01/01/2020</small> | <small>Downloads: <?php echo $eblueinfo_data['country'.$country]['doc'.$doc->id]; ?></small>
+                            <small><?php echo $media_type_texts[$doc->mt]; ?></small> | <small>Update: 01/01/2020</small> | <small>Downloads: <?php echo $eblueinfo_data['country'.$country]['doc_'.$doc->id]; ?></small>
                         </div>
                     </div>
                 </div>
