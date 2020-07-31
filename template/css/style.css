@@ -284,6 +284,9 @@ a:active{
 #wpadminbar {
 	display: none;
 }
+.btn-register {
+	margin-bottom: 16px;
+}
 /****************************** cor 01 ************************/
 .bgColor1{
 	background: url('../images/bgShape.png') #2962ff top right fixed no-repeat;

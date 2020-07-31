@@ -24,6 +24,19 @@
         <input type="hidden" name="action" value="authentication" />
         <input type="hidden" name="lang" value="<?php echo $lang; ?>" />
         <div class="row">
+
+            <?php if ( $_REQUEST['status'] == 'userconfirmed' ){ ?>
+            <div class="col s12">
+                <div class="card-panel green success-text">
+                    <span class="white-text">
+                        <?php _e('Account successfully created!', 'e-blueinfo'); ?>
+                        <br />
+                        <?php _e('Your account details were sent by email.', 'e-blueinfo'); ?>
+                    </span>
+                </div>
+            </div>
+            <?php } ?>
+
             <div class="input-field col s12">
                 <i class="material-icons prefix">account_circle</i>
                 <input id="userID" type="text" name="userID">
@@ -34,6 +47,7 @@
                 <input id="userPass" type="password" name="userPass">
                 <label for="userPass"><?php _e('Password', 'e-blueinfo'); ?></label>
             </div>
+
             <?php if ( $_REQUEST['status'] == 'access_denied' ){ ?>
             <div class="input-field col s12">
                 <span class="red-text center-align"><?php _e('access denied', 'e-blueinfo') ?></span>
@@ -44,9 +58,10 @@
                 <span class="red-text center-align"><?php _e('invalid login', 'e-blueinfo') ?></span>
             </div>
             <?php } ?>
+
             <div class="input-field col s12 center-align">
-                <button class="btn waves-effect waves-light blue darken-4 bt100" type="submit" name="action">Login</button>
-                <!-- <a href="https://platserv.bvsalud.org" target="_blank"><?php _e('Register Yourself', 'e-blueinfo'); ?></a> -->
+                <button class="btn btn-register waves-effect waves-light blue darken-4 bt100" type="submit" name="action">Login</button>
+                <a href="https://platserv.bvsalud.org/server/pub/userData.php?c=<?php echo base64_encode($current_url); ?>&theme=e-blueinfo&lang=<?php echo $lang; ?>"><?php _e('Register Yourself', 'e-blueinfo'); ?></a>
             </div>
             <div class="input-field col s12">
                 <label>

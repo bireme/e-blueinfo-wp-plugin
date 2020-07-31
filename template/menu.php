@@ -29,9 +29,9 @@
 		            <a class="collapsible-header" tabindex="0"><?php _e('Language', 'e-blueinfo'); ?></a>
 		            <div class="collapsible-body">
 		                <ul>
-							<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'pt/'; ?>">Português</a></li>
-							<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'es/'; ?>">Español</a></li>
-							<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>">English</a></li>
+							<li><a href="<?php echo pll_home_url('pt').'?fcl=true'; ?>">Português</a></li>
+							<li><a href="<?php echo pll_home_url('es').'?fcl=true'; ?>">Español</a></li>
+							<li><a href="<?php echo pll_home_url('en').'?fcl=true'; ?>">English</a></li>
 		                </ul>
 		            </div>
 		        </li>
