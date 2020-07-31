@@ -36,7 +36,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
         private $thumb_service_url      = 'http://thumbs.bireme.org';
         private $country_service_url    = 'http://fi-admin-api.bvsalud.org/api/community/get_country_list/?format=json';
         private $infobutton_service_url = 'http://bvsinfobutton.homolog.bvsalud.org';
-        private $services_platform_url  = 'https://platserv2.teste.bvsalud.org';
+        private $services_platform_url  = 'https://platserv.bvsalud.org';
         private $vhl_search_portal_url  = 'https://pesquisa.bvsalud.org';
         private $pdf_service_url        = 'http://basalto01.bireme.br:9293/solr/pdfs/select?fl=id,ti,com,col,ur,tu,fo,au,ab,mt,is,fi_admin_id,alternate_ids';
         // private $pdf_service_url     = 'http://basalto01.bireme.br:9293/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=id,ti,com,col,ur,tu,fo,au,ab,mt,is,fi_admin_id,alternate_ids';
