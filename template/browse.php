@@ -206,13 +206,13 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
     <?php if ( $_COOKIE['userData'] ) : ?>
     <div class="row">
         <div class="col s4 m3 offset-l3 l2 center-align">
-            <div class="blue-grey lighten-4" id="cardSingle" onclick="location='<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id; ?>';"><small>All</small></div>
+            <div class="blue-grey lighten-4" id="cardSingle" onclick="location='<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id; ?>';"><small><?php _e('All','e-blueinfo'); ?></small></div>
         </div>
         <div class="col s4 m3 l2 center-align">
-            <div class="blue darken-1 white-text" id="cardLastVisited" onclick="location='<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id . '&output=last_visited'; ?>';"><small>Last Visited</small></div>
+            <div class="blue darken-1 white-text" id="cardLastVisited" onclick="location='<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id . '&output=last_visited'; ?>';"><small><?php _e('PDF','e-blueinfo'); ?><?php _e('Last Visited','e-blueinfo'); ?></small></div>
         </div>
         <div class="col s4 m3 l2 center-align">
-            <div class="cyan lighten-3" id="cardVisited" onclick="location='<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id . '&output=visited'; ?>';"><small>Visited</small></div>
+            <div class="cyan lighten-3" id="cardVisited" onclick="location='<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id . '&output=visited'; ?>';"><small><?php _e('Visited','e-blueinfo'); ?></small></div>
         </div>
     </div>
     <?php endif; ?>
