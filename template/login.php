@@ -17,7 +17,7 @@
 <!-- ./Header -->
 
 <!-- Template -->
-<section class="row" id="containerCenter">
+<section class="row">
     <h4 class="center-align"><?php _e('Login', 'e-blueinfo'); ?></h4>
     <form class="col s10 offset-s1 m6 offset-m3 l4 offset-l4" method="POST" action="<?php echo $services_platform_url.'/client/controller/authentication/origin/'.base64_encode($current_url); ?>">
         <input type="hidden" name="control" value="business" />
@@ -27,7 +27,7 @@
 
             <?php if ( $_REQUEST['status'] == 'userconfirmed' ){ ?>
             <div class="col s12">
-                <div class="card-panel green success-text">
+                <div class="card-panel green success-text center-align">
                     <span class="white-text">
                         <?php _e('Account successfully created!', 'e-blueinfo'); ?>
                         <br />
