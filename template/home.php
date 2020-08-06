@@ -5,6 +5,12 @@
 	$lang = substr($site_language,0,2);
     $languages = array();
 
+    $ctest = array(
+        'pt' => 'Macau',
+        'es' => 'Macao',
+        'en' => 'Macao'
+    );
+
 	$response = @file_get_contents($country_service_url);
 	if ($response){
 	    $countries = json_decode($response);
@@ -57,6 +63,7 @@
                 <?php endif; ?>
                 <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4 countries en">
                     <?php $countries_en = normalize_country_object($countries, 'en'); ?>
+                    <?php if ( !EBLUEINFO_CTEST ) { $countries_en = array_diff($countries_en, $ctest); } ?>
                     <h6 class="center-align"><b>Please choose a country</b></h6>
                     <select>
                         <option disabled selected></option>
@@ -67,6 +74,7 @@
                 </div>
                 <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4 countries pt">
                     <?php $countries_pt = normalize_country_object($countries, 'pt'); ?>
+                    <?php if ( !EBLUEINFO_CTEST ) { $countries_pt = array_diff($countries_pt, $ctest); } ?>
                     <h6 class="center-align"><b>Por favor, escolha um país</b></h6>
                     <select>
                         <option disabled selected></option>
@@ -77,6 +85,7 @@
                 </div>
                 <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4 countries es">
                     <?php $countries_es = normalize_country_object($countries, 'es'); ?>
+                    <?php if ( !EBLUEINFO_CTEST ) { $countries_es = array_diff($countries_es, $ctest); } ?>
                     <h6 class="center-align"><b>Por favor, elija un país</b></h6>
                     <select>
                         <option disabled selected></option>

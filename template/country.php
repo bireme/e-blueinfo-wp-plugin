@@ -10,11 +10,20 @@
 
     $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['home_url_' . $lang] : real_site_url();
 
+    $ctest = array(
+        'pt' => 'Macau',
+        'es' => 'Macao',
+        'en' => 'Macao'
+    );
+
     $response = @file_get_contents($country_service_url);
     if ($response){
         $countries = json_decode($response);
         $countries = normalize_country_object($countries, $lang);
-        // echo "<pre>"; print_r($countries); echo "</pre>"; die();
+
+        if ( !EBLUEINFO_CTEST ) {
+            $countries = array_diff($countries, $ctest);
+        }
     }
 
     $country_id = ( $_COOKIE['e-blueinfo-country'] ) ? $_COOKIE['e-blueinfo-country'] : false;

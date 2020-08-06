@@ -13,6 +13,7 @@ define('EBLUEINFO_SYMBOLIC_LINK', false );
 define('EBLUEINFO_PLUGIN_DIRNAME', 'e-blueinfo' );
 defined('EBLUEINFO_REDIRECT') or define('EBLUEINFO_REDIRECT', false);
 defined('EBLUEINFO_FEEDBACK') or define('EBLUEINFO_FEEDBACK', false);
+defined('EBLUEINFO_CTEST') or define('EBLUEINFO_CTEST', false);
 
 if (EBLUEINFO_SYMBOLIC_LINK == true) {
     define( 'EBLUEINFO_PLUGIN_PATH',  ABSPATH . 'wp-content/plugins/' . EBLUEINFO_PLUGIN_DIRNAME );
