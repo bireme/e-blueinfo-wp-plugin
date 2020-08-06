@@ -5,6 +5,12 @@
 	$lang = substr($site_language,0,2);
     $languages = array();
 
+    $ctest = array(
+        'pt' => 'Macau',
+        'es' => 'Macao',
+        'en' => 'Macao'
+    );
+
 	$response = @file_get_contents($country_service_url);
 	if ($response){
 	    $countries = json_decode($response);
@@ -53,6 +59,7 @@
                 <hr />
                 <?php endif; ?>
                 <?php $countries_en = normalize_country_object($countries, 'en'); ?>
+                <?php if ( !EBLUEINFO_CTEST ) { $countries_en = array_diff($countries_en, $ctest); } ?>
                 <select class="countries en" onchange="location=this.value;">
                     <option>Please choose a country</option>
                     <?php foreach ($countries_en as $id => $name) : ?>
@@ -60,6 +67,7 @@
                     <?php endforeach; ?>
                 </select>
                 <?php $countries_pt = normalize_country_object($countries, 'pt'); ?>
+                <?php if ( !EBLUEINFO_CTEST ) { $countries_pt = array_diff($countries_pt, $ctest); } ?>
                 <select class="countries pt" onchange="location=this.value;">
                     <option>Por favor, escolha um país</option>
                     <?php foreach ($countries_pt as $id => $name) : ?>
@@ -67,6 +75,7 @@
                     <?php endforeach; ?>
                 </select>
                 <?php $countries_es = normalize_country_object($countries, 'es'); ?>
+                <?php if ( !EBLUEINFO_CTEST ) { $countries_es = array_diff($countries_es, $ctest); } ?>
                 <select class="countries es" onchange="location=this.value;">
                     <option>Por favor, elija un país</option>
                     <?php foreach ($countries_es as $id => $name) : ?>
