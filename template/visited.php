@@ -126,15 +126,23 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
     <div class="row">
         <?php foreach ( $docs as $index => $doc ) : $index++; ?>
             <?php $altid = ( $doc->alternate_ids ) ? $doc->alternate_ids[0] : $doc->id; ?>
+            <?php $title = ( 'leisref' == $doc->is ) ? get_leisref_title($doc, $lang) : $doc->ti[0]; ?>
             <article class="col s12" data-aos="fade-left">
                 <div class="card cardSingle">
                     <div class="card-content">
-                        <b><a class="doc-title" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="__gaTracker('send','event','Visited Documents','View','<?php echo $countries[$country].'|'.$doc->ti[0]; ?>');"><?php echo $doc->ti[0]; ?></a></b> <br />
+                        <b><a class="doc-title" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="__gaTracker('send','event','Visited Documents','View','<?php echo $countries[$country].'|'.$title; ?>');"><?php echo $title; ?></a></b> <br />
+                        <?php if ( 'leisref' == $doc->is ) : ?>
+                        <p><small><?php echo explode('^', $doc->oi[0])[1]; ?></small></p>
+                        <p><small><?php echo explode('^', $doc->sn[0])[1]; ?></small></p> <br />
+                        <?php else : ?>
                         <p><small><?php echo short_string(get_abstract($doc->ab, $lang)); ?></small></p> <br />
-
-                        <a class="btn-favorites btn-floating waves-effect waves-light blue lightn-3 btn-small" data-author="<?php echo $doc->au[0]; ?>" data-altid="<?php echo $altid; ?>" data-docid="<?php echo $doc->id; ?>" title="<?php _e('Favorites', 'e-blueinfo'); ?>" data-author="<?php echo $doc->au[0]; ?>" onclick="__gaTracker('send','event','Visited Documents','Favorites','<?php echo $countries[$country].'|'.$doc->ti[0]; ?>');"><i class="material-icons">star</i></a>
+                        <?php endif; ?>
+                        
+                        <?php if ( 'leisref' != $doc->is ) : ?>
+                        <a class="btn-favorites btn-floating waves-effect waves-light blue lightn-3 btn-small" data-author="<?php echo $doc->au[0]; ?>" data-altid="<?php echo $altid; ?>" data-docid="<?php echo $doc->id; ?>" title="<?php _e('Favorites', 'e-blueinfo'); ?>" data-author="<?php echo $doc->au[0]; ?>" onclick="__gaTracker('send','event','Visited Documents','Favorites','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">star</i></a>
+                        <?php endif; ?>
                         <?php if ( isset($doc->ur[0]) ) : ?>
-                        <a href="<?php echo $doc->ur[0]; ?>" data-docid="<?php echo $doc->id; ?>" class="btn-ajax btn-floating waves-effect waves-light blue lightn-3 waves-light btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Visited Documents','Full Text','<?php echo $countries[$country].'|'.$doc->ti[0]; ?>');"><i class="material-icons">visibility</i></a>
+                        <a href="<?php echo $doc->ur[0]; ?>" data-docid="<?php echo $doc->id; ?>" class="btn-ajax btn-floating waves-effect waves-light blue lightn-3 waves-light btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Visited Documents','Full Text','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">visibility</i></a>
                         <?php endif; ?>
                     </div>
                 </div>

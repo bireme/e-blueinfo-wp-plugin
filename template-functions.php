@@ -1,22 +1,29 @@
 <?php
 
 if ( !function_exists('print_lang_value') ) {
-    function print_lang_value($value, $lang_code){
+    function print_lang_value($value, $lang_code, $echo=true){
         $lang_code = substr($lang_code,0,2);
-        if ( is_array($value) ){
-            foreach($value as $current_value){
+        
+        if ( is_array($value) ) {
+            foreach ($value as $current_value) {
                 $print_values[] = get_lang_value($current_value, $lang_code);
             }
-            echo implode(', ', $print_values);
-        }else{
-            echo get_lang_value($value, $lang_code);
+            
+            $text = implode(', ', $print_values);
+        } else {
+            $text = get_lang_value($value, $lang_code);
         }
-        return;
+
+        if ( $echo ) {
+            echo $text;
+        } else {
+            return $text;
+        }
     }
 }
 
 if ( !function_exists('get_lang_value') ) {
-    function get_lang_value($string, $lang_code, $default_lang_code = 'en'){
+    function get_lang_value($string, $lang_code, $default_lang_code='en'){
         $lang_value = array();
         $occs = preg_split('/\|/', $string);
 
@@ -27,10 +34,13 @@ if ( !function_exists('get_lang_value') ) {
             $value = $lv[1];
             $lang_value[$lang] = $value;
         }
-        if ( isset($lang_value[$lang_code]) ){
+
+        if ( isset($lang_value[$lang_code]) ) {
             $translated = $lang_value[$lang_code];
-        }else{
+        } elseif ( isset($lang_value[$default_lang_code]) ) {
             $translated = $lang_value[$default_lang_code];
+        } else {
+            $translated = array_values($lang_value)[0];
         }
 
         return $translated;
@@ -40,6 +50,7 @@ if ( !function_exists('get_lang_value') ) {
 if ( !function_exists('format_date') ) {
     function format_date($string){
         $date_formated = '';
+
         if (strpos($string,'-') !== false) {
             $date_formated = substr($string,8,2)  . '/' . substr($string,5,2) . '/' . substr($string,0,4);
         }else{
@@ -328,6 +339,37 @@ if ( !function_exists('is_timestamp') ) {
         return ((string) (int) $timestamp === $timestamp) 
             && ($timestamp <= PHP_INT_MAX)
             && ($timestamp >= ~PHP_INT_MAX);
+    }
+}
+
+if ( !function_exists('get_leisref_title') ) {
+    function get_leisref_title($doc, $lang) {
+        if ( $doc->ti ) {
+            $title = $doc->ti[0];
+        } else {
+            $act_type = print_lang_value($doc->at, $lang, false);
+            $title = $act_type.' Nº '.$doc->an[0];
+        }
+
+        return $title;
+    }
+}
+
+if ( !function_exists('get_leisref_fulltext') ) {
+    function get_leisref_fulltext($doc, $lang) {
+        $fulltext = array_filter($doc->fulltext, function($ft) use ($lang) {
+            return strpos($ft, $lang) === 0;
+        });
+
+        if ( $fulltext ) {
+            $document_url_parts = explode("|", $fulltext);
+            $fulltext = $document_url_parts[1];
+        } else {
+            $document_url_parts = explode("|", $doc->fulltext[0]);
+            $fulltext = $document_url_parts[1];
+        }
+
+        return $fulltext;
     }
 }
 
