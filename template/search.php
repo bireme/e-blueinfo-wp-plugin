@@ -208,12 +208,12 @@ $pages->paginate($page_url_params);
 <!-- Modal Trigger -->
 <div id="modal" class="modal">
     <div class="modal-content">
-        <h4>Favorites</h4>
-        <p>All e-BlueInfo services are free, but to improve your experience there is a need for a quick registration. This allows us to record what you consider favorites, your downloads so you don't have to download again ...</p>
-        <a href="#!">Login</a>
+        <h4><?php _e('Favorites', 'e-blueinfo'); ?></h4>
+        <p><?php _e("All e-BlueInfo services are free, but to improve your experience there is a need for a quick registration. This allows us to record your favorites list, visited documents and other features.", 'e-blueinfo'); ?></p>
+        <a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'auth/'; ?>"><?php _e('Login', 'e-blueinfo'); ?></a>
         <hr />
-        <h4>MyVHL</h4>
-        <p>With the same e-BlueInfo registration you have full and degree access to MyVHL</p>
+        <h4><?php _e('MyVHL', 'e-blueinfo'); ?></h4>
+        <p><?php _e('With the same e-BlueInfo registration you have full access to MyVHL Services Platform.', 'e-blueinfo'); ?></p>
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-close waves-effect waves-green btn-flat"><?php _e('Close','e-blueinfo'); ?></a>

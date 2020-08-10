@@ -60,7 +60,7 @@
             <?php } ?>
 
             <div class="input-field col s12 center-align">
-                <button class="btn btn-register waves-effect waves-light blue darken-4 bt100" type="submit" name="action">Login</button>
+                <button class="btn btn-register waves-effect waves-light blue darken-4 bt100" type="submit" name="action"><?php _e('Login', 'e-blueinfo'); ?></button>
                 <a href="https://platserv.bvsalud.org/server/pub/userData.php?c=<?php echo base64_encode($current_url); ?>&theme=e-blueinfo&lang=<?php echo $lang; ?>"><?php _e('Register Yourself', 'e-blueinfo'); ?></a>
             </div>
             <div class="input-field col s12">

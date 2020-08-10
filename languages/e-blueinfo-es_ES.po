@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Memória Azul 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/leisref\n"
-"POT-Creation-Date: 2020-08-03 16:31-0300\n"
-"PO-Revision-Date: 2020-08-03 17:27-0300\n"
+"POT-Creation-Date: 2020-08-10 17:38-0300\n"
+"PO-Revision-Date: 2020-08-10 17:38-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -17,40 +17,40 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: e-blueinfo.php:178
+#: e-blueinfo.php:179
 msgid "e-BlueInfo Settings"
 msgstr "e-BlueInfo Configuraciones"
 
-#: e-blueinfo.php:178 e-blueinfo.php:405 template/app/app.php:30
+#: e-blueinfo.php:179 e-blueinfo.php:406 template/app/app.php:30
 #: template/app/app.php:40 template/app/country.php:27
 msgid "e-BlueInfo"
 msgstr "e-BlueInfo"
 
-#: e-blueinfo.php:344 e-blueinfo.php:346
+#: e-blueinfo.php:345 e-blueinfo.php:347
 msgid "e-BlueInfo Sidebar"
 msgstr "e-BlueInfo Sidebar"
 
-#: e-blueinfo.php:381 template/menu.php:20 template/search.php:185
+#: e-blueinfo.php:382 template/menu.php:20 template/search.php:185
 msgid "Communities"
 msgstr "Comunidades"
 
-#: e-blueinfo.php:383 template/search.php:186
+#: e-blueinfo.php:384 template/search.php:186
 msgid "Collections"
 msgstr "Colecciones"
 
-#: e-blueinfo.php:385
+#: e-blueinfo.php:386
 msgid "Browse collection"
 msgstr "Navegar por la colección"
 
-#: e-blueinfo.php:387
+#: e-blueinfo.php:388
 msgid "Search result"
 msgstr "Resultado de la búsqueda"
 
-#: e-blueinfo.php:389 template/app/country.php:29 template/country.php:34
+#: e-blueinfo.php:390 template/app/country.php:29 template/country.php:43
 msgid "Please choose a country"
 msgstr "Por favor, elija un país"
 
-#: e-blueinfo.php:391
+#: e-blueinfo.php:392
 msgid "Document"
 msgstr "Documento"
 
@@ -116,15 +116,15 @@ msgstr "País/región"
 msgid "Database"
 msgstr "Base de datos"
 
-#: settings.php:100
+#: settings.php:100 template/leisref-metadata.php:114
 msgid "Collection"
 msgstr "Colección"
 
-#: settings.php:105 template/menu.php:29
+#: settings.php:105 template/leisref-metadata.php:109 template/menu.php:29
 msgid "Language"
 msgstr "Idioma"
 
-#: settings.php:110 template/doc.php:183
+#: settings.php:110 template/biblio-metadata.php:97
 msgid "Year"
 msgstr "Año"
 
@@ -136,13 +136,99 @@ msgstr "Redireccionamiento"
 msgid "Save changes"
 msgstr "Guardar cambios"
 
-#: template-functions.php:71
+#: template-functions.php:82
 msgid "of"
 msgstr "de"
 
 #: template/app/header.php:14
 msgid "Choose country"
 msgstr "Elegir país"
+
+#: template/biblio-metadata.php:82 template/biblio-metadata.php:145
+#: template/browse.php:253 template/browse.php:273 template/favorites.php:150
+#: template/favorites.php:218 template/leisref-metadata.php:167
+#: template/menu.php:14 template/search.php:211 template/visited.php:142
+#: template/visited.php:158
+msgid "Favorites"
+msgstr "Favoritos"
+
+#: template/biblio-metadata.php:84 template/biblio-metadata.php:161
+#: template/leisref-metadata.php:78 template/leisref-metadata.php:183
+msgid "Share"
+msgstr "Compartir"
+
+#: template/biblio-metadata.php:85 template/browse.php:256
+#: template/favorites.php:201 template/leisref-metadata.php:79
+#: template/search.php:193 template/visited.php:145
+msgid "View Document"
+msgstr "Ver Documento"
+
+#: template/biblio-metadata.php:91
+msgid "Title"
+msgstr "Título"
+
+#: template/biblio-metadata.php:94
+msgid "Author"
+msgstr "Autor"
+
+#: template/biblio-metadata.php:100
+msgid "Publisher"
+msgstr "Editor"
+
+#: template/biblio-metadata.php:103
+msgid "Abstract"
+msgstr "Resumen"
+
+#: template/biblio-metadata.php:116 template/biblio-metadata.php:131
+#: template/leisref-metadata.php:138 template/leisref-metadata.php:153
+msgid "Similar"
+msgstr "Similares"
+
+#: template/biblio-metadata.php:135 template/leisref-metadata.php:157
+msgid "No similar found"
+msgstr "No se han encontrado documentos similares"
+
+#: template/biblio-metadata.php:146 template/browse.php:274
+#: template/favorites.php:219 template/leisref-metadata.php:168
+#: template/search.php:212 template/visited.php:159
+msgid ""
+"All e-BlueInfo services are free, but to improve your experience there is a "
+"need for a quick registration. This allows us to record your favorites list, "
+"visited documents and other features."
+msgstr ""
+"Todos los servicios de e-BlueInfo son gratuitos, pero para mejorar su "
+"experiencia es necesario un rápido registro. Esto nos permite registrar su "
+"lista de favoritos, documentos visitados y otros recursos."
+
+#: template/biblio-metadata.php:147 template/browse.php:275
+#: template/favorites.php:220 template/leisref-metadata.php:169
+#: template/login.php:21 template/login.php:63 template/menu.php:17
+#: template/search.php:213 template/visited.php:160
+msgid "Login"
+msgstr "Login"
+
+#: template/biblio-metadata.php:149 template/browse.php:277
+#: template/favorites.php:222 template/leisref-metadata.php:171
+#: template/search.php:215 template/visited.php:162
+msgid "MyVHL"
+msgstr "MiBVS"
+
+#: template/biblio-metadata.php:150 template/browse.php:278
+#: template/favorites.php:223 template/leisref-metadata.php:172
+#: template/search.php:216 template/visited.php:163
+msgid ""
+"With the same e-BlueInfo registration you have full access to MyVHL Services "
+"Platform."
+msgstr ""
+"Con el mismo registro e-BlueInfo, tiene acceso completo a la Plataforma de "
+"Servicios MiBVS."
+
+#: template/biblio-metadata.php:153 template/browse.php:281
+#: template/community.php:186 template/community.php:199
+#: template/favorites.php:226 template/leisref-metadata.php:175
+#: template/search.php:219 template/visited.php:166
+msgid "Close"
+msgstr "Cerrar"
 
 #: template/browse.php:143 template/browse.php:197 template/browse.php:212
 #: template/favorites.php:108 template/favorites.php:163
@@ -183,6 +269,7 @@ msgid "Bibliographic"
 msgstr "Registros bibliográficos"
 
 #: template/browse.php:191 template/favorites.php:157
+#: template/leisref-metadata.php:85
 msgid "Legislation"
 msgstr "Legislación"
 
@@ -211,31 +298,23 @@ msgstr "No hay documentos visitados"
 msgid "No results found"
 msgstr "No se han encontrado resultados"
 
-#: template/browse.php:251 template/doc.php:168 template/favorites.php:150
-#: template/menu.php:14 template/visited.php:135
-msgid "Favorites"
-msgstr "Favoritos"
+#: template/browse.php:260 template/favorites.php:205
+msgid "Update"
+msgstr "Actualización"
 
-#: template/browse.php:253 template/doc.php:171 template/favorites.php:200
-#: template/search.php:191 template/visited.php:137
-msgid "View Document"
-msgstr "Ver Documento"
+#: template/browse.php:260 template/favorites.php:205
+msgid "Downloads"
+msgstr "Descargas"
 
-#: template/browse.php:278 template/community.php:186
-#: template/community.php:199 template/doc.php:239 template/favorites.php:225
-#: template/search.php:217 template/visited.php:158
-msgid "Close"
-msgstr "Cerrar"
-
-#: template/browse.php:286 template/search.php:225
+#: template/browse.php:289 template/search.php:227
 msgid "Load More"
 msgstr "Mostrar Más"
 
-#: template/browse.php:287 template/search.php:226
+#: template/browse.php:290 template/search.php:228
 msgid "No more documents"
 msgstr "No hay más documentos"
 
-#: template/browse.php:293 template/search.php:232
+#: template/browse.php:296 template/search.php:234
 msgid "Loading..."
 msgstr "Cargando..."
 
@@ -254,7 +333,8 @@ msgstr "Última Actualización"
 
 #: template/community.php:127
 msgid "No results found. Please choose a country in the main menu."
-msgstr "Ningún resultado encontrado. Por favor, elija un país en el menú principal."
+msgstr ""
+"Ningún resultado encontrado. Por favor, elija un país en el menú principal."
 
 #: template/community.php:159
 msgid "Other Evidence"
@@ -269,37 +349,9 @@ msgstr "Buscar evidencia para otras condiciones médicas"
 msgid "Contextualized Search"
 msgstr "Búsqueda Contextualizada"
 
-#: template/country.php:43 template/home.php:89
+#: template/country.php:52 template/home.php:98
 msgid "Select"
 msgstr "Seleccionar"
-
-#: template/doc.php:170 template/doc.php:247
-msgid "Share"
-msgstr "Compartir"
-
-#: template/doc.php:177
-msgid "Title"
-msgstr "Título"
-
-#: template/doc.php:180
-msgid "Author"
-msgstr "Autor"
-
-#: template/doc.php:186
-msgid "Publisher"
-msgstr "Editor"
-
-#: template/doc.php:189
-msgid "Abstract"
-msgstr "Resumen"
-
-#: template/doc.php:202
-msgid "Similar"
-msgstr "Similares"
-
-#: template/doc.php:221
-msgid "No similar found"
-msgstr "No se han encontrado documentos similares"
 
 #: template/favorites.php:178
 msgid "No favorite documents found"
@@ -405,9 +457,29 @@ msgstr "Este campo es requerido"
 msgid "Documents found in VHL"
 msgstr "Documentos encontrados en la BVS"
 
-#: template/login.php:21 template/menu.php:17
-msgid "Login"
-msgstr "Login"
+#: template/leisref-metadata.php:89
+msgid "Act Country/Region"
+msgstr "País/Región del acto"
+
+#: template/leisref-metadata.php:94
+msgid "Organ Issuer"
+msgstr "Órgano Emisor"
+
+#: template/leisref-metadata.php:99
+msgid "Act Scope"
+msgstr "Esfera del acto"
+
+#: template/leisref-metadata.php:104
+msgid "Source"
+msgstr "Fuente"
+
+#: template/leisref-metadata.php:119
+msgid "Publication Date"
+msgstr "Fecha de publicación"
+
+#: template/leisref-metadata.php:124
+msgid "Descriptors"
+msgstr "Asuntos"
 
 #: template/login.php:32
 msgid "Account successfully created!"
@@ -481,7 +553,7 @@ msgstr "Ningún resultado encontrado. Intente buscar con otras palabras clave."
 msgid "Results"
 msgstr "Resultados"
 
-#: template/search.php:189
+#: template/search.php:190
 msgid "Add to Favorites"
 msgstr "Añadir a Favoritos"
 
@@ -507,9 +579,6 @@ msgstr "Documento Visitados"
 #~ msgid "Document Access"
 #~ msgstr "Acceso al documento"
 
-#~ msgid "Download link"
-#~ msgstr "Enlace para descarga"
-
 #~ msgid "No more communities"
 #~ msgstr "No hay más comunidades"
 
@@ -532,7 +601,8 @@ msgstr "Documento Visitados"
 #~ msgstr "Ingrese una o más palabras"
 
 #~ msgid "Tip! You can do your search using boolean operators."
-#~ msgstr "¡Sugerencia! Puede hacer su búsqueda utilizando operadores booleanos."
+#~ msgstr ""
+#~ "¡Sugerencia! Puede hacer su búsqueda utilizando operadores booleanos."
 
 #~ msgid "Publication year"
 #~ msgstr "Año de publicación"
@@ -545,21 +615,6 @@ msgstr "Documento Visitados"
 
 #~ msgid "Related"
 #~ msgstr "Relacionados"
-
-#~ msgid "Act country/region"
-#~ msgstr "País/región del acto"
-
-#~ msgid "Organ issuer"
-#~ msgstr "Órgano Emisor"
-
-#~ msgid "Act scope"
-#~ msgstr "Esfera del acto"
-
-#~ msgid "Source"
-#~ msgstr "Fuente"
-
-#~ msgid "Publication date"
-#~ msgstr "Fecha de publicación"
 
 #~ msgid "Text in"
 #~ msgstr "Texto en"
