@@ -82,8 +82,12 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                 </div>
                 <div class="divider"></div>
                 <div data-aos="fade-right">
-                    <h5 class="titleDefault"><?php _e('Legislation', 'e-blueinfo'); ?></h5>
-                    <p class="doc-title"><?php echo $title; ?></p>
+                    <h5 class="titleDefault doc-title"><?php echo $title; ?></h5>
+                    <?php if ($resource->official_ementa): ?>
+                        <p><?php echo $resource->official_ementa[0];?></p>
+                    <?php elseif ($resource->unofficial_ementa): ?>
+                        <p><?php echo $resource->unofficial_ementa[0];?></p>
+                    <?php endif; ?>
 
                     <?php if ( $resource->scope_region ) : ?>
                     <h5 class="titleDefault"><?php _e('Act Country/Region','e-blueinfo'); ?></h5>

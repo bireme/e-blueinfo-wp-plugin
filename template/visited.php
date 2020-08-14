@@ -132,8 +132,13 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                     <div class="card-content">
                         <b><a class="doc-title" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="__gaTracker('send','event','Visited Documents','View','<?php echo $countries[$country].'|'.$title; ?>');"><?php echo $title; ?></a></b> <br />
                         <?php if ( 'leisref' == $doc->is ) : ?>
-                        <p><small><?php echo explode('^', $doc->oi[0])[1]; ?></small></p>
-                        <p><small><?php echo explode('^', $doc->sn[0])[1]; ?></small></p> <br />
+                            <?php if ( $doc->oe ) : ?>
+                            <p><small><?php echo short_string($doc->oe[0]); ?></small></p> <br />
+                            <?php elseif ( $doc->ue ) : ?>
+                            <p><small><?php echo short_string($doc->ue[0]); ?></small></p> <br />
+                            <?php else : ?>
+                            <p><small>-</small></p> <br />
+                            <?php endif; ?>
                         <?php else : ?>
                         <p><small><?php echo short_string(get_abstract($doc->ab, $lang)); ?></small></p> <br />
                         <?php endif; ?>

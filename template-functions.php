@@ -176,10 +176,10 @@ if ( !function_exists('real_site_url') ) {
 if ( !function_exists('short_string') ) {
     function short_string($string, $len=400){
         if ( strlen($string) > $len ) {
-            $string = substr(utf8_decode($string), 0, $len) . "...";
+            $string = mb_substr($string, 0, $len) . "...";
         }
 
-        return utf8_encode($string);
+        return $string;
     }
 }
 
