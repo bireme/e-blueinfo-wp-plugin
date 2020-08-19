@@ -179,7 +179,7 @@ $pages->paginate($page_url_params);
             <article class="flexCol1 item cardSingle">
                 <div class="row padding3 cardBox">
                     <div class="col s3">
-                        <img src="<?php echo $thumb_service_url . '/' . $doc->id . '/' . $doc->id . '.jpg'; ?>" class="thumbnail responsive-img" alt="" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'">
+                        <img src="<?php echo get_thumbnail($doc->id, $doc->mt); ?>" class="thumbnail responsive-img" alt="">
                     </div>
                     <div class="col s7">
                         <p><b><?php _e('Communities', 'e-blueinfo'); ?>:</b> <br /><?php echo $com_name; ?></p>

@@ -373,4 +373,34 @@ if ( !function_exists('get_leisref_fulltext') ) {
     }
 }
 
+if ( !function_exists('get_thumbnail') ) {
+    function get_thumbnail($docid, $media) {
+        global $thumb_service_url;
+        $img = $thumb_service_url . '/' . $docid . '/' . $docid . '.jpg';
+        $headers = @get_headers($img);
+        $img_exists = strpos($headers[0],"200 OK") ? true : false;
+        $img_dir = EBLUEINFO_PLUGIN_URL . 'template/images';
+
+        $media_type = array(
+            'pdf'   => $img_dir.'/thumbPDF.jpg',
+            'video' => $img_dir.'/thumbVideo.jpg',
+            'audio' => $img_dir.'/thumbAudio.jpg',
+            'ppt'   => $img_dir.'/thumbPPT.jpg',
+            'image' => $img_dir.'/thumbImage.jpg',
+            'link'  => $img_dir.'/thumbLink.jpg'
+        );
+        
+        if ( $img_exists ) {
+            $thumb = $img;
+        } else {
+            if ( array_key_exists($media, $media_type) )
+                $thumb = $media_type[$media];
+            else
+                $thumb = 'http://thumbs.bireme.org/nothumb.jpg';
+        }
+
+        return $thumb;
+    }
+}
+
 ?>

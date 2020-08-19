@@ -104,6 +104,8 @@ if ($response){
     $snippets = $response_json->highlighting;
 }
 
+// echo "<pre>"; print_r($docs); echo "</pre>"; die();
+
 $media_type_texts = array(
     'pdf'   => __('PDF','e-blueinfo'),
     'video' => __('Video','e-blueinfo'),
@@ -189,7 +191,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                     <div class="cardBoxText">
                         <a class="e-blueinfo-doc" data-docid="<?php echo $doc->id; ?>" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="__gaTracker('send','event','Favorite Documents','View','<?php echo $countries[$country].'|'.$title; ?>');">
                             <div class="col s3">
-                                <img src="<?php echo $thumb_service_url . '/' . $doc->id . '/' . $doc->id . '.jpg'; ?>" class="responsive-img" alt="" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'">
+                                <img src="<?php echo get_thumbnail($doc->id, $doc->mt); ?>" class="responsive-img" alt="">
                             </div>
                             <div class="col s7">
                                 <p class="doc-title"><?php echo $title; ?></p>

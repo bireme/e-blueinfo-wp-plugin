@@ -32,6 +32,15 @@ if ($response){
     }
 }
 
+$media_type = 'thumb';
+$query = 'id:' . $docid;
+$eblueinfo_service_request = $pdf_service_url . '&q=' . urlencode($query) . '&lang=' . $lang;
+$response = @file_get_contents($eblueinfo_service_request);
+if ($response){
+    $response_json = json_decode($response);
+    $media_type = $response_json->response->docs[0]->mt;
+}
+
 $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['home_url_' . $lang] : real_site_url();
 ?>
 
@@ -71,7 +80,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
             <article class="doc-detail">
                 <div class="row">
                     <div class="col s6 m4 l3 text-center" data-aos="fade-left">
-                        <img class="thumbnail-doc responsive-img" src="<?php echo $thumb_service_url . '/' . $docid . '/' . $docid . '.jpg'; ?>" alt="" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'">
+                        <img class="thumbnail-doc responsive-img" src="<?php echo get_thumbnail($docid, $media_type); ?>" alt="">
                     </div>
                     <div class="col s6 m8 l9 right-align">
                         <?php if ( $resource->fulltext ) : ?>
