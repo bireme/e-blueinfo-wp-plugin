@@ -183,6 +183,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 
 <!-- Template -->
 <section class="container">
+    <h2 class="title3"><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'collection/?community=' . $community_id; ?>"><?php echo $collection->objects{0}->parent; ?></a> / <?php echo $collection->objects{0}->name; ?></h2>
     <div class="row">
         <div class="col s12 m6">
             <select class="info-source center-align">

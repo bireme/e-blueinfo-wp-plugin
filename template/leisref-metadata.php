@@ -38,6 +38,17 @@ $eblueinfo_service_request = $pdf_service_url . '&q=' . urlencode($query) . '&la
 $response = @file_get_contents($eblueinfo_service_request);
 if ($response){
     $response_json = json_decode($response);
+
+    $community_name = $response_json->response->docs[0]->com[0];
+    $community_name = explode(' ', $community_name, 2);
+    $com_name = $community_name[1];
+    $com_id = explode('|', $community_name[0])[0];
+
+    $collection_name = $response_json->response->docs[0]->col[0];
+    $collection_name = explode(' ', $collection_name, 2);
+    $col_name = $collection_name[1];
+    $col_id = explode('|', $collection_name[0])[0];
+
     $media_type = $response_json->response->docs[0]->mt;
 }
 
@@ -48,6 +59,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <?php get_header('e-blueinfo'); ?>
 <?php require_once('header.php'); ?>
 <section class="container">
+    <h2 class="title3"><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'collection/?community=' . $com_id; ?>"><?php echo $com_name; ?></a> / <a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $com_id . '&collection=' . $col_id; ?>"><?php echo $col_name; ?></a></h2>
     <div class="row">
         <?php require_once('menu.php'); ?>
         <div class="col s10 m11">
@@ -55,8 +67,8 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                 <div class="nav-wrapper">
                     <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Document','Search','<?php echo $countries[$country]; ?>|'+document.getElementById('searchBarInput').value);">
                         <div class="input-field">
-                            <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
-                            <input type="hidden" name="collection" id="collection" value="<?php echo $collection_id; ?>">
+                            <input type="hidden" name="community" id="community" value="<?php echo $com_id; ?>">
+                            <input type="hidden" name="collection" id="collection" value="<?php echo $col_id; ?>">
                             <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
                             <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
 

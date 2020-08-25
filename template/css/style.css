@@ -287,6 +287,14 @@ a:active{
 .btn-register {
 	margin-bottom: 16px;
 }
+.title3 {
+	font-size: 20px;
+	margin-top: 0;
+	text-align: center;
+	padding: 10px;
+	font-family: 'Bebas Neue', cursive;
+	background: #ededed;
+}
 /****************************** cor 01 ************************/
 .bgColor1{
 	background: url('../images/bgShape.png') #2962ff top right fixed no-repeat;
