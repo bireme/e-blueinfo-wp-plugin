@@ -59,7 +59,8 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <?php get_header('e-blueinfo'); ?>
 <?php require_once('header.php'); ?>
 <section class="container">
-    <h2 class="title3"><?php echo $com_name; ?> / <?php echo $col_name; ?></h2>
+    <div class="title3 light-blue-text text-darken-1"><?php echo $com_name; ?></div>
+    <div class="title3 title4"><?php echo $col_name; ?></div>
     <div class="row">
         <?php require_once('menu.php'); ?>
         <div class="col s10 m11">
