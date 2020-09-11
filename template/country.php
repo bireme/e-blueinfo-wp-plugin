@@ -46,6 +46,7 @@
                     <?php foreach ($countries as $id => $name) : $selected = ( $country_id == $id ) ? 'selected' : ''; ?>
                     <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/' . $lang . '/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>" <?php echo $selected; ?>><?php echo $name; ?></option>
                     <?php endforeach; ?>
+                    <option data-country="oc" value="<?php echo get_site_url() . '/' . $lang . '/' . $eblueinfo_plugin_slug . '?country=oc'; ?>" <?php echo ( 'oc' == $country_id ) ? 'selected' : ''; ?>><?php _e('Other country', 'e-blueinfo'); ?></option>
                 </select>
             </div>
             <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4 center-align">

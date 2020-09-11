@@ -70,6 +70,7 @@
                         <?php foreach ($countries_en as $id => $name) : ?>
                         <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/en/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
                         <?php endforeach; ?>
+                        <option data-country="oc" value="<?php echo get_site_url() . '/en/' . $eblueinfo_plugin_slug . '?country=oc'; ?>">Other country</option>
                     </select>
                 </div>
                 <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4 countries pt">
@@ -81,6 +82,7 @@
                         <?php foreach ($countries_pt as $id => $name) : ?>
                         <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/pt/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
                         <?php endforeach; ?>
+                        <option data-country="oc" value="<?php echo get_site_url() . '/pt/' . $eblueinfo_plugin_slug . '?country=oc'; ?>">Outro país</option>
                     </select>
                 </div>
                 <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4 countries es">
@@ -92,6 +94,7 @@
                         <?php foreach ($countries_es as $id => $name) : ?>
                         <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/es/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
                         <?php endforeach; ?>
+                        <option data-country="oc" value="<?php echo get_site_url() . '/es/' . $eblueinfo_plugin_slug . '?country=oc'; ?>">Otro país</option>
                     </select>
                 </div>
                 <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4 center-align">

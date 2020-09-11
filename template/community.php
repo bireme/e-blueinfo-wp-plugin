@@ -120,7 +120,15 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <!-- ./Header -->
 
 <!-- Template -->
-<?php if ( isset($total) && strval($total) == 0 ) : ?>
+<?php if ( 'oc' == $country ) : ?>
+<section class="container containerAos">
+    <div class="row">
+        <div class="card-panel center-align">
+            <span class="blue-text text-darken-2"><?php _e('There are no communities available as your country has not joined e-BlueInfo. But you still have access to the documents in the Other Evidence section.','e-blueinfo'); ?></span>
+        </div>
+    </div>
+</section>
+<?php elseif ( isset($total) && strval($total) == 0 ) : ?>
 <section class="container containerAos">
     <div class="row">
         <div class="card-panel center-align">
@@ -135,7 +143,9 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <article class="col s12 m6 l4" data-aos="fade-up" data-aos-delay="300">
             <div class="card">
                 <div class="card-image">
-                    <img src="<?php echo $community->image; ?>">
+                    <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>collection/?community=<?php echo $community->id; ?>" onclick="__gaTracker('send','event','Community','View','<?php echo $countries[$country].'|'.$community->name; ?>');">
+                        <img src="<?php echo $community->image; ?>">
+                    </a>
                     <a href="#modal-community-<?php echo $community->id; ?>" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i class="fas fa-info"></i></a>
                 </div>
                 <div class="card-content">
