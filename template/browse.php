@@ -104,6 +104,12 @@ if ( !empty($collection_id) ) {
             unset($docs);
         }
     }
+
+    // Latest Cookie
+    if ( $output && 'latest' == $output ) {
+        $latest = date("Y-m-d\TH:i:s", strtotime('-15 days'));
+        $query = $query . ' AND ud:['.$latest.' TO NOW]';
+    }
 }
 
 // echo "<pre>"; print_r($query); echo "</pre>"; die();
@@ -207,7 +213,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
     </div>
     <?php if ( $_COOKIE['userData'] ) : ?>
     <div class="row">
-        <div class="col s4 m3 offset-l3 l2 center-align">
+        <div class="col s4 m3 offset-l2 l2 center-align">
             <div class="blue-grey lighten-4" id="cardSingle" onclick="location='<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id; ?>';"><small><?php _e('All','e-blueinfo'); ?></small></div>
         </div>
         <div class="col s4 m3 l2 center-align">
@@ -215,6 +221,9 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         </div>
         <div class="col s4 m3 l2 center-align">
             <div class="cyan lighten-3" id="cardVisited" onclick="location='<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id . '&output=visited'; ?>';"><small><?php _e('Visited','e-blueinfo'); ?></small></div>
+        </div>
+        <div class="col s4 m3 l2 center-align">
+            <div class="light-green accent-3" id="cardLatest" onclick="location='<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id . '&output=latest'; ?>';"><small><?php _e('Latest','e-blueinfo'); ?></small></div>
         </div>
     </div>
     <?php endif; ?>
@@ -238,7 +247,8 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <?php foreach ( $docs as $index => $doc ) : $index++; ?>
             <?php $altid = ( $doc->alternate_ids ) ? $doc->alternate_ids[0] : $doc->id; ?>
             <?php $title = ( 'leisref' == $doc->is ) ? get_leisref_title($doc, $lang) : $doc->ti[0]; ?>
-            <article class="flexCol1 item <?php echo $class; ?>">
+            <?php $latest = ( strtotime($doc->ud) > strtotime('-15 days') ) ? 'cardLatest' : ''; ?>
+            <article class="flexCol1 item card-<?php echo $lang; ?> <?php echo $class; ?> <?php echo $latest; ?>">
                 <div class="row padding3 cardBox">
                     <div class="cardBoxText">
                         <a class="e-blueinfo-doc" data-docid="<?php echo $doc->id; ?>" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="__gaTracker('send','event','Browse','View','<?php echo $countries[$country].'|'.$title; ?>');">

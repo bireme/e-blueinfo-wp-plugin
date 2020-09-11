@@ -146,7 +146,7 @@ a:active{
 #speakBtn:hover{
 	color: #fff;
 }
-#cardLastVisited, #cardVisited, #cardSingle{
+#cardLatest, #cardLastVisited, #cardVisited, #cardSingle{
 	cursor: pointer;
 }
 #color0,#color1,#color2{
@@ -299,6 +299,33 @@ a:active{
 	border-bottom: none;
 	background: #ededed;
 	margin-bottom: 20px;
+}
+.flexCol1 {
+	width: 50%;
+	position: relative;
+	overflow: hidden;
+}
+.cardLatest:before {
+    position: absolute;
+    left: -33px;
+    top: 9px;
+    transform: rotate(-45deg);
+    padding: 10px 40px;
+    color: #fafafa;
+    background-color: #54cf8b;
+    box-shadow: 0 2px 1px rgba(0,0,0,.1);
+    font-size: .625rem;
+    line-height: 1;
+    z-index: 1;
+}
+.card-pt.cardLatest:before {
+	content: "NOVO";
+}
+.card-es.cardLatest:before {
+	content: "NUEVO";
+}
+.card-en.cardLatest:before {
+	content: "NEW";
 }
 /****************************** cor 01 ************************/
 .bgColor1{

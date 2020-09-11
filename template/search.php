@@ -173,10 +173,11 @@ $pages->paginate($page_url_params);
             <?php
                 $altid = ( $doc->alternate_ids ) ? $doc->alternate_ids[0] : $doc->id;
                 $title = ( 'leisref' == $doc->is ) ? get_leisref_title($doc, $lang) : $doc->ti[0];
+                $class = ( strtotime($doc->ud) > strtotime('-15 days') ) ? 'cardLatest' : '';
                 $com_name = ( $doc->com ) ? implode('; ', array_map("remove_prefix", $doc->com)) : '-';
                 $col_name = ( $doc->col ) ? implode('; ', array_map("remove_prefix", $doc->col)) : '-';
             ?>
-            <article class="flexCol1 item cardSingle">
+            <article class="flexCol1 item cardSingle card-<?php echo $lang; ?> <?php echo $class; ?>">
                 <div class="row padding3 cardBox">
                     <div class="col s3">
                         <img src="<?php echo get_thumbnail($doc->id, $doc->mt); ?>" class="thumbnail responsive-img" alt="">
