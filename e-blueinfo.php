@@ -354,6 +354,21 @@ if(!class_exists('EBlueInfo_Plugin')) {
                         }
                     }
                 }
+
+                $count = 0;
+                foreach ($countries as $key => $value) {
+                    $count++;
+                    $args = array(
+                        'name' => __('e-BlueInfo Footer Sidebar', 'e-blueinfo').' '.$count,
+                        'id'   => 'e-blueinfo-footer-sidebar-'.$key,
+                        'description' => __('e-BlueInfo Footer Sidebar', 'e-blueinfo').': '.$value,
+                        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+                        'after_widget'  => '</div>',
+                        'before_title'  => '<h2 class="widgettitle">',
+                        'after_title'   => '</h2>',
+                    );
+                    register_sidebar( $args );
+                }
             }
         }
 
