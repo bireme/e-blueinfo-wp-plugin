@@ -171,7 +171,9 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <article class="col s12 m6 l4" data-aos="fade-up" data-aos-delay="500">
             <div class="card">
                 <div class="card-image">
-                    <img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/infobutton.jpg'; ?>">
+                    <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>infobutton">
+                        <img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/infobutton.jpg'; ?>">
+                    </a>
                     <a href="#modal-infobutton" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i class="fas fa-info"></i></a>
                 </div>
                 <div class="card-content">

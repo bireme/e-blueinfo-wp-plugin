@@ -127,8 +127,9 @@ a:active{
 	transform: translate(-50%, -50%);
 	text-align: center;
 }
-.logoFooterSidebar{
+#footer-sidebar img {
 	max-height: 70px;
+    width: auto;
 }
 #logoFooter img{
 	max-width: 400px;
