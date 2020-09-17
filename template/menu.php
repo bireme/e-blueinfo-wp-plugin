@@ -9,12 +9,14 @@
 		<div id="brand">
 			<a href="community.php?"><img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/logoPB.png'; ?>" alt="" class="responsive-img"></a>
 		</div>
-		<?php if ( $_COOKIE['userData'] ) : ?>
-		<li><a href="<?php echo $services_platform_url.'/client/controller/logout/control/business/origin/'.base64_encode($home_url); ?>"><?php _e('Logout', 'e-blueinfo'); ?></a></li>
-		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'favorites/?community=' . $community_id . '&collection=' . $collection_id; ?>"><?php _e('Favorites', 'e-blueinfo'); ?></a></li>
-		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'visited/?community=' . $community_id . '&collection=' . $collection_id; ?>"><?php _e('Visited', 'e-blueinfo'); ?></a></li>
-		<?php else : ?>
-		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'auth/'; ?>"><?php _e('Login', 'e-blueinfo'); ?></a></li>
+		<?php if ( 'oc' != $country ) : ?>
+			<?php if ( $_COOKIE['userData'] ) : ?>
+			<li><a href="<?php echo $services_platform_url.'/client/controller/logout/control/business/origin/'.base64_encode($home_url); ?>"><?php _e('Logout', 'e-blueinfo'); ?></a></li>
+			<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'favorites/?community=' . $community_id . '&collection=' . $collection_id; ?>"><?php _e('Favorites', 'e-blueinfo'); ?></a></li>
+			<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'visited/?community=' . $community_id . '&collection=' . $collection_id; ?>"><?php _e('Visited', 'e-blueinfo'); ?></a></li>
+			<?php else : ?>
+			<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'auth/'; ?>"><?php _e('Login', 'e-blueinfo'); ?></a></li>
+			<?php endif; ?>
 		<?php endif; ?>
 		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'country/'; ?>"><?php _e('Country', 'e-blueinfo'); ?></a></li>
 		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php _e('Communities', 'e-blueinfo'); ?></a></li>
