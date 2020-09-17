@@ -540,6 +540,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
             global $wp;
 
             $pagename = $wp->request;
+            $userID = ( $_COOKIE["userID"] ) ? $_COOKIE["userID"] : '';
             $eblueinfo_config = get_option('eblueinfo_config');
 
             // check if is defined GA code and pagename starts with plugin slug
@@ -554,6 +555,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
             })(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
             __gaTracker('create', '<?php echo $eblueinfo_config['google_analytics_code']; ?>', 'auto');
             __gaTracker('send', 'pageview');
+            __gaTracker('set', 'userId', '<?php echo $userID; ?>'); // Set the user ID using signed-in user_id.
         </script>
         <?php
             } //endif
