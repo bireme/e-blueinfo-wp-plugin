@@ -137,6 +137,7 @@ a:active{
 #footerFlag{
 	max-width: 30px;
 	border-radius: 50%;
+	margin-top: 20px;
 }
 #speakBtn{
 	color: rgba(255,255,255,0.7);
@@ -468,6 +469,14 @@ and (min-device-width : 1025px) {
 	}
 	.cardBoxImg{
 		max-width: 100%!important;
+	}
+	#footer-sidebar img{
+		width: 30%!important;
+		margin: 1.6666666%!important;
+		height: auto;
+	}
+	#footerFlag{
+		margin-top: 0;
 	}
 }
 @media (max-width: 560px){

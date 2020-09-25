@@ -123,9 +123,11 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <?php if ( 'oc' == $country ) : ?>
 <section class="container containerAos">
     <div class="row">
-        <div class="card-panel center-align">
-            <span class="blue-text text-darken-2"><?php _e('There are no communities available as your country has not joined e-BlueInfo. But you still have access to the documents in the Other Evidence section.','e-blueinfo'); ?></span>
-        </div>
+        <article class="col s12" data-aos="fade-up" data-aos-delay="300">
+            <div class="card-panel blue darken-1 center-align">
+                <span class="white-text"><?php _e('There are no communities available as your country has not joined e-BlueInfo. But you still have access to the documents in the Other Evidence section.','e-blueinfo'); ?></span>
+            </div>
+        </article>
     </div>
 </section>
 <?php elseif ( isset($total) && strval($total) == 0 ) : ?>
