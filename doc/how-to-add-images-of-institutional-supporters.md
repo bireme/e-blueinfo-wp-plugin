@@ -8,5 +8,6 @@ How to add images of institutional supporters
 ![Screenshot 1](img/screenshot2.png)
 
 Image specifications:
+- Format: JPG or PNG
 - Height: 100px
 - Width: 200px
