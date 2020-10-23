@@ -25,3 +25,9 @@ Go to `Settings` in the administration panel (dashboard) and click on the newly 
 * `Search form` is optional and defines a flag to control the display of the search box in the homepage;
 * `AddThis profile ID` is optional and is provided to allow the integration with sharing tools services [AddThis](http://www.addthis.com/). Notice this requires previous registration within the sharing tools service;
 * `Google Analytics code` is optional and allows the integration of website analytics services provided by Google. Notice this requires previous registration in Google.
+
+Links
+-----
+
+* [How to add community banners](doc/how-to-add-community-banners.md)
+* [How to add images of institutional supporters](doc/how-to-add-images-of-institutional-supporters.md)
