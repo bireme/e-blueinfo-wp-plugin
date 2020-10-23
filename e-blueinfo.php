@@ -501,9 +501,9 @@ if(!class_exists('EBlueInfo_Plugin')) {
                     'site' => $site,
                     'portal' => $vhl_search_portal_url,
                     'servplat' => $services_platform_url,
-                    'fav_doc_success' => __('Document added to Favorite Documents.', 'e-blueinfo'),
-                    'fav_doc_exists' => __('This document has already been added to Favorite Documents.', 'e-blueinfo'),
-                    'fav_doc_error' => __('The document was not correctly added to Favorite Documents.', 'e-blueinfo')
+                    'fav_doc_success' => __('Document added to Favorites', 'e-blueinfo'),
+                    'fav_doc_exists' => __('This document has already been added to Favorites', 'e-blueinfo'),
+                    'fav_doc_error' => __('The document was not correctly added to Favorites', 'e-blueinfo')
                 )
             );
 /*
