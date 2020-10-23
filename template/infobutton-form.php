@@ -17,12 +17,20 @@ $lang_label = array(
 );
 
 // InfoButton Country Code
+$cc = '';
 $country_code = array(
-    "30" => 'BRA', // Brazil
-    "64" => 'SLV', // El Salvador
-    "89" => 'GTM', // Guatemala
-    "168" => 'PER' // Peru
+    "BR" => 'BRA', // Brazil
+    "SV" => 'SLV', // El Salvador
+    "GT" => 'GTM', // Guatemala
+    "PE" => 'PER'  // Peru
 );
+
+$response = @file_get_contents($this->country_service_url);
+if ($response){
+    $response_json = json_decode($response);
+    $cc_list = wp_list_pluck( $response_json, 'code', 'id' );
+    $cc = $cc_list[$_COOKIE['e-blueinfo-country']];
+}
 
 ?>
 
@@ -98,12 +106,14 @@ $country_code = array(
                             <span><?php _e('Documents only in', 'e-blueinfo'); ?> <?php echo $lang_label[$lang]; ?></span>
                         </label>
                     </div>
+                    <?php if ( $cc ) : ?>
                     <div class="col s12 m6 margin1">
                         <label>
-                            <input id="locationOfInterest-addr-CNT" name="locationOfInterest.addr.CNT" type="checkbox" value="<?php echo $country_code[$_COOKIE['e-blueinfo-country']]; ?>" />
+                            <input id="locationOfInterest-addr-CNT" name="locationOfInterest.addr.CNT" type="checkbox" value="<?php echo $country_code[$cc]; ?>" />
                             <span><?php _e('Documents from your country', 'e-blueinfo'); ?></span>
                         </label>
                     </div>
+                    <?php endif; ?>
                 </fieldset>
                 <div class="col s12">
                     <br />
