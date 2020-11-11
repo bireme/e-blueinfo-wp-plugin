@@ -127,6 +127,17 @@ if(!class_exists('EBlueInfo_Plugin')) {
                 }
             }
 
+            $country_code = $eblueinfo_config['country_code'];
+            if ( !$country_code ) {
+                $response = @file_get_contents($this->country_service_url);
+                if ($response){
+                    $response_json = json_decode($response);
+                    $cc_list = wp_list_pluck( $response_json, 'code', 'id' );
+                    $eblueinfo_config['country_code'] = $cc_list;
+                    update_option('eblueinfo_config', $eblueinfo_config);
+                }
+            }
+
             // check if request contains plugin slug string
             $pos_slug = strpos($_SERVER['REQUEST_URI'], $this->plugin_slug);
 
@@ -192,6 +203,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
             // country data
             $eblueinfo_config = get_option('eblueinfo_config');
             $countries = $eblueinfo_config['country_data'];
+            $country_code = $eblueinfo_config['country_code'];
 
             $site_language = strtolower(get_bloginfo('language'));
             $lang = substr($site_language,0,2);

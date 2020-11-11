@@ -1,6 +1,30 @@
 <?php
     global $services_platform_url;
     $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['home_url_' . $lang] : real_site_url();
+	
+	$cc = $country_code[$_COOKIE['e-blueinfo-country']];
+    $c_pages = array(
+    	"BR" => array(
+			"pt" => 'https://e-blueinfo.bvsalud.org/dados-do-brasil/',
+			"es" => 'https://e-blueinfo.bvsalud.org/es/datos-de-brasil/',
+			"en" => 'https://e-blueinfo.bvsalud.org/en/data-from-brazil/'
+		),
+    	"SV" => array(
+			"pt" => 'https://e-blueinfo.bvsalud.org/dados-de-el-salvador/',
+			"es" => 'https://e-blueinfo.bvsalud.org/es/datos-de-el-salvador/',
+			"en" => 'https://e-blueinfo.bvsalud.org/en/data-from-el-salvador/'
+		),
+    	"GT" => array(
+			"pt" => 'https://e-blueinfo.bvsalud.org/dados-da-guatemala/',
+			"es" => 'https://e-blueinfo.bvsalud.org/es/datos-de-guatemala/',
+			"en" => 'https://e-blueinfo.bvsalud.org/en/data-from-guatemala/'
+		),
+    	"PE" => array(
+			"pt" => 'https://e-blueinfo.bvsalud.org/dados-do-peru/',
+			"es" => 'https://e-blueinfo.bvsalud.org/es/datos-de-peru/',
+			"en" => 'https://e-blueinfo.bvsalud.org/en/data-from-peru/'
+		)
+    );
 ?>
 
 <div class="col s2 m1">
@@ -17,8 +41,23 @@
 			<?php else : ?>
 			<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'auth/'; ?>"><?php _e('Login', 'e-blueinfo'); ?></a></li>
 			<?php endif; ?>
+			<!-- Start nested content -->
+			<li>
+			    <ul class="collapsible collapsible-accordion">
+			        <li>
+			            <a class="collapsible-header" tabindex="0"><?php _e('Country', 'e-blueinfo'); ?></a>
+			            <div class="collapsible-body">
+			                <ul>
+								<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'country/'; ?>"><?php _e('Change', 'e-blueinfo'); ?></a></li>
+								<li><a href="<?php echo $c_pages[$cc][$lang]; ?>" target="_blank"><?php _e('Info', 'e-blueinfo'); ?></a></li>
+			                </ul>
+			            </div>
+			        </li>
+			    </ul>
+			</li>
+		<?php else : ?>
+			<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'country/'; ?>"><?php _e('Country', 'e-blueinfo'); ?></a></li>
 		<?php endif; ?>
-		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'country/'; ?>"><?php _e('Country', 'e-blueinfo'); ?></a></li>
 		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php _e('Communities', 'e-blueinfo'); ?></a></li>
 		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php _e('About', 'e-blueinfo'); ?></a></li>
 		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php _e('Help', 'e-blueinfo'); ?></a></li>
