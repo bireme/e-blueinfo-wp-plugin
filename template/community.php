@@ -156,7 +156,6 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                         <h5><b><?php echo $community->name; ?></b></h5>
                         <div><?php _e('Click here for selected content','e-blueinfo'); ?><div>
                         <hr />
-                        <small><?php _e('Last Update','e-blueinfo'); ?>: <?php echo $community->updated_time; ?></small>
                         <?php if ( is_timestamp($community->updated_time) ) : ?>
                             <small><?php _e('Last Update','e-blueinfo'); ?>: <?php echo $community->updated_time; ?></small>
                         <?php endif; ?>
