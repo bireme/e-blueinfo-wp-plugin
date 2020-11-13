@@ -106,8 +106,6 @@
 <?php endif; ?>
 <!-- ./Template -->
 
-<script src="<?php echo EBLUEINFO_PLUGIN_URL . 'app/js/en/main.menu.js?ver=2.0.0'; ?>"></script>
-
 <!-- Footer -->
 <?php get_footer(); ?>
 <!-- ./Footer -->

@@ -23,6 +23,7 @@ function is_webview () {
 
 $(function () {
   if ( is_webview() ) {
+    var site = "http://sites.bvsalud.org/e-blueinfo";
     var json = [
                   {
                     "label": "About",
@@ -31,12 +32,12 @@ $(function () {
                     "isSubmenu": false,
                     "subLinks": [
                       {
-                        "url": "http://sites.bvsalud.org/e-blueinfo/about-en/",
+                        "url": site + "/about-en/",
                         "label": "Why e-BlueInfo?",
                         "subLinks": []
                       },
                       {
-                        "url": "http://sites.bvsalud.org/e-blueinfo/supporters-en/",
+                        "url": site + "/supporters-en/",
                         "label": "Institutional Supporters",
                         "subLinks": []
                       }
@@ -49,18 +50,13 @@ $(function () {
                     "isSubmenu": false,
                     "subLinks": [
                       {
-                        "url": "http://sites.bvsalud.org/e-blueinfo/pdf-en/",
-                        "label": "How to improve the readability of PDF files",
+                        "url": "https://bvsalud.org/contact_us/",
+                        "label": "Contact",
                         "subLinks": []
                       },
                       {
-                        "url": "http://feedback.bireme.org/feedback/e-blueinfo?version=2.10-77&site=app&lang=en",
-                        "label": "Leave comment",
-                        "subLinks": []
-                      },
-                      {
-                        "url": "http://feedback.bireme.org/feedback/e-blueinfo?version=2.10-77&error=1&site=app&lang=en",
-                        "label": "Report error",
+                        "url": "https://e-blueinfo.bvsalud.org/en/tutorial-en/",
+                        "label": "Tutorial",
                         "subLinks": []
                       }
                     ]

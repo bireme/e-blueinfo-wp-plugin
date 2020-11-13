@@ -3,6 +3,12 @@
     $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['home_url_' . $lang] : real_site_url();
 	
 	$cc = $country_code[$_COOKIE['e-blueinfo-country']];
+	$c_name = array(
+	    "BR" => __('Brazil', 'e-blueinfo'),
+	    "SV" => __('El Salvador', 'e-blueinfo'),
+	    "GT" => __('Guatemala', 'e-blueinfo'),
+	    "PE" => __('Peru', 'e-blueinfo')
+	);
     $c_pages = array(
     	"BR" => array(
 			"pt" => 'https://e-blueinfo.bvsalud.org/dados-do-brasil/',
@@ -25,6 +31,27 @@
 			"en" => 'https://e-blueinfo.bvsalud.org/en/data-from-peru/'
 		)
     );
+
+    $about_pages = array(
+    	"about" => array(
+    		"pt" => 'http://sites.bvsalud.org/e-blueinfo/about-pt/',
+    		"es" => 'http://sites.bvsalud.org/e-blueinfo/about-es/',
+    		"en" => 'http://sites.bvsalud.org/e-blueinfo/about-en/'
+    	),
+    	"supporters" => array(
+    		"pt" => 'http://sites.bvsalud.org/e-blueinfo/supporters-pt/',
+    		"es" => 'http://sites.bvsalud.org/e-blueinfo/supporters-es/',
+    		"en" => 'http://sites.bvsalud.org/e-blueinfo/supporters-en/'
+    	)
+    );
+
+    $help_pages = array(
+    	"contact" => array(
+    		"pt" => 'https://bvsalud.org/contate-nos/',
+    		"es" => 'https://bvsalud.org/contactenos/',
+    		"en" => 'https://bvsalud.org/contact_us/'
+    	),
+    );
 ?>
 
 <div class="col s2 m1">
@@ -45,11 +72,11 @@
 			<li>
 			    <ul class="collapsible collapsible-accordion">
 			        <li>
-			            <a class="collapsible-header" tabindex="0"><?php _e('Country', 'e-blueinfo'); ?></a>
+			            <a class="collapsible-header" tabindex="0"><?php _e('Country', 'e-blueinfo'); ?> <?php echo '('.$c_name[$cc].')'; ?></a>
 			            <div class="collapsible-body">
 			                <ul>
-								<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'country/'; ?>"><?php _e('Change', 'e-blueinfo'); ?></a></li>
-								<li><a href="<?php echo $c_pages[$cc][$lang]; ?>" target="_blank"><?php _e('Info', 'e-blueinfo'); ?></a></li>
+								<li><a href="<?php echo $c_pages[$cc][$lang]; ?>" target="_blank"><?php _e('See more', 'e-blueinfo'); ?></a></li>
+								<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'country/'; ?>"><?php _e('Change country', 'e-blueinfo'); ?></a></li>
 			                </ul>
 			            </div>
 			        </li>
@@ -59,10 +86,34 @@
 			<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'country/'; ?>"><?php _e('Country', 'e-blueinfo'); ?></a></li>
 		<?php endif; ?>
 		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php _e('Communities', 'e-blueinfo'); ?></a></li>
-		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php _e('About', 'e-blueinfo'); ?></a></li>
-		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php _e('Help', 'e-blueinfo'); ?></a></li>
-		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'tutorial/'; ?>"><?php _e('Tutorial', 'e-blueinfo'); ?></a></li>
-		<li><a href="#" data-target="slide-out" class="sidenav-trigger"><?php _e('Settings', 'e-blueinfo'); ?></a></li>
+		<!-- Start nested content -->
+		<li>
+		    <ul class="collapsible collapsible-accordion">
+		        <li>
+		            <a class="collapsible-header" tabindex="0"><?php _e('About', 'e-blueinfo'); ?></a>
+		            <div class="collapsible-body">
+		                <ul>
+							<li><a href="<?php echo $about_pages['about'][$lang]; ?>"><?php _e('Why e-BlueInfo?', 'e-blueinfo'); ?></a></li>
+							<li><a href="<?php echo $about_pages['supporters'][$lang]; ?>"><?php _e('Supporters', 'e-blueinfo'); ?></a></li>
+		                </ul>
+		            </div>
+		        </li>
+		    </ul>
+		</li>
+		<!-- Start nested content -->
+		<li>
+		    <ul class="collapsible collapsible-accordion">
+		        <li>
+		            <a class="collapsible-header" tabindex="0"><?php _e('Help', 'e-blueinfo'); ?></a>
+		            <div class="collapsible-body">
+		                <ul>
+							<li><a href="<?php echo $help_pages['contact'][$lang]; ?>"><?php _e('Contact', 'e-blueinfo'); ?></a></li>
+							<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php _e('Tutorial', 'e-blueinfo'); ?></a></li>
+		                </ul>
+		            </div>
+		        </li>
+		    </ul>
+		</li>
 		<!-- Start nested content -->
 		<li>
 		    <ul class="collapsible collapsible-accordion">
@@ -78,6 +129,7 @@
 		        </li>
 		    </ul>
 		</li>
+		<!-- <li><a href="#" data-target="slide-out" class="sidenav-trigger"><?php _e('Settings', 'e-blueinfo'); ?></a></li> -->
 	</ul>
 </div>
 

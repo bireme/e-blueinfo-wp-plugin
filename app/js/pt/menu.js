@@ -21,7 +21,15 @@ function is_webview () {
 
 $(function () {
   if ( is_webview() ) {
+    var site = "http://sites.bvsalud.org/e-blueinfo";
+    var country = $.cookie("e-blueinfo-country");
+    var userData = $.cookie("userData");
     var json = [
+                  {
+                    "url": site + "pt/app",
+                    "label": "Comunidades",
+                    "subLinks": []
+                  },
                   {
                     "label": "Sobre",
                     "grouping": "[grouping]",
@@ -29,12 +37,12 @@ $(function () {
                     "isSubmenu": false,
                     "subLinks": [
                       {
-                        "url": "http://sites.bvsalud.org/e-blueinfo/about-pt/",
+                        "url": site + "/about-pt/",
                         "label": "Por que e-BlueInfo?",
                         "subLinks": []
                       },
                       {
-                        "url": "http://sites.bvsalud.org/e-blueinfo/supporters-pt/",
+                        "url": site + "/supporters-pt/",
                         "label": "Apoiadores Institucionais",
                         "subLinks": []
                       }
@@ -47,18 +55,13 @@ $(function () {
                     "isSubmenu": false,
                     "subLinks": [
                       {
-                        "url": "http://sites.bvsalud.org/e-blueinfo/pdf-pt/",
-                        "label": "Como melhorar a leitura dos arquivos PDF",
+                        "url": "https://bvsalud.org/contate-nos/",
+                        "label": "Contato",
                         "subLinks": []
                       },
                       {
-                        "url": "http://feedback.bireme.org/feedback/e-blueinfo?version=2.10-77&site=app&lang=pt",
-                        "label": "Enviar comentário",
-                        "subLinks": []
-                      },
-                      {
-                        "url": "http://feedback.bireme.org/feedback/e-blueinfo?version=2.10-77&error=1&site=app&lang=pt",
-                        "label": "Comunicar erro",
+                        "url": "https://e-blueinfo.bvsalud.org/tutorial/",
+                        "label": "Tutorial",
                         "subLinks": []
                       }
                     ]
@@ -70,30 +73,116 @@ $(function () {
                     "isSubmenu": false,
                     "subLinks": [
                       {
-                        "url": "http://sites.bvsalud.org/e-blueinfo/pt/app?fcl=true",
+                        "url": site + "/pt/app?fcl=true",
                         "label": "Português",
                         "subLinks": []
                       },
                       {
-                        "url": "http://sites.bvsalud.org/e-blueinfo/es/app?fcl=true",
+                        "url": site + "/es/app?fcl=true",
                         "label": "Español",
                         "subLinks": []
                       },
                       {
-                        "url": "http://sites.bvsalud.org/e-blueinfo/app?fcl=true",
+                        "url": site + "/app?fcl=true",
                         "label": "English",
                         "subLinks": []
                       }
                     ]
-                  },
-                  {
-                    "url": "http://sites.bvsalud.org/e-blueinfo/pt/app/country",
-                    "label": "Alterar País",
-                    "subLinks": []
                   }
                 ];
 
-    var items = JSON.stringify(json);
+    var cc = eblueinfo_script_vars.cc;
+    var c_name = {
+      "BR": "Brasil",
+      "SV": "El Salvador",
+      "GT": "Guatemala",
+      "PE": "Peru"
+    };
+    var c_pages = {
+      "BR": 'https://e-blueinfo.bvsalud.org/dados-do-brazil/',
+      "SV": 'https://e-blueinfo.bvsalud.org/dados-de-el-salvador/',
+      "GT": 'https://e-blueinfo.bvsalud.org/dados-da-guatemala/',
+      "PE": 'https://e-blueinfo.bvsalud.org/dados-do-peru/'
+    };
+
+    if ( 'oc' == country ) {
+      var _json = [
+                    {
+                      "url": site + "pt/app/country",
+                      "label": "País",
+                      "subLinks": []
+                    }
+                  ];
+    } else {
+      if ( userData ) {
+        _site = site.replace(/\/?$/, '/');
+        var _json = [
+                      {
+                        "url": "https://platserv.bvsalud.org/client/controller/logout/control/business/origin/"+btoa(_site),
+                        "label": "Logout",
+                        "subLinks": []
+                      },
+                      {
+                        "url": site + "pt/app/favorites",
+                        "label": "Favoritos",
+                        "subLinks": []
+                      },
+                      {
+                        "url": site + "pt/app/visited",
+                        "label": "Visitados",
+                        "subLinks": []
+                      },
+                      {
+                        "label": "País (" + c_name[cc] + ")",
+                        "grouping": "[grouping]",
+                        "isGrouping": true,
+                        "isSubmenu": false,
+                        "subLinks": [
+                          {
+                            "url": c_pages[cc],
+                            "label": "Saiba mais",
+                            "subLinks": []
+                          },
+                          {
+                            "url": site + "pt/app/country",
+                            "label": "Alterar país",
+                            "subLinks": []
+                          }
+                        ]
+                      }
+                    ];
+      } else {
+        var _json = [
+                      {
+                        "url": site + "pt/app/auth",
+                        "label": "Login",
+                        "subLinks": []
+                      },
+                      {
+                        "label": "País (" + c_name[cc] + ")",
+                        "grouping": "[grouping]",
+                        "isGrouping": true,
+                        "isSubmenu": false,
+                        "subLinks": [
+                          {
+                            "url": c_pages[cc],
+                            "label": "Saiba mais",
+                            "subLinks": []
+                          },
+                          {
+                            "url": site + "pt/app/country",
+                            "label": "Alterar país",
+                            "subLinks": []
+                          }
+                        ]
+                      }
+                    ];
+      }
+    }
+
+    _json = _json.concat(json);
+
+    var items = JSON.stringify(_json);
 
     window.location.href='gonative://sidebar/setItems?items=' + encodeURIComponent(items);
   }
