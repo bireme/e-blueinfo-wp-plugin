@@ -27,7 +27,7 @@ $(function () {
     var json = [
                   {
                     "url": site + "pt/app",
-                    "label": "Comunidades",
+                    "label": "Conteúdos",
                     "subLinks": []
                   },
                   {

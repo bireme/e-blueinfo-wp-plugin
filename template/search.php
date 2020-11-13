@@ -183,7 +183,7 @@ $pages->paginate($page_url_params);
                         <img src="<?php echo get_thumbnail($doc->id, $doc->mt); ?>" class="thumbnail responsive-img" alt="">
                     </div>
                     <div class="col s7">
-                        <p><b><?php _e('Communities', 'e-blueinfo'); ?>:</b> <br /><?php echo $com_name; ?></p>
+                        <p><b><?php _e('Contents', 'e-blueinfo'); ?>:</b> <br /><?php echo $com_name; ?></p>
                         <p><b><?php _e('Collections', 'e-blueinfo'); ?>:</b> <br /><?php echo $col_name; ?></p>
                     </div>
                     <div class="col s2 right-align">

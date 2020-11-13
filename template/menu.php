@@ -85,7 +85,7 @@
 		<?php else : ?>
 			<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'country/'; ?>"><?php _e('Country', 'e-blueinfo'); ?></a></li>
 		<?php endif; ?>
-		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php _e('Communities', 'e-blueinfo'); ?></a></li>
+		<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php _e('Contents', 'e-blueinfo'); ?></a></li>
 		<!-- Start nested content -->
 		<li>
 		    <ul class="collapsible collapsible-accordion">
