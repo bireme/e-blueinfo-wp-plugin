@@ -2,7 +2,7 @@
 /*
 Template Name: e-BlueInfo Collection Page
 */
-global $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_plugin_title, $eblueinfo_texts;
+global $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_plugin_title, $eblueinfo_texts, $solr_service_url;
 
 $order = array(
         'RELEVANCE' => 'score desc',

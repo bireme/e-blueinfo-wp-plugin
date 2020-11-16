@@ -180,7 +180,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <section class="container containerAos">
     <div class="row">
         <div class="col s12">
-            <h5  style="padding: 10px 20px; color: #fff; background-color: #0d47a1;"><b><?php _e('Other Evidences', 'e-blueinfo'); ?></b></h5>
+            <h5  style="padding: 10px 20px; color: #fff; background-color: #0d47a1;"><b><?php _e('Other Evidence', 'e-blueinfo'); ?></b></h5>
         </div>
         <article class="col s12 m6 l4" data-aos="fade-up" data-aos-delay="500">
             <div class="card">
@@ -188,7 +188,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                     <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>infobutton">
                         <img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/infobutton.jpg'; ?>">
                     </a>
-                    <a href="#modal-infobutton" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i class="fas fa-info"></i></a>
+                    <!-- <a href="#modal-infobutton" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i class="fas fa-info"></i></a> -->
                 </div>
                 <div class="card-content">
                     <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>infobutton">
