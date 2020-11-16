@@ -99,6 +99,14 @@ if ($response){
     $community_list = $response_json->objects;
 }
 
+$collection_cluster_request = $solr_service_url . 'query?q="com:' . $community_id . '|*"&facet=true&facet.field=col&rows=0';
+$response = @file_get_contents($collection_cluster_request);
+if ($response){
+    $response_json = json_decode($response);
+    $facet_fields = $response_json->facet_counts->facet_fields->col;
+    $collection_cluster = get_cluster($facet_fields);
+}
+
 $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['home_url_' . $lang] : real_site_url();
 
 ?>
@@ -178,6 +186,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                     <div class="card-content">
                         <b><?php echo $collection->name; ?></b> <br />
                         <p><small><?php echo $collection->description; ?></small></p>
+                        <small><?php _e('Documents','e-blueinfo'); ?>: <?php echo $collection_cluster['_'.$collection->id]['total']; ?></small>
                         <?php if ( is_timestamp($collection->updated_time) ) : ?>
                             <small><?php _e('Last Update','e-blueinfo'); ?>: <?php echo $collection->updated_time; ?></small>
                         <?php endif; ?>
@@ -201,6 +210,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                     <div class="card-content">
                         <b><?php echo $collection->name; ?></b> <br />
                         <p><small><?php echo $collection->description; ?></small></p>
+                        <small><?php _e('Documents','e-blueinfo'); ?>: <?php echo $collection_cluster['_'.$collection->id]['total']; ?></small>
                         <?php if ( is_timestamp($collection->updated_time) ) : ?>
                             <small><?php _e('Last Update','e-blueinfo'); ?>: <?php echo $collection->updated_time; ?></small>
                         <?php endif; ?>

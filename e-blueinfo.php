@@ -39,6 +39,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
         private $infobutton_service_url = 'http://bvsinfobutton.homolog.bvsalud.org';
         private $services_platform_url  = 'https://platserv.bvsalud.org';
         private $vhl_search_portal_url  = 'https://pesquisa.bvsalud.org';
+        private $solr_service_url       = 'http://basalto01.bireme.br:9293/solr/pdfs/';
         private $pdf_service_url        = 'http://basalto01.bireme.br:9293/solr/pdfs/select?fl=ud,id,ti,com,col,ur,tu,fo,au,ab,mt,is,at,oi,sn,an,oe,ue,fi_admin_id,alternate_ids';
         // private $pdf_service_url     = 'http://basalto01.bireme.br:9293/solr/pdfs/select?hl=on&hl.fl=_text_&hl.fragsize=500&hl.snippets=10&hl.maxAnalyzedChars=800000&fl=ud,id,ti,com,col,ur,tu,fo,au,ab,mt,is,at,oi,sn,an,oe.ue,fi_admin_id,alternate_ids';
 
@@ -197,7 +198,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
         }
 
         function theme_redirect() {
-            global $wp, $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_texts, $similar_docs_url, $pdf_service_url, $thumb_service_url, $country_service_url, $infobutton_service_url, $services_platform_url, $vhl_search_portal_url;
+            global $wp, $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_texts, $similar_docs_url, $solr_service_url, $pdf_service_url, $thumb_service_url, $country_service_url, $infobutton_service_url, $services_platform_url, $vhl_search_portal_url;
 
             $pagename = '';
             $template = '';
@@ -229,6 +230,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
                 $eblueinfo_service_url  = $this->service_url;
                 $eblueinfo_plugin_slug  = $this->plugin_slug;
                 $similar_docs_url       = $this->similar_docs_url;
+                $solr_service_url       = $this->solr_service_url;
                 $pdf_service_url        = $this->pdf_service_url;
                 $thumb_service_url      = $this->thumb_service_url;
                 $country_service_url    = $this->country_service_url;

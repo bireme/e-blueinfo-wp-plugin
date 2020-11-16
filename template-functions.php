@@ -431,4 +431,24 @@ if ( !function_exists('slugify') ) {
     }
 }
 
+if ( !function_exists('get_cluster') ) {
+    function get_cluster($data){
+        $odd = array();
+        $even = array();
+        $both = array(&$even, &$odd);
+        array_walk($data, function($v, $k) use ($both) { $both[$k % 2][] = $v; });
+
+        $i = 0;
+        $cluster = array();
+        foreach ($even as $key => $val) {
+            $explode = explode('|', $val, 2);
+            $cluster['_'.$explode[0]]['name'] = $explode[1];
+            $cluster['_'.$explode[0]]['total'] = $odd[$i];
+            $i++;
+        };
+
+        return $cluster;
+    }
+}
+
 ?>
