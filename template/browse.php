@@ -2,7 +2,7 @@
 /*
 Template Name: e-BlueInfo Collection Page
 */
-global $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_plugin_title, $eblueinfo_texts, $thumb_service_url, $pdf_service_url;
+global $eblueinfo_service_url, $eblueinfo_plugin_slug, $eblueinfo_plugin_title, $eblueinfo_texts, $thumb_service_url, $pdf_service_url, $solr_service_url;
 
 require_once(EBLUEINFO_PLUGIN_PATH . '/lib/Paginator.php');
 
@@ -145,6 +145,18 @@ if ($response){
     // echo "<pre>"; print_r($collection); echo "</pre>"; die();
 }
 
+// $filters_cluster_request = $solr_service_url . 'query?q=' . urlencode($query) . '&facet=true&facet.field=mt&facet.field=is&rows=0';
+$filters_cluster_request = $solr_service_url . 'query?q=(col:' . $collection_id . '|*)&facet=true&facet.field=mt&facet.field=is&rows=0';
+$response = @file_get_contents($filters_cluster_request);
+if ($response){
+    $response_json = json_decode($response);
+    $cluster_total = $response_json->response->numFound;
+    $facet_fields = $response_json->facet_counts->facet_fields->mt;
+    $mt_cluster = get_cluster($facet_fields);
+    $facet_fields = $response_json->facet_counts->facet_fields->is;
+    $is_cluster = get_cluster($facet_fields);
+}
+
 $media_type_texts = array(
     'pdf'   => __('PDF','e-blueinfo'),
     'video' => __('Video','e-blueinfo'),
@@ -194,20 +206,20 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
     <div class="row">
         <div class="col s12 m6">
             <select class="info-source center-align">
-                <option value=""><?php _e('All information sources','e-blueinfo'); ?> <?php if ( empty($info_source) ) { echo '('.$total.')'; } ?></option>
-                <option value="biblio" <?php if ( 'biblio' == $info_source ) { echo 'selected'; } ?>><?php _e('Bibliographic','e-blueinfo'); ?> <?php if ( 'biblio' == $info_source ) { echo '('.$total.')'; } ?></option>
-                <option value="leisref" <?php if ( 'leisref' == $info_source ) { echo 'selected'; } ?>><?php _e('Legislation','e-blueinfo'); ?> <?php if ( 'leisref' == $info_source ) { echo '('.$total.')'; } ?></option>
+                <option value=""><?php _e('All information sources','e-blueinfo'); ?> <?php echo '('.$cluster_total.')'; ?></option>
+                <option value="biblio" <?php if ( 'biblio' == $info_source ) { echo 'selected'; } ?>><?php _e('Bibliographic','e-blueinfo'); ?> <?php echo '('.$is_cluster['_biblio']['total'].')'; ?></option>
+                <option value="leisref" <?php if ( 'leisref' == $info_source ) { echo 'selected'; } ?>><?php _e('Legislation','e-blueinfo'); ?> <?php echo '('.$is_cluster['_leisref']['total'].')'; ?></option>
             </select>
         </div>
         <div class="col s12 m6">
             <select class="media-type center-align">
-                <option value=""><?php _e('All media','e-blueinfo'); ?></option>
-                <option value="pdf" <?php if ( 'pdf' == $media_type ) { echo 'selected'; } ?>><?php _e('PDF','e-blueinfo'); ?></option>
-                <option value="video" <?php if ( 'video' == $media_type ) { echo 'selected'; } ?>><?php _e('Video','e-blueinfo'); ?></option>
-                <option value="audio" <?php if ( 'audio' == $media_type ) { echo 'selected'; } ?>><?php _e('Audio','e-blueinfo'); ?></option>
-                <option value="ppt" <?php if ( 'ppt' == $media_type ) { echo 'selected'; } ?>><?php _e('PPT','e-blueinfo'); ?></option>
-                <option value="image" <?php if ( 'image' == $media_type ) { echo 'selected'; } ?>><?php _e('Image','e-blueinfo'); ?></option>
-                <option value="link" <?php if ( 'link' == $media_type ) { echo 'selected'; } ?>><?php _e('Link','e-blueinfo'); ?></option>
+                <option value=""><?php _e('All media','e-blueinfo'); ?> <?php echo '('.$cluster_total.')'; ?></option>
+                <option value="pdf" <?php if ( 'pdf' == $media_type ) { echo 'selected'; } ?>><?php _e('PDF','e-blueinfo'); ?> <?php echo ( $mt_cluster['_pdf'] ) ? '('.$mt_cluster['_pdf']['total'].')' : "(0)"; ?></option>
+                <option value="video" <?php if ( 'video' == $media_type ) { echo 'selected'; } ?>><?php _e('Video','e-blueinfo'); ?> <?php echo ( $mt_cluster['_video'] ) ? '('.$mt_cluster['_video']['total'].')' : "(0)"; ?></option>
+                <option value="audio" <?php if ( 'audio' == $media_type ) { echo 'selected'; } ?>><?php _e('Audio','e-blueinfo'); ?> <?php echo ( $mt_cluster['_audio'] ) ? '('.$mt_cluster['_audio']['total'].')' : "(0)"; ?></option>
+                <option value="ppt" <?php if ( 'ppt' == $media_type ) { echo 'selected'; } ?>><?php _e('PPT','e-blueinfo'); ?> <?php echo ( $mt_cluster['_ppt'] ) ? '('.$mt_cluster['_ppt']['total'].')' : "(0)"; ?></option>
+                <option value="image" <?php if ( 'image' == $media_type ) { echo 'selected'; } ?>><?php _e('Image','e-blueinfo'); ?> <?php echo ( $mt_cluster['_image'] ) ? '('.$mt_cluster['_image']['total'].')' : "(0)"; ?></option>
+                <option value="link" <?php if ( 'link' == $media_type ) { echo 'selected'; } ?>><?php _e('Link','e-blueinfo'); ?> <?php echo ( $mt_cluster['_link'] ) ? '('.$mt_cluster['_link']['total'].')' : "(0)"; ?></option>
             </select>
         </div>
     </div>
@@ -254,6 +266,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                         <a class="e-blueinfo-doc" data-docid="<?php echo $doc->id; ?>" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="__gaTracker('send','event','Browse','View','<?php echo $countries[$country].'|'.$title; ?>');">
                             <div class="col s3">
                                 <img src="<?php echo get_thumbnail($doc->id, $doc->mt); ?>" class="responsive-img" alt="">
+                                <!-- <img src="https://fakeimg.pl/350x500/" class="responsive-img" alt=""> -->
                             </div>
                             <div class="col s7">
                                 <p class="doc-title"><?php echo $title; ?></p>

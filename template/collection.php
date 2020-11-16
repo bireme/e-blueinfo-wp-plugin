@@ -99,7 +99,7 @@ if ($response){
     $community_list = $response_json->objects;
 }
 
-$collection_cluster_request = $solr_service_url . 'query?q="com:' . $community_id . '|*"&facet=true&facet.field=col&rows=0';
+$collection_cluster_request = $solr_service_url . 'query?q=(com:' . $community_id . '|*)&facet=true&facet.field=col&rows=0';
 $response = @file_get_contents($collection_cluster_request);
 if ($response){
     $response_json = json_decode($response);

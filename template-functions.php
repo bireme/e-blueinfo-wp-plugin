@@ -442,7 +442,7 @@ if ( !function_exists('get_cluster') ) {
         $cluster = array();
         foreach ($even as $key => $val) {
             $explode = explode('|', $val, 2);
-            $cluster['_'.$explode[0]]['name'] = $explode[1];
+            $cluster['_'.$explode[0]]['name'] = ( $explode[1] ) ? $explode[1] : $explode[0];
             $cluster['_'.$explode[0]]['total'] = $odd[$i];
             $i++;
         };
