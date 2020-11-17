@@ -54,7 +54,7 @@
     );
 ?>
 
-<div class="col s2 m1">
+<div class="col s2 m1" id="menu">
 	<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons" style="font-size: 30px">menu</i></a>
 	<ul class="sidenav sidenav-menu" id="mobile-demo">
 		<div id="brand">

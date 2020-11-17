@@ -65,7 +65,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <section class="container">
     <div class="row">
         <?php require_once('menu.php'); ?>
-        <div class="col s10 m11">
+        <div class="col s10 m11" id="barSearch">
             <nav>
                 <div class="nav-wrapper">
                     <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Document','Search','<?php echo $countries[$country]; ?>|'+document.getElementById('searchBarInput').value);">
