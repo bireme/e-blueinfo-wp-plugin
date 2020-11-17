@@ -496,7 +496,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
             wp_enqueue_style('e-blueinfo-page', EBLUEINFO_PLUGIN_URL . 'template/css/style.css?ver=2.0.0', array(), EBLUEINFO_VERSION);
 
             if ( is_webview() ) {
-                wp_enqueue_style('e-blueinfo-page', EBLUEINFO_PLUGIN_URL . 'template/css/app-style.css?ver=2.0.0', array(), EBLUEINFO_VERSION);
+                wp_enqueue_style('e-blueinfo-app', EBLUEINFO_PLUGIN_URL . 'template/css/app-style.css?ver=2.0.0', array(), EBLUEINFO_VERSION);
             }
             
             foreach ($wp_scripts->queue as $handle) {
