@@ -23,7 +23,7 @@ function is_webview () {
 
 $(function () {
   if ( is_webview() ) {
-    var site = "http://sites.bvsalud.org/e-blueinfo";
+    var site = "https://e-blueinfo.bvsalud.org";
     var json = [
                   {
                     "label": "About",
@@ -32,12 +32,12 @@ $(function () {
                     "isSubmenu": false,
                     "subLinks": [
                       {
-                        "url": site + "/about-en/",
+                        "url": site + "/en/why-e-blueinfo/",
                         "label": "Why e-BlueInfo?",
                         "subLinks": []
                       },
                       {
-                        "url": site + "/supporters-en/",
+                        "url": site + "/en/institutional-supporters/",
                         "label": "Institutional Supporters",
                         "subLinks": []
                       }
@@ -55,7 +55,7 @@ $(function () {
                         "subLinks": []
                       },
                       {
-                        "url": "https://e-blueinfo.bvsalud.org/en/tutorial-en/",
+                        "url": site + "/en/tutorials/",
                         "label": "Tutorial",
                         "subLinks": []
                       }

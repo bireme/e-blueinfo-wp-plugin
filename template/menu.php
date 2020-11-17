@@ -1,7 +1,8 @@
 <?php
     global $services_platform_url;
     $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['home_url_' . $lang] : real_site_url();
-	
+    $site = 'https://e-blueinfo.bvsalud.org';
+    
 	$cc = $country_code[$_COOKIE['e-blueinfo-country']];
 	$c_name = array(
 	    "BR" => __('Brazil', 'e-blueinfo'),
@@ -11,37 +12,37 @@
 	);
     $c_pages = array(
     	"BR" => array(
-			"pt" => 'https://e-blueinfo.bvsalud.org/dados-do-brasil/',
-			"es" => 'https://e-blueinfo.bvsalud.org/es/datos-de-brasil/',
-			"en" => 'https://e-blueinfo.bvsalud.org/en/data-from-brazil/'
+			"pt" => $site . '/dados-do-brasil/',
+			"es" => $site . '/es/datos-de-brasil/',
+			"en" => $site . '/en/data-from-brazil/'
 		),
     	"SV" => array(
-			"pt" => 'https://e-blueinfo.bvsalud.org/dados-de-el-salvador/',
-			"es" => 'https://e-blueinfo.bvsalud.org/es/datos-de-el-salvador/',
-			"en" => 'https://e-blueinfo.bvsalud.org/en/data-from-el-salvador/'
+			"pt" => $site . '/dados-de-el-salvador/',
+			"es" => $site . '/es/datos-de-el-salvador/',
+			"en" => $site . '/en/data-from-el-salvador/'
 		),
     	"GT" => array(
-			"pt" => 'https://e-blueinfo.bvsalud.org/dados-da-guatemala/',
-			"es" => 'https://e-blueinfo.bvsalud.org/es/datos-de-guatemala/',
-			"en" => 'https://e-blueinfo.bvsalud.org/en/data-from-guatemala/'
+			"pt" => $site . '/dados-da-guatemala/',
+			"es" => $site . '/es/datos-de-guatemala/',
+			"en" => $site . '/en/data-from-guatemala/'
 		),
     	"PE" => array(
-			"pt" => 'https://e-blueinfo.bvsalud.org/dados-do-peru/',
-			"es" => 'https://e-blueinfo.bvsalud.org/es/datos-de-peru/',
-			"en" => 'https://e-blueinfo.bvsalud.org/en/data-from-peru/'
+			"pt" => $site . '/dados-do-peru/',
+			"es" => $site . '/es/datos-de-peru/',
+			"en" => $site . '/en/data-from-peru/'
 		)
     );
 
     $about_pages = array(
     	"about" => array(
-    		"pt" => 'http://sites.bvsalud.org/e-blueinfo/about-pt/',
-    		"es" => 'http://sites.bvsalud.org/e-blueinfo/about-es/',
-    		"en" => 'http://sites.bvsalud.org/e-blueinfo/about-en/'
+    		"pt" => $site . '/por-que-e-blueinfo/',
+    		"es" => $site . '/es/por-que-e-blueinfo-es/',
+    		"en" => $site . '/en/why-e-blueinfo/'
     	),
     	"supporters" => array(
-    		"pt" => 'http://sites.bvsalud.org/e-blueinfo/supporters-pt/',
-    		"es" => 'http://sites.bvsalud.org/e-blueinfo/supporters-es/',
-    		"en" => 'http://sites.bvsalud.org/e-blueinfo/supporters-en/'
+    		"pt" => $site . '/apoiadores-institucionais/',
+    		"es" => $site . '/es/apoyadores-institucionales/',
+    		"en" => $site . '/en/institutional-supporters/'
     	)
     );
 
@@ -51,6 +52,11 @@
     		"es" => 'https://bvsalud.org/contactenos/',
     		"en" => 'https://bvsalud.org/contact_us/'
     	),
+    	"tutorial" => array(
+    		"pt" => $site . '/tutoriais/',
+    		"es" => $site . '/es/tutoriales/',
+    		"en" => $site . '/en/tutorials/'
+    	)
     );
 ?>
 
@@ -108,7 +114,7 @@
 		            <div class="collapsible-body">
 		                <ul>
 							<li><a href="<?php echo $help_pages['contact'][$lang]; ?>"><?php _e('Contact', 'e-blueinfo'); ?></a></li>
-							<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>"><?php _e('Tutorial', 'e-blueinfo'); ?></a></li>
+							<li><a href="<?php echo $help_pages['tutorial'][$lang]; ?>"><?php _e('Tutorial', 'e-blueinfo'); ?></a></li>
 		                </ul>
 		            </div>
 		        </li>
