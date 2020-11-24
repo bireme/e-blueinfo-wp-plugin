@@ -262,7 +262,7 @@ a:active{
 	display: flex;
 }
 .sidenav.sidenav-menu .collapsible-body li a {
-    padding: 0 64px;
+    padding: 0 48px;
 }
 .sidenav.sidenav-menu .collapsible-header {
     padding: 0 32px;
