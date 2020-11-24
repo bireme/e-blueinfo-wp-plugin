@@ -4,69 +4,69 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Memória Azul 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/leisref\n"
-"POT-Creation-Date: 2020-10-23 20:49-0300\n"
-"PO-Revision-Date: 2020-10-23 20:50-0300\n"
+"POT-Creation-Date: 2020-11-24 19:22-0300\n"
+"PO-Revision-Date: 2020-11-24 19:35-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: e-blueinfo.php:179
+#: e-blueinfo.php:193
 msgid "e-BlueInfo Settings"
 msgstr "e-BlueInfo Configuraciones"
 
-#: e-blueinfo.php:179 e-blueinfo.php:421 template/app/app.php:30
+#: e-blueinfo.php:193 e-blueinfo.php:437 template/app/app.php:30
 #: template/app/app.php:40 template/app/country.php:27
 msgid "e-BlueInfo"
 msgstr "e-BlueInfo"
 
-#: e-blueinfo.php:345 e-blueinfo.php:347
+#: e-blueinfo.php:361 e-blueinfo.php:363
 msgid "e-BlueInfo Sidebar"
 msgstr "e-BlueInfo Sidebar"
 
-#: e-blueinfo.php:362 e-blueinfo.php:364
+#: e-blueinfo.php:378 e-blueinfo.php:380
 msgid "e-BlueInfo Footer Sidebar"
 msgstr "e-BlueInfo Footer Sidebar"
 
-#: e-blueinfo.php:397 template/menu.php:22 template/search.php:186
+#: e-blueinfo.php:413
 msgid "Communities"
 msgstr "Comunidades"
 
-#: e-blueinfo.php:399 template/search.php:187
+#: e-blueinfo.php:415 template/search.php:187
 msgid "Collections"
 msgstr "Colecciones"
 
-#: e-blueinfo.php:401
+#: e-blueinfo.php:417
 msgid "Browse collection"
 msgstr "Navegar por la colección"
 
-#: e-blueinfo.php:403
+#: e-blueinfo.php:419
 msgid "Search result"
 msgstr "Resultado de la búsqueda"
 
-#: e-blueinfo.php:405 template/app/country.php:29 template/country.php:43
+#: e-blueinfo.php:421 template/app/country.php:29 template/country.php:43
 msgid "Please choose a country"
 msgstr "Por favor, elija un país"
 
-#: e-blueinfo.php:407
+#: e-blueinfo.php:423
 msgid "Document"
 msgstr "Documento"
 
-#: e-blueinfo.php:504
+#: e-blueinfo.php:535
 msgid "Document added to Favorites"
 msgstr "Documento añadido a los Favoritos"
 
-#: e-blueinfo.php:505
+#: e-blueinfo.php:536
 msgid "This document has already been added to Favorites"
 msgstr "Este documento ya se encuentra a los Favoritos"
 
-#: e-blueinfo.php:506
+#: e-blueinfo.php:537
 msgid "The document was not correctly added to Favorites"
 msgstr "El documento no se ha añadido correctamente a los Favoritos"
 
@@ -136,7 +136,7 @@ msgstr "Base de datos"
 msgid "Collection"
 msgstr "Colección"
 
-#: settings.php:105 template/leisref-metadata.php:135 template/menu.php:31
+#: settings.php:105 template/leisref-metadata.php:135 template/menu.php:127
 msgid "Language"
 msgstr "Idioma"
 
@@ -161,9 +161,9 @@ msgid "Choose country"
 msgstr "Elegir país"
 
 #: template/biblio-metadata.php:103 template/biblio-metadata.php:166
-#: template/browse.php:265 template/browse.php:285 template/favorites.php:152
+#: template/browse.php:277 template/browse.php:297 template/favorites.php:152
 #: template/favorites.php:220 template/leisref-metadata.php:193
-#: template/menu.php:15 template/search.php:212 template/visited.php:147
+#: template/menu.php:72 template/search.php:212 template/visited.php:147
 #: template/visited.php:163
 msgid "Favorites"
 msgstr "Favoritos"
@@ -173,7 +173,7 @@ msgstr "Favoritos"
 msgid "Share"
 msgstr "Compartir"
 
-#: template/biblio-metadata.php:106 template/browse.php:268
+#: template/biblio-metadata.php:106 template/browse.php:280
 #: template/favorites.php:203 template/leisref-metadata.php:101
 #: template/search.php:194 template/visited.php:150
 msgid "View Document"
@@ -204,7 +204,7 @@ msgstr "Similares"
 msgid "No similar found"
 msgstr "No se han encontrado documentos similares"
 
-#: template/biblio-metadata.php:167 template/browse.php:286
+#: template/biblio-metadata.php:167 template/browse.php:298
 #: template/favorites.php:221 template/leisref-metadata.php:194
 #: template/search.php:213 template/visited.php:164
 msgid ""
@@ -216,20 +216,20 @@ msgstr ""
 "experiencia es necesario un rápido registro. Esto nos permite registrar su "
 "lista de favoritos, documentos visitados y otros recursos."
 
-#: template/biblio-metadata.php:168 template/browse.php:287
+#: template/biblio-metadata.php:168 template/browse.php:299
 #: template/favorites.php:222 template/leisref-metadata.php:195
-#: template/login.php:21 template/login.php:63 template/menu.php:18
+#: template/login.php:21 template/login.php:63 template/menu.php:75
 #: template/search.php:214 template/visited.php:165
 msgid "Login"
 msgstr "Login"
 
-#: template/biblio-metadata.php:170 template/browse.php:289
+#: template/biblio-metadata.php:170 template/browse.php:301
 #: template/favorites.php:224 template/leisref-metadata.php:197
 #: template/search.php:216 template/visited.php:167
 msgid "MyVHL"
 msgstr "MiBVS"
 
-#: template/biblio-metadata.php:171 template/browse.php:290
+#: template/biblio-metadata.php:171 template/browse.php:302
 #: template/favorites.php:225 template/leisref-metadata.php:198
 #: template/search.php:217 template/visited.php:168
 msgid ""
@@ -239,118 +239,123 @@ msgstr ""
 "Con el mismo registro e-BlueInfo, tiene acceso completo a la Plataforma de "
 "Servicios MiBVS."
 
-#: template/biblio-metadata.php:174 template/browse.php:293
-#: template/community.php:200 template/community.php:213
+#: template/biblio-metadata.php:174 template/browse.php:305
+#: template/community.php:211 template/community.php:224
 #: template/favorites.php:228 template/leisref-metadata.php:201
 #: template/search.php:220 template/visited.php:171
 msgid "Close"
 msgstr "Cerrar"
 
-#: template/browse.php:149 template/browse.php:205 template/favorites.php:110
+#: template/browse.php:161 template/browse.php:217 template/favorites.php:110
 #: template/favorites.php:165
 msgid "PDF"
 msgstr "PDF"
 
-#: template/browse.php:150 template/browse.php:206 template/favorites.php:111
+#: template/browse.php:162 template/browse.php:218 template/favorites.php:111
 #: template/favorites.php:166
 msgid "Video"
 msgstr "Video"
 
-#: template/browse.php:151 template/browse.php:207 template/favorites.php:112
+#: template/browse.php:163 template/browse.php:219 template/favorites.php:112
 #: template/favorites.php:167
 msgid "Audio"
 msgstr "Audio"
 
-#: template/browse.php:152 template/browse.php:208 template/favorites.php:113
+#: template/browse.php:164 template/browse.php:220 template/favorites.php:113
 #: template/favorites.php:168
 msgid "PPT"
 msgstr "PPT"
 
-#: template/browse.php:153 template/browse.php:209 template/favorites.php:114
+#: template/browse.php:165 template/browse.php:221 template/favorites.php:114
 #: template/favorites.php:169
 msgid "Image"
 msgstr "Imagen"
 
-#: template/browse.php:154 template/browse.php:210 template/favorites.php:115
+#: template/browse.php:166 template/browse.php:222 template/favorites.php:115
 #: template/favorites.php:170
 msgid "Link"
 msgstr "Enlace"
 
-#: template/browse.php:197 template/favorites.php:157
+#: template/browse.php:209 template/favorites.php:157
 msgid "All information sources"
 msgstr "Todas las fuentes de información"
 
-#: template/browse.php:198 template/favorites.php:158
+#: template/browse.php:210 template/favorites.php:158
 msgid "Bibliographic"
 msgstr "Registros bibliográficos"
 
-#: template/browse.php:199 template/favorites.php:159
+#: template/browse.php:211 template/favorites.php:159
 msgid "Legislation"
 msgstr "Legislación"
 
-#: template/browse.php:204 template/favorites.php:164
+#: template/browse.php:216 template/favorites.php:164
 msgid "All media"
 msgstr "Todas las medias"
 
-#: template/browse.php:217
+#: template/browse.php:229
 msgid "All"
 msgstr "Todos"
 
-#: template/browse.php:220
+#: template/browse.php:232
 msgid "Last Visited"
 msgstr "Último Visitado"
 
-#: template/browse.php:223 template/menu.php:16
+#: template/browse.php:235 template/menu.php:73
 msgid "Visited"
 msgstr "Visitados"
 
-#: template/browse.php:226
+#: template/browse.php:238
 msgid "Latest"
 msgstr "Más recientes"
 
-#: template/browse.php:237 template/visited.php:120
+#: template/browse.php:249 template/visited.php:120
 msgid "No documents visited"
 msgstr "No hay documentos visitados"
 
-#: template/browse.php:239 template/collection.php:164
+#: template/browse.php:251 template/collection.php:172
 #: template/infobutton-result.php:41
 msgid "No results found"
 msgstr "No se han encontrado resultados"
 
-#: template/browse.php:272 template/favorites.php:207
+#: template/browse.php:284 template/favorites.php:207
 msgid "Update"
 msgstr "Actualización"
 
-#: template/browse.php:272 template/favorites.php:207
+#: template/browse.php:284 template/favorites.php:207
 msgid "Downloads"
 msgstr "Descargas"
 
-#: template/browse.php:301 template/search.php:228
+#: template/browse.php:313 template/search.php:228
 msgid "Load More"
 msgstr "Mostrar Más"
 
-#: template/browse.php:302 template/search.php:229
+#: template/browse.php:314 template/search.php:229
 msgid "No more documents"
 msgstr "No hay más documentos"
 
-#: template/browse.php:308 template/search.php:235
+#: template/browse.php:320 template/search.php:235
 msgid "Loading..."
 msgstr "Cargando..."
 
-#: template/collection.php:150
+#: template/collection.php:158
 msgid "Categories"
 msgstr "Categorías"
 
-#: template/collection.php:154
+#: template/collection.php:162
 msgid "Themes"
 msgstr "Temas"
 
-#: template/collection.php:182 template/collection.php:205
-#: template/community.php:157
+#: template/collection.php:189 template/collection.php:213
+#: template/community.php:166
+msgid "Documents"
+msgstr "Documentos"
+
+#: template/collection.php:191 template/collection.php:215
+#: template/community.php:168
 msgid "Last Update"
 msgstr "Última Actualización"
 
-#: template/community.php:128
+#: template/community.php:136
 msgid ""
 "There are no communities available as your country has not joined e-"
 "BlueInfo. But you still have access to the documents in the Other Evidence "
@@ -359,20 +364,24 @@ msgstr ""
 "No hay comunidades disponibles porque su país no se ha unido a e-BlueInfo. "
 "Pero aún tiene acceso a los documentos en la sección Otras Evidencias."
 
-#: template/community.php:137
+#: template/community.php:145
 msgid "No results found. Please choose a country in the main menu."
 msgstr ""
 "Ningún resultado encontrado. Por favor, elija un país en el menú principal."
 
-#: template/community.php:171
-msgid "Other Evidence"
-msgstr "Otras Evidencias"
+#: template/community.php:164
+msgid "Click here for selected content"
+msgstr "Haga clic aquí para contenidos seleccionados"
 
-#: template/community.php:183
-msgid "Seek evidence for other medical conditions"
-msgstr "Buscar evidencia para otras condiciones médicas"
+#: template/community.php:182
+msgid "Other Contents"
+msgstr "Otros Contenidos"
 
-#: template/community.php:209 template/infobutton-form.php:48
+#: template/community.php:194
+msgid "Search for scientific evidence in the Virtual Health Library"
+msgstr "Buscar evidencia científica en la Biblioteca Virtual en Salud"
+
+#: template/community.php:220 template/infobutton-form.php:41
 #: template/infobutton-result.php:37
 msgid "Contextualized Search"
 msgstr "Búsqueda Contextualizada"
@@ -389,99 +398,99 @@ msgstr "Seleccionar"
 msgid "No favorite documents found"
 msgstr "No hay documentos favoritos"
 
-#: template/infobutton-form.php:55
+#: template/infobutton-form.php:48
 msgid "Code"
 msgstr "Código"
 
-#: template/infobutton-form.php:63
+#: template/infobutton-form.php:56
 msgid "Code System"
 msgstr "Sistema del Código"
 
-#: template/infobutton-form.php:70
+#: template/infobutton-form.php:63
 msgid "More options"
 msgstr "Más opciones"
 
-#: template/infobutton-form.php:77
+#: template/infobutton-form.php:70
 msgid "Select Genre"
 msgstr "Seleccionar Género"
 
-#: template/infobutton-form.php:78
+#: template/infobutton-form.php:71
 msgid "Male"
 msgstr "Masculino"
 
-#: template/infobutton-form.php:79
+#: template/infobutton-form.php:72
 msgid "Female"
 msgstr "Femenino"
 
-#: template/infobutton-form.php:80
+#: template/infobutton-form.php:73
 msgid "Undifferentiated"
 msgstr "Indiferenciado"
 
-#: template/infobutton-form.php:82
+#: template/infobutton-form.php:75
 msgid "Genre"
 msgstr "Género"
 
-#: template/infobutton-form.php:86
+#: template/infobutton-form.php:79
 msgid "Select Age"
 msgstr "Seleccionar Edad"
 
-#: template/infobutton-form.php:87
+#: template/infobutton-form.php:80
 msgid "infant, newborn; birth to 1 month"
 msgstr "infante, recién nacido; nacimiento a 1 mes"
 
-#: template/infobutton-form.php:88
+#: template/infobutton-form.php:81
 msgid "infant; 1 to 23 months"
 msgstr "infantil; 1 a 23 meses"
 
-#: template/infobutton-form.php:89
+#: template/infobutton-form.php:82
 msgid "child, preschool; 2 to 5 years"
 msgstr "niño, preescolar; 2 a 5 años"
 
-#: template/infobutton-form.php:90
+#: template/infobutton-form.php:83
 msgid "child; 6 to 12 years"
 msgstr "niño; 6 a 12 años"
 
-#: template/infobutton-form.php:91
+#: template/infobutton-form.php:84
 msgid "adolescent; 13-18 years"
 msgstr "adolescente; 13-18 años"
 
-#: template/infobutton-form.php:92
+#: template/infobutton-form.php:85
 msgid "young adult; 19-24 years"
 msgstr "adulto joven; 19-24 años"
 
-#: template/infobutton-form.php:93
+#: template/infobutton-form.php:86
 msgid "adult; 19-44 years"
 msgstr "adulto; 19-44 años"
 
-#: template/infobutton-form.php:94
+#: template/infobutton-form.php:87
 msgid "middle aged; 45-64 years"
 msgstr "edad mediana; 45-64 años"
 
-#: template/infobutton-form.php:95
+#: template/infobutton-form.php:88
 msgid "aged; 56-79 years"
 msgstr "anciano; 56-79 años"
 
-#: template/infobutton-form.php:97
+#: template/infobutton-form.php:90
 msgid "Age"
 msgstr "Edad"
 
-#: template/infobutton-form.php:101
+#: template/infobutton-form.php:94
 msgid "Keywords"
 msgstr "Palabras clave"
 
-#: template/infobutton-form.php:106
+#: template/infobutton-form.php:99
 msgid "Documents only in"
 msgstr "Documentos solo en"
 
-#: template/infobutton-form.php:113
+#: template/infobutton-form.php:106
 msgid "Documents from your country"
 msgstr "Documentos de su pais"
 
-#: template/infobutton-form.php:120
+#: template/infobutton-form.php:113
 msgid "Search"
 msgstr "Buscar"
 
-#: template/infobutton-form.php:139
+#: template/infobutton-form.php:132
 msgid "This field is required"
 msgstr "Este campo es requerido"
 
@@ -545,35 +554,75 @@ msgstr "Registrarse"
 msgid "Remember me"
 msgstr "Recuérdame"
 
-#: template/menu.php:14
+#: template/menu.php:8
+msgid "Brazil"
+msgstr "Brasil"
+
+#: template/menu.php:9
+msgid "El Salvador"
+msgstr "El Salvador"
+
+#: template/menu.php:10
+msgid "Guatemala"
+msgstr "Guatemala"
+
+#: template/menu.php:11
+msgid "Peru"
+msgstr "Peru"
+
+#: template/menu.php:71
 msgid "Logout"
 msgstr "Logout"
 
-#: template/menu.php:21
+#: template/menu.php:81 template/menu.php:92
 msgid "Country"
 msgstr "País"
 
-#: template/menu.php:23
+#: template/menu.php:84
+msgid "See more"
+msgstr "Conozca más"
+
+#: template/menu.php:85
+msgid "Change country"
+msgstr "Cambiar país"
+
+#: template/menu.php:94 template/search.php:186
+msgid "Contents"
+msgstr "Contenidos"
+
+#: template/menu.php:99
 msgid "About"
 msgstr "Acerca"
 
-#: template/menu.php:24
+#: template/menu.php:102
+msgid "Why e-BlueInfo?"
+msgstr "¿Por qué e-BlueInfo?"
+
+#: template/menu.php:103
+msgid "Supporters"
+msgstr "Apoyadores"
+
+#: template/menu.php:113
 msgid "Help"
 msgstr "Ayuda"
 
-#: template/menu.php:25
+#: template/menu.php:116
+msgid "Contact"
+msgstr "Contacto"
+
+#: template/menu.php:117
 msgid "Tutorial"
 msgstr "Tutorial"
 
-#: template/menu.php:26
+#: template/menu.php:138
 msgid "Settings"
 msgstr "Configuraciones"
 
-#: template/menu.php:48
+#: template/menu.php:145
 msgid "Setting Colors"
 msgstr "Definir Colores"
 
-#: template/menu.php:51 template/menu.php:54 template/menu.php:57
+#: template/menu.php:148 template/menu.php:151 template/menu.php:154
 msgid "Color"
 msgstr "Color"
 
@@ -592,6 +641,12 @@ msgstr "Añadir a Favoritos"
 #: template/visited.php:115
 msgid "Visited Documents"
 msgstr "Documento Visitados"
+
+#~ msgid "Other Evidence"
+#~ msgstr "Otras Evidencias"
+
+#~ msgid "Seek evidence for other medical conditions"
+#~ msgstr "Buscar evidencia para otras condiciones médicas"
 
 #~ msgid "Home"
 #~ msgstr "Inicio"
