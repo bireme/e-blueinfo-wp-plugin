@@ -396,7 +396,7 @@ if ( !function_exists('get_thumbnail') ) {
             if ( array_key_exists($media, $media_type) )
                 $thumb = $media_type[$media];
             else
-                $thumb = 'http://thumbs.bireme.org/nothumb.jpg';
+                $thumb = $img_dir.'/nothumb.jpg';
         }
 
         return $thumb;

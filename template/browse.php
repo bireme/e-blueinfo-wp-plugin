@@ -265,8 +265,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                     <div class="cardBoxText">
                         <a class="e-blueinfo-doc" data-docid="<?php echo $doc->id; ?>" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="__gaTracker('send','event','Browse','View','<?php echo $countries[$country].'|'.$title; ?>');">
                             <div class="col s3">
-                                <!-- <img src="<?php echo get_thumbnail($doc->id, $doc->mt); ?>" class="responsive-img" alt=""> -->
-                                <img src="https://fakeimg.pl/350x500/" class="responsive-img" alt="">
+                                <img src="<?php echo get_thumbnail($doc->id, $doc->mt); ?>" class="responsive-img" alt="" onerror="this.src='<?php echo EBLUEINFO_PLUGIN_URL . "template/images/nothumb.jpg"; ?>'">
                             </div>
                             <div class="col s7">
                                 <p class="doc-title"><?php echo $title; ?></p>

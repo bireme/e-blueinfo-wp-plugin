@@ -105,7 +105,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <section class="container">
     <div class="row">
         <?php require_once('menu.php'); ?>
-        <div class="col s10 m11">
+        <div class="col s10 m11" id="barSearch">
             <nav>
                 <div class="nav-wrapper">
                     <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Community','Search','<?php echo $countries[$country]; ?>|'+document.getElementById('searchBarInput').value);">
@@ -154,8 +154,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
             <div class="card">
                 <div class="card-image">
                     <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>collection/?community=<?php echo $community->id; ?>" onclick="__gaTracker('send','event','Community','View','<?php echo $countries[$country].'|'.$community->name; ?>');">
-                        <img src="<?php echo $community->image; ?>">
-                        <!-- <img src="https://fakeimg.pl/600x350/"> -->
+                        <img src="<?php echo $community->image; ?>" onerror="this.src='<?php echo EBLUEINFO_PLUGIN_URL . "template/images/default.jpg"; ?>'">
                     </a>
                     <a href="#modal-community-<?php echo $community->id; ?>" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i class="fas fa-info"></i></a>
                 </div>
@@ -180,7 +179,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <section class="container containerAos">
     <div class="row">
         <div class="col s12">
-            <h5  style="padding: 10px 20px; color: #fff; background-color: #0d47a1;"><b><?php _e('Other Evidence', 'e-blueinfo'); ?></b></h5>
+            <h5  style="padding: 10px 20px; color: #fff; background-color: #0d47a1;"><b><?php _e('Other Contents', 'e-blueinfo'); ?></b></h5>
         </div>
         <article class="col s12 m6 l4" data-aos="fade-up" data-aos-delay="500">
             <div class="card">
@@ -188,11 +187,11 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                     <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>infobutton">
                         <img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/infobutton.jpg'; ?>">
                     </a>
-                    <!-- <a href="#modal-infobutton" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i class="fas fa-info"></i></a> -->
+                    <a href="#modal-infobutton" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i class="fas fa-info"></i></a>
                 </div>
                 <div class="card-content">
                     <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>infobutton">
-                        <h5><b><?php _e('Seek evidence for other medical conditions', 'e-blueinfo'); ?></b></h5>
+                        <h5><b><?php _e('Search for scientific evidence in the Virtual Health Library', 'e-blueinfo'); ?></b></h5>
                     </a>
                 </div>
             </div>
