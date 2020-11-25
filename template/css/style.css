@@ -127,12 +127,17 @@ a:active{
 	transform: translate(-50%, -50%);
 	text-align: center;
 }
+#footer-sidebar {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
 #footer-sidebar img {
-	max-height: 70px;
-    width: auto;
+	max-width: 30%;
+	height: auto;
 }
 #logoFooter img{
-	max-width: 400px;
+	/*max-width: 400px;*/
 }
 #footerFlag{
 	max-width: 30px;

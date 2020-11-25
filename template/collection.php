@@ -92,13 +92,6 @@ if ($response){
     );
 }
 
-$eblueinfo_service_request = $eblueinfo_service_url . 'api/community/?country=' . $_COOKIE['e-blueinfo-country'] . '&format=json';
-$response = @file_get_contents($eblueinfo_service_request);
-if ($response){
-    $response_json = json_decode($response);
-    $community_list = $response_json->objects;
-}
-
 $collection_cluster_request = $solr_service_url . 'query?q=(com:' . $community_id . '|*)&facet=true&facet.field=col&rows=0';
 $response = @file_get_contents($collection_cluster_request);
 if ($response){
