@@ -47,11 +47,6 @@
     );
 
     $help_pages = array(
-    	"contact" => array(
-    		"pt" => 'https://bvsalud.org/contate-nos/',
-    		"es" => 'https://bvsalud.org/contactenos/',
-    		"en" => 'https://bvsalud.org/contact_us/'
-    	),
     	"tutorial" => array(
     		"pt" => $site . '/tutoriais/',
     		"es" => $site . '/es/tutoriales/',
@@ -113,7 +108,7 @@
 		            <a class="collapsible-header" tabindex="0"><?php _e('Help', 'e-blueinfo'); ?></a>
 		            <div class="collapsible-body">
 		                <ul>
-							<li><a href="<?php echo $help_pages['contact'][$lang]; ?>"><?php _e('Contact', 'e-blueinfo'); ?></a></li>
+							<li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'contact/'; ?>"><?php _e('Contact', 'e-blueinfo'); ?></a></li>
 							<li><a href="<?php echo $help_pages['tutorial'][$lang]; ?>"><?php _e('Tutorial', 'e-blueinfo'); ?></a></li>
 		                </ul>
 		            </div>

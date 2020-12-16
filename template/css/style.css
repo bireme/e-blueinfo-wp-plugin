@@ -489,3 +489,8 @@ and (min-device-width : 1025px) {
 		max-width: 100%;
 	}
 }
+@media (max-width: 459px){
+	#contact-form {
+    	height: 660px;
+    }
+}

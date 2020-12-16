@@ -248,6 +248,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
                  || $pagename == $this->plugin_slug . '/visited'
                  || $pagename == $this->plugin_slug . '/infobutton'
                  || $pagename == $this->plugin_slug . '/infobutton/result'
+                 || $pagename == $this->plugin_slug . '/contact'
                  || $pagename == $this->plugin_slug . '/auth') {
 
                     add_action( 'wp_footer', array(&$this, 'show_feedback_tab') ); // feedback tab
@@ -302,6 +303,8 @@ if(!class_exists('EBlueInfo_Plugin')) {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/infobutton-form.php';
                     } elseif ($pagename == $this->plugin_slug . '/infobutton/result') {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/infobutton-result.php';
+                    } elseif ($pagename == $this->plugin_slug . '/contact') {
+                        $template = EBLUEINFO_PLUGIN_PATH . '/template/contact.php';
                     } elseif ($pagename == $this->plugin_slug . '/auth') {
                         if ( $_COOKIE['userData'] ) {
                             echo '<script type="text/javascript">';

@@ -24,6 +24,7 @@ function is_webview () {
 $(function () {
   if ( is_webview() ) {
     var site = "https://e-blueinfo.bvsalud.org";
+    var app_site = "http://sites.bvsalud.org/e-blueinfo";
     var json = [
                   {
                     "label": "About",
@@ -50,7 +51,7 @@ $(function () {
                     "isSubmenu": false,
                     "subLinks": [
                       {
-                        "url": "https://bvsalud.org/contact_us/",
+                        "url": app_site + "/app/contact",
                         "label": "Contact",
                         "subLinks": []
                       },

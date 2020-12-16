@@ -56,7 +56,7 @@ $(function () {
                     "isSubmenu": false,
                     "subLinks": [
                       {
-                        "url": "https://bvsalud.org/contate-nos/",
+                        "url": app_site + "pt/app/contact",
                         "label": "Contato",
                         "subLinks": []
                       },
