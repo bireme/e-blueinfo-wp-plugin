@@ -117,8 +117,9 @@ if(!class_exists('EBlueInfo_Plugin')) {
                 $this->plugin_slug = $eblueinfo_config['plugin_slug'];
             }
 
+            $now = getdate();
             $countries = $eblueinfo_config['country_data'];
-            if ( !$countries ) {
+            if ( !$countries || $now['mday'] == 1 ) {
                 $response = @file_get_contents($this->country_service_url);
                 if ($response){
                     $response_json = json_decode($response);
@@ -129,7 +130,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
             }
 
             $country_code = $eblueinfo_config['country_code'];
-            if ( !$country_code ) {
+            if ( !$country_code || $now['mday'] == 1 ) {
                 $response = @file_get_contents($this->country_service_url);
                 if ($response){
                     $response_json = json_decode($response);
