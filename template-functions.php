@@ -70,7 +70,6 @@ if ( !function_exists('format_act_date') ) {
         $months['es'] = array('Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
                               'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
 
-
         $date_formated = '';
         if (strpos($string,'-') !== false) {
             if ($lang != 'en'){
@@ -448,6 +447,93 @@ if ( !function_exists('get_cluster') ) {
         };
 
         return $cluster;
+    }
+}
+
+if ( !function_exists('get_video_data') ) {
+    function get_video_data($url) {
+        $args = array();
+        
+        if (strpos($url, 'youtube.com') !== false) {
+            $parts = parse_url($url);
+            parse_str($parts['query'], $query);
+            $args['embed'] = "https://www.youtube.com/embed/" . $query['v'];
+            $args['type']  = 'youtube';
+            $args['id']    = $query['v'];
+        }
+
+        if (strpos($url, 'youtu.be') !== false) {
+            $parts = parse_url($url);
+            $code = end(explode('/', $parts['path']));
+            $args['embed'] = "https://www.youtube.com/embed/" . $code;
+            $args['type']  = 'youtube';
+            $args['id']    = $code;
+        }
+
+        return $args;
+    }
+}
+
+if ( !function_exists('display_multimedia') ) {
+    function display_multimedia($link, $docid, $media_type){
+        $service = '';
+        $link_data = parse_url($link);
+        $ext = pathinfo($link, PATHINFO_EXTENSION);
+        $img_ext = array('jpg', 'jpeg', 'png', 'gif');
+
+        if (strpos($link_data['host'],'youtube.com') !== false) {
+            $service = 'youtube';
+            parse_str($link_data['query'], $params);
+            $video_id = $params['v'];
+        } elseif (strpos($link_data['host'],'youtu.be') !== false) {
+            $service = 'youtube';
+            $video_id = end(explode('/', $link_data['path']));
+        } elseif (strpos($link_data['host'],'vimeo.com') !== false) {
+            $service = 'vimeo';
+            $video_id = $link_data['path'];
+        } elseif (strpos($link_data['host'],'flickr.com') !== false) {
+            $service = 'flicker';
+        } elseif (strpos($link_data['host'],'slideshare.net') !== false) {
+            $service = 'slideshare';
+        }
+
+        if ($service == 'youtube') {
+            echo '<div class="video-container"><iframe src="//www.youtube.com/embed/' . $video_id . '" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe></div>';
+        } elseif ($service == 'vimeo') {
+            echo '<div class="video-container"><iframe src="//player.vimeo.com/video' . $video_id . '" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe></div>';
+        } elseif ($service == 'flicker') {
+            echo '<div class="video-container"><iframe src="' . $link . '/player/" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe></div>';
+        } elseif ($service == 'slideshare') {
+            $embed_service_url = 'https://www.slideshare.net/api/oembed/2?url=' . $link . '&format=json';
+            $embed_service_response = file_get_contents($embed_service_url);
+            $embed_service_data = json_decode($embed_service_response, true);
+            echo '<div class="video-container">' . $embed_service_data['html'] . '</div>';
+        } elseif ( 'pdf' == $ext ) {
+            echo '<div class="video-container"><iframe src="https://drive.google.com/viewerng/viewer?embedded=true&url=' . $link . '" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe></div>';
+        } elseif ( in_array(strtolower($ext), $img_ext) ) {
+            echo '<img class="thumbnail-doc responsive-img" src="' . $link . '" alt="thumbnail"></img>';
+        } else {
+            echo '<img class="thumbnail-doc responsive-img" src="' . get_thumbnail($docid, $media_type) . '" alt="">';
+        }
+    }
+}
+
+if ( !function_exists('get_multimedia_parent_name') ) {
+    function get_multimedia_parent_name($text, $lang) {
+        $name = $text;
+        $parent_name = explode('|', $name);
+        $lang = ( 'pt' == $lang ) ? 'pt-br' : $lang;
+
+        foreach ($parent_name as $pname) {
+            $prefix = '('.$lang.')';
+
+            if (substr($pname, 0, strlen($prefix)) === $prefix) {
+                $name = trim(substr($pname, strlen($prefix)));
+                break;
+            }
+        }
+
+        return $name;
     }
 }
 

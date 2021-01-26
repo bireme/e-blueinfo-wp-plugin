@@ -209,6 +209,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                 <option value=""><?php _e('All information sources','e-blueinfo'); ?> <?php echo '('.$cluster_total.')'; ?></option>
                 <option value="biblio" <?php if ( 'biblio' == $info_source ) { echo 'selected'; } ?>><?php _e('Bibliographic','e-blueinfo'); ?> <?php echo '('.$is_cluster['_biblio']['total'].')'; ?></option>
                 <option value="leisref" <?php if ( 'leisref' == $info_source ) { echo 'selected'; } ?>><?php _e('Legislation','e-blueinfo'); ?> <?php echo '('.$is_cluster['_leisref']['total'].')'; ?></option>
+                <option value="multimedia" <?php if ( 'multimedia' == $info_source ) { echo 'selected'; } ?>><?php _e('Multimedia','e-blueinfo'); ?> <?php echo '('.$is_cluster['_multimedia']['total'].')'; ?></option>
             </select>
         </div>
         <div class="col s12 m6">
@@ -273,7 +274,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                             </div>
                         </a>
                         <div class="col s2 right-align">
-                            <?php if ( 'leisref' != $doc->is ) : ?>
+                            <?php if ( !in_array($doc->is, array('leisref', 'multimedia')) ) : ?>
                             <div class="iconActions btn-favorites" data-author="<?php echo $doc->au[0]; ?>" data-altid="<?php echo $altid; ?>" data-docid="<?php echo $doc->id; ?>"><a class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Browse','Favorites','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">star</i></a></div>
                             <?php endif; ?>
                             <?php if ( isset($doc->ur[0]) ) : ?>

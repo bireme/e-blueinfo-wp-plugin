@@ -59,9 +59,17 @@ if ( $_COOKIE['e-blueinfo-lang'] ) {
     $lang = $_COOKIE['e-blueinfo-lang'];
 }
 
-if ( 'leisref' == $resource_prefix ) {
-    require_once('leisref-metadata.php');
-} else {
-    require_once('biblio-metadata.php');
+switch ($resource_prefix) {
+    case 'leisref':
+        $template = 'leisref-metadata.php';
+        break;
+    case 'multimedia':
+        $template = 'multimedia-metadata.php';
+        break;
+    default:
+        $template = 'biblio-metadata.php';
+        break;
 }
+
+require_once($template);
 ?>

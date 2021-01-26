@@ -74,6 +74,13 @@ body{
 .iconActions{
 	margin-bottom: 10px;
 }
+.multimedia-icon-actions{
+	display: flex;
+    justify-content: center;
+}
+.multimedia-icon-actions .iconActions{
+	margin: 10px;
+}
 a:active{
 	border-color:red;
 	outline: red;
