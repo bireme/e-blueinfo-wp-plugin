@@ -476,7 +476,7 @@ if ( !function_exists('get_video_data') ) {
 
 if ( !function_exists('display_multimedia') ) {
     function display_multimedia($link, $docid, $media_type){
-        $service = '';
+        $output = array();
         $link_data = parse_url($link);
         $ext = pathinfo($link, PATHINFO_EXTENSION);
         $img_ext = array('jpg', 'jpeg', 'png', 'gif');
@@ -495,26 +495,32 @@ if ( !function_exists('display_multimedia') ) {
             $service = 'flicker';
         } elseif (strpos($link_data['host'],'slideshare.net') !== false) {
             $service = 'slideshare';
+        } else {
+            $service = false;
         }
 
+        $output['service'] = $service;
+
         if ($service == 'youtube') {
-            echo '<div class="video-container"><iframe src="//www.youtube.com/embed/' . $video_id . '" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe></div>';
+            $output['html'] = '<div class="video-container"><iframe src="//www.youtube.com/embed/' . $video_id . '" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe></div>';
         } elseif ($service == 'vimeo') {
-            echo '<div class="video-container"><iframe src="//player.vimeo.com/video' . $video_id . '" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe></div>';
+            $output['html'] = '<div class="video-container"><iframe src="//player.vimeo.com/video' . $video_id . '" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe></div>';
         } elseif ($service == 'flicker') {
-            echo '<div class="video-container"><iframe src="' . $link . '/player/" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe></div>';
+            $output['html'] = '<div class="video-container"><iframe src="' . $link . '/player/" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe></div>';
         } elseif ($service == 'slideshare') {
             $embed_service_url = 'https://www.slideshare.net/api/oembed/2?url=' . $link . '&format=json';
             $embed_service_response = file_get_contents($embed_service_url);
             $embed_service_data = json_decode($embed_service_response, true);
-            echo '<div class="video-container">' . $embed_service_data['html'] . '</div>';
+            $output['html'] = '<div class="video-container">' . $embed_service_data['html'] . '</div>';
         } elseif ( 'pdf' == $ext ) {
-            echo '<div class="video-container"><iframe src="https://drive.google.com/viewerng/viewer?embedded=true&url=' . $link . '" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe></div>';
+            $output['html'] = '<div class="video-container"><iframe src="https://drive.google.com/viewerng/viewer?embedded=true&url=' . $link . '" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe></div>';
         } elseif ( in_array(strtolower($ext), $img_ext) ) {
-            echo '<img class="thumbnail-doc responsive-img" src="' . $link . '" alt="thumbnail"></img>';
+            $output['html'] = '<img class="thumbnail-doc responsive-img" src="' . $link . '" alt="thumbnail"></img>';
         } else {
-            echo '<img class="thumbnail-doc responsive-img" src="' . get_thumbnail($docid, $media_type) . '" alt="">';
+            $output['html'] = '<img class="thumbnail-doc responsive-img" src="' . get_thumbnail($docid, $media_type) . '" alt="">';
         }
+
+        return $output;
     }
 }
 

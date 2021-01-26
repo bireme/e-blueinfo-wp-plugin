@@ -72,21 +72,40 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
     <div class="row">
         <div class="col s12">
             <article class="doc-detail">
-                <div class="row">
-                    <div class="col s12 m8 offset-m2 l8 offset-l2" data-aos="fade-left">
-                        <?php if ($resource->link): ?>
-                            <?php display_multimedia($resource->link[0], $docid, $media_type); ?>
-                        <?php endif; ?>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12 m12 l12 multimedia-icon-actions">
-                        <?php if ( isset($resource->link) ) : ?>
-                        <div class="iconActions" data-aos="fade-right" data-aos-delay="400"><a id="btShare" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Share', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Share','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">share</i></a></div>
-                        <div class="iconActions" data-aos="fade-right" data-aos-delay="500"><a href="<?php echo $resource->link[0]; ?>" data-docid="<?php echo $docid; ?>" class="btn-ajax btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Full Text','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">visibility</i></a></div>
-                        <?php endif; ?>
-                    </div>
-                </div>
+                <?php if ($resource->link) : ?>
+                    <?php $output = display_multimedia($resource->link[0], $docid, $media_type); ?>
+                    <?php if ($output['service']) : ?>
+                        <div class="row">
+                            <div class="col s12 m8 offset-m2 l8 offset-l2" data-aos="fade-left">
+                                <?php if ($resource->link): ?>
+                                    <?php echo $output['html']; ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m12 l12 multimedia-icon-actions">
+                                <?php if ( isset($resource->link) ) : ?>
+                                <div class="iconActions" data-aos="fade-right" data-aos-delay="400"><a id="btShare" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Share', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Share','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">share</i></a></div>
+                                <div class="iconActions" data-aos="fade-right" data-aos-delay="500"><a href="<?php echo $resource->link[0]; ?>" data-docid="<?php echo $docid; ?>" class="btn-ajax btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Full Text','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">visibility</i></a></div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php else : ?>
+                        <div class="row">
+                            <div class="col s6 m4 l3 text-center" data-aos="fade-left">
+                                <?php if ($resource->link): ?>
+                                    <?php echo $output['html']; ?>
+                                <?php endif; ?>
+                            </div>
+                            <div class="col s6 m8 l9 right-align">
+                                <?php if ( isset($resource->link) ) : ?>
+                                <div class="iconActions" data-aos="fade-right" data-aos-delay="400"><a id="btShare" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Share', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Share','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">share</i></a></div>
+                                <div class="iconActions" data-aos="fade-right" data-aos-delay="500"><a href="<?php echo $resource->link[0]; ?>" data-docid="<?php echo $docid; ?>" class="btn-ajax btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Full Text','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">visibility</i></a></div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                <?php endif; ?>
                 <div class="divider"></div>
                 <div data-aos="fade-right">
                     <h5 class="titleDefault"><?php _e('Title', 'e-blueinfo'); ?></h5>
