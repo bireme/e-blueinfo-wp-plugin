@@ -512,10 +512,8 @@ if ( !function_exists('display_multimedia') ) {
             $embed_service_response = file_get_contents($embed_service_url);
             $embed_service_data = json_decode($embed_service_response, true);
             $output['html'] = '<div class="video-container">' . $embed_service_data['html'] . '</div>';
-        } elseif ( 'pdf' == $ext ) {
-            $output['html'] = '<div class="video-container"><iframe src="https://drive.google.com/viewerng/viewer?embedded=true&url=' . $link . '" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe></div>';
         } elseif ( in_array(strtolower($ext), $img_ext) ) {
-            $output['html'] = '<img class="thumbnail-doc responsive-img" src="' . $link . '" alt="thumbnail"></img>';
+            $output['html'] = '<img class="thumbnail-doc responsive-img" src="' . $link . '" alt=""></img>';
         } else {
             $output['html'] = '<img class="thumbnail-doc responsive-img" src="' . get_thumbnail($docid, $media_type) . '" alt="">';
         }
