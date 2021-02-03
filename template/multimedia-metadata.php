@@ -5,7 +5,8 @@ $response = @file_get_contents($eblueinfo_service_request);
 if ($response){
     $response_json = json_decode($response);
     $resource = $response_json->diaServerResponse[0]->match->docs[0];
-
+    
+    $altid = ( $resource->alternate_ids ) ? $resource->alternate_ids[0] : $docid;
     $title = $resource->title;
     $authors = implode('; ', $resource->authors) . '.';
     $contributors = implode('; ', $resource->contributors) . '.';
@@ -84,6 +85,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                         </div>
                         <div class="row">
                             <div class="col s12 m12 l12 multimedia-icon-actions">
+                                <div class="iconActions btn-favorites" data-aos="fade-right" data-aos-delay="300" data-author="<?php echo $authors; ?>" data-altid="<?php echo $altid; ?>" data-docid="<?php echo $docid; ?>"><a class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Favorites','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">star</i></a></div>
                                 <?php if ( isset($resource->link) ) : ?>
                                 <div class="iconActions" data-aos="fade-right" data-aos-delay="400"><a id="btShare" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Share', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Share','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">share</i></a></div>
                                 <div class="iconActions" data-aos="fade-right" data-aos-delay="500"><a href="<?php echo $resource->link[0]; ?>" data-docid="<?php echo $docid; ?>" class="btn-ajax btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Full Text','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">visibility</i></a></div>
@@ -98,6 +100,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                                 <?php endif; ?>
                             </div>
                             <div class="col s6 m8 l9 right-align">
+                                <div class="iconActions btn-favorites" data-aos="fade-right" data-aos-delay="300" data-author="<?php echo $authors; ?>" data-altid="<?php echo $altid; ?>" data-docid="<?php echo $docid; ?>"><a class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Favorites','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">star</i></a></div>
                                 <?php if ( isset($resource->link) ) : ?>
                                 <div class="iconActions" data-aos="fade-right" data-aos-delay="400"><a id="btShare" class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Share', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Share','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">share</i></a></div>
                                 <div class="iconActions" data-aos="fade-right" data-aos-delay="500"><a href="<?php echo $resource->link[0]; ?>" data-docid="<?php echo $docid; ?>" class="btn-ajax btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Full Text','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">visibility</i></a></div>

@@ -186,7 +186,7 @@ $(function () {
         var url = eblueinfo_script_vars.portal+'/portal/resource/'+lang+'/'+altid;
         var source = eblueinfo_script_vars.site;
         var author = $(this).data('author');
-        author = author.replace(/[^ ]+/i,'');
+        // author = author.replace(/[^ ]+/i,'');
 
         var obj = new Object();
         obj.url = $.trim(url);
