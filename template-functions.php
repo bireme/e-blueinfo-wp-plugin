@@ -384,7 +384,7 @@ if ( !function_exists('get_thumbnail') ) {
             'pdf'   => $img_dir.'/thumbPDF.jpg',
             'video' => $img_dir.'/thumbVideo.jpg',
             'audio' => $img_dir.'/thumbAudio.jpg',
-            'ppt'   => $img_dir.'/thumbPPT.jpg',
+            'presentation' => $img_dir.'/thumbPPT.jpg',
             'image' => $img_dir.'/thumbImage.jpg',
             'link'  => $img_dir.'/thumbLink.jpg'
         );

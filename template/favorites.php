@@ -110,7 +110,7 @@ $media_type_texts = array(
     'pdf'   => __('PDF','e-blueinfo'),
     'video' => __('Video','e-blueinfo'),
     'audio' => __('Audio','e-blueinfo'),
-    'ppt'   => __('PPT','e-blueinfo'),
+    'presentation' => __('Presentation','e-blueinfo'),
     'image' => __('Image','e-blueinfo'),
     'link'  => __('Link','e-blueinfo')
 );
@@ -165,7 +165,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                 <option value="pdf" <?php if ( 'pdf' == $media_type ) { echo 'selected'; } ?>><?php _e('PDF','e-blueinfo'); ?></option>
                 <option value="video" <?php if ( 'video' == $media_type ) { echo 'selected'; } ?>><?php _e('Video','e-blueinfo'); ?></option>
                 <option value="audio" <?php if ( 'audio' == $media_type ) { echo 'selected'; } ?>><?php _e('Audio','e-blueinfo'); ?></option>
-                <option value="ppt" <?php if ( 'ppt' == $media_type ) { echo 'selected'; } ?>><?php _e('PPT','e-blueinfo'); ?></option>
+                <option value="presentation" <?php if ( 'presentation' == $media_type ) { echo 'selected'; } ?>><?php _e('Presentation','e-blueinfo'); ?></option>
                 <option value="image" <?php if ( 'image' == $media_type ) { echo 'selected'; } ?>><?php _e('Image','e-blueinfo'); ?></option>
                 <option value="link" <?php if ( 'link' == $media_type ) { echo 'selected'; } ?>><?php _e('Link','e-blueinfo'); ?></option>
             </select>

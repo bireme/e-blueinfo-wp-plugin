@@ -161,7 +161,7 @@ $media_type_texts = array(
     'pdf'   => __('PDF','e-blueinfo'),
     'video' => __('Video','e-blueinfo'),
     'audio' => __('Audio','e-blueinfo'),
-    'ppt'   => __('PPT','e-blueinfo'),
+    'presentation' => __('Presentation','e-blueinfo'),
     'image' => __('Image','e-blueinfo'),
     'link'  => __('Link','e-blueinfo')
 );
@@ -218,7 +218,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                 <option value="pdf" <?php if ( 'pdf' == $media_type ) { echo 'selected'; } ?>><?php _e('PDF','e-blueinfo'); ?> <?php echo ( $mt_cluster['_pdf'] ) ? '('.$mt_cluster['_pdf']['total'].')' : "(0)"; ?></option>
                 <option value="video" <?php if ( 'video' == $media_type ) { echo 'selected'; } ?>><?php _e('Video','e-blueinfo'); ?> <?php echo ( $mt_cluster['_video'] ) ? '('.$mt_cluster['_video']['total'].')' : "(0)"; ?></option>
                 <option value="audio" <?php if ( 'audio' == $media_type ) { echo 'selected'; } ?>><?php _e('Audio','e-blueinfo'); ?> <?php echo ( $mt_cluster['_audio'] ) ? '('.$mt_cluster['_audio']['total'].')' : "(0)"; ?></option>
-                <option value="ppt" <?php if ( 'ppt' == $media_type ) { echo 'selected'; } ?>><?php _e('PPT','e-blueinfo'); ?> <?php echo ( $mt_cluster['_ppt'] ) ? '('.$mt_cluster['_ppt']['total'].')' : "(0)"; ?></option>
+                <option value="presentation" <?php if ( 'presentation' == $media_type ) { echo 'selected'; } ?>><?php _e('Presentation','e-blueinfo'); ?> <?php echo ( $mt_cluster['_presentation'] ) ? '('.$mt_cluster['_presentation']['total'].')' : "(0)"; ?></option>
                 <option value="image" <?php if ( 'image' == $media_type ) { echo 'selected'; } ?>><?php _e('Image','e-blueinfo'); ?> <?php echo ( $mt_cluster['_image'] ) ? '('.$mt_cluster['_image']['total'].')' : "(0)"; ?></option>
                 <option value="link" <?php if ( 'link' == $media_type ) { echo 'selected'; } ?>><?php _e('Link','e-blueinfo'); ?> <?php echo ( $mt_cluster['_link'] ) ? '('.$mt_cluster['_link']['total'].')' : "(0)"; ?></option>
             </select>
