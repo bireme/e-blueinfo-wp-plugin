@@ -187,7 +187,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
             <div class="card">
                 <div class="card-image">
                     <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>collection/?community=60">
-                        <img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/logo_opas.png'; ?>">
+                        <img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/card-' . $lang . '.jpg'; ?>">
                     </a>
                     <a href="#modal-guidelines" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i class="fas fa-info"></i></a>
                 </div>
