@@ -181,6 +181,24 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <div class="col s12">
             <h5  style="padding: 10px 20px; color: #fff; background-color: #0d47a1;"><b><?php _e('Other Contents', 'e-blueinfo'); ?></b></h5>
         </div>
+        <?php $cc = $country_code[$_COOKIE['e-blueinfo-country']]; ?>
+        <?php if ( 'US' != $cc ) : ?>
+        <article class="col s12 m6 l4" data-aos="fade-up" data-aos-delay="500">
+            <div class="card">
+                <div class="card-image">
+                    <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>collection/?community=60">
+                        <img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/logo_opas.png'; ?>">
+                    </a>
+                    <a href="#modal-guidelines" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i class="fas fa-info"></i></a>
+                </div>
+                <div class="card-content">
+                    <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>collection/?community=60">
+                        <h5><b><?php _e('PAHO/WHO Guidelines', 'e-blueinfo'); ?></b></h5>
+                    </a>
+                </div>
+            </div>
+        </article>
+        <?php endif; ?>
         <article class="col s12 m6 l4" data-aos="fade-up" data-aos-delay="500">
             <div class="card">
                 <div class="card-image">
@@ -213,6 +231,17 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
     </div>
     <?php endforeach; ?>
 <?php endif; ?>
+
+<!-- Guidelines Modal Trigger -->
+<div id="modal-guidelines" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4><?php _e('PAHO/WHO Guidelines', 'e-blueinfo'); ?></h4>
+        <p><?php _e('Collection of guidelines published by the Panamerican Health Organization (PAHO) and World Health Organization (WHO).', 'e-blueinfo'); ?></p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat"><?php _e('Close','e-blueinfo'); ?></a>
+    </div>
+</div>
 
 <!-- InfoButton Modal Trigger -->
 <div id="modal-infobutton" class="modal modal-fixed-footer">

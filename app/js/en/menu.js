@@ -132,7 +132,19 @@ $(function () {
                         "url": app_site + "/app/visited",
                         "label": "Visited",
                         "subLinks": []
-                      },
+                      }
+                    ];
+
+        if ( '224' == country ) { // PAHO/WHO Guidelines
+          var c_menu = [
+                      {
+                        "url": app_site + "/app/country",
+                        "label": "Country",
+                        "subLinks": []
+                      }
+                    ];
+        } else {
+          var c_menu = [
                       {
                         "label": "Country (" + c_name[cc] + ")",
                         "grouping": "[grouping]",
@@ -152,13 +164,28 @@ $(function () {
                         ]
                       }
                     ];
+        }
+
+        _json = _json.concat(c_menu);
       } else {
         var _json = [
                       {
                         "url": app_site + "/app/auth",
                         "label": "Login",
                         "subLinks": []
-                      },
+                      }
+                    ];
+
+        if ( '224' == country ) { // PAHO/WHO Guidelines
+          var c_menu = [
+                      {
+                        "url": app_site + "/app/country",
+                        "label": "Country",
+                        "subLinks": []
+                      }
+                    ];
+        } else {
+          var c_menu = [
                       {
                         "label": "Country (" + c_name[cc] + ")",
                         "grouping": "[grouping]",
@@ -178,6 +205,9 @@ $(function () {
                         ]
                       }
                     ];
+        }
+
+        _json = _json.concat(c_menu);
       }
     }
 

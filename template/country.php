@@ -42,11 +42,20 @@
             <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4 countries-list">
                 <h6 class="center-align"><b><?php _e('Please choose a country', 'e-blueinfo'); ?></b></h6>
                 <select>
-                    <option disabled selected></option>
-                    <?php foreach ($countries as $id => $name) : $selected = ( $country_id == $id ) ? 'selected' : ''; ?>
-                    <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/' . $lang . '/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>" <?php echo $selected; ?>><?php echo $name; ?></option>
-                    <?php endforeach; ?>
-                    <option data-country="oc" value="<?php echo get_site_url() . '/' . $lang . '/' . $eblueinfo_plugin_slug . '?country=oc'; ?>" <?php echo ( 'oc' == $country_id ) ? 'selected' : ''; ?>><?php _e('Other country', 'e-blueinfo'); ?></option>
+                    <optgroup label="<?php _e('Country', 'e-blueinfo'); ?>">
+                        <?php foreach ($countries as $id => $name) : ?>
+                            <?php $selected = ( $country_id == $id ) ? 'selected' : ''; ?>
+                            <?php $cc = $country_code[$id]; ?>
+                            <?php if ( 'US' != $cc ) : ?>
+                            <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/' . $lang . '/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>" <?php echo $selected; ?>><?php echo $name; ?></option>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                        <option data-country="oc" value="<?php echo get_site_url() . '/' . $lang . '/' . $eblueinfo_plugin_slug . '?country=oc'; ?>" <?php echo ( 'oc' == $country_id ) ? 'selected' : ''; ?>><?php _e('Other country', 'e-blueinfo'); ?></option>
+                    </optgroup>
+                    <optgroup label="<?php _e('Other contents', 'e-blueinfo'); ?>">
+                        <?php $cc = $country_code[$country_id]; ?>
+                        <option data-country="224" value="<?php echo get_site_url() . '/' . $lang . '/' . $eblueinfo_plugin_slug . '?country=224'; ?>" <?php echo ( 'US' == $cc ) ? 'selected' : ''; ?>><?php _e('PAHO/WHO Guidelines', 'e-blueinfo'); ?></option>
+                    </optgroup>
                 </select>
             </div>
             <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4 center-align">

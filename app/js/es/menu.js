@@ -27,7 +27,7 @@ $(function () {
     var userData = $.cookie("userData");
     var json = [
                   {
-                    "url": app_site + "es/app",
+                    "url": app_site + "/es/app",
                     "label": "Contenidos",
                     "subLinks": []
                   },
@@ -56,7 +56,7 @@ $(function () {
                     "isSubmenu": false,
                     "subLinks": [
                       {
-                        "url": app_site + "es/app/contact",
+                        "url": app_site + "/es/app/contact",
                         "label": "Contacto",
                         "subLinks": []
                       },
@@ -109,7 +109,7 @@ $(function () {
     if ( 'oc' == country ) {
       var _json = [
                     {
-                      "url": app_site + "es/app/country",
+                      "url": app_site + "/es/app/country",
                       "label": "País",
                       "subLinks": []
                     }
@@ -124,15 +124,27 @@ $(function () {
                         "subLinks": []
                       },
                       {
-                        "url": app_site + "es/app/favorites",
+                        "url": app_site + "/es/app/favorites",
                         "label": "Favoritos",
                         "subLinks": []
                       },
                       {
-                        "url": app_site + "es/app/visited",
+                        "url": app_site + "/es/app/visited",
                         "label": "Visitados",
                         "subLinks": []
-                      },
+                      }
+                    ];
+
+        if ( '224' == country ) { // PAHO/WHO Guidelines
+          var c_menu = [
+                      {
+                        "url": app_site + "/es/app/country",
+                        "label": "País",
+                        "subLinks": []
+                      }
+                    ];
+        } else {
+          var c_menu = [
                       {
                         "label": "País (" + c_name[cc] + ")",
                         "grouping": "[grouping]",
@@ -145,20 +157,35 @@ $(function () {
                             "subLinks": []
                           },
                           {
-                            "url": app_site + "es/app/country",
+                            "url": app_site + "/es/app/country",
                             "label": "Cambiar país",
                             "subLinks": []
                           }
                         ]
                       }
                     ];
+        }
+
+        _json = _json.concat(c_menu);
       } else {
         var _json = [
                       {
-                        "url": app_site + "es/app/auth",
+                        "url": app_site + "/es/app/auth",
                         "label": "Login",
                         "subLinks": []
-                      },
+                      }
+                    ];
+
+        if ( '224' == country ) { // PAHO/WHO Guidelines
+          var c_menu = [
+                      {
+                        "url": app_site + "/es/app/country",
+                        "label": "País",
+                        "subLinks": []
+                      }
+                    ];
+        } else {
+          var c_menu = [
                       {
                         "label": "País (" + c_name[cc] + ")",
                         "grouping": "[grouping]",
@@ -171,13 +198,16 @@ $(function () {
                             "subLinks": []
                           },
                           {
-                            "url": app_site + "es/app/country",
+                            "url": app_site + "/es/app/country",
                             "label": "Cambiar país",
                             "subLinks": []
                           }
                         ]
                       }
                     ];
+        }
+
+        _json = _json.concat(c_menu);
       }
     }
 

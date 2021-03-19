@@ -172,21 +172,23 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <?php if ( $categories ) : ?>
 <section id="categories" class="container containerAos">
     <div class="row">
-        <?php foreach ( $categories as $index => $collection) : $index++; ?>
-        <article class="col s12">
-            <div class="card cardSingle">
-                <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>" onclick="__gaTracker('send','event','Collection','View','<?php echo $countries[$country].'|'.$collection->name; ?>');">
-                    <div class="card-content">
-                        <b><?php echo $collection->name; ?></b> <br />
-                        <p><small><?php echo $collection->description; ?></small></p>
-                        <small><?php _e('Documents','e-blueinfo'); ?>: <?php echo $collection_cluster['_'.$collection->id]['total']; ?></small>
-                        <?php if ( is_timestamp($collection->updated_time) ) : ?>
-                            <small><?php _e('Last Update','e-blueinfo'); ?>: <?php echo $collection->updated_time; ?></small>
-                        <?php endif; ?>
-                    </div>
-                </a>
-            </div>
-        </article>
+        <?php foreach ( $categories as $index => $collection) : $index++; $total_docs = $collection_cluster['_'.$collection->id]['total']; ?>
+            <?php if ( $total_docs ) : ?>
+            <article class="col s12">
+                <div class="card cardSingle">
+                    <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>" onclick="__gaTracker('send','event','Collection','View','<?php echo $countries[$country].'|'.$collection->name; ?>');">
+                        <div class="card-content">
+                            <b><?php echo $collection->name; ?></b> <br />
+                            <p><small><?php echo $collection->description; ?></small></p>
+                            <small><?php _e('Documents','e-blueinfo'); ?>: <?php echo $total_docs; ?></small>
+                            <?php if ( is_timestamp($collection->updated_time) ) : ?>
+                                <small><?php _e('Last Update','e-blueinfo'); ?>: <?php echo $collection->updated_time; ?></small>
+                            <?php endif; ?>
+                        </div>
+                    </a>
+                </div>
+            </article>
+            <?php endif; ?>
         <?php endforeach; ?>
     </div>
 </section>
@@ -196,21 +198,23 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <?php if ( $themes ) : ?>
 <section id="themes" class="container containerAos" style="display: none">
     <div class="row">
-        <?php foreach ( $themes as $index => $collection) : $index++; ?>
-        <article class="col s12">
-            <div class="card cardSingle">
-                <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>" onclick="__gaTracker('send','event','Collection','View','<?php echo $countries[$country].'|'.$collection->name; ?>');">
-                    <div class="card-content">
-                        <b><?php echo $collection->name; ?></b> <br />
-                        <p><small><?php echo $collection->description; ?></small></p>
-                        <small><?php _e('Documents','e-blueinfo'); ?>: <?php echo $collection_cluster['_'.$collection->id]['total']; ?></small>
-                        <?php if ( is_timestamp($collection->updated_time) ) : ?>
-                            <small><?php _e('Last Update','e-blueinfo'); ?>: <?php echo $collection->updated_time; ?></small>
-                        <?php endif; ?>
-                    </div>
-                </a>
-            </div>
-        </article>
+        <?php foreach ( $themes as $index => $collection) : $index++; $total_docs = $collection_cluster['_'.$collection->id]['total']; ?>
+            <?php if ( $total_docs ) : ?>
+            <article class="col s12">
+                <div class="card cardSingle">
+                    <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>" onclick="__gaTracker('send','event','Collection','View','<?php echo $countries[$country].'|'.$collection->name; ?>');">
+                        <div class="card-content">
+                            <b><?php echo $collection->name; ?></b> <br />
+                            <p><small><?php echo $collection->description; ?></small></p>
+                            <small><?php _e('Documents','e-blueinfo'); ?>: <?php echo $total_docs; ?></small>
+                            <?php if ( is_timestamp($collection->updated_time) ) : ?>
+                                <small><?php _e('Last Update','e-blueinfo'); ?>: <?php echo $collection->updated_time; ?></small>
+                            <?php endif; ?>
+                        </div>
+                    </a>
+                </div>
+            </article>
+            <?php endif; ?>
         <?php endforeach; ?>
     </div>
 </section>

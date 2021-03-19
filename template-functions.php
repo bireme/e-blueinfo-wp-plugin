@@ -522,18 +522,22 @@ if ( !function_exists('display_multimedia') ) {
     }
 }
 
-if ( !function_exists('get_multimedia_parent_name') ) {
-    function get_multimedia_parent_name($text, $lang) {
+if ( !function_exists('get_parent_name') ) {
+    function get_parent_name($text, $lang) {
         $name = $text;
         $parent_name = explode('|', $name);
         $lang = ( 'pt' == $lang ) ? 'pt-br' : $lang;
 
-        foreach ($parent_name as $pname) {
-            $prefix = '('.$lang.')';
+        if ( count($parent_name) == 1 ) {
+            $name = explode(' ', $text, 2)[1];
+        } else {
+            foreach ($parent_name as $pname) {
+                $prefix = '('.$lang.')';
 
-            if (substr($pname, 0, strlen($prefix)) === $prefix) {
-                $name = trim(substr($pname, strlen($prefix)));
-                break;
+                if (substr($pname, 0, strlen($prefix)) === $prefix) {
+                    $name = trim(substr($pname, strlen($prefix)));
+                    break;
+                }
             }
         }
 

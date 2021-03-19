@@ -70,6 +70,10 @@
             <?php else : ?>
             <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'auth/'; ?>"><?php _e('Login', 'e-blueinfo'); ?></a></li>
             <?php endif; ?>
+            
+            <?php if ( 'US' == $cc ) : ?>
+            <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'country/'; ?>"><?php _e('Change country', 'e-blueinfo'); ?></a></li>
+            <?php else : ?>
             <!-- Start nested content -->
             <li>
                 <ul class="collapsible collapsible-accordion">
@@ -84,6 +88,7 @@
                     </li>
                 </ul>
             </li>
+            <?php endif; ?>
         <?php else : ?>
             <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'country/'; ?>"><?php _e('Country', 'e-blueinfo'); ?></a></li>
         <?php endif; ?>

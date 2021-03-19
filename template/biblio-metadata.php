@@ -44,14 +44,14 @@ if ($response){
     $response_json = json_decode($response);
 
     $community_name = $response_json->response->docs[0]->com[0];
-    $community_name = explode(' ', $community_name, 2);
-    $com_name = $community_name[1];
-    $com_id = explode('|', $community_name[0])[0];
+    $community_name = explode('|', $community_name, 2);
+    $com_name = get_parent_name($community_name[1], $lang);
+    $com_id = $community_name[0];
 
     $collection_name = $response_json->response->docs[0]->col[0];
-    $collection_name = explode(' ', $collection_name, 2);
-    $col_name = $collection_name[1];
-    $col_id = explode('|', $collection_name[0])[0];
+    $collection_name = explode('|', $collection_name, 2);
+    $col_name = get_parent_name($collection_name[1], $lang);
+    $col_id = $collection_name[0];
 
     $media_type = $response_json->response->docs[0]->mt;
 }
@@ -97,7 +97,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
             <article class="doc-detail">
                 <div class="row">
                     <div class="col s6 m4 l3 text-center" data-aos="fade-left">
-                        <img class="thumbnail-doc responsive-img" src="<?php echo get_thumbnail($docid, $media_type); ?>" alt="">
+                        <img class="thumbnail-doc responsive-img" src="<?php echo get_thumbnail($docid, $media_type); ?>" alt="" onerror="this.src='<?php echo EBLUEINFO_PLUGIN_URL . "template/images/nothumb.jpg"; ?>'">
                     </div>
                     <div class="col s6 m8 l9 right-align">
                         <div class="iconActions btn-favorites" data-aos="fade-right" data-aos-delay="300" data-author="<?php echo $author[0]->text; ?>" data-altid="<?php echo $altid; ?>" data-docid="<?php echo $docid; ?>"><a class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Document','Favorites','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">star</i></a></div>

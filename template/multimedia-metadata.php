@@ -23,12 +23,12 @@ if ($response){
 
     $community_name = $response_json->response->docs[0]->com[0];
     $community_name = explode('|', $community_name, 2);
-    $com_name = get_multimedia_parent_name($community_name[1], $lang);
+    $com_name = get_parent_name($community_name[1], $lang);
     $com_id = $community_name[0];
 
     $collection_name = $response_json->response->docs[0]->col[0];
     $collection_name = explode('|', $collection_name, 2);
-    $col_name = get_multimedia_parent_name($collection_name[1], $lang);
+    $col_name = get_parent_name($collection_name[1], $lang);
     $col_id = $collection_name[0];
 
     $media_type = $response_json->response->docs[0]->mt;

@@ -66,11 +66,17 @@
                     <?php if ( !EBLUEINFO_CTEST ) { $countries_en = array_diff($countries_en, $ctest); } ?>
                     <h6 class="center-align"><b>Please choose a country</b></h6>
                     <select>
-                        <option disabled selected></option>
-                        <?php foreach ($countries_en as $id => $name) : ?>
-                        <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/en/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
-                        <?php endforeach; ?>
-                        <option data-country="oc" value="<?php echo get_site_url() . '/en/' . $eblueinfo_plugin_slug . '?country=oc'; ?>">Other country</option>
+                        <optgroup label="Country">
+                            <?php foreach ($countries_en as $id => $name) : ?>
+                                <?php if ( $id != 224 ) :  ?>
+                                <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/en/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            <option data-country="oc" value="<?php echo get_site_url() . '/en/' . $eblueinfo_plugin_slug . '?country=oc'; ?>">Other country</option>
+                        </optgroup>
+                        <optgroup label="Other contents">
+                            <option data-country="224" value="<?php echo get_site_url() . '/en/' . $eblueinfo_plugin_slug . '?country=224'; ?>">PAHO/WHO Guidelines</option>
+                        </optgroup>
                     </select>
                 </div>
                 <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4 countries pt">
@@ -78,11 +84,17 @@
                     <?php if ( !EBLUEINFO_CTEST ) { $countries_pt = array_diff($countries_pt, $ctest); } ?>
                     <h6 class="center-align"><b>Por favor, escolha um país</b></h6>
                     <select>
-                        <option disabled selected></option>
-                        <?php foreach ($countries_pt as $id => $name) : ?>
-                        <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/pt/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
-                        <?php endforeach; ?>
-                        <option data-country="oc" value="<?php echo get_site_url() . '/pt/' . $eblueinfo_plugin_slug . '?country=oc'; ?>">Outro país</option>
+                        <optgroup label="País">
+                            <?php foreach ($countries_pt as $id => $name) : ?>
+                                <?php if ( $id != 224 ) :  ?>
+                                <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/pt/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            <option data-country="oc" value="<?php echo get_site_url() . '/pt/' . $eblueinfo_plugin_slug . '?country=oc'; ?>">Outro país</option>
+                        </optgroup>
+                        <optgroup label="Outros conteúdos">
+                            <option data-country="224" value="<?php echo get_site_url() . '/pt/' . $eblueinfo_plugin_slug . '?country=224'; ?>">Guias OPAS/OMS</option>
+                        </optgroup>
                     </select>
                 </div>
                 <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4 countries es">
@@ -90,11 +102,18 @@
                     <?php if ( !EBLUEINFO_CTEST ) { $countries_es = array_diff($countries_es, $ctest); } ?>
                     <h6 class="center-align"><b>Por favor, elija un país</b></h6>
                     <select>
-                        <option disabled selected></option>
-                        <?php foreach ($countries_es as $id => $name) : ?>
-                        <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/es/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
-                        <?php endforeach; ?>
-                        <option data-country="oc" value="<?php echo get_site_url() . '/es/' . $eblueinfo_plugin_slug . '?country=oc'; ?>">Otro país</option>
+                        <optgroup label="País">
+                            <option disabled selected></option>
+                            <?php foreach ($countries_es as $id => $name) : ?>
+                                <?php if ( $id != 224 ) :  ?>
+                                <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/es/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            <option data-country="oc" value="<?php echo get_site_url() . '/es/' . $eblueinfo_plugin_slug . '?country=oc'; ?>">Otro país</option>
+                        </optgroup>
+                        <optgroup label="Otros contenidos">
+                            <option data-country="224" value="<?php echo get_site_url() . '/es/' . $eblueinfo_plugin_slug . '?country=224'; ?>">Guías OPS/OMS</option>
+                        </optgroup>
                     </select>
                 </div>
                 <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4 center-align">
