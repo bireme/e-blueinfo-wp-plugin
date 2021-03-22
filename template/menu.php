@@ -115,7 +115,7 @@
                     <div class="collapsible-body">
                         <ul>
                             <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'contact/'; ?>"><?php _e('Contact', 'e-blueinfo'); ?></a></li>
-                            <li><a href="<?php echo $help_pages['tutorial'][$lang]; ?>"><?php _e('Tutorial', 'e-blueinfo'); ?></a></li>
+                            <!-- <li><a href="<?php echo $help_pages['tutorial'][$lang]; ?>"><?php _e('Tutorial', 'e-blueinfo'); ?></a></li> -->
                         </ul>
                     </div>
                 </li>

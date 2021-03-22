@@ -60,11 +60,11 @@ $(function () {
                         "label": "Contacto",
                         "subLinks": []
                       },
-                      {
-                        "url": site + "/es/tutoriales/",
-                        "label": "Tutorial",
-                        "subLinks": []
-                      }
+                      // {
+                      //   "url": site + "/es/tutoriales/",
+                      //   "label": "Tutorial",
+                      //   "subLinks": []
+                      // }
                     ]
                   },
                   {

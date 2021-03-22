@@ -60,11 +60,11 @@ $(function () {
                         "label": "Contato",
                         "subLinks": []
                       },
-                      {
-                        "url": site + "/tutoriais/",
-                        "label": "Tutorial",
-                        "subLinks": []
-                      }
+                      // {
+                      //   "url": site + "/tutoriais/",
+                      //   "label": "Tutorial",
+                      //   "subLinks": []
+                      // }
                     ]
                   },
                   {
