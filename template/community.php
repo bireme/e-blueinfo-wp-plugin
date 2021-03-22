@@ -247,7 +247,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <div id="modal-infobutton" class="modal modal-fixed-footer">
     <div class="modal-content">
         <h4><?php _e('Contextualized Search', 'e-blueinfo'); ?></h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, suscipit, in quaerat accusantium eligendi necessitatibus laudantium nemo. Laudantium ducimus, placeat aspernatur, exercitationem doloribus alias nobis rem, assumenda veniam tenetur delectus in error deleniti fugit ipsum dolorum dolores quia magni adipisci, voluptatem ratione sed a excepturi sint. Nemo minus, consequatur maiores magnam doloribus tempora, veritatis mollitia qui eaque? Atque repellendus rem, expedita perspiciatis itaque. Corrupti animi tempora porro adipisci explicabo perferendis repellat, inventore corporis dolore minima, quia modi eligendi earum tempore qui quibusdam! Sed non quos quo nobis est, voluptatem possimus accusantium hic pariatur quisquam tempora quod, iusto et repellendus earum nam ex, enim libero dolores ducimus dolor sit. Quia, nesciunt, fuga! Qui enim a officia repellat adipisci, atque cum. Officia ipsam, laborum exercitationem. Itaque eaque in quos maiores. Impedit soluta dolore molestiae doloribus, voluptate dignissimos quos id quo amet, consequuntur, aliquid repudiandae eveniet quam illum tempore! Saepe dicta, inventore beatae?</p>
+        <p><?php _e('Search for scientific evidence in the Virtual Health Library using ICD-10 and DeCS/MeSH.', 'e-blueinfo'); ?></p>
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-close waves-effect waves-green btn-flat"><?php _e('Close','e-blueinfo'); ?></a>
