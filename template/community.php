@@ -133,7 +133,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
     <div class="row">
         <article class="col s12" data-aos="fade-up" data-aos-delay="300">
             <div class="card-panel blue darken-1 center-align">
-                <span class="white-text"><?php _e('There are no communities available as your country has not joined e-BlueInfo. But you still have access to the documents in the Other Evidence section.','e-blueinfo'); ?></span>
+                <span class="white-text"><?php _e('There are no document collections available as your country has not joined yet to e-BlueInfo. But you still have access to the documents in the Other Contents section.','e-blueinfo'); ?></span>
             </div>
         </article>
     </div>
