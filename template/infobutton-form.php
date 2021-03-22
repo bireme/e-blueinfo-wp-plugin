@@ -51,7 +51,7 @@ $infobutton_code = array(
                     <select id="mainSearchCriteria-v-cs" name="mainSearchCriteria.v.cs" onchange="change_code_text(this);">
                         <option value="2.16.840.1.113883.6.3">ICD-10</option>
                         <option value="2.16.840.1.113883.6.177">DeCS/MeSH</option>
-                        <option value="2.16.840.1.113883.6.96">SNOMED-CT</option>
+                        <!-- <option value="2.16.840.1.113883.6.96">SNOMED-CT</option> -->
                     </select>
                     <label for="mainSearchCriteria-v-cs"><?php _e('Code System', 'e-blueinfo'); ?></label>
                 </div>
