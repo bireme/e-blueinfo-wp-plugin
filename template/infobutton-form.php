@@ -45,12 +45,12 @@ $infobutton_code = array(
             <div class="row">
                 <div class="input-field col s12 m6 margin1">
                     <input id="mainSearchCriteria-v-c" type="text" name="mainSearchCriteria.v.c" class="validate" required="" aria-required="true">
-                    <label for="mainSearchCriteria-v-c" id="labelCode"><?php _e('Code', 'e-blueinfo'); ?> <span>ICD-10</span> *</label>
+                    <label for="mainSearchCriteria-v-c" id="labelCode"><?php _e('ICD-10 code', 'e-blueinfo'); ?> *</label>
                 </div>
                 <div class="input-field col s12 m6 margin1">
                     <select id="mainSearchCriteria-v-cs" name="mainSearchCriteria.v.cs" onchange="change_code_text(this);">
-                        <option value="2.16.840.1.113883.6.3">ICD-10</option>
-                        <option value="2.16.840.1.113883.6.177">DeCS/MeSH</option>
+                        <option value="2.16.840.1.113883.6.3" data-label="<?php _e('ICD-10 code', 'e-blueinfo'); ?>">ICD-10</option>
+                        <option value="2.16.840.1.113883.6.177" data-label="<?php _e('DeCS/MeSH term or code', 'e-blueinfo'); ?>">DeCS/MeSH</option>
                         <!-- <option value="2.16.840.1.113883.6.96">SNOMED-CT</option> -->
                     </select>
                     <label for="mainSearchCriteria-v-cs"><?php _e('Code System', 'e-blueinfo'); ?></label>

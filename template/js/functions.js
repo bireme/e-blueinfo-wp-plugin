@@ -94,7 +94,7 @@ function getCookie(name) {
 }
 
 function change_code_text(sel){
-   $("#labelCode span").text(sel.options[sel.selectedIndex].text);
+   $("#labelCode").text(sel.options[sel.selectedIndex].dataset.label+' *');
 }
 
 function isJSON(str) {
