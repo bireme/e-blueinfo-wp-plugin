@@ -49,7 +49,7 @@ $infobutton_code = array(
                 </div>
                 <div class="input-field col s12 m6 margin1">
                     <select id="mainSearchCriteria-v-cs" name="mainSearchCriteria.v.cs" onchange="change_code_text(this);">
-                        <option value="2.16.840.1.113883.6.3" data-label="<?php _e('ICD-10 code', 'e-blueinfo'); ?>">ICD-10</option>
+                        <option value="2.16.840.1.113883.6.3" data-label="<?php _e('ICD-10 code', 'e-blueinfo'); ?>"><?php _e('ICD-10', 'e-blueinfo'); ?></option>
                         <option value="2.16.840.1.113883.6.177" data-label="<?php _e('DeCS/MeSH term or code', 'e-blueinfo'); ?>">DeCS/MeSH</option>
                         <!-- <option value="2.16.840.1.113883.6.96">SNOMED-CT</option> -->
                     </select>
