@@ -2,6 +2,8 @@ var $ = jQuery;
 //  --------------------------------- Text
 $(document).ready(function() {
   M.updateTextFields();
+  $("label[for='mainSearchCriteria-v-c']").addClass('active');
+  setTimeout(function(){ $("label[for='mainSearchCriteria-v-c']").addClass('active'); }, 0);
 });
 //  --------------------------------- Select
 $('select').formSelect();
