@@ -34,7 +34,7 @@ if ($response){
 
 <!-- Template -->
 <?php if ( isset($total) && strval($total) == 0 ) : ?>
-<h1 class="title"><?php _e('Contextualized Search', 'e-blueinfo'); ?></h1>
+<h1 class="title"><?php _e('Search for scientific evidence in the Virtual Health Library', 'e-blueinfo'); ?></h1>
 <section class="container containerAos">
     <div class="row">
         <div class="card-panel center-align">

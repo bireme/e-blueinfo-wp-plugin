@@ -38,7 +38,7 @@ $infobutton_code = array(
 <!-- ./Header -->
 
 <!-- Template -->
-<h1 class="title"><?php _e('Contextualized Search', 'e-blueinfo'); ?></h1>
+<h1 class="title"><?php _e('Search for scientific evidence in the Virtual Health Library', 'e-blueinfo'); ?></h1>
 <section id="categories" class="container">
     <div class="row">
         <form id="infobutton-form" class="col s12" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>infobutton/result">

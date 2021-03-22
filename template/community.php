@@ -246,7 +246,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <!-- InfoButton Modal Trigger -->
 <div id="modal-infobutton" class="modal modal-fixed-footer">
     <div class="modal-content">
-        <h4><?php _e('Contextualized Search', 'e-blueinfo'); ?></h4>
+        <h4><?php _e('Search for scientific evidence in the Virtual Health Library', 'e-blueinfo'); ?></h4>
         <p><?php _e('Search for scientific evidence in the Virtual Health Library using ICD-10 and DeCS/MeSH.', 'e-blueinfo'); ?></p>
     </div>
     <div class="modal-footer">
