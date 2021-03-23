@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Memória Azul 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/leisref\n"
-"POT-Creation-Date: 2021-02-18 21:09-0300\n"
-"PO-Revision-Date: 2021-02-18 21:12-0300\n"
+"POT-Creation-Date: 2021-03-23 18:26-0300\n"
+"PO-Revision-Date: 2021-03-23 18:34-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -137,7 +137,7 @@ msgstr "Base de dados"
 msgid "Collection"
 msgstr "Coleção"
 
-#: settings.php:105 template/leisref-metadata.php:135 template/menu.php:123
+#: settings.php:105 template/leisref-metadata.php:135 template/menu.php:128
 #: template/multimedia-metadata.php:144
 msgid "Language"
 msgstr "Idioma"
@@ -252,10 +252,10 @@ msgstr ""
 "de Serviços MinhaBVS."
 
 #: template/biblio-metadata.php:174 template/browse.php:306
-#: template/community.php:211 template/community.php:224
-#: template/favorites.php:228 template/leisref-metadata.php:201
-#: template/multimedia-metadata.php:210 template/search.php:220
-#: template/visited.php:171
+#: template/community.php:229 template/community.php:242
+#: template/community.php:253 template/favorites.php:228
+#: template/leisref-metadata.php:201 template/multimedia-metadata.php:210
+#: template/search.php:220 template/visited.php:171
 msgid "Close"
 msgstr "Fechar"
 
@@ -276,8 +276,8 @@ msgstr "Áudio"
 
 #: template/browse.php:164 template/browse.php:221 template/favorites.php:113
 #: template/favorites.php:168
-msgid "PPT"
-msgstr "PPT"
+msgid "Presentation"
+msgstr "Apresentação"
 
 #: template/browse.php:165 template/browse.php:222 template/favorites.php:114
 #: template/favorites.php:169
@@ -335,10 +335,6 @@ msgid "No results found"
 msgstr "Nenhum resultado encontrado"
 
 #: template/browse.php:285 template/favorites.php:207
-msgid "Update"
-msgstr "Atualização"
-
-#: template/browse.php:285 template/favorites.php:207
 msgid "Downloads"
 msgstr "Downloads"
 
@@ -362,25 +358,25 @@ msgstr "Categorias"
 msgid "Themes"
 msgstr "Temas"
 
-#: template/collection.php:182 template/collection.php:206
+#: template/collection.php:183 template/collection.php:209
 #: template/community.php:166
 msgid "Documents"
 msgstr "Documentos"
 
-#: template/collection.php:184 template/collection.php:208
+#: template/collection.php:185 template/collection.php:211
 #: template/community.php:168
 msgid "Last Update"
 msgstr "Última Atualização"
 
 #: template/community.php:136
 msgid ""
-"There are no communities available as your country has not joined e-"
-"BlueInfo. But you still have access to the documents in the Other Evidence "
-"section."
+"There are no document collections available as your country has not joined "
+"yet to e-BlueInfo. But you still have access to the documents in the Other "
+"Contents section."
 msgstr ""
-"Não existem comunidades disponíveis, pois o seu país ainda não aderiu ao e-"
-"BlueInfo. Mas você ainda tem acesso aos documentos na seção Outras "
-"Evidências."
+"Não existem coleções de documentos disponíveis, pois o seu país ainda não "
+"aderiu ao e-BlueInfo. Mas você ainda tem acesso aos documentos na seção "
+"Outros Conteúdos."
 
 #: template/community.php:145
 msgid "No results found. Please choose a country in the main menu."
@@ -395,24 +391,49 @@ msgstr "Clique aqui para conteúdos selecionados"
 msgid "Other Contents"
 msgstr "Outros Conteúdos"
 
-#: template/community.php:194
+#: template/community.php:196 template/community.php:238
+#: template/country.php:57
+msgid "PAHO/WHO Guidelines"
+msgstr "Guias OPAS/OMS"
+
+#: template/community.php:212 template/community.php:249
+#: template/infobutton-form.php:41 template/infobutton-result.php:37
 msgid "Search for scientific evidence in the Virtual Health Library"
 msgstr "Buscar evidências científicas na Biblioteca Virtual em Saúde"
 
-#: template/community.php:220 template/infobutton-form.php:41
-#: template/infobutton-result.php:37
-msgid "Contextualized Search"
-msgstr "Pesquisa Contextualizada"
+#: template/community.php:239
+msgid ""
+"Collection of guidelines published by the Panamerican Health Organization "
+"(PAHO) and World Health Organization (WHO)."
+msgstr ""
+"Coleção de guias publicadas pela Organização Panamericana da Saúde (OPAS) e "
+"pela Organização Mundial da Saúde (OMS)."
+
+#: template/community.php:250
+msgid ""
+"Search for scientific evidence in the Virtual Health Library using ICD-10 "
+"and DeCS/MeSH."
+msgstr ""
+"Busque evidências científicas disponíveis na Biblioteca Virtual em Saúde "
+"usando a CID-10 e o DeCS/MeSH."
 
 #: template/contact.php:28
 msgid "Contact Form"
 msgstr "Formulário de Contato"
 
-#: template/country.php:49
+#: template/country.php:45 template/menu.php:81 template/menu.php:93
+msgid "Country"
+msgstr "País"
+
+#: template/country.php:53
 msgid "Other country"
 msgstr "Outro país"
 
-#: template/country.php:53 template/home.php:101
+#: template/country.php:55
+msgid "Other contents"
+msgstr "Outros conteúdos"
+
+#: template/country.php:62 template/home.php:120
 msgid "Select"
 msgstr "Selecionar"
 
@@ -420,9 +441,21 @@ msgstr "Selecionar"
 msgid "No favorite documents found"
 msgstr "Não há documentos favoritos"
 
-#: template/infobutton-form.php:48
-msgid "Code"
-msgstr "Código"
+#: template/favorites.php:207
+msgid "Update"
+msgstr "Atualização"
+
+#: template/infobutton-form.php:48 template/infobutton-form.php:52
+msgid "ICD-10 code"
+msgstr "Código CID-10"
+
+#: template/infobutton-form.php:52
+msgid "ICD-10"
+msgstr "CID-10"
+
+#: template/infobutton-form.php:53
+msgid "DeCS/MeSH term or code"
+msgstr "Termo ou código DeCS/MeSH"
 
 #: template/infobutton-form.php:56
 msgid "Code System"
@@ -600,55 +633,51 @@ msgstr "Macau"
 msgid "Logout"
 msgstr "Logout"
 
-#: template/menu.php:77 template/menu.php:88
-msgid "Country"
-msgstr "País"
-
-#: template/menu.php:80
-msgid "See more"
-msgstr "Saiba mais"
-
-#: template/menu.php:81
+#: template/menu.php:75 template/menu.php:85
 msgid "Change country"
 msgstr "Escolher país"
 
-#: template/menu.php:90 template/search.php:186
+#: template/menu.php:84
+msgid "See more"
+msgstr "Saiba mais"
+
+#: template/menu.php:95 template/search.php:186
 msgid "Contents"
 msgstr "Conteúdos"
 
-#: template/menu.php:95
+#: template/menu.php:100
 msgid "About"
 msgstr "Sobre"
 
-#: template/menu.php:98
+#: template/menu.php:103
 msgid "Why e-BlueInfo?"
 msgstr "Por que e-BlueInfo?"
 
-#: template/menu.php:99
+#: template/menu.php:104
 msgid "Supporters"
 msgstr "Apoiadores"
 
-#: template/menu.php:109
+#: template/menu.php:114
 msgid "Help"
 msgstr "Ajuda"
 
-#: template/menu.php:112
+#: template/menu.php:117
 msgid "Contact"
 msgstr "Contato"
 
-#: template/menu.php:113
+#: template/menu.php:118
 msgid "Tutorial"
 msgstr "Tutorial"
 
-#: template/menu.php:134
+#: template/menu.php:139
 msgid "Settings"
 msgstr "Configurações"
 
-#: template/menu.php:141
+#: template/menu.php:146
 msgid "Setting Colors"
 msgstr "Definir Cores"
 
-#: template/menu.php:144 template/menu.php:147 template/menu.php:150
+#: template/menu.php:149 template/menu.php:152 template/menu.php:155
 msgid "Color"
 msgstr "Cor"
 
@@ -692,6 +721,15 @@ msgstr "Adicionar aos Favoritos"
 #: template/visited.php:115
 msgid "Visited Documents"
 msgstr "Documentos Visitados"
+
+#~ msgid "PPT"
+#~ msgstr "PPT"
+
+#~ msgid "Contextualized Search"
+#~ msgstr "Pesquisa Contextualizada"
+
+#~ msgid "Code"
+#~ msgstr "Código"
 
 #~ msgid "Other Evidence"
 #~ msgstr "Outras Evidências"

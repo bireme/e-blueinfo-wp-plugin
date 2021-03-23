@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Memória Azul 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/leisref\n"
-"POT-Creation-Date: 2021-02-18 21:08-0300\n"
+"POT-Creation-Date: 2021-03-23 18:26-0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -137,7 +137,7 @@ msgstr ""
 msgid "Collection"
 msgstr ""
 
-#: settings.php:105 template/leisref-metadata.php:135 template/menu.php:123
+#: settings.php:105 template/leisref-metadata.php:135 template/menu.php:128
 #: template/multimedia-metadata.php:144
 msgid "Language"
 msgstr ""
@@ -242,10 +242,10 @@ msgid "With the same e-BlueInfo registration you have full access to MyVHL Servi
 msgstr ""
 
 #: template/biblio-metadata.php:174 template/browse.php:306
-#: template/community.php:211 template/community.php:224
-#: template/favorites.php:228 template/leisref-metadata.php:201
-#: template/multimedia-metadata.php:210 template/search.php:220
-#: template/visited.php:171
+#: template/community.php:229 template/community.php:242
+#: template/community.php:253 template/favorites.php:228
+#: template/leisref-metadata.php:201 template/multimedia-metadata.php:210
+#: template/search.php:220 template/visited.php:171
 msgid "Close"
 msgstr ""
 
@@ -266,7 +266,7 @@ msgstr ""
 
 #: template/browse.php:164 template/browse.php:221 template/favorites.php:113
 #: template/favorites.php:168
-msgid "PPT"
+msgid "Presentation"
 msgstr ""
 
 #: template/browse.php:165 template/browse.php:222 template/favorites.php:114
@@ -325,10 +325,6 @@ msgid "No results found"
 msgstr ""
 
 #: template/browse.php:285 template/favorites.php:207
-msgid "Update"
-msgstr ""
-
-#: template/browse.php:285 template/favorites.php:207
 msgid "Downloads"
 msgstr ""
 
@@ -352,18 +348,18 @@ msgstr ""
 msgid "Themes"
 msgstr ""
 
-#: template/collection.php:182 template/collection.php:206
+#: template/collection.php:183 template/collection.php:209
 #: template/community.php:166
 msgid "Documents"
 msgstr ""
 
-#: template/collection.php:184 template/collection.php:208
+#: template/collection.php:185 template/collection.php:211
 #: template/community.php:168
 msgid "Last Update"
 msgstr ""
 
 #: template/community.php:136
-msgid "There are no communities available as your country has not joined e-BlueInfo. But you still have access to the documents in the Other Evidence section."
+msgid "There are no document collections available as your country has not joined yet to e-BlueInfo. But you still have access to the documents in the Other Contents section."
 msgstr ""
 
 #: template/community.php:145
@@ -378,24 +374,41 @@ msgstr ""
 msgid "Other Contents"
 msgstr ""
 
-#: template/community.php:194
+#: template/community.php:196 template/community.php:238
+#: template/country.php:57
+msgid "PAHO/WHO Guidelines"
+msgstr ""
+
+#: template/community.php:212 template/community.php:249
+#: template/infobutton-form.php:41 template/infobutton-result.php:37
 msgid "Search for scientific evidence in the Virtual Health Library"
 msgstr ""
 
-#: template/community.php:220 template/infobutton-form.php:41
-#: template/infobutton-result.php:37
-msgid "Contextualized Search"
+#: template/community.php:239
+msgid "Collection of guidelines published by the Panamerican Health Organization (PAHO) and World Health Organization (WHO)."
+msgstr ""
+
+#: template/community.php:250
+msgid "Search for scientific evidence in the Virtual Health Library using ICD-10 and DeCS/MeSH."
 msgstr ""
 
 #: template/contact.php:28
 msgid "Contact Form"
 msgstr ""
 
-#: template/country.php:49
+#: template/country.php:45 template/menu.php:81 template/menu.php:93
+msgid "Country"
+msgstr ""
+
+#: template/country.php:53
 msgid "Other country"
 msgstr ""
 
-#: template/country.php:53 template/home.php:101
+#: template/country.php:55
+msgid "Other contents"
+msgstr ""
+
+#: template/country.php:62 template/home.php:120
 msgid "Select"
 msgstr ""
 
@@ -403,8 +416,20 @@ msgstr ""
 msgid "No favorite documents found"
 msgstr ""
 
-#: template/infobutton-form.php:48
-msgid "Code"
+#: template/favorites.php:207
+msgid "Update"
+msgstr ""
+
+#: template/infobutton-form.php:48 template/infobutton-form.php:52
+msgid "ICD-10 code"
+msgstr ""
+
+#: template/infobutton-form.php:52
+msgid "ICD-10"
+msgstr ""
+
+#: template/infobutton-form.php:53
+msgid "DeCS/MeSH term or code"
 msgstr ""
 
 #: template/infobutton-form.php:56
@@ -583,55 +608,51 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: template/menu.php:77 template/menu.php:88
-msgid "Country"
-msgstr ""
-
-#: template/menu.php:80
-msgid "See more"
-msgstr ""
-
-#: template/menu.php:81
+#: template/menu.php:75 template/menu.php:85
 msgid "Change country"
 msgstr ""
 
-#: template/menu.php:90 template/search.php:186
+#: template/menu.php:84
+msgid "See more"
+msgstr ""
+
+#: template/menu.php:95 template/search.php:186
 msgid "Contents"
 msgstr ""
 
-#: template/menu.php:95
+#: template/menu.php:100
 msgid "About"
 msgstr ""
 
-#: template/menu.php:98
+#: template/menu.php:103
 msgid "Why e-BlueInfo?"
 msgstr ""
 
-#: template/menu.php:99
+#: template/menu.php:104
 msgid "Supporters"
 msgstr ""
 
-#: template/menu.php:109
+#: template/menu.php:114
 msgid "Help"
 msgstr ""
 
-#: template/menu.php:112
+#: template/menu.php:117
 msgid "Contact"
 msgstr ""
 
-#: template/menu.php:113
+#: template/menu.php:118
 msgid "Tutorial"
 msgstr ""
 
-#: template/menu.php:134
+#: template/menu.php:139
 msgid "Settings"
 msgstr ""
 
-#: template/menu.php:141
+#: template/menu.php:146
 msgid "Setting Colors"
 msgstr ""
 
-#: template/menu.php:144 template/menu.php:147 template/menu.php:150
+#: template/menu.php:149 template/menu.php:152 template/menu.php:155
 msgid "Color"
 msgstr ""
 
