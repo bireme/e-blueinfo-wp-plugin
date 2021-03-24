@@ -483,9 +483,9 @@ and (min-device-width : 1025px) {
 		max-width: 100%!important;
 	}
 	#footer-sidebar img{
-		width: 30%!important;
-		margin: 1.6666666%!important;
-		height: auto;
+    	margin: 5px!important;
+    	max-width: 46%;
+    	height: auto;
 	}
 	#footerFlag{
 		margin-top: 0;
