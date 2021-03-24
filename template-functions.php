@@ -253,9 +253,9 @@ if ( !function_exists('normalize_country_object') ) {
 
 if ( !function_exists('remove_prefix') ) {
     function remove_prefix($name){
-        $name = explode(' ', $name);
+        $name = explode('|', $name);
         $prefix = array_shift($name);
-        $name = implode(' ', $name);
+        $name = implode('|', $name);
 
         return $name;
     }
@@ -523,8 +523,13 @@ if ( !function_exists('display_multimedia') ) {
 }
 
 if ( !function_exists('get_parent_name') ) {
-    function get_parent_name($text, $lang) {
-        $name = $text;
+    function get_parent_name($text, $lang='') {
+        if ( empty($lang) ) {
+            $site_language = strtolower(get_bloginfo('language'));
+            $lang = substr($site_language,0,2);
+        }
+
+        $name = remove_prefix($text);
         $parent_name = explode('|', $name);
         $lang = ( 'pt' == $lang ) ? 'pt-br' : $lang;
 

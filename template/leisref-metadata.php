@@ -39,15 +39,35 @@ $response = @file_get_contents($eblueinfo_service_request);
 if ($response){
     $response_json = json_decode($response);
 
-    $community_name = $response_json->response->docs[0]->com[0];
-    $community_name = explode('|', $community_name, 2);
-    $com_name = get_parent_name($community_name[1], $lang);
-    $com_id = $community_name[0];
+    $community_name = $response_json->response->docs[0]->com;
+    if ( count($community_name) > 1 ) {
+        if ( $community_id ) {
+            $community_name = array_filter($community_name, function($value) use ($community_id) {
+                return strpos($value, $community_id) === 0;
+            });
+            sort($community_name);
+            $com_name = get_parent_name($community_name[0], $lang);
+        } else {
+            $com_name = implode('; ', array_map("get_parent_name", $community_name));
+        }
+    } else {
+        $com_name = get_parent_name($community_name[0], $lang);
+    }
 
-    $collection_name = $response_json->response->docs[0]->col[0];
-    $collection_name = explode('|', $collection_name, 2);
-    $col_name = get_parent_name($collection_name[1], $lang);
-    $col_id = $collection_name[0];
+    $collection_name = $response_json->response->docs[0]->col;
+    if ( count($collection_name) > 1 ) {
+        if ( $collection_id ) {
+            $collection_name = array_filter($collection_name, function($value) use ($collection_id) {
+                return strpos($value, $collection_id) === 0;
+            });
+            sort($collection_name);
+            $col_name = get_parent_name($collection_name[0], $lang);
+        } else {
+            $col_name = implode('; ', array_map("get_parent_name", $collection_name));
+        }
+    } else {
+        $col_name = get_parent_name($collection_name[0], $lang);
+    }
 
     $media_type = $response_json->response->docs[0]->mt;
 }
@@ -59,8 +79,10 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <?php get_header('e-blueinfo'); ?>
 <?php require_once('header.php'); ?>
 <section class="container">
+    <?php if ( $community_id && $collection_id ) : ?>
     <div class="title3 light-blue-text text-darken-1"><?php echo $com_name; ?></div>
     <div class="title3 title4"><?php echo $col_name; ?></div>
+    <?php endif; ?>
     <div class="row">
         <?php require_once('menu.php'); ?>
         <div class="col s10 m11" id="barSearch">
@@ -68,8 +90,8 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                 <div class="nav-wrapper">
                     <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Document','Search','<?php echo $countries[$country]; ?>|'+document.getElementById('searchBarInput').value);">
                         <div class="input-field">
-                            <input type="hidden" name="community" id="community" value="<?php echo $com_id; ?>">
-                            <input type="hidden" name="collection" id="collection" value="<?php echo $col_id; ?>">
+                            <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
+                            <input type="hidden" name="collection" id="collection" value="<?php echo $collection_id; ?>">
                             <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
                             <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
 
@@ -105,6 +127,17 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                 <div class="divider"></div>
                 <div data-aos="fade-right">
                     <h5 class="titleDefault doc-title"><?php echo $title; ?></h5>
+
+                    <?php if ( !$community_id || !$collection_id ) : ?>
+                    <h5 class="titleDefault"><?php _e('Contents', 'e-blueinfo'); ?></h5>
+                    <p><?php echo $com_name; ?></p>
+                    <?php endif; ?>
+
+                    <?php if ( !$community_id || !$collection_id ) : ?>
+                    <h5 class="titleDefault"><?php _e('Collections', 'e-blueinfo'); ?></h5>
+                    <p><?php echo $col_name; ?></p>
+                    <?php endif; ?>
+
                     <?php if ($resource->official_ementa): ?>
                         <p><?php echo $resource->official_ementa[0];?></p>
                     <?php elseif ($resource->unofficial_ementa): ?>
