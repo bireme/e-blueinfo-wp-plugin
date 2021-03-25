@@ -32,11 +32,11 @@ if(!class_exists('EBlueInfo_Plugin')) {
     class EBlueInfo_Plugin {
 
         private $plugin_slug            = 'e-blueinfo';
-        private $service_url            = 'http://fi-admin-api.bvsalud.org/';
+        private $service_url            = 'https://fi-admin-api.bvsalud.org/';
         private $similar_docs_url       = 'http://similardocs.bireme.org/SDService';
         private $thumb_service_url      = 'http://thumbs2.bireme.org';
-        private $country_service_url    = 'http://fi-admin-api.bvsalud.org/api/community/get_country_list/?format=json';
-        private $infobutton_service_url = 'http://bvsinfobutton.homolog.bvsalud.org';
+        private $country_service_url    = 'https://fi-admin-api.bvsalud.org/api/community/get_country_list/?format=json';
+        private $infobutton_service_url = 'https://bvsinfobutton.bvsalud.org';
         private $services_platform_url  = 'https://platserv.bvsalud.org';
         private $vhl_search_portal_url  = 'https://pesquisa.bvsalud.org';
         private $solr_service_url       = 'http://basalto01.bireme.br:9293/solr/pdfs/';
