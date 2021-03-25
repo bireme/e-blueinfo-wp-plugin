@@ -511,16 +511,16 @@ if(!class_exists('EBlueInfo_Plugin')) {
             wp_enqueue_script('jquery');
             wp_enqueue_script('e-blueinfo-materialize', '//cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js', array(), EBLUEINFO_VERSION, true);
             wp_enqueue_script('e-blueinfo-cookie', EBLUEINFO_PLUGIN_URL . 'template/js/cookie.js', array(), EBLUEINFO_VERSION, true);
-            wp_enqueue_script('e-blueinfo-page', EBLUEINFO_PLUGIN_URL . 'template/js/functions.js?ver=2.0.0', array(), EBLUEINFO_VERSION, true);
+            wp_enqueue_script('e-blueinfo-page', EBLUEINFO_PLUGIN_URL . 'template/js/functions-scripts.js?ver=2.0.0', array(), EBLUEINFO_VERSION, true);
             wp_enqueue_script('e-blueinfo-loadmore', EBLUEINFO_PLUGIN_URL . 'template/js/loadmore.js', array(), EBLUEINFO_VERSION, true);
             wp_enqueue_script('e-blueinfo-slick', EBLUEINFO_PLUGIN_URL . 'template/js/slick.js', array(), EBLUEINFO_VERSION, true);
             wp_enqueue_script('e-blueinfo-aos', EBLUEINFO_PLUGIN_URL . 'template/js/aos.js', array(), EBLUEINFO_VERSION, true);
-            wp_enqueue_script('e-blueinfo-main', EBLUEINFO_PLUGIN_URL . 'template/js/main.js?ver=2.0.0', array(), EBLUEINFO_VERSION, true);
+            wp_enqueue_script('e-blueinfo-main', EBLUEINFO_PLUGIN_URL . 'template/js/main-scripts.js?ver=2.0.0', array(), EBLUEINFO_VERSION, true);
 
             if ( $_COOKIE['e-blueinfo-country'] ) {
-                wp_enqueue_script('e-blueinfo-menu', EBLUEINFO_PLUGIN_URL . 'app/js/' . $lang . '/menu.js?ver=2.0.0', array(), EBLUEINFO_VERSION, true);
+                wp_enqueue_script('e-blueinfo-menu', EBLUEINFO_PLUGIN_URL . 'app/js/' . $lang . '/app-menu.js?ver=2.0.0', array(), EBLUEINFO_VERSION, true);
             } else {
-                wp_enqueue_script('e-blueinfo-menu', EBLUEINFO_PLUGIN_URL . 'app/js/en/main.menu.js?ver=2.0.0', array(), EBLUEINFO_VERSION, true);   
+                wp_enqueue_script('e-blueinfo-menu', EBLUEINFO_PLUGIN_URL . 'app/js/en/app-main-menu.js?ver=2.0.0', array(), EBLUEINFO_VERSION, true);   
             }
 
             // country data
