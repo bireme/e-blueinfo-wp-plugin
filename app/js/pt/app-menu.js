@@ -100,7 +100,7 @@ $(function () {
       "PE": "Peru"
     };
     var c_pages = {
-      "BR": site + '/dados-do-brazil/',
+      "BR": site + '/dados-do-brasil/',
       "SV": site + '/dados-de-el-salvador/',
       "GT": site + '/dados-da-guatemala/',
       "PE": site + '/dados-do-peru/'
