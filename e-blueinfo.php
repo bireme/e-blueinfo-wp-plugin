@@ -156,7 +156,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
                 // check if request contains plugin slug string
                 $pos_slug = strpos($_SERVER['REQUEST_URI'], $this->plugin_slug);
 
-                if ( ! is_admin() && $pos_slug !== false ) {
+                if ( ! is_admin() && ! is_webview() && $pos_slug !== false ) {
                     $redirect = ( !empty($eblueinfo_config['redirect']) ) ? $eblueinfo_config['redirect'] : 'https://e-blueinfo.bvsalud.org/';
                     header('Location: '.$redirect);
                     exit;
