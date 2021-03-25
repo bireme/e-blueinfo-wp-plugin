@@ -50,12 +50,12 @@
 
             <?php if ( $_REQUEST['status'] == 'access_denied' ){ ?>
             <div class="input-field col s12">
-                <span class="red-text center-align"><?php _e('access denied', 'e-blueinfo') ?></span>
+                <span class="red-text center-align"><?php _e('access denied', 'e-blueinfo'); ?></span>
             </div>
             <?php } ?>
             <?php if ( $_REQUEST['status'] == 'false' ){ ?>
             <div class="input-field col s12">
-                <span class="red-text center-align"><?php _e('invalid login', 'e-blueinfo') ?></span>
+                <span class="red-text center-align"><?php _e('invalid login', 'e-blueinfo'); ?></span>
             </div>
             <?php } ?>
 
@@ -78,7 +78,8 @@
                 <a href="<?php echo $services_platform_url.'/connector/facebook/?origin='.base64_encode($current_url); ?>" class="waves-effect waves-light waves-light btn blue darken-4 bt100"><i class="fab fa-facebook-f"></i> Facebook</a>
             </div>
             <div class="col s6 right-align">
-                <a href="<?php echo $services_platform_url.'/connector/google/?origin='.base64_encode($current_url); ?>" class="waves-effect waves-light waves-light btn red darken-2 bt100"><i class="fab fa-google"></i> Google</a>
+                <a href="<?php echo $services_platform_url.'/connector/google/?origin='.base64_encode($current_url); ?>" class="waves-effect waves-light waves-light btn red darken-2 bt100 disabled"><i class="fab fa-google"></i> Google</a>
+                <span class="new badge" data-badge-caption="<?php _e('coming soon', 'e-blueinfo'); ?>">
             </div>
         </div>
     </div>
