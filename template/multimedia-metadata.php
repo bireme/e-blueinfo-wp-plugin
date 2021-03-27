@@ -1,6 +1,5 @@
 <?php
 $eblueinfo_service_request = $eblueinfo_service_url . 'api/multimedia/search/?id=multimedia.media.' . $resource_id . '&op=related&lang=' . $lang . '&format=json';
-
 $response = @file_get_contents($eblueinfo_service_request);
 if ($response){
     $response_json = json_decode($response);

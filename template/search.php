@@ -115,16 +115,8 @@ if ($response){
     // echo "<pre>"; print_r($collection); echo "</pre>"; die();
 }
 
-$params = $count != 2 ? '&count=' . $count : '';
-$params .= !empty($_GET['sort']) ? '&sort=' . $_GET['sort'] : '';
-
-$page_url_params = real_site_url($eblueinfo_plugin_slug) . 'browse/?collection=' . $collection_id . $params;
-// $feed_url = real_site_url($eblueinfo_plugin_slug) . 'e-blueinfo-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
 $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['home_url_' . $lang] : real_site_url();
-/*
-$pages = new Paginator($total, $start, $count);
-$pages->paginate($page_url_params);
-*/
+
 ?>
 
 <!-- Header -->
@@ -180,7 +172,7 @@ $pages->paginate($page_url_params);
             <article class="flexCol1 item cardSingle card-<?php echo $lang; ?> <?php echo $class; ?>">
                 <div class="row padding3 cardBox">
                     <div class="col s3">
-                        <img src="<?php echo get_thumbnail($doc->id, $doc->mt); ?>" class="thumbnail responsive-img" alt="">
+                        <img src="<?php echo get_thumbnail($doc->id, $doc->mt); ?>" class="thumbnail responsive-img" alt="" onerror="this.src='<?php echo EBLUEINFO_PLUGIN_URL . "template/images/nothumb.jpg"; ?>'">
                     </div>
                     <div class="col s7">
                         <p><b><?php _e('Contents', 'e-blueinfo'); ?>:</b> <br /><?php echo $com_name; ?></p>

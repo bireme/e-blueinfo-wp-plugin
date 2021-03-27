@@ -135,15 +135,46 @@ if ($response){
     $start = $response_json->response->start;
     $docs  = $response_json->response->docs;
     $snippets = $response_json->highlighting;
+
+    $community_name = $response_json->response->docs[0]->com;
+    if ( count($community_name) > 1 ) {
+        if ( $community_id ) {
+            $community_name = array_filter($community_name, function($value) use ($community_id) {
+                return strpos($value, $community_id) === 0;
+            });
+            sort($community_name);
+            $com_name = get_parent_name($community_name[0], $lang);
+        } else {
+            $com_name = implode('; ', array_map("get_parent_name", $community_name));
+        }
+    } else {
+        $com_name = get_parent_name($community_name[0], $lang);
+    }
+
+    $collection_name = $response_json->response->docs[0]->col;
+    if ( count($collection_name) > 1 ) {
+        if ( $collection_id ) {
+            $collection_name = array_filter($collection_name, function($value) use ($collection_id) {
+                return strpos($value, $collection_id) === 0;
+            });
+            sort($collection_name);
+            $col_name = get_parent_name($collection_name[0], $lang);
+        } else {
+            $col_name = implode('; ', array_map("get_parent_name", $collection_name));
+        }
+    } else {
+        $col_name = get_parent_name($collection_name[0], $lang);
+    }
 }
 
+/*
 $collection_request = $eblueinfo_service_url . 'api/collection/?collection=' . $collection_id . '&format=' . $format . '&lang=' . $lang;
-
 $response = @file_get_contents($collection_request);
 if ($response){
     $collection = json_decode($response);
     // echo "<pre>"; print_r($collection); echo "</pre>"; die();
 }
+*/
 
 // $filters_cluster_request = $solr_service_url . 'query?q=' . urlencode($query) . '&facet=true&facet.field=mt&facet.field=is&rows=0';
 $filters_cluster_request = $solr_service_url . 'query?q=(col:' . $collection_id . '|*)&facet=true&facet.field=mt&facet.field=is&rows=0';
@@ -201,8 +232,10 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 
 <!-- Template -->
 <section class="container">
-    <div class="title3 light-blue-text text-darken-1"><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'collection/?community=' . $community_id; ?>"><?php echo $collection->objects{0}->parent; ?></a></div>
-    <div class="title3 title4"><?php echo $collection->objects{0}->name; ?></div>
+    <?php if ( $community_id && $collection_id ) : ?>
+    <div class="title3 light-blue-text text-darken-1"><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'collection/?community=' . $community_id; ?>"><?php echo $com_name; ?></a></div>
+    <div class="title3 title4"><?php echo $col_name; ?></div>
+    <?php endif; ?>
     <div class="row">
         <div class="col s12 m6">
             <select class="info-source center-align">
@@ -266,7 +299,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                     <div class="cardBoxText">
                         <a class="e-blueinfo-doc" data-docid="<?php echo $doc->id; ?>" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="__gaTracker('send','event','Browse','View','<?php echo $countries[$country].'|'.$title; ?>');">
                             <div class="col s3">
-                                <img src="<?php echo get_thumbnail($doc->id, $doc->mt); ?>" class="responsive-img" alt="" onerror="this.src='<?php echo EBLUEINFO_PLUGIN_URL . "template/images/nothumb.jpg"; ?>'">
+                                <img src="<?php echo get_thumbnail($doc->id, $doc->mt); ?>" class="thumbnail responsive-img" alt="" onerror="this.src='<?php echo EBLUEINFO_PLUGIN_URL . "template/images/nothumb.jpg"; ?>'">
                             </div>
                             <div class="col s7">
                                 <p class="doc-title"><?php echo $title; ?></p>
