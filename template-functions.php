@@ -333,6 +333,19 @@ if ( !function_exists('is_webview') ) {
     }
 }
 
+if ( !function_exists('is_ios') ) {
+    function is_ios() {
+        $userAgent = strtolower($_SERVER['HTTP_USER_AGENT']);
+        $ios = preg_match('/iphone|ipod|ipad|macintosh/', $userAgent);
+
+        if ( $ios ) {
+            return true;
+        }
+
+        return false;
+    }
+}
+
 if ( !function_exists('is_timestamp') ) {
     function is_timestamp($timestamp) {
         return ((string) (int) $timestamp === $timestamp) 

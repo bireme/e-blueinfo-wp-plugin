@@ -41,7 +41,7 @@
         <div class="row">
             <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4 countries-list">
                 <h6 class="center-align"><b><?php _e('Please choose a country', 'e-blueinfo'); ?></b></h6>
-                <select>
+                <select <?php if ( is_ios() ) { echo 'class="browser-default"'; } ?>>
                     <optgroup label="<?php _e('Country', 'e-blueinfo'); ?>">
                         <?php foreach ($countries as $id => $name) : ?>
                             <?php $selected = ( $country_id == $id ) ? 'selected' : ''; ?>
