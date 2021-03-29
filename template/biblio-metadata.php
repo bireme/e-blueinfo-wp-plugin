@@ -161,36 +161,18 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
     </div>
 </section>
 
-<?php $similar_docs = Similar::getSimilarDocs($title, $lang); ?>
-<?php if ( $similar_docs ) : ?>
 <section class="container containerAos">
     <div class="row" data-aos="fade-right">
         <div class="col s12">
             <h2 class="title2 grey lighten-3"><?php _e('Similar', 'e-blueinfo'); ?></h2>
         </div>
-        <div class="col s12">
-            <ul class="collection">
-                <?php foreach ($similar_docs as $similar) : ?>
-                <li class="collection-item"><a href="<?php echo $similar['url']; ?>" target="_blank" onclick="__gaTracker('send','event','Document','Similar','<?php echo $countries[$country].'|'.$similar['title']; ?>');"><?php echo $similar['title']; ?></a></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    </div>
-</section>
-<?php else : ?>
-<section class="container containerAos">
-    <div class="row" data-aos="fade-right">
-        <div class="col s12">
-            <h2 class="title2 grey lighten-3"><?php _e('Similar', 'e-blueinfo'); ?></h2>
-        </div>
-        <div class="col s12">
-            <div class="card-panel center-align">
-                <span class="blue-text text-darken-2"><?php _e('No similar found','e-blueinfo'); ?></span>
+        <div id="similar-docs" class="col s12">
+            <div class="progress">
+                <div class="indeterminate"></div>
             </div>
         </div>
     </div>
 </section>
-<?php endif; ?>
 
 <!-- Modal Trigger -->
 <div id="modal" class="modal">
@@ -238,6 +220,26 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
             });
             $("#btShare").click(function(){
                 $("#bvsFrameBoxShare").show(300);
+            });
+        });
+    })(jQuery);
+
+    (function($) { 
+        $(function () {
+            var title = '<?php echo $title; ?>';
+            var lang = '<?php echo $lang; ?>';
+            $.ajax({ 
+                type: "POST",
+                url: eblueinfo_script_vars.ajaxurl,
+                data:{
+                    action:'display_similar_docs',
+                    title: title,
+                    lang: lang
+                },
+                success: function(response){
+                    similar = $.parseHTML( response );
+                    $( '#similar-docs' ).empty().append( response ); 
+                }
             });
         });
     })(jQuery);
