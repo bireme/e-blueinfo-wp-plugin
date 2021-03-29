@@ -236,7 +236,10 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
     <div class="title3 light-blue-text text-darken-1"><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'collection/?community=' . $community_id; ?>"><?php echo $com_name; ?></a></div>
     <div class="title3 title4"><?php echo $col_name; ?></div>
     <?php endif; ?>
-    <div class="row">
+    <div class="col s12 m6 margin1">
+        <a id="moreFilters" class="blue waves-effect waves-light btn margin1"><i class="material-icons left">filter_list</i><?php _e('Filters', 'e-blueinfo'); ?></a>
+    </div>
+    <div class="row" id="fieldSetFilters" style="display: none;">
         <div class="col s12 m6">
             <select class="info-source center-align <?php if ( is_ios() ) { echo 'browser-default'; } ?>">
                 <option value=""><?php _e('All information sources','e-blueinfo'); ?> <?php echo '('.$cluster_total.')'; ?></option>
@@ -256,8 +259,18 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                 <option value="link" <?php if ( 'link' == $media_type ) { echo 'selected'; } ?>><?php _e('Link','e-blueinfo'); ?> <?php echo ( $mt_cluster['_link'] ) ? '('.$mt_cluster['_link']['total'].')' : "(0)"; ?></option>
             </select>
         </div>
+        <?php if ( $_COOKIE['userData'] ) : ?>
+        <div class="col s12 m6 offset-m3">
+            <select class="center-align <?php if ( is_ios() ) { echo 'browser-default'; } ?>" onchange="location=this.value;">
+                <option value="<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id; ?>" <?php if ( !$output ) { echo 'selected'; } ?>><?php _e('All documents','e-blueinfo'); ?></option>
+                <option value="<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id . '&output=last_visited'; ?>" <?php if ( 'last_visited' == $output ) { echo 'selected'; } ?>><?php _e('Last Visited','e-blueinfo'); ?></option>
+                <option value="<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id . '&output=visited'; ?>" <?php if ( 'visited' == $output ) { echo 'selected'; } ?>><?php _e('Visited','e-blueinfo'); ?></option>
+                <option value="<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id . '&output=latest'; ?>" <?php if ( 'latest' == $output ) { echo 'selected'; } ?>><?php _e('Latest','e-blueinfo'); ?></option>
+            </select>
+        </div>
+        <?php endif; ?>
     </div>
-    <?php if ( $_COOKIE['userData'] ) : ?>
+<!--
     <div class="row">
         <div class="col s4 m3 offset-l2 l2 center-align">
             <div class="blue-grey lighten-4" id="cardSingle" onclick="location='<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id; ?>';"><small><?php _e('All','e-blueinfo'); ?></small></div>
@@ -272,7 +285,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
             <div class="light-green accent-3" id="cardLatest" onclick="location='<?php echo real_site_url($eblueinfo_plugin_slug) . 'browse/?community=' . $community_id . '&collection=' . $collection_id . '&output=latest'; ?>';"><small><?php _e('Latest','e-blueinfo'); ?></small></div>
         </div>
     </div>
-    <?php endif; ?>
+-->
 </section>
 
 <?php if ( isset($total) && strval($total) == 0 ) : ?>

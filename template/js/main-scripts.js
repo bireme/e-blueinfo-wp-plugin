@@ -119,9 +119,14 @@ if ( $('#speakBtn').length ) {
   }, false);
 }
 
-// Mostar mais
+// Show more options
 $('#moreOptions').click(function(){
   $('#fieldSetOptions').toggle('1000');
+})
+
+// Show more filters
+$('#moreFilters').click(function(){
+  $('#fieldSetFilters').toggle('1000');
 })
 
 /* Feedback Tab */
