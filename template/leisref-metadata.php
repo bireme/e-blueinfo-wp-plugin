@@ -250,6 +250,26 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
             });
         });
     })(jQuery);
+
+    (function($) { 
+        $(function () {
+            var title = '<?php echo $title; ?>';
+            var lang = '<?php echo $lang; ?>';
+            $.ajax({ 
+                type: "POST",
+                url: eblueinfo_script_vars.ajaxurl,
+                data:{
+                    action:'display_similar_docs',
+                    title: title,
+                    lang: lang
+                },
+                success: function(response){
+                    similar = $.parseHTML( response );
+                    $( '#similar-docs' ).empty().append( response ); 
+                }
+            });
+        });
+    })(jQuery);
 </script>
 
 <!-- Footer -->
