@@ -48,7 +48,7 @@ $infobutton_code = array(
                     <label for="mainSearchCriteria-v-c" id="labelCode"><?php _e('ICD-10 code', 'e-blueinfo'); ?> *</label>
                 </div>
                 <div class="input-field col s12 m6 margin1">
-                    <select id="mainSearchCriteria-v-cs" name="mainSearchCriteria.v.cs" onchange="change_code_text(this);">
+                    <select id="mainSearchCriteria-v-cs" name="mainSearchCriteria.v.cs" <?php if ( is_ios() ) { echo 'class="browser-default"'; } ?> onchange="change_code_text(this);">
                         <option value="2.16.840.1.113883.6.3" data-label="<?php _e('ICD-10 code', 'e-blueinfo'); ?>"><?php _e('ICD-10', 'e-blueinfo'); ?></option>
                         <option value="2.16.840.1.113883.6.177" data-label="<?php _e('DeCS/MeSH term or code', 'e-blueinfo'); ?>">DeCS/MeSH</option>
                         <!-- <option value="2.16.840.1.113883.6.96">SNOMED-CT</option> -->
@@ -66,7 +66,7 @@ $infobutton_code = array(
                 </div>
                 <fieldset class="fieldset col s12 margin1" id="fieldSetOptions">
                     <div class="input-field col s12 m6 margin1">
-                        <select id="patientPerson-administrativeGenderCode-c" name="patientPerson.administrativeGenderCode.c">
+                        <select id="patientPerson-administrativeGenderCode-c" name="patientPerson.administrativeGenderCode.c" <?php if ( is_ios() ) { echo 'class="browser-default"'; } ?>>
                             <option value="" disabled selected><?php _e('Select Genre', 'e-blueinfo'); ?></option>
                             <option value="M"><?php _e('Male', 'e-blueinfo'); ?></option>
                             <option value="F"><?php _e('Female', 'e-blueinfo'); ?></option>
@@ -75,7 +75,7 @@ $infobutton_code = array(
                         <label for="patientPerson-administrativeGenderCode-c"><?php _e('Genre', 'e-blueinfo'); ?></label>
                     </div>
                     <div class="input-field col s12 m6 margin1">
-                        <select id="ageGroup-v-c" name="ageGroup.v.c">
+                        <select id="ageGroup-v-c" name="ageGroup.v.c" <?php if ( is_ios() ) { echo 'class="browser-default"'; } ?>>
                             <option value="" disabled selected><?php _e('Select Age', 'e-blueinfo'); ?></option>
                             <option value="D007231"><?php _e('infant, newborn; birth to 1 month', 'e-blueinfo'); ?></option>
                             <option value="D007223"><?php _e('infant; 1 to 23 months', 'e-blueinfo'); ?></option>

@@ -53,7 +53,7 @@
                     <h6 class="center-align"><b>Please choose a language</b></h6>
                     <h6 class="center-align"><b>Por favor, escolha um idioma</b></h6>
                     <h6 class="center-align"><b>Por favor, elija un idioma</b></h6>
-                    <select class="languages">
+                    <select class="languages <?php if ( is_ios() ) { echo 'browser-default'; } ?>">
                         <option disabled selected></option>
                         <?php foreach ($languages as $slug => $name) : ?>
                         <option value="<?php echo $slug; ?>"><?php echo $name; ?></option>
@@ -65,7 +65,7 @@
                     <?php $countries_en = normalize_country_object($countries, 'en'); ?>
                     <?php if ( !EBLUEINFO_CTEST ) { $countries_en = array_diff($countries_en, $ctest); } ?>
                     <h6 class="center-align"><b>Please choose a country</b></h6>
-                    <select>
+                    <select <?php if ( is_ios() ) { echo 'class="browser-default"'; } ?>>
                         <optgroup label="Country">
                             <?php foreach ($countries_en as $id => $name) : ?>
                                 <?php if ( $id != 224 ) :  ?>
@@ -83,7 +83,7 @@
                     <?php $countries_pt = normalize_country_object($countries, 'pt'); ?>
                     <?php if ( !EBLUEINFO_CTEST ) { $countries_pt = array_diff($countries_pt, $ctest); } ?>
                     <h6 class="center-align"><b>Por favor, escolha um país</b></h6>
-                    <select>
+                    <select <?php if ( is_ios() ) { echo 'class="browser-default"'; } ?>>
                         <optgroup label="País">
                             <?php foreach ($countries_pt as $id => $name) : ?>
                                 <?php if ( $id != 224 ) :  ?>
@@ -101,7 +101,7 @@
                     <?php $countries_es = normalize_country_object($countries, 'es'); ?>
                     <?php if ( !EBLUEINFO_CTEST ) { $countries_es = array_diff($countries_es, $ctest); } ?>
                     <h6 class="center-align"><b>Por favor, elija un país</b></h6>
-                    <select>
+                    <select <?php if ( is_ios() ) { echo 'class="browser-default"'; } ?>>
                         <optgroup label="País">
                             <option disabled selected></option>
                             <?php foreach ($countries_es as $id => $name) : ?>

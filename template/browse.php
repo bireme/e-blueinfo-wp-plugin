@@ -238,7 +238,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
     <?php endif; ?>
     <div class="row">
         <div class="col s12 m6">
-            <select class="info-source center-align">
+            <select class="info-source center-align <?php if ( is_ios() ) { echo 'browser-default'; } ?>">
                 <option value=""><?php _e('All information sources','e-blueinfo'); ?> <?php echo '('.$cluster_total.')'; ?></option>
                 <option value="biblio" <?php if ( 'biblio' == $info_source ) { echo 'selected'; } ?>><?php _e('Bibliographic','e-blueinfo'); ?> <?php echo '('.$is_cluster['_biblio']['total'].')'; ?></option>
                 <option value="leisref" <?php if ( 'leisref' == $info_source ) { echo 'selected'; } ?>><?php _e('Legislation','e-blueinfo'); ?> <?php echo '('.$is_cluster['_leisref']['total'].')'; ?></option>
@@ -246,7 +246,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
             </select>
         </div>
         <div class="col s12 m6">
-            <select class="media-type center-align">
+            <select class="media-type center-align <?php if ( is_ios() ) { echo 'browser-default'; } ?>">
                 <option value=""><?php _e('All media','e-blueinfo'); ?> <?php echo '('.$cluster_total.')'; ?></option>
                 <option value="pdf" <?php if ( 'pdf' == $media_type ) { echo 'selected'; } ?>><?php _e('PDF','e-blueinfo'); ?> <?php echo ( $mt_cluster['_pdf'] ) ? '('.$mt_cluster['_pdf']['total'].')' : "(0)"; ?></option>
                 <option value="video" <?php if ( 'video' == $media_type ) { echo 'selected'; } ?>><?php _e('Video','e-blueinfo'); ?> <?php echo ( $mt_cluster['_video'] ) ? '('.$mt_cluster['_video']['total'].')' : "(0)"; ?></option>
