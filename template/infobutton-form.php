@@ -47,14 +47,25 @@ $infobutton_code = array(
                     <input id="mainSearchCriteria-v-c" type="text" name="mainSearchCriteria.v.c" class="validate" required="" aria-required="true">
                     <label for="mainSearchCriteria-v-c" id="labelCode"><?php _e('ICD-10 code', 'e-blueinfo'); ?> *</label>
                 </div>
+                <?php if ( is_ios() ) : ?>
+                <div class="col s12 m6 margin1">
+                    <label for="mainSearchCriteria-v-cs"><?php _e('Code System', 'e-blueinfo'); ?></label>
+                    <select id="mainSearchCriteria-v-cs" name="mainSearchCriteria.v.cs" class="browser-default" onchange="change_code_text(this);">
+                        <option value="2.16.840.1.113883.6.3" data-label="<?php _e('ICD-10 code', 'e-blueinfo'); ?>"><?php _e('ICD-10', 'e-blueinfo'); ?></option>
+                        <option value="2.16.840.1.113883.6.177" data-label="<?php _e('DeCS/MeSH term or code', 'e-blueinfo'); ?>">DeCS/MeSH</option>
+                        <!-- <option value="2.16.840.1.113883.6.96">SNOMED-CT</option> -->
+                    </select>
+                </div>
+                <?php else : ?>
                 <div class="input-field col s12 m6 margin1">
-                    <select id="mainSearchCriteria-v-cs" name="mainSearchCriteria.v.cs" <?php if ( is_ios() ) { echo 'class="browser-default"'; } ?> onchange="change_code_text(this);">
+                    <select id="mainSearchCriteria-v-cs" name="mainSearchCriteria.v.cs" onchange="change_code_text(this);">
                         <option value="2.16.840.1.113883.6.3" data-label="<?php _e('ICD-10 code', 'e-blueinfo'); ?>"><?php _e('ICD-10', 'e-blueinfo'); ?></option>
                         <option value="2.16.840.1.113883.6.177" data-label="<?php _e('DeCS/MeSH term or code', 'e-blueinfo'); ?>">DeCS/MeSH</option>
                         <!-- <option value="2.16.840.1.113883.6.96">SNOMED-CT</option> -->
                     </select>
                     <label for="mainSearchCriteria-v-cs"><?php _e('Code System', 'e-blueinfo'); ?></label>
                 </div>
+                <?php endif; ?>
                 <div class="input-field col s12 m6 margin1">
                     <div class="switch">
                         <label>
