@@ -580,6 +580,12 @@ if(!class_exists('EBlueInfo_Plugin')) {
             $userID = ( $_COOKIE["userID"] ) ? $_COOKIE["userID"] : '';
             $eblueinfo_config = get_option('eblueinfo_config');
 
+            // check if request contains plugin slug string
+            $pos_slug = strpos($wp->request, $this->plugin_slug);
+            if ( $pos_slug !== false ){
+                $pagename = substr($wp->request, $pos_slug);
+            }
+
             // check if is defined GA code and pagename starts with plugin slug
             if ($eblueinfo_config['google_analytics_code'] != ''
                 && strpos($pagename, $this->plugin_slug) === 0) {
@@ -595,7 +601,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
             __gaTracker('set', 'userId', '<?php echo $userID; ?>'); // Set the user ID using signed-in user_id.
         </script>
         <?php
-            } //endif
+            }
         }
 
         function force_cookie_lang() {
