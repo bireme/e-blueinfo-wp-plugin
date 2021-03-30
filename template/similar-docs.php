@@ -13,13 +13,17 @@
 ?>
 
 <?php if ( $similar_docs ) : ?>
-<ul class="collection">
-    <?php foreach ($similar_docs as $similar) : ?>
-    <li class="collection-item"><a href="<?php echo $similar['url']; ?>" target="_blank" onclick="__gaTracker('send','event','Document','Similar','<?php echo $countries[$country].'|'.$similar['title']; ?>');"><?php echo $similar['title']; ?></a></li>
-    <?php endforeach; ?>
-</ul>
+<div class="col s12">
+    <ul class="collection">
+        <?php foreach ($similar_docs as $similar) : ?>
+        <li class="collection-item"><a href="<?php echo $similar['url']; ?>" target="_blank" onclick="__gaTracker('send','event','Document','Similar','<?php echo $countries[$country].'|'.$similar['title']; ?>');"><?php echo $similar['title']; ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+</div>
 <?php else : ?>
-<div class="card-panel center-align">
-    <span class="blue-text text-darken-2"><?php _e('No similar found','e-blueinfo'); ?></span>
+<div class="col s12">
+    <div class="card-panel center-align">
+        <span class="blue-text text-darken-2"><?php _e('No similar found','e-blueinfo'); ?></span>
+    </div>
 </div>
 <?php endif; ?>

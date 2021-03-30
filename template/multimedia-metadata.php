@@ -273,7 +273,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                 },
                 success: function(response){
                     similar = $.parseHTML( response );
-                    $( '#similar-docs' ).empty().append( response ); 
+                    $( '#similar-docs' ).replaceWith( similar ); 
                 }
             });
         });

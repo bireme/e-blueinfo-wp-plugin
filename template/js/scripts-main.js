@@ -233,7 +233,7 @@ $(function () {
 $(function () {
     $(document).on('mousedown', '.btn-ajax', function(){
         var docid = $(this).data('docid');
-        $.ajax({ 
+        $.ajax({
             type: "POST",
             url: eblueinfo_script_vars.ajaxurl,
             data:{
