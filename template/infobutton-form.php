@@ -76,8 +76,19 @@ $infobutton_code = array(
                     </div>
                 </div>
                 <fieldset class="fieldset col s12 margin1" id="fieldSetOptions">
+                    <?php if ( is_ios() ) : ?>
+                    <div class="col s12 m6 margin1">
+                        <label for="patientPerson-administrativeGenderCode-c"><?php _e('Genre', 'e-blueinfo'); ?></label>
+                        <select id="patientPerson-administrativeGenderCode-c" name="patientPerson.administrativeGenderCode.c" class="browser-default">
+                            <option value="" disabled selected><?php _e('Select Genre', 'e-blueinfo'); ?></option>
+                            <option value="M"><?php _e('Male', 'e-blueinfo'); ?></option>
+                            <option value="F"><?php _e('Female', 'e-blueinfo'); ?></option>
+                            <option value="UN"><?php _e('Undifferentiated', 'e-blueinfo'); ?></option>
+                        </select>
+                    </div>
+                    <?php else : ?>
                     <div class="input-field col s12 m6 margin1">
-                        <select id="patientPerson-administrativeGenderCode-c" name="patientPerson.administrativeGenderCode.c" <?php if ( is_ios() ) { echo 'class="browser-default"'; } ?>>
+                        <select id="patientPerson-administrativeGenderCode-c" name="patientPerson.administrativeGenderCode.c">
                             <option value="" disabled selected><?php _e('Select Genre', 'e-blueinfo'); ?></option>
                             <option value="M"><?php _e('Male', 'e-blueinfo'); ?></option>
                             <option value="F"><?php _e('Female', 'e-blueinfo'); ?></option>
@@ -85,6 +96,24 @@ $infobutton_code = array(
                         </select>
                         <label for="patientPerson-administrativeGenderCode-c"><?php _e('Genre', 'e-blueinfo'); ?></label>
                     </div>
+                    <?php endif; ?>
+                    <?php if ( is_ios() ) : ?>
+                    <div class="col s12 m6 margin1">
+                        <label for="ageGroup-v-c"><?php _e('Age', 'e-blueinfo'); ?></label>
+                        <select id="ageGroup-v-c" name="ageGroup.v.c" class="browser-default">
+                            <option value="" disabled selected><?php _e('Select Age', 'e-blueinfo'); ?></option>
+                            <option value="D007231"><?php _e('infant, newborn; birth to 1 month', 'e-blueinfo'); ?></option>
+                            <option value="D007223"><?php _e('infant; 1 to 23 months', 'e-blueinfo'); ?></option>
+                            <option value="D002675"><?php _e('child, preschool; 2 to 5 years', 'e-blueinfo'); ?></option>
+                            <option value="D002648"><?php _e('child; 6 to 12 years', 'e-blueinfo'); ?></option>
+                            <option value="D000293"><?php _e('adolescent; 13-18 years', 'e-blueinfo'); ?></option>
+                            <option value="D055815"><?php _e('young adult; 19-24 years', 'e-blueinfo'); ?></option>
+                            <option value="D000328"><?php _e('adult; 19-44 years', 'e-blueinfo'); ?></option>
+                            <option value="D008875"><?php _e('middle aged; 45-64 years', 'e-blueinfo'); ?></option>
+                            <option value="D000368"><?php _e('aged; 56-79 years', 'e-blueinfo'); ?></option>
+                        </select>
+                    </div>
+                    <?php else : ?>
                     <div class="input-field col s12 m6 margin1">
                         <select id="ageGroup-v-c" name="ageGroup.v.c" <?php if ( is_ios() ) { echo 'class="browser-default"'; } ?>>
                             <option value="" disabled selected><?php _e('Select Age', 'e-blueinfo'); ?></option>
@@ -100,6 +129,7 @@ $infobutton_code = array(
                         </select>
                         <label for="ageGroup-v-c"><?php _e('Age', 'e-blueinfo'); ?></label>
                     </div>
+                    <?php endif; ?>
                     <div class="input-field col s12">
                         <textarea id="mainSearchCriteria-v-ot" name="mainSearchCriteria.v.ot" class="materialize-textarea"></textarea>
                         <label for="mainSearchCriteria-v-ot"><?php _e('Keywords', 'e-blueinfo'); ?></label>
