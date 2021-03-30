@@ -236,7 +236,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
     <div class="title3 light-blue-text text-darken-1"><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'collection/?community=' . $community_id; ?>"><?php echo $com_name; ?></a></div>
     <div class="title3 title4"><?php echo $col_name; ?></div>
     <?php endif; ?>
-    <div class="col s12 m6 margin1">
+    <div class="col s12 m6 margin1 center-align">
         <a id="moreFilters" class="blue waves-effect waves-light btn margin1"><i class="material-icons left">filter_list</i><?php _e('Filters', 'e-blueinfo'); ?></a>
     </div>
     <div class="row" id="fieldSetFilters" style="display: none;">
