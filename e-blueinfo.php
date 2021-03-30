@@ -642,12 +642,19 @@ if(!class_exists('EBlueInfo_Plugin')) {
                 $eblueinfo_data = get_option('eblueinfo_data');
                 $country = $_COOKIE['e-blueinfo-country'];
                 $docid = $_POST['docid'];
-                $doc = $eblueinfo_data['country'.$country]['doc_'.$docid];
 
-                if ( $doc ) {
-                    $eblueinfo_data['country'.$country]['doc_'.$docid] = $doc + 1;
+                if ( !$eblueinfo_data ) {
+                    $data = array();
+                    $data['country'.$country]['doc_'.$docid] = 1;
+                    $eblueinfo_data = $data;
                 } else {
-                    $eblueinfo_data['country'.$country]['doc_'.$docid] = 1;
+                    $doc = $eblueinfo_data['country'.$country]['doc_'.$docid];
+                    
+                    if ( $doc ) {
+                        $eblueinfo_data['country'.$country]['doc_'.$docid] = $doc + 1;
+                    } else {
+                        $eblueinfo_data['country'.$country]['doc_'.$docid] = 1;
+                    }
                 }
 
                 update_option('eblueinfo_data', $eblueinfo_data);
