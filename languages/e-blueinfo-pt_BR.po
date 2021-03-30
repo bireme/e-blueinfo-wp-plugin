@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Memória Azul 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/leisref\n"
-"POT-Creation-Date: 2021-03-25 18:36-0300\n"
-"PO-Revision-Date: 2021-03-25 18:36-0300\n"
+"POT-Creation-Date: 2021-03-29 21:38-0300\n"
+"PO-Revision-Date: 2021-03-29 21:38-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -17,58 +17,58 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: e-blueinfo.php:194
+#: e-blueinfo.php:196
 msgid "e-BlueInfo Settings"
 msgstr "e-BlueInfo Configurações"
 
-#: e-blueinfo.php:194 e-blueinfo.php:441 template/app/app.php:30
+#: e-blueinfo.php:196 e-blueinfo.php:443 template/app/app.php:30
 #: template/app/app.php:40 template/app/country.php:27
 msgid "e-BlueInfo"
 msgstr "e-BlueInfo"
 
-#: e-blueinfo.php:365 e-blueinfo.php:367
+#: e-blueinfo.php:367 e-blueinfo.php:369
 msgid "e-BlueInfo Sidebar"
 msgstr "e-BlueInfo Sidebar"
 
-#: e-blueinfo.php:382 e-blueinfo.php:384
+#: e-blueinfo.php:384 e-blueinfo.php:386
 msgid "e-BlueInfo Footer Sidebar"
 msgstr "e-BlueInfo Footer Sidebar"
 
-#: e-blueinfo.php:417
+#: e-blueinfo.php:419
 msgid "Communities"
 msgstr "Comunidades"
 
-#: e-blueinfo.php:419 template/biblio-metadata.php:143
-#: template/leisref-metadata.php:137 template/multimedia-metadata.php:148
-#: template/search.php:187
+#: e-blueinfo.php:421 template/biblio-metadata.php:143
+#: template/leisref-metadata.php:136 template/multimedia-metadata.php:147
+#: template/search.php:179
 msgid "Collections"
 msgstr "Coleções"
 
-#: e-blueinfo.php:421
+#: e-blueinfo.php:423
 msgid "Browse collection"
 msgstr "Navegar pela coleção"
 
-#: e-blueinfo.php:423
+#: e-blueinfo.php:425
 msgid "Search result"
 msgstr "Resultado da pesquisa"
 
-#: e-blueinfo.php:425 template/app/country.php:29 template/country.php:43
+#: e-blueinfo.php:427 template/app/country.php:29 template/country.php:43
 msgid "Please choose a country"
 msgstr "Por favor, escolha um país"
 
-#: e-blueinfo.php:427
+#: e-blueinfo.php:429
 msgid "Document"
 msgstr "Documento"
 
-#: e-blueinfo.php:539
+#: e-blueinfo.php:541
 msgid "Document added to Favorites"
 msgstr "Documento adicionado aos Favoritos"
 
-#: e-blueinfo.php:540
+#: e-blueinfo.php:542
 msgid "This document has already been added to Favorites"
 msgstr "Este documento já foi adicionado aos Favoritos"
 
-#: e-blueinfo.php:541
+#: e-blueinfo.php:543
 msgid "The document was not correctly added to Favorites"
 msgstr "O documento não foi adicionado corretamente aos Favoritos"
 
@@ -134,13 +134,13 @@ msgstr "País/região"
 msgid "Database"
 msgstr "Base de dados"
 
-#: settings.php:100 template/leisref-metadata.php:173
-#: template/multimedia-metadata.php:153
+#: settings.php:100 template/leisref-metadata.php:172
+#: template/multimedia-metadata.php:152
 msgid "Collection"
 msgstr "Coleção"
 
-#: settings.php:105 template/leisref-metadata.php:168 template/menu.php:128
-#: template/multimedia-metadata.php:176
+#: settings.php:105 template/leisref-metadata.php:167 template/menu.php:128
+#: template/multimedia-metadata.php:175
 msgid "Language"
 msgstr "Idioma"
 
@@ -164,36 +164,36 @@ msgstr "de"
 msgid "Choose country"
 msgstr "Escolher país"
 
-#: template/biblio-metadata.php:125 template/biblio-metadata.php:198
-#: template/browse.php:278 template/browse.php:298 template/favorites.php:152
-#: template/favorites.php:220 template/leisref-metadata.php:226
-#: template/menu.php:68 template/multimedia-metadata.php:110
-#: template/multimedia-metadata.php:125 template/multimedia-metadata.php:234
-#: template/search.php:212 template/visited.php:147 template/visited.php:163
+#: template/biblio-metadata.php:125 template/biblio-metadata.php:180
+#: template/browse.php:324 template/browse.php:344 template/favorites.php:152
+#: template/favorites.php:220 template/leisref-metadata.php:207
+#: template/menu.php:68 template/multimedia-metadata.php:109
+#: template/multimedia-metadata.php:124 template/multimedia-metadata.php:215
+#: template/search.php:204 template/visited.php:147 template/visited.php:163
 msgid "Favorites"
 msgstr "Favoritos"
 
-#: template/biblio-metadata.php:127 template/biblio-metadata.php:214
-#: template/leisref-metadata.php:122 template/leisref-metadata.php:242
-#: template/multimedia-metadata.php:112 template/multimedia-metadata.php:127
-#: template/multimedia-metadata.php:250
+#: template/biblio-metadata.php:127 template/biblio-metadata.php:196
+#: template/leisref-metadata.php:121 template/leisref-metadata.php:223
+#: template/multimedia-metadata.php:111 template/multimedia-metadata.php:126
+#: template/multimedia-metadata.php:231
 msgid "Share"
 msgstr "Compartilhar"
 
-#: template/biblio-metadata.php:128 template/browse.php:281
-#: template/favorites.php:203 template/leisref-metadata.php:123
-#: template/multimedia-metadata.php:113 template/multimedia-metadata.php:128
-#: template/search.php:194 template/visited.php:150
+#: template/biblio-metadata.php:128 template/browse.php:327
+#: template/favorites.php:203 template/leisref-metadata.php:122
+#: template/multimedia-metadata.php:112 template/multimedia-metadata.php:127
+#: template/search.php:186 template/visited.php:150
 msgid "View Document"
 msgstr "Ver Documento"
 
-#: template/biblio-metadata.php:134 template/multimedia-metadata.php:136
+#: template/biblio-metadata.php:134 template/multimedia-metadata.php:135
 msgid "Title"
 msgstr "Título"
 
-#: template/biblio-metadata.php:138 template/leisref-metadata.php:132
-#: template/menu.php:95 template/multimedia-metadata.php:143
-#: template/search.php:186
+#: template/biblio-metadata.php:138 template/leisref-metadata.php:131
+#: template/menu.php:95 template/multimedia-metadata.php:142
+#: template/search.php:178
 msgid "Contents"
 msgstr "Conteúdos"
 
@@ -201,7 +201,7 @@ msgstr "Conteúdos"
 msgid "Author"
 msgstr "Autor"
 
-#: template/biblio-metadata.php:153 template/multimedia-metadata.php:186
+#: template/biblio-metadata.php:153 template/multimedia-metadata.php:185
 msgid "Publisher"
 msgstr "Editor"
 
@@ -209,20 +209,14 @@ msgstr "Editor"
 msgid "Abstract"
 msgstr "Resumo"
 
-#: template/biblio-metadata.php:169 template/biblio-metadata.php:184
-#: template/leisref-metadata.php:197 template/leisref-metadata.php:212
-#: template/multimedia-metadata.php:205 template/multimedia-metadata.php:220
+#: template/biblio-metadata.php:167 template/leisref-metadata.php:194
+#: template/multimedia-metadata.php:202
 msgid "Similar"
 msgstr "Similares"
 
-#: template/biblio-metadata.php:188 template/leisref-metadata.php:216
-#: template/multimedia-metadata.php:224
-msgid "No similar found"
-msgstr "Nenhum documento similar encontrado"
-
-#: template/biblio-metadata.php:199 template/browse.php:299
-#: template/favorites.php:221 template/leisref-metadata.php:227
-#: template/multimedia-metadata.php:235 template/search.php:213
+#: template/biblio-metadata.php:181 template/browse.php:345
+#: template/favorites.php:221 template/leisref-metadata.php:208
+#: template/multimedia-metadata.php:216 template/search.php:205
 #: template/visited.php:164
 msgid ""
 "All e-BlueInfo services are free, but to improve your experience there is a "
@@ -233,24 +227,24 @@ msgstr ""
 "a sua experiência é necessário um rápido registro. Isso nos permite "
 "registrar sua lista de favoritos, documentos visitados e outros recursos."
 
-#: template/biblio-metadata.php:200 template/browse.php:300
-#: template/favorites.php:222 template/leisref-metadata.php:228
+#: template/biblio-metadata.php:182 template/browse.php:346
+#: template/favorites.php:222 template/leisref-metadata.php:209
 #: template/login.php:21 template/login.php:63 template/menu.php:71
-#: template/multimedia-metadata.php:236 template/search.php:214
+#: template/multimedia-metadata.php:217 template/search.php:206
 #: template/visited.php:165
 msgid "Login"
 msgstr "Login"
 
-#: template/biblio-metadata.php:202 template/browse.php:302
-#: template/favorites.php:224 template/leisref-metadata.php:230
-#: template/multimedia-metadata.php:238 template/search.php:216
+#: template/biblio-metadata.php:184 template/browse.php:348
+#: template/favorites.php:224 template/leisref-metadata.php:211
+#: template/multimedia-metadata.php:219 template/search.php:208
 #: template/visited.php:167
 msgid "MyVHL"
 msgstr "MinhaBVS"
 
-#: template/biblio-metadata.php:203 template/browse.php:303
-#: template/favorites.php:225 template/leisref-metadata.php:231
-#: template/multimedia-metadata.php:239 template/search.php:217
+#: template/biblio-metadata.php:185 template/browse.php:349
+#: template/favorites.php:225 template/leisref-metadata.php:212
+#: template/multimedia-metadata.php:220 template/search.php:209
 #: template/visited.php:168
 msgid ""
 "With the same e-BlueInfo registration you have full access to MyVHL Services "
@@ -259,102 +253,110 @@ msgstr ""
 "Com o mesmo registro e-BlueInfo, você também tem acesso total à Plataforma "
 "de Serviços MinhaBVS."
 
-#: template/biblio-metadata.php:206 template/browse.php:306
+#: template/biblio-metadata.php:188 template/browse.php:352
 #: template/community.php:229 template/community.php:242
 #: template/community.php:253 template/favorites.php:228
-#: template/leisref-metadata.php:234 template/multimedia-metadata.php:242
-#: template/search.php:220 template/visited.php:171
+#: template/leisref-metadata.php:215 template/multimedia-metadata.php:223
+#: template/search.php:212 template/visited.php:171
 msgid "Close"
 msgstr "Fechar"
 
-#: template/browse.php:161 template/browse.php:218 template/favorites.php:110
+#: template/browse.php:192 template/browse.php:254 template/favorites.php:110
 #: template/favorites.php:165
 msgid "PDF"
 msgstr "PDF"
 
-#: template/browse.php:162 template/browse.php:219 template/favorites.php:111
+#: template/browse.php:193 template/browse.php:255 template/favorites.php:111
 #: template/favorites.php:166
 msgid "Video"
 msgstr "Vídeo"
 
-#: template/browse.php:163 template/browse.php:220 template/favorites.php:112
+#: template/browse.php:194 template/browse.php:256 template/favorites.php:112
 #: template/favorites.php:167
 msgid "Audio"
 msgstr "Áudio"
 
-#: template/browse.php:164 template/browse.php:221 template/favorites.php:113
+#: template/browse.php:195 template/browse.php:257 template/favorites.php:113
 #: template/favorites.php:168
 msgid "Presentation"
 msgstr "Apresentação"
 
-#: template/browse.php:165 template/browse.php:222 template/favorites.php:114
+#: template/browse.php:196 template/browse.php:258 template/favorites.php:114
 #: template/favorites.php:169
 msgid "Image"
 msgstr "Imagem"
 
-#: template/browse.php:166 template/browse.php:223 template/favorites.php:115
-#: template/favorites.php:170 template/multimedia-metadata.php:139
+#: template/browse.php:197 template/browse.php:259 template/favorites.php:115
+#: template/favorites.php:170 template/multimedia-metadata.php:138
 msgid "Link"
 msgstr "Link"
 
-#: template/browse.php:209 template/favorites.php:157
+#: template/browse.php:240
+msgid "Filters"
+msgstr "Filtros"
+
+#: template/browse.php:245 template/favorites.php:157
 msgid "All information sources"
 msgstr "Todas as fontes de informação"
 
-#: template/browse.php:210 template/favorites.php:158
+#: template/browse.php:246 template/favorites.php:158
 msgid "Bibliographic"
 msgstr "Registros bibliográficos"
 
-#: template/browse.php:211 template/favorites.php:159
+#: template/browse.php:247 template/favorites.php:159
 msgid "Legislation"
 msgstr "Legislação"
 
-#: template/browse.php:212
+#: template/browse.php:248
 msgid "Multimedia"
 msgstr "Multimídia"
 
-#: template/browse.php:217 template/favorites.php:164
+#: template/browse.php:253 template/favorites.php:164
 msgid "All media"
 msgstr "Todas as mídias"
 
-#: template/browse.php:230
-msgid "All"
-msgstr "Todos"
+#: template/browse.php:265
+msgid "All documents"
+msgstr "Todos os documentos"
 
-#: template/browse.php:233
+#: template/browse.php:266 template/browse.php:279
 msgid "Last Visited"
 msgstr "Último Visitado"
 
-#: template/browse.php:236 template/menu.php:69
+#: template/browse.php:267 template/browse.php:282 template/menu.php:69
 msgid "Visited"
 msgstr "Visitados"
 
-#: template/browse.php:239
+#: template/browse.php:268 template/browse.php:285
 msgid "Latest"
 msgstr "Mais Recentes"
 
-#: template/browse.php:250 template/visited.php:120
+#: template/browse.php:276
+msgid "All"
+msgstr "Todos"
+
+#: template/browse.php:296 template/visited.php:120
 msgid "No documents visited"
 msgstr "Nenhum documento visitado"
 
-#: template/browse.php:252 template/collection.php:165
+#: template/browse.php:298 template/collection.php:165
 #: template/infobutton-result.php:41
 msgid "No results found"
 msgstr "Nenhum resultado encontrado"
 
-#: template/browse.php:285 template/favorites.php:207
+#: template/browse.php:331 template/favorites.php:207
 msgid "Downloads"
 msgstr "Downloads"
 
-#: template/browse.php:314 template/search.php:228
+#: template/browse.php:360 template/search.php:220
 msgid "Load More"
 msgstr "Mostrar Mais"
 
-#: template/browse.php:315 template/search.php:229
+#: template/browse.php:361 template/search.php:221
 msgid "No more documents"
 msgstr "Não há mais documentos"
 
-#: template/browse.php:321 template/search.php:235
+#: template/browse.php:367 template/search.php:227
 msgid "Loading..."
 msgstr "Carregando..."
 
@@ -557,27 +559,27 @@ msgstr "Esse campo é obrigatório"
 msgid "Documents found in VHL"
 msgstr "Documentos encontrados na BVS"
 
-#: template/leisref-metadata.php:148
+#: template/leisref-metadata.php:147
 msgid "Act Country/Region"
 msgstr "País/Região do ato"
 
-#: template/leisref-metadata.php:153
+#: template/leisref-metadata.php:152
 msgid "Organ Issuer"
 msgstr "Orgão emissor"
 
-#: template/leisref-metadata.php:158
+#: template/leisref-metadata.php:157
 msgid "Act Scope"
 msgstr "Escopo"
 
-#: template/leisref-metadata.php:163
+#: template/leisref-metadata.php:162
 msgid "Source"
 msgstr "Fonte"
 
-#: template/leisref-metadata.php:178
+#: template/leisref-metadata.php:177
 msgid "Publication Date"
 msgstr "Data de publicação"
 
-#: template/leisref-metadata.php:183
+#: template/leisref-metadata.php:182
 msgid "Descriptors"
 msgstr "Assuntos"
 
@@ -685,42 +687,46 @@ msgstr "Definir Cores"
 msgid "Color"
 msgstr "Cor"
 
-#: template/multimedia-metadata.php:157
+#: template/multimedia-metadata.php:156
 msgid "Description"
 msgstr "Descrição"
 
-#: template/multimedia-metadata.php:161
+#: template/multimedia-metadata.php:160
 msgid "Author(s)"
 msgstr "Autor(es)"
 
-#: template/multimedia-metadata.php:166
+#: template/multimedia-metadata.php:165
 msgid "Contributor(s)"
 msgstr "Contribuidor(es)"
 
-#: template/multimedia-metadata.php:171
+#: template/multimedia-metadata.php:170
 msgid "Objective"
 msgstr "Objetivo"
 
-#: template/multimedia-metadata.php:181
+#: template/multimedia-metadata.php:180
 msgid "Duration"
 msgstr "Duração"
 
-#: template/multimedia-metadata.php:191
+#: template/multimedia-metadata.php:190
 msgid "Subject(s)"
 msgstr "Assunto(s)"
 
-#: template/search.php:164
+#: template/search.php:156
 msgid "No results found. Try searching with another keywords."
 msgstr ""
 "Nenhum resultado encontrado. Tente pesquisar com outras palavras-chave."
 
-#: template/search.php:169
+#: template/search.php:161
 msgid "Results"
 msgstr "Resultados"
 
-#: template/search.php:191
+#: template/search.php:183
 msgid "Add to Favorites"
 msgstr "Adicionar aos Favoritos"
+
+#: template/similar-docs.php:23
+msgid "No similar found"
+msgstr "Nenhum documento similar encontrado"
 
 #: template/visited.php:115
 msgid "Visited Documents"
@@ -815,9 +821,6 @@ msgstr "Documentos Visitados"
 
 #~ msgid "Act"
 #~ msgstr "Lei"
-
-#~ msgid "Filters"
-#~ msgstr "Filtros"
 
 #~ msgid "Search form"
 #~ msgstr "Formulário de pesquisa"
