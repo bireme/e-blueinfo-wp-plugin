@@ -151,7 +151,10 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <!-- Template -->
 <h1 class="title"><?php _e('Favorites', 'e-blueinfo'); echo ': ' . $total; ?></h1>
 <section class="container">
-    <div class="row">
+    <div class="col s12 m6 margin1 center-align">
+        <a id="moreFilters" class="blue waves-effect waves-light btn margin1"><i class="material-icons left">filter_list</i><?php _e('Filters', 'e-blueinfo'); ?></a>
+    </div>
+    <div class="row" id="fieldSetFilters" style="display: none;">
         <div class="col s12 m6">
             <select class="info-source center-align <?php if ( is_ios() ) { echo 'browser-default'; } ?>">
                 <option value=""><?php _e('All information sources','e-blueinfo'); ?> <?php if ( empty($info_source) ) { echo '('.$total.')'; } ?></option>
