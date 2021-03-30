@@ -643,15 +643,15 @@ if(!class_exists('EBlueInfo_Plugin')) {
 
             if ( !$eblueinfo_data ) {
                 $data = array();
-                $data['doc_'.$docid] = 1;
+                $data[$docid] = 1;
                 $eblueinfo_data = $data;
             } else {
-                $doc = $eblueinfo_data['doc_'.$docid];
+                $doc = $eblueinfo_data[$docid];
                 
                 if ( $doc ) {
-                    $eblueinfo_data['doc_'.$docid] = $doc + 1;
+                    $eblueinfo_data[$docid] = $doc + 1;
                 } else {
-                    $eblueinfo_data['doc_'.$docid] = 1;
+                    $eblueinfo_data[$docid] = 1;
                 }
             }
 

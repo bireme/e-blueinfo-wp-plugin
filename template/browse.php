@@ -328,7 +328,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                             <?php endif; ?>
                         </div>
                         <div class="col s12 blue-grey lighten-5 padding1 boxCardGray">
-                            <small><?php echo $media_type_texts[$doc->mt]; ?></small> | <small><?php _e('Downloads', 'e-blueinfo'); ?>: <?php echo $eblueinfo_data['doc_'.$doc->id]; ?></small>
+                            <small><?php echo $media_type_texts[$doc->mt]; ?></small> | <small><?php _e('Downloads', 'e-blueinfo'); ?>: <?php echo $eblueinfo_data[$doc->id]; ?></small>
                         </div>
                     </div>
                 </div>
