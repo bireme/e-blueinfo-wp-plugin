@@ -638,28 +638,25 @@ if(!class_exists('EBlueInfo_Plugin')) {
         }
 
         function update_document_views(){
-            if ( $_COOKIE['e-blueinfo-country'] ) {
-                $eblueinfo_data = get_option('eblueinfo_data');
-                $country = $_COOKIE['e-blueinfo-country'];
-                $docid = $_POST['docid'];
+            $eblueinfo_data = get_option('eblueinfo_data');
+            $docid = $_POST['docid'];
 
-                if ( !$eblueinfo_data ) {
-                    $data = array();
-                    $data['country'.$country]['doc_'.$docid] = 1;
-                    $eblueinfo_data = $data;
+            if ( !$eblueinfo_data ) {
+                $data = array();
+                $data['doc_'.$docid] = 1;
+                $eblueinfo_data = $data;
+            } else {
+                $doc = $eblueinfo_data['doc_'.$docid];
+                
+                if ( $doc ) {
+                    $eblueinfo_data['doc_'.$docid] = $doc + 1;
                 } else {
-                    $doc = $eblueinfo_data['country'.$country]['doc_'.$docid];
-                    
-                    if ( $doc ) {
-                        $eblueinfo_data['country'.$country]['doc_'.$docid] = $doc + 1;
-                    } else {
-                        $eblueinfo_data['country'.$country]['doc_'.$docid] = 1;
-                    }
+                    $eblueinfo_data['doc_'.$docid] = 1;
                 }
-
-                update_option('eblueinfo_data', $eblueinfo_data);
-                wp_die();
             }
+
+            update_option('eblueinfo_data', $eblueinfo_data);
+            wp_die();
         }
 
         function display_similar_docs() {
