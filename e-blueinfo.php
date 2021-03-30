@@ -499,10 +499,10 @@ if(!class_exists('EBlueInfo_Plugin')) {
             wp_enqueue_style('e-blueinfo-font-awesome', '//use.fontawesome.com/releases/v5.8.2/css/all.css', array(), EBLUEINFO_VERSION);
             wp_enqueue_style('e-blueinfo-slick', EBLUEINFO_PLUGIN_URL . 'template/css/slick.css', array(), EBLUEINFO_VERSION);
             wp_enqueue_style('e-blueinfo-aos', EBLUEINFO_PLUGIN_URL . 'template/css/aos.css', array(), EBLUEINFO_VERSION);
-            wp_enqueue_style('e-blueinfo-page', EBLUEINFO_PLUGIN_URL . 'template/css/screen.css?ver=2.0.0', array(), EBLUEINFO_VERSION);
+            wp_enqueue_style('e-blueinfo-page', EBLUEINFO_PLUGIN_URL . 'template/css/screen-main.css?ver=2.0.0', array(), EBLUEINFO_VERSION);
 
             if ( is_webview() ) {
-                wp_enqueue_style('e-blueinfo-app', EBLUEINFO_PLUGIN_URL . 'template/css/app-screen.css?ver=2.0.0', array(), EBLUEINFO_VERSION);
+                wp_enqueue_style('e-blueinfo-app', EBLUEINFO_PLUGIN_URL . 'template/css/screen-app.css?ver=2.0.0', array(), EBLUEINFO_VERSION);
             }
             
             foreach ($wp_scripts->queue as $handle) {
