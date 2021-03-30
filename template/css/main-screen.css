@@ -29,7 +29,7 @@ body{
 }
 #searchBarInput{
 	color: #fff;
-	padding-left: 80px
+	padding-left: 50px;
 }
 #searchBarInput:focus{
 	color: #000;
@@ -156,6 +156,7 @@ a:active{
 	float: left;
 	position: absolute;
 	left: 45px;
+	display: none;
 }
 #speakBtn:hover{
 	color: #fff;
