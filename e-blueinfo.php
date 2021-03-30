@@ -59,6 +59,8 @@ if(!class_exists('EBlueInfo_Plugin')) {
             add_action( 'wp_loaded', array(&$this, 'plugin_page_redirect') );
             add_action( 'wp_ajax_update_document_views', array($this, 'update_document_views'));
             add_action( 'wp_ajax_nopriv_update_document_views', array($this, 'update_document_views'));
+            add_action( 'wp_ajax_display_similar_docs', array($this, 'display_similar_docs'));
+            add_action( 'wp_ajax_nopriv_display_similar_docs', array($this, 'display_similar_docs'));
 
             add_filter( 'get_search_form', array(&$this, 'search_form') );
             add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array(&$this, 'settings_link') );
@@ -511,11 +513,11 @@ if(!class_exists('EBlueInfo_Plugin')) {
             wp_enqueue_script('jquery');
             wp_enqueue_script('e-blueinfo-materialize', '//cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js', array(), EBLUEINFO_VERSION, true);
             wp_enqueue_script('e-blueinfo-cookie', EBLUEINFO_PLUGIN_URL . 'template/js/cookie.js', array(), EBLUEINFO_VERSION, true);
-            wp_enqueue_script('e-blueinfo-page', EBLUEINFO_PLUGIN_URL . 'template/js/functions-scripts.js?ver=2.0.0', array(), EBLUEINFO_VERSION, true);
+            wp_enqueue_script('e-blueinfo-page', EBLUEINFO_PLUGIN_URL . 'template/js/scripts-functions.js?ver=2.0.0', array(), EBLUEINFO_VERSION, true);
             wp_enqueue_script('e-blueinfo-loadmore', EBLUEINFO_PLUGIN_URL . 'template/js/loadmore.js', array(), EBLUEINFO_VERSION, true);
             wp_enqueue_script('e-blueinfo-slick', EBLUEINFO_PLUGIN_URL . 'template/js/slick.js', array(), EBLUEINFO_VERSION, true);
             wp_enqueue_script('e-blueinfo-aos', EBLUEINFO_PLUGIN_URL . 'template/js/aos.js', array(), EBLUEINFO_VERSION, true);
-            wp_enqueue_script('e-blueinfo-main', EBLUEINFO_PLUGIN_URL . 'template/js/main-scripts.js?ver=2.0.0', array(), EBLUEINFO_VERSION, true);
+            wp_enqueue_script('e-blueinfo-main', EBLUEINFO_PLUGIN_URL . 'template/js/scripts-main.js?ver=2.0.0', array(), EBLUEINFO_VERSION, true);
 
             if ( $_COOKIE['e-blueinfo-country'] ) {
                 wp_enqueue_script('e-blueinfo-menu', EBLUEINFO_PLUGIN_URL . 'app/js/' . $lang . '/app-menu.js?ver=2.0.0', array(), EBLUEINFO_VERSION, true);
@@ -645,6 +647,21 @@ if(!class_exists('EBlueInfo_Plugin')) {
                 update_option('eblueinfo_data', $eblueinfo_data);
                 wp_die();
             }
+        }
+
+        function display_similar_docs() {
+            ob_start();
+            include EBLUEINFO_PLUGIN_PATH . '/template/similar-docs.php';
+            $contents = ob_get_contents();
+            ob_end_clean();
+
+            if ( $contents ) {
+                echo $contents;
+            } else {
+                echo 0;
+            }
+
+            die();
         }
 
     }
