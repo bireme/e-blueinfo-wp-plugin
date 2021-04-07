@@ -314,6 +314,7 @@ if ( !function_exists('is_webview') ) {
     function is_webview() {
         $userAgent = strtolower($_SERVER['HTTP_USER_AGENT']);
         $wv = strpos($userAgent, 'wv');
+        $gonative = strpos($userAgent, 'gonative');
         $safari = strpos($userAgent, 'safari');
         $ios = preg_match('/iphone|ipod|ipad|macintosh/', $userAgent);
 
@@ -325,6 +326,8 @@ if ( !function_exists('is_webview') ) {
             }
         } else {
             if ( $wv !== false ) {
+                return true;
+            } elseif ( $gonative !== false ) {
                 return true;
             } else {
                 return false;
