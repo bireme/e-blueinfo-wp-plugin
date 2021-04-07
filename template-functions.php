@@ -325,9 +325,7 @@ if ( !function_exists('is_webview') ) {
                 return true;
             }
         } else {
-            if ( $wv !== false ) {
-                return true;
-            } elseif ( $gonative !== false ) {
+            if ( $wv !== false || $gonative !== false ) {
                 return true;
             } else {
                 return false;
