@@ -3,6 +3,7 @@ $ = jQuery;
 function is_webview () {
     var userAgent = navigator.userAgent.toLowerCase(),
     wv = /wv/.test( userAgent ),
+    gonative = /gonative/.test( userAgent ),
     safari = /safari/.test( userAgent ),
     ios = /iphone|ipod|ipad|macintosh/.test( userAgent );
 
@@ -13,7 +14,7 @@ function is_webview () {
             return true;
         }
     } else {
-        if ( wv ) {
+        if ( wv || gonative ) {
             return true;
         } else {
             return false;
