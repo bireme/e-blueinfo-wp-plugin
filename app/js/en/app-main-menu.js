@@ -25,7 +25,7 @@ function is_webview () {
 $(function () {
   if ( is_webview() ) {
     var site = "https://e-blueinfo.bvsalud.org";
-    var app_site = "http://sites.bvsalud.org/e-blueinfo";
+    var app_site = "https://sites.bvsalud.org/e-blueinfo";
     var json = [
                   {
                     "label": "About",
@@ -70,12 +70,12 @@ $(function () {
                     "isSubmenu": false,
                     "subLinks": [
                       {
-                        "url": "http://politicas.bireme.org/terminos/en/",
+                        "url": "https://politicas.bireme.org/terminos/en/",
                         "label": "Terms of Use",
                         "subLinks": []
                       },
                       {
-                        "url": "http://politicas.bireme.org/privacidad/en/",
+                        "url": "https://politicas.bireme.org/privacidad/en/",
                         "label": "Privacy Policy",
                         "subLinks": []
                       }

@@ -23,7 +23,7 @@ function is_webview () {
 $(function () {
   if ( is_webview() ) {
     var site = "https://e-blueinfo.bvsalud.org";
-    var app_site = "http://sites.bvsalud.org/e-blueinfo";
+    var app_site = "https://sites.bvsalud.org/e-blueinfo";
     var country = $.cookie("e-blueinfo-country");
     var userData = $.cookie("userData");
     var json = [
