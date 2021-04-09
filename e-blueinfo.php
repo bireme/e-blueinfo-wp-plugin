@@ -213,6 +213,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
 
             $site_language = strtolower(get_bloginfo('language'));
             $lang = substr($site_language,0,2);
+            $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['home_url_' . $lang] : real_site_url();
 
             // check if request contains plugin slug string
             $pos_slug = strpos($wp->request, $this->plugin_slug);
@@ -252,6 +253,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
                  || $pagename == $this->plugin_slug . '/infobutton'
                  || $pagename == $this->plugin_slug . '/infobutton/result'
                  || $pagename == $this->plugin_slug . '/contact'
+                 || $pagename == $this->plugin_slug . '/logout'
                  || $pagename == $this->plugin_slug . '/auth') {
 
                     add_action( 'wp_footer', array(&$this, 'show_feedback_tab') ); // feedback tab
@@ -308,11 +310,18 @@ if(!class_exists('EBlueInfo_Plugin')) {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/infobutton-result.php';
                     } elseif ($pagename == $this->plugin_slug . '/contact') {
                         $template = EBLUEINFO_PLUGIN_PATH . '/template/contact.php';
+                    } elseif ($pagename == $this->plugin_slug . '/logout') {
+                        $logout_url = $services_platform_url . '/client/controller/logout/control/business/origin/' . base64_encode($home_url);
+                        echo '<script language="javascript">';
+                        echo '    window.open("'.$logout_url.'","_parent")';
+                        echo '</script>';
+                        exit;
                     } elseif ($pagename == $this->plugin_slug . '/auth') {
                         if ( $_COOKIE['userData'] ) {
-                            echo '<script type="text/javascript">';
-                            echo '    history.go(-(history.length - 1));';
+                            echo '<script language="javascript">';
+                            echo '    window.open("'.$home_url.'","_parent")';
                             echo '</script>';
+                            exit;
                         } else {
                             $template = EBLUEINFO_PLUGIN_PATH . '/template/login.php';
                         }
@@ -520,9 +529,9 @@ if(!class_exists('EBlueInfo_Plugin')) {
             wp_enqueue_script('e-blueinfo-main', EBLUEINFO_PLUGIN_URL . 'template/js/scripts-main.js?ver=2.0.0', array(), EBLUEINFO_VERSION, true);
 
             if ( $_COOKIE['e-blueinfo-country'] ) {
-                wp_enqueue_script('e-blueinfo-menu', EBLUEINFO_PLUGIN_URL . 'app/js/' . $lang . '/app-menu.js?ver=2.0.0', array(), EBLUEINFO_VERSION, true);
+                wp_enqueue_script('e-blueinfo-menu', EBLUEINFO_PLUGIN_URL . 'app/js/' . $lang . '/nav-menu.js?ver=2.0.0', array(), EBLUEINFO_VERSION, true);
             } else {
-                wp_enqueue_script('e-blueinfo-menu', EBLUEINFO_PLUGIN_URL . 'app/js/en/app-main-menu.js?ver=2.0.0', array(), EBLUEINFO_VERSION, true);   
+                wp_enqueue_script('e-blueinfo-menu', EBLUEINFO_PLUGIN_URL . 'app/js/en/nav-main-menu.js?ver=2.0.0', array(), EBLUEINFO_VERSION, true);   
             }
 
             // country data

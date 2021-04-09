@@ -28,48 +28,48 @@ $(function () {
     var userData = $.cookie("userData");
     var json = [
                   {
-                    "url": app_site + "/pt/app",
-                    "label": "Conteúdos",
+                    "url": app_site + "/app",
+                    "label": "Contents",
                     "subLinks": []
                   },
                   {
-                    "label": "Sobre",
+                    "label": "About",
                     "grouping": "[grouping]",
                     "isGrouping": true,
                     "isSubmenu": false,
                     "subLinks": [
                       {
-                        "url": site + "/por-que-e-blueinfo/",
-                        "label": "Por que e-BlueInfo?",
+                        "url": site + "/en/why-e-blueinfo/",
+                        "label": "Why e-BlueInfo?",
                         "subLinks": []
                       },
                       {
-                        "url": site + "/apoiadores-institucionais/",
-                        "label": "Apoiadores Institucionais",
+                        "url": site + "/en/institutional-supporters/",
+                        "label": "Institutional Supporters",
                         "subLinks": []
                       }
                     ]
                   },
                   {
-                    "label": "Ajuda",
+                    "label": "Help",
                     "grouping": "[grouping]",
                     "isGrouping": true,
                     "isSubmenu": false,
                     "subLinks": [
                       {
-                        "url": app_site + "/pt/app/contact",
-                        "label": "Contato",
+                        "url": app_site + "/app/contact",
+                        "label": "Contact",
                         "subLinks": []
                       },
                       // {
-                      //   "url": site + "/tutoriais/",
+                      //   "url": site + "/en/tutorials/",
                       //   "label": "Tutorial",
                       //   "subLinks": []
                       // }
                     ]
                   },
                   {
-                    "label": "Idioma",
+                    "label": "Language",
                     "grouping": "[grouping]",
                     "isGrouping": true,
                     "isSubmenu": false,
@@ -95,23 +95,23 @@ $(function () {
 
     var cc = eblueinfo_script_vars.cc;
     var c_name = {
-      "BR": "Brasil",
+      "BR": "Brazil",
       "SV": "El Salvador",
       "GT": "Guatemala",
       "PE": "Peru"
     };
     var c_pages = {
-      "BR": site + '/dados-do-brasil/',
-      "SV": site + '/dados-de-el-salvador/',
-      "GT": site + '/dados-da-guatemala/',
-      "PE": site + '/dados-do-peru/'
+      "BR": site + '/en/data-from-brazil/',
+      "SV": site + '/en/data-from-el-salvador/',
+      "GT": site + '/en/data-from-guatemala/',
+      "PE": site + '/en/data-from-peru/'
     };
 
     if ( 'oc' == country ) {
       var _json = [
                     {
-                      "url": app_site + "/pt/app/country",
-                      "label": "País",
+                      "url": app_site + "/app/country",
+                      "label": "Country",
                       "subLinks": []
                     }
                   ];
@@ -120,18 +120,18 @@ $(function () {
         _app_site = app_site.replace(/\/?$/, '/');
         var _json = [
                       {
-                        "url": "https://platserv.bvsalud.org/client/controller/logout/control/business/origin/"+btoa(_app_site),
+                        "url": app_site + "/app/logout",
                         "label": "Logout",
                         "subLinks": []
                       },
                       {
-                        "url": app_site + "/pt/app/favorites",
-                        "label": "Favoritos",
+                        "url": app_site + "/app/favorites",
+                        "label": "Favorites",
                         "subLinks": []
                       },
                       {
-                        "url": app_site + "/pt/app/visited",
-                        "label": "Visitados",
+                        "url": app_site + "/app/visited",
+                        "label": "Visited",
                         "subLinks": []
                       }
                     ];
@@ -139,27 +139,27 @@ $(function () {
         if ( '224' == country ) { // PAHO/WHO Guidelines
           var c_menu = [
                       {
-                        "url": app_site + "/pt/app/country",
-                        "label": "País",
+                        "url": app_site + "/app/country",
+                        "label": "Country",
                         "subLinks": []
                       }
                     ];
         } else {
           var c_menu = [
                       {
-                        "label": "País (" + c_name[cc] + ")",
+                        "label": "Country (" + c_name[cc] + ")",
                         "grouping": "[grouping]",
                         "isGrouping": true,
                         "isSubmenu": false,
                         "subLinks": [
                           {
                             "url": c_pages[cc],
-                            "label": "Saiba mais",
+                            "label": "See more",
                             "subLinks": []
                           },
                           {
-                            "url": app_site + "/pt/app/country",
-                            "label": "Alterar país",
+                            "url": app_site + "/app/country",
+                            "label": "Change country",
                             "subLinks": []
                           }
                         ]
@@ -171,7 +171,7 @@ $(function () {
       } else {
         var _json = [
                       {
-                        "url": app_site + "/pt/app/auth",
+                        "url": app_site + "/app/auth",
                         "label": "Login",
                         "subLinks": []
                       }
@@ -180,27 +180,27 @@ $(function () {
         if ( '224' == country ) { // PAHO/WHO Guidelines
           var c_menu = [
                       {
-                        "url": app_site + "/pt/app/country",
-                        "label": "País",
+                        "url": app_site + "/app/country",
+                        "label": "Country",
                         "subLinks": []
                       }
                     ];
         } else {
           var c_menu = [
                       {
-                        "label": "País (" + c_name[cc] + ")",
+                        "label": "Country (" + c_name[cc] + ")",
                         "grouping": "[grouping]",
                         "isGrouping": true,
                         "isSubmenu": false,
                         "subLinks": [
                           {
                             "url": c_pages[cc],
-                            "label": "Saiba mais",
+                            "label": "See more",
                             "subLinks": []
                           },
                           {
-                            "url": app_site + "/pt/app/country",
-                            "label": "Alterar país",
+                            "url": app_site + "/app/country",
+                            "label": "Change country",
                             "subLinks": []
                           }
                         ]
