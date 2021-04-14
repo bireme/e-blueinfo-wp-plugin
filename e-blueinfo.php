@@ -158,7 +158,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
                 // check if request contains plugin slug string
                 $pos_slug = strpos($_SERVER['REQUEST_URI'], $this->plugin_slug);
 
-                if ( ! is_admin() && ! is_webview() && $pos_slug !== false ) {
+                if ( ! is_admin() && strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') === false && $pos_slug !== false ) {
                     $redirect = ( !empty($eblueinfo_config['redirect']) ) ? $eblueinfo_config['redirect'] : 'https://e-blueinfo.bvsalud.org/';
                     header('Location: '.$redirect);
                     exit;
@@ -510,7 +510,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
             wp_enqueue_style('e-blueinfo-aos', EBLUEINFO_PLUGIN_URL . 'template/css/aos.css', array(), EBLUEINFO_VERSION);
             wp_enqueue_style('e-blueinfo-page', EBLUEINFO_PLUGIN_URL . 'template/css/screen-main.css?ver=2.0.0', array(), EBLUEINFO_VERSION);
 
-            if ( is_webview() ) {
+            if ( strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') !== false ) {
                 wp_enqueue_style('e-blueinfo-app', EBLUEINFO_PLUGIN_URL . 'template/css/screen-app.css?ver=2.0.0', array(), EBLUEINFO_VERSION);
             }
             

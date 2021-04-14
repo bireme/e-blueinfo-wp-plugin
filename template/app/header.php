@@ -34,7 +34,7 @@
     <style type="text/css">
 		<?php require_once('style.css'); ?>
     </style>
-    <?php if ( is_webview() || ( strpos($wp->request, 'country') !== false && 'country' == end($pos) ) ) : ?>
+    <?php if ( strpos($_SERVER['HTTP_USER_AGENT'], 'gonative') !== false || ( strpos($wp->request, 'country') !== false && 'country' == end($pos) ) ) : ?>
     <style type="text/css">
 		<?php require_once('style-app.css'); ?>
     </style>

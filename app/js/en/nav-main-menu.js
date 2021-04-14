@@ -23,7 +23,7 @@ function is_webview () {
 }
 
 $(function () {
-  if ( is_webview() ) {
+  if (navigator.userAgent.indexOf('gonative') > -1) {
     var site = "https://e-blueinfo.bvsalud.org";
     var app_site = "https://sites.bvsalud.org/e-blueinfo";
     var json = [
