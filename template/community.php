@@ -150,27 +150,30 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <section class="container containerAos">
     <div class="row">
         <?php foreach ( $community_list as $index => $community ) : $index++; ?>
-        <article class="col s12 m6 l4" data-aos="fade-up" data-aos-delay="300">
-            <div class="card">
-                <div class="card-image">
-                    <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>collection/?community=<?php echo $community->id; ?>" onclick="__gaTracker('send','event','Community','View','<?php echo $countries[$country].'|'.$community->name; ?>');">
-                        <img src="<?php echo $community->image; ?>" onerror="this.src='<?php echo EBLUEINFO_PLUGIN_URL . "template/images/default.jpg"; ?>'">
-                    </a>
-                    <a href="#modal-community-<?php echo $community->id; ?>" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i class="fas fa-info"></i></a>
+            <?php $com_total = $community_cluster['_'.$community->id]['total']; ?>
+            <?php if ( $com_total ) : ?>
+            <article class="col s12 m6 l4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card">
+                    <div class="card-image">
+                        <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>collection/?community=<?php echo $community->id; ?>" onclick="__gaTracker('send','event','Community','View','<?php echo $countries[$country].'|'.$community->name; ?>');">
+                            <img src="<?php echo $community->image; ?>" onerror="this.src='<?php echo EBLUEINFO_PLUGIN_URL . "template/images/default.jpg"; ?>'">
+                        </a>
+                        <a href="#modal-community-<?php echo $community->id; ?>" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i class="fas fa-info"></i></a>
+                    </div>
+                    <div class="card-content">
+                        <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>collection/?community=<?php echo $community->id; ?>" onclick="__gaTracker('send','event','Community','View','<?php echo $countries[$country].'|'.$community->name; ?>');">
+                            <h5><b><?php echo $community->name; ?></b></h5>
+                            <div><?php _e('Click here for selected content','e-blueinfo'); ?><div>
+                            <hr />
+                            <small><?php _e('Documents','e-blueinfo'); ?>: <?php echo $com_total; ?></small>
+                            <?php if ( is_timestamp($community->updated_time) ) : ?>
+                                <small><?php _e('Last Update','e-blueinfo'); ?>: <?php echo $community->updated_time; ?></small>
+                            <?php endif; ?>
+                        </a>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>collection/?community=<?php echo $community->id; ?>" onclick="__gaTracker('send','event','Community','View','<?php echo $countries[$country].'|'.$community->name; ?>');">
-                        <h5><b><?php echo $community->name; ?></b></h5>
-                        <div><?php _e('Click here for selected content','e-blueinfo'); ?><div>
-                        <hr />
-                        <small><?php _e('Documents','e-blueinfo'); ?>: <?php echo $community_cluster['_'.$community->id]['total']; ?></small>
-                        <?php if ( is_timestamp($community->updated_time) ) : ?>
-                            <small><?php _e('Last Update','e-blueinfo'); ?>: <?php echo $community->updated_time; ?></small>
-                        <?php endif; ?>
-                    </a>
-                </div>
-            </div>
-        </article>
+            </article>
+            <?php endif; ?>
         <?php endforeach; ?>
     </div>
 </section>
