@@ -303,7 +303,10 @@ if ( !function_exists('cmp') ) {
 
 if ( !function_exists('prepare_query') ) {
     function prepare_query($q){
-        $query = '(mh:(QUERY)^50 OR ti:(QUERY)^30 OR ab:(QUERY)^10 OR _text_:(QUERY))';
+        $search = array(':', '-', '.', '(', ')', '[', ']');
+        $q = str_replace($search, ' ', $q); // remove reserved chars
+        $q = trim(preg_replace('/\s+/', ' ', $q)); // remove excess whitespaces
+        $query = '(ti:(QUERY)^50 OR mh:(QUERY)^30 OR ab:(QUERY)^10 OR _text_:(QUERY))';
         $query = str_replace('QUERY', $q, $query);
 
         return $query;
