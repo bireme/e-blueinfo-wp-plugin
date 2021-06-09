@@ -352,14 +352,22 @@ if(!class_exists('EBlueInfo_Plugin')) {
             $site_language = strtolower(get_bloginfo('language'));
             $lang = substr($site_language,0,2);
 
+            $ctest = array(
+                'pt' => 'Macau',
+                'es' => 'Macao',
+                'en' => 'Macao'
+            );
+
             $response = @file_get_contents($country_service_url);
             if ($response){
                 $countries = json_decode($response);
                 $countries = normalize_country_object($countries, $lang);
+                // $countries = array_diff($countries, $ctest);
             }
 
             if ( $countries ) {
                 $count = 0;
+                $eblueinfo_sidebars = array();
                 foreach ($countries as $key => $value) {
                     $eblueinfo_service_request = $eblueinfo_service_url . 'api/community/?country=' . $key . '&format=json';
 
@@ -372,37 +380,72 @@ if(!class_exists('EBlueInfo_Plugin')) {
                     if ( $community_list ) {
                         foreach ( $community_list as $community ) {
                             $count++;
+                            $com_id = substr(md5($community->id), 0, 8);
                             $args = array(
                                 'name' => __('e-BlueInfo Sidebar', 'e-blueinfo').' '.$count,
-                                'id'   => 'e-blueinfo-sidebar-'.$community->id,
+                                'id'   => 'e-blueinfo-sidebar-'.$com_id,
                                 'description' => __('e-BlueInfo Sidebar', 'e-blueinfo').': '.$community->name.' ('.$value.')',
-                                'before_widget' => '<div id="%1$s" class="widget %2$s">',
-                                'after_widget'  => '</div>',
-                                'before_title'  => '<h2 class="widgettitle">',
-                                'after_title'   => '</h2>',
                             );
-                            register_sidebar( $args );
+
+                            $eblueinfo_sidebars[] = $args;
                         }
                     }
                 }
 
+                // $sidebar_ids = array_column($eblueinfo_sidebars, 'id');
+                // array_multisort($sidebar_ids, SORT_ASC, $eblueinfo_sidebars);
+                // echo "<pre>"; print_r($eblueinfo_sidebars); echo "</pre>"; die();
+
+                $defaults = array(
+                    'name' => __('e-BlueInfo Sidebar', 'e-blueinfo'),
+                    'id'   => 'e-blueinfo-sidebar',
+                    'description' => __('e-BlueInfo Sidebar', 'e-blueinfo'),
+                    'class' => '',
+                    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+                    'after_widget'  => '</div>',
+                    'before_title'  => '<h2 class="widgettitle">',
+                    'after_title'   => '</h2>',
+                );
+
+                foreach( $eblueinfo_sidebars as $sidebar ) {
+                    $args = wp_parse_args( $sidebar, $defaults );
+                    register_sidebar( $args );
+                }
+
                 $count = 0;
+                $eblueinfo_footer_sidebars = array();
                 foreach ($countries as $key => $value) {
                     $count++;
                     $args = array(
                         'name' => __('e-BlueInfo Footer Sidebar', 'e-blueinfo').' '.$count,
                         'id'   => 'e-blueinfo-footer-sidebar-'.$key,
                         'description' => __('e-BlueInfo Footer Sidebar', 'e-blueinfo').': '.$value,
-                        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-                        'after_widget'  => '</div>',
-                        'before_title'  => '<h2 class="widgettitle">',
-                        'after_title'   => '</h2>',
                     );
+
+                    $eblueinfo_footer_sidebars[] = $args;
+                }
+
+                // $footer_sidebar_ids = array_column($eblueinfo_footer_sidebars, 'id');
+                // array_multisort($footer_sidebar_ids, SORT_ASC, $eblueinfo_footer_sidebars);
+                // echo "<pre>"; print_r($eblueinfo_footer_sidebars); echo "</pre>"; die();
+
+                $defaults = array(
+                    'name' => __('e-BlueInfo Footer Sidebar', 'e-blueinfo'),
+                    'id'   => 'e-blueinfo-footer-sidebar',
+                    'description' => __('e-BlueInfo Footer Sidebar', 'e-blueinfo'),
+                    'class' => '',
+                    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+                    'after_widget'  => '</div>',
+                    'before_title'  => '<h2 class="widgettitle">',
+                    'after_title'   => '</h2>',
+                );
+
+                foreach( $eblueinfo_footer_sidebars as $footer_sidebar ) {
+                    $args = wp_parse_args( $footer_sidebar, $defaults );
                     register_sidebar( $args );
                 }
             }
         }
-
 
         function theme_slug_render_title() {
             global $wp, $eblueinfo_plugin_title;

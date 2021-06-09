@@ -136,9 +136,10 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <h1 class="title"><?php echo $community_name; ?></h1>
 <!-- Sidebar -->
 <section>
-    <?php if ( is_active_sidebar( 'e-blueinfo-sidebar-'.$community_id ) ) : ?>
+    <?php $com_id = substr(md5($community_id), 0, 8); ?>
+    <?php if ( is_active_sidebar( 'e-blueinfo-sidebar-'.$com_id ) ) : ?>
     <div id="sidebar" class="bannerHome">
-        <?php dynamic_sidebar( 'e-blueinfo-sidebar-'.$community_id ); ?>
+        <?php dynamic_sidebar( 'e-blueinfo-sidebar-'.$com_id ); ?>
     </div>
     <?php endif; ?>
 </section>
