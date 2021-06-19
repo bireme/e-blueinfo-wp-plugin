@@ -34,7 +34,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
         private $plugin_slug            = 'e-blueinfo';
         private $service_url            = 'https://fi-admin-api.bvsalud.org/';
         private $similar_docs_url       = 'http://similardocs.bireme.org/SDService';
-        private $thumb_service_url      = 'http://thumbs2.bireme.org';
+        private $thumb_service_url      = 'https://thumbs2.bireme.org';
         private $country_service_url    = 'https://fi-admin-api.bvsalud.org/api/community/get_country_list/?format=json';
         private $infobutton_service_url = 'https://bvsinfobutton.bvsalud.org';
         private $services_platform_url  = 'https://platserv.bvsalud.org';
