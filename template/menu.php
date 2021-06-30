@@ -6,6 +6,7 @@
     $cc = $country_code[$_COOKIE['e-blueinfo-country']];
     $c_name = array(
         "BR" => __('Brazil', 'e-blueinfo'),
+        "CO" => __('Colombia', 'e-blueinfo'),
         "SV" => __('El Salvador', 'e-blueinfo'),
         "GT" => __('Guatemala', 'e-blueinfo'),
         "PE" => __('Peru', 'e-blueinfo'),
@@ -71,7 +72,7 @@
             <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'auth/'; ?>"><?php _e('Login', 'e-blueinfo'); ?></a></li>
             <?php endif; ?>
             
-            <?php if ( 'US' == $cc ) : ?>
+            <?php if ( !$cc || 'US' == $cc ) : ?>
             <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'country/'; ?>"><?php _e('Change country', 'e-blueinfo'); ?></a></li>
             <?php else : ?>
             <!-- Start nested content -->
@@ -81,7 +82,9 @@
                         <a class="collapsible-header" tabindex="0"><?php _e('Country', 'e-blueinfo'); ?> <?php echo '('.$c_name[$cc].')'; ?></a>
                         <div class="collapsible-body">
                             <ul>
+                                <?php if ( $c_pages[$cc][$lang] ) : ?>
                                 <li><a href="<?php echo $c_pages[$cc][$lang]; ?>" target="_blank"><?php _e('See more', 'e-blueinfo'); ?></a></li>
+                                <?php endif; ?>
                                 <li><a href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'country/'; ?>"><?php _e('Change country', 'e-blueinfo'); ?></a></li>
                             </ul>
                         </div>

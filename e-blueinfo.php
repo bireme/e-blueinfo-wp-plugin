@@ -510,6 +510,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
         function template_styles_scripts(){
             global $eblueinfo_plugin_slug, $services_platform_url, $vhl_search_portal_url, $wp, $wp_styles, $wp_scripts;
             $site = real_site_url();
+            $_site = 'https://e-blueinfo.bvsalud.org';
             $languages = array();
             $pagename = '';
 
@@ -581,11 +582,46 @@ if(!class_exists('EBlueInfo_Plugin')) {
             $eblueinfo_config = get_option('eblueinfo_config');
             $c_code = $eblueinfo_config['country_code'];
             $cc = $c_code[$_COOKIE['e-blueinfo-country']];
+            
+            $c_name = array(
+                "BR" => __('Brazil', 'e-blueinfo'),
+                "CO" => __('Colombia', 'e-blueinfo'),
+                "SV" => __('El Salvador', 'e-blueinfo'),
+                "GT" => __('Guatemala', 'e-blueinfo'),
+                "PE" => __('Peru', 'e-blueinfo')
+            );
+            $c_name = array_intersect_key($c_name, array_flip($c_code));
+
+            $c_pages = array(
+                "BR" => array(
+                    "pt" => $_site . '/dados-do-brasil/',
+                    "es" => $_site . '/es/datos-de-brasil/',
+                    "en" => $_site . '/en/data-from-brazil/'
+                ),
+                "SV" => array(
+                    "pt" => $_site . '/dados-de-el-salvador/',
+                    "es" => $_site . '/es/datos-de-el-salvador/',
+                    "en" => $_site . '/en/data-from-el-salvador/'
+                ),
+                "GT" => array(
+                    "pt" => $_site . '/dados-da-guatemala/',
+                    "es" => $_site . '/es/datos-de-guatemala/',
+                    "en" => $_site . '/en/data-from-guatemala/'
+                ),
+                "PE" => array(
+                    "pt" => $_site . '/dados-do-peru/',
+                    "es" => $_site . '/es/datos-de-peru/',
+                    "en" => $_site . '/en/data-from-peru/'
+                )
+            );
+            $c_pages = wp_list_pluck( $c_pages, $lang );
 
             wp_localize_script('e-blueinfo-page', 'eblueinfo_script_vars', array(
                     'ajaxurl' => admin_url( 'admin-ajax.php' ),
                     'ajaxnonce' => wp_create_nonce( 'ajax_post_validation' ),
                     'cc' => $cc,
+                    'c_name' => $c_name,
+                    'c_pages' => $c_pages,
                     'lang' => $lang,
                     'site' => $site,
                     'portal' => $vhl_search_portal_url,

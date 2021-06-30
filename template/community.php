@@ -31,6 +31,7 @@ $query = stripslashes( trim($query) );
 // set country
 $country = ( !empty($_GET['country']) ? $_GET['country'] : '' );
 $country = ( !empty($_COOKIE['e-blueinfo-country']) ? $_COOKIE['e-blueinfo-country'] : $country );
+$cc = $country_code[$_COOKIE['e-blueinfo-country']];
 
 $user_filter = stripslashes($_GET['filter']);
 $community_id = '';
@@ -75,16 +76,18 @@ if ( $user_filter != '' ) {
 
 // print $eblueinfo_service_request;
 
-$response = @file_get_contents($eblueinfo_service_request);
-if ($response){
-    $response_json = json_decode($response);
-    // echo "<pre>"; print_r($response_json); echo "</pre>";
-    $total = $response_json->meta->total_count;
-    $start = $response_json->meta->offset;
-    $next  = $response_json->meta->next;
-    $community_list = $response_json->objects;
-    $community_ids = wp_list_pluck($community_list, 'id');
-    $community_id = implode(',', $community_ids);
+if ( 'US' != $cc ) {
+    $response = @file_get_contents($eblueinfo_service_request);
+    if ($response){
+        $response_json = json_decode($response);
+        // echo "<pre>"; print_r($response_json); echo "</pre>";
+        $total = $response_json->meta->total_count;
+        $start = $response_json->meta->offset;
+        $next  = $response_json->meta->next;
+        $community_list = $response_json->objects;
+        $community_ids = wp_list_pluck($community_list, 'id');
+        $community_id = implode(',', $community_ids);
+    }
 }
 
 $community_cluster_request = $solr_service_url . 'query?q=*:*&facet=true&facet.field=com&rows=0';
@@ -138,6 +141,26 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         </article>
     </div>
 </section>
+<?php elseif ( 'US' == $cc ) : ?>
+<section class="container containerAos">
+    <div class="row">
+        <article class="col s12 m6 l4" data-aos="fade-up" data-aos-delay="500">
+            <div class="card">
+                <div class="card-image">
+                    <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>collection/?community=60">
+                        <img src="<?php echo EBLUEINFO_PLUGIN_URL . 'template/images/card-' . $lang . '.jpg'; ?>">
+                    </a>
+                    <a href="#modal-guidelines" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i class="fas fa-info"></i></a>
+                </div>
+                <div class="card-content">
+                    <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>collection/?community=60">
+                        <h5><b><?php _e('PAHO/WHO Guidelines', 'e-blueinfo'); ?></b></h5>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
 <?php elseif ( isset($total) && strval($total) == 0 ) : ?>
 <section class="container containerAos">
     <div class="row">
@@ -184,7 +207,6 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <div class="col s12">
             <h5  style="padding: 10px 20px; color: #fff; background-color: #0d47a1;"><b><?php _e('Other Contents', 'e-blueinfo'); ?></b></h5>
         </div>
-        <?php $cc = $country_code[$_COOKIE['e-blueinfo-country']]; ?>
         <?php if ( 'US' != $cc ) : ?>
         <article class="col s12 m6 l4" data-aos="fade-up" data-aos-delay="500">
             <div class="card">

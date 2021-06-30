@@ -94,6 +94,10 @@ $(function () {
                 ];
 
     var cc = eblueinfo_script_vars.cc;
+    var c_name = eblueinfo_script_vars.c_name;
+    var c_pages = eblueinfo_script_vars.c_pages;
+
+/*
     var c_name = {
       "BR": "Brasil",
       "SV": "El Salvador",
@@ -106,6 +110,7 @@ $(function () {
       "GT": site + '/dados-da-guatemala/',
       "PE": site + '/dados-do-peru/'
     };
+*/
 
     if ( 'oc' == country ) {
       var _json = [
@@ -136,7 +141,7 @@ $(function () {
                       }
                     ];
 
-        if ( '224' == country ) { // PAHO/WHO Guidelines
+        if ( cc == null || '224' == country ) { // PAHO/WHO Guidelines
           var c_menu = [
                       {
                         "url": app_site + "/pt/app/country",
@@ -145,26 +150,44 @@ $(function () {
                       }
                     ];
         } else {
-          var c_menu = [
-                      {
-                        "label": "País (" + c_name[cc] + ")",
-                        "grouping": "[grouping]",
-                        "isGrouping": true,
-                        "isSubmenu": false,
-                        "subLinks": [
-                          {
-                            "url": c_pages[cc],
-                            "label": "Saiba mais",
-                            "subLinks": []
-                          },
-                          {
-                            "url": app_site + "/pt/app/country",
-                            "label": "Alterar país",
-                            "subLinks": []
-                          }
-                        ]
-                      }
-                    ];
+          if ( c_pages[cc] == null ) {
+            var c_menu = [
+                        {
+                          "label": "País (" + c_name[cc] + ")",
+                          "grouping": "[grouping]",
+                          "isGrouping": true,
+                          "isSubmenu": false,
+                          "subLinks": [
+                            {
+                              "url": app_site + "/pt/app/country",
+                              "label": "Alterar país",
+                              "subLinks": []
+                            }
+                          ]
+                        }
+                      ];
+          } else {
+            var c_menu = [
+                        {
+                          "label": "País (" + c_name[cc] + ")",
+                          "grouping": "[grouping]",
+                          "isGrouping": true,
+                          "isSubmenu": false,
+                          "subLinks": [
+                            {
+                              "url": c_pages[cc],
+                              "label": "Saiba mais",
+                              "subLinks": []
+                            },
+                            {
+                              "url": app_site + "/pt/app/country",
+                              "label": "Alterar país",
+                              "subLinks": []
+                            }
+                          ]
+                        }
+                      ];
+          }
         }
 
         _json = _json.concat(c_menu);
@@ -177,7 +200,7 @@ $(function () {
                       }
                     ];
 
-        if ( '224' == country ) { // PAHO/WHO Guidelines
+        if ( cc == null || '224' == country ) { // PAHO/WHO Guidelines
           var c_menu = [
                       {
                         "url": app_site + "/pt/app/country",
@@ -186,26 +209,44 @@ $(function () {
                       }
                     ];
         } else {
-          var c_menu = [
-                      {
-                        "label": "País (" + c_name[cc] + ")",
-                        "grouping": "[grouping]",
-                        "isGrouping": true,
-                        "isSubmenu": false,
-                        "subLinks": [
-                          {
-                            "url": c_pages[cc],
-                            "label": "Saiba mais",
-                            "subLinks": []
-                          },
-                          {
-                            "url": app_site + "/pt/app/country",
-                            "label": "Alterar país",
-                            "subLinks": []
-                          }
-                        ]
-                      }
-                    ];
+          if ( c_pages[cc] == null ) {
+            var c_menu = [
+                        {
+                          "label": "País (" + c_name[cc] + ")",
+                          "grouping": "[grouping]",
+                          "isGrouping": true,
+                          "isSubmenu": false,
+                          "subLinks": [
+                            {
+                              "url": app_site + "/pt/app/country",
+                              "label": "Alterar país",
+                              "subLinks": []
+                            }
+                          ]
+                        }
+                      ];
+          } else {
+            var c_menu = [
+                        {
+                          "label": "País (" + c_name[cc] + ")",
+                          "grouping": "[grouping]",
+                          "isGrouping": true,
+                          "isSubmenu": false,
+                          "subLinks": [
+                            {
+                              "url": c_pages[cc],
+                              "label": "Saiba mais",
+                              "subLinks": []
+                            },
+                            {
+                              "url": app_site + "/pt/app/country",
+                              "label": "Alterar país",
+                              "subLinks": []
+                            }
+                          ]
+                        }
+                      ];
+          }
         }
 
         _json = _json.concat(c_menu);
