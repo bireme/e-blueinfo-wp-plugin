@@ -97,21 +97,6 @@ $(function () {
     var c_name = eblueinfo_script_vars.c_name;
     var c_pages = eblueinfo_script_vars.c_pages;
 
-/*
-    var c_name = {
-      "BR": "Brasil",
-      "SV": "El Salvador",
-      "GT": "Guatemala",
-      "PE": "Perú"
-    };
-    var c_pages = {
-      "BR": site + '/es/datos-de-brasil/',
-      "SV": site + '/es/datos-de-el-salvador/',
-      "GT": site + '/es/datos-de-guatemala/',
-      "PE": site + '/es/datos-de-peru/'
-    };
-*/
-
     if ( 'oc' == country ) {
       var _json = [
                     {
@@ -141,7 +126,7 @@ $(function () {
                       }
                     ];
 
-        if ( cc == null || '224' == country ) { // PAHO/WHO Guidelines
+        if ( cc == null || 'UC' == cc ) { // PAHO/WHO Guidelines
           var c_menu = [
                       {
                         "url": app_site + "/es/app/country",
@@ -200,7 +185,7 @@ $(function () {
                       }
                     ];
 
-        if ( cc == null || '224' == country ) { // PAHO/WHO Guidelines
+        if ( cc == null || 'UC' == cc ) { // PAHO/WHO Guidelines
           var c_menu = [
                       {
                         "url": app_site + "/es/app/country",

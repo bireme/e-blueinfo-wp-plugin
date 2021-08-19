@@ -97,21 +97,6 @@ $(function () {
     var c_name = eblueinfo_script_vars.c_name;
     var c_pages = eblueinfo_script_vars.c_pages;
 
-/*
-    var c_name = {
-      "BR": "Brazil",
-      "SV": "El Salvador",
-      "GT": "Guatemala",
-      "PE": "Peru"
-    };
-    var c_pages = {
-      "BR": site + '/en/data-from-brazil/',
-      "SV": site + '/en/data-from-el-salvador/',
-      "GT": site + '/en/data-from-guatemala/',
-      "PE": site + '/en/data-from-peru/'
-    };
-*/
-
     if ( 'oc' == country ) {
       var _json = [
                     {
@@ -141,7 +126,7 @@ $(function () {
                       }
                     ];
 
-        if ( cc == null || '224' == country ) { // PAHO/WHO Guidelines
+        if ( cc == null || 'UC' == cc ) { // PAHO/WHO Guidelines
           var c_menu = [
                       {
                         "url": app_site + "/app/country",
@@ -200,7 +185,7 @@ $(function () {
                       }
                     ];
 
-        if ( cc == null || '224' == country ) { // PAHO/WHO Guidelines
+        if ( cc == null || 'UC' == cc ) { // PAHO/WHO Guidelines
           var c_menu = [
                       {
                         "url": app_site + "/app/country",

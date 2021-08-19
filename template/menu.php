@@ -18,6 +18,11 @@
             "es" => $site . '/es/datos-de-brasil/',
             "en" => $site . '/en/data-from-brazil/'
         ),
+        "CO" => array(
+            "pt" => $site . '/dados-de-colombia/',
+            "es" => $site . '/es/datos-de-colombia/',
+            "en" => $site . '/en/data-from-colombia/'
+        ),
         "SV" => array(
             "pt" => $site . '/dados-de-el-salvador/',
             "es" => $site . '/es/datos-de-el-salvador/',

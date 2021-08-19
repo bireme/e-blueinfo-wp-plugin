@@ -605,6 +605,11 @@ if(!class_exists('EBlueInfo_Plugin')) {
                     "es" => $_site . '/es/datos-de-brasil/',
                     "en" => $_site . '/en/data-from-brazil/'
                 ),
+                "CO" => array(
+                    "pt" => $_site . '/dados-de-colombia/',
+                    "es" => $_site . '/es/datos-de-colombia/',
+                    "en" => $_site . '/en/data-from-colombia/'
+                ),
                 "SV" => array(
                     "pt" => $_site . '/dados-de-el-salvador/',
                     "es" => $_site . '/es/datos-de-el-salvador/',
