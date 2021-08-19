@@ -1,0 +1,98 @@
+div.updated {
+    margin-left: 2px;
+    margin-top: 1em;
+}
+
+.eblueinfo-lower {
+    margin: 0 auto;
+    text-align: left;
+    max-width: 50rem;
+    padding: 1.5rem;
+}
+
+.eblueinfo-lower .regular-text {
+    width: 100%;
+}
+
+.eblueinfo-card {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    position: relative;
+    margin: 0 auto 0.625rem auto;
+    box-sizing: border-box;
+    background: white;
+    box-shadow: 0 0 0 1px rgb(200 215 225 / 50%), 0 1px 2px #e9eff3;
+}
+
+.eblueinfo-section-header {
+    position: relative;
+    margin: 0 auto 0.625rem auto;
+    padding: 1rem;
+    box-sizing: border-box;
+    box-shadow: 0 0 0 1px rgb(200 215 225 / 50%), 0 1px 2px #e9eff3;
+    background: #ffffff;
+    width: 100%;
+    padding-top: 0.6875rem;
+    padding-bottom: 0.6875rem;
+    display: flex;
+}
+
+.eblueinfo-section-header__label {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    line-height: 1.75rem;
+    position: relative;
+    font-size: 0.875rem;
+    color: #4f748e;
+}
+
+.eblueinfo-card .inside {
+    padding: 1.5rem;
+    padding-top: 1rem;
+}
+
+.eblueinfo-card .inside .form-table th {
+    width: auto;
+}
+
+.eblueinfo-card .eblueinfo-card-actions {
+    margin-top: 1rem;
+}
+
+.eblueinfo-button, .eblueinfo-button:hover, .eblueinfo-button:visited {
+    background: white;
+    border-color: #c8d7e1;
+    border-style: solid;
+    border-width: 1px 1px 2px;
+    color: #2e4453;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0;
+    outline: 0;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    vertical-align: top;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 21px;
+    border-radius: 4px;
+    padding: 7px 14px 9px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.eblueinfo-button:active {
+    border-width: 2px 1px 1px;
+}
+
+.eblueinfo-button:hover {
+    border-color: #a8bece;
+}

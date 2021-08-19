@@ -18,8 +18,9 @@
 
     $response = @file_get_contents($country_service_url);
     if ($response){
-        $countries = json_decode($response);
-        $countries = normalize_country_object($countries, $lang);
+        $response_json = json_decode($response);
+        $cc_list = wp_list_pluck( $response_json, 'code', 'id' );
+        $countries = normalize_country_object($response_json, $lang);
 
         if ( !EBLUEINFO_CTEST ) {
             $countries = array_diff($countries, $ctest);
@@ -45,15 +46,15 @@
                     <optgroup label="<?php _e('Country', 'e-blueinfo'); ?>">
                         <?php foreach ($countries as $id => $name) : ?>
                             <?php $selected = ( $country_id == $id ) ? 'selected' : ''; ?>
-                            <?php $cc = $country_code[$id]; ?>
-                            <?php if ( 'US' != $cc ) : ?>
+                            <?php $cc = $cc_list[$id]; ?>
+                            <?php if ( 'US' != $cc && in_array($cc, $eblueinfo_config['available_country']) ) : ?>
                             <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/' . $lang . '/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>" <?php echo $selected; ?>><?php echo $name; ?></option>
                             <?php endif; ?>
                         <?php endforeach; ?>
                         <option data-country="oc" value="<?php echo get_site_url() . '/' . $lang . '/' . $eblueinfo_plugin_slug . '?country=oc'; ?>" <?php echo ( 'oc' == $country_id ) ? 'selected' : ''; ?>><?php _e('Other country', 'e-blueinfo'); ?></option>
                     </optgroup>
                     <optgroup label="<?php _e('Other contents', 'e-blueinfo'); ?>">
-                        <?php $cc = $country_code[$country_id]; ?>
+                        <?php $cc = $cc_list[$country_id]; ?>
                         <option data-country="224" value="<?php echo get_site_url() . '/' . $lang . '/' . $eblueinfo_plugin_slug . '?country=224'; ?>" <?php echo ( 'US' == $cc ) ? 'selected' : ''; ?>><?php _e('PAHO/WHO Guidelines', 'e-blueinfo'); ?></option>
                     </optgroup>
                 </select>

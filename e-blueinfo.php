@@ -52,6 +52,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
             add_action( 'init', array(&$this, 'load_translation') );
             add_action( 'wp', array(&$this, 'force_cookie_lang') );
             add_action( 'admin_menu', array(&$this, 'admin_menu') );
+            add_action( 'admin_enqueue_scripts', array(&$this, 'admin_enqueue') );
             add_action( 'plugins_loaded', array(&$this, 'plugin_init') );
             add_action( 'wp_head', array(&$this, 'google_analytics_code') );
             add_action( 'widgets_init', array(&$this, 'register_sidebars') );
@@ -280,9 +281,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
 
                                 if ( $default_language != $_COOKIE['e-blueinfo-lang'] ) {
                                     setCookie( 'e-blueinfo-redirect', time(), time() + (10 * 365 * 24 * 60 * 60), '/' );
-
                                     $home_url = pll_home_url($_COOKIE['e-blueinfo-lang']) . $pagename;
-
                                     wp_redirect( $home_url );
                                     exit();
                                 }
@@ -507,6 +506,14 @@ if(!class_exists('EBlueInfo_Plugin')) {
             return $form;
         }
 
+        function admin_enqueue() {
+            global $pagenow;
+            
+            if ( 'options-general.php' == $pagenow && 'e-blueinfo' == $_GET['page'] ) {
+                wp_enqueue_style('e-blueinfo-admin', EBLUEINFO_PLUGIN_URL . 'template/css/admin.css?ver=2.0.0', array(), EBLUEINFO_VERSION);
+            }
+        }
+
         function template_styles_scripts(){
             global $eblueinfo_plugin_slug, $services_platform_url, $vhl_search_portal_url, $wp, $wp_styles, $wp_scripts;
             $site = real_site_url();
@@ -631,23 +638,6 @@ if(!class_exists('EBlueInfo_Plugin')) {
                     'fav_doc_error' => __('The document was not correctly added to Favorites', 'e-blueinfo')
                 )
             );
-/*
-            if ( $languages ) {
-                wp_localize_script('e-blueinfo-menu', 'eblueinfo_script_vars', array(
-                        'home' => $site,
-                        'home_label' => __('Home','e-blueinfo'),
-                        'lang_label' => __('Languages', 'e-blueinfo'),
-                        'languages' => $languages
-                    )
-                );
-            } else {
-                wp_localize_script('e-blueinfo-page', 'eblueinfo_script_vars', array(
-                        'home' => $site,
-                        'home_label' => __('Home','e-blueinfo')
-                    )
-                );
-            }
-*/
         }
 
         function register_settings(){

@@ -1,8 +1,9 @@
 <?php
     global $eblueinfo_plugin_slug, $country_service_url;
+    $eblueinfo_config = get_option('eblueinfo_config');
 
-	$site_language = strtolower(get_bloginfo('language'));
-	$lang = substr($site_language,0,2);
+    $site_language = strtolower(get_bloginfo('language'));
+    $lang = substr($site_language,0,2);
     $languages = array();
 
     $ctest = array(
@@ -11,11 +12,11 @@
         'en' => 'Macao'
     );
 
-	$response = @file_get_contents($country_service_url);
-	if ($response){
-	    $countries = json_decode($response);
-	    // echo "<pre>"; print_r($countries); echo "</pre>"; die();
-	}
+    $response = @file_get_contents($country_service_url);
+    if ($response){
+        $countries = json_decode($response);
+        $cc_list = wp_list_pluck( $countries, 'code', 'id' );
+    }
 
     if ( defined( 'POLYLANG_VERSION' ) ) {
         $pll_languages = pll_the_languages( array( 'raw' => 1 ) );
@@ -68,7 +69,8 @@
                     <select <?php if ( is_ios() ) { echo 'class="browser-default"'; } ?>>
                         <optgroup label="Country">
                             <?php foreach ($countries_en as $id => $name) : ?>
-                                <?php if ( $id != 224 ) :  ?>
+                                <?php $cc = $cc_list[$id]; ?>
+                                <?php if ( 'US' != $cc && in_array($cc, $eblueinfo_config['available_country']) ) : ?>
                                 <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/en/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
                                 <?php endif; ?>
                             <?php endforeach; ?>
@@ -86,7 +88,8 @@
                     <select <?php if ( is_ios() ) { echo 'class="browser-default"'; } ?>>
                         <optgroup label="País">
                             <?php foreach ($countries_pt as $id => $name) : ?>
-                                <?php if ( $id != 224 ) :  ?>
+                                <?php $cc = $cc_list[$id]; ?>
+                                <?php if ( 'US' != $cc && in_array($cc, $eblueinfo_config['available_country']) ) : ?>
                                 <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/pt/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
                                 <?php endif; ?>
                             <?php endforeach; ?>
@@ -103,9 +106,9 @@
                     <h6 class="center-align"><b>Por favor, elija un país</b></h6>
                     <select <?php if ( is_ios() ) { echo 'class="browser-default"'; } ?>>
                         <optgroup label="País">
-                            <option disabled selected></option>
                             <?php foreach ($countries_es as $id => $name) : ?>
-                                <?php if ( $id != 224 ) :  ?>
+                                <?php $cc = $cc_list[$id]; ?>
+                                <?php if ( 'US' != $cc && in_array($cc, $eblueinfo_config['available_country']) ) : ?>
                                 <option data-country="<?php echo $id; ?>" value="<?php echo get_site_url() . '/es/' . $eblueinfo_plugin_slug . '?country=' . $id; ?>"><?php echo $name; ?></option>
                                 <?php endif; ?>
                             <?php endforeach; ?>
