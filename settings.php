@@ -116,13 +116,11 @@ function eblueinfo_page_admin() {
                                             <?php _e('Country/region', 'e-blueinfo'); ?>
                                         </label>
                                         <br/>
-                                        <!--
                                         <label for="available_filter_database">
                                             <input type="checkbox" name="eblueinfo_config[available_filter][]" value="database" id="available_filter_database" <?php echo (!isset($config['available_filter']) || in_array('database', $config['available_filter']) ?  " checked='true'" : '') ;?> ></input>
                                             <?php _e('Database', 'e-blueinfo'); ?>
                                         </label>
                                         <br/>
-                                        -->
                                         <label for="available_filter_collection">
                                             <input type="checkbox" name="eblueinfo_config[available_filter][]" value="collection" id="available_filter_collection" <?php echo (!isset($config['available_filter']) ||  in_array('collection', $config['available_filter']) ?  " checked='true'" : '') ;?> ></input>
                                             <?php _e('Collection', 'e-blueinfo'); ?>

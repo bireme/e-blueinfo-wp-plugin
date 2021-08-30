@@ -342,6 +342,15 @@ a:active{
 .card-en.cardLatest:before {
 	content: "NEW";
 }
+.cards {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.cards:after {
+    content: "";
+    flex: auto;
+}
 /****************************** cor 01 ************************/
 .bgColor1{
 	background: url('../images/bgShape.png') #2962ff top right fixed no-repeat;

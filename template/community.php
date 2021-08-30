@@ -171,10 +171,10 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 </section>
 <?php else : ?>
 <section class="container containerAos">
-    <div class="row">
+    <div class="row cards">
         <?php foreach ( $community_list as $index => $community ) : $index++; ?>
             <?php $com_total = $community_cluster['_'.$community->id]['total']; ?>
-            <?php if ( $com_total ) : ?>
+            <?php // if ( $com_total ) : ?>
             <article class="col s12 m6 l4" data-aos="fade-up" data-aos-delay="300">
                 <div class="card">
                     <div class="card-image">
@@ -196,7 +196,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                     </div>
                 </div>
             </article>
-            <?php endif; ?>
+            <?php // endif; ?>
         <?php endforeach; ?>
     </div>
 </section>

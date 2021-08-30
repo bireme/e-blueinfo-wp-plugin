@@ -595,6 +595,7 @@ if(!class_exists('EBlueInfo_Plugin')) {
                 "CO" => __('Colombia', 'e-blueinfo'),
                 "SV" => __('El Salvador', 'e-blueinfo'),
                 "GT" => __('Guatemala', 'e-blueinfo'),
+                "PY" => __('Paraguay', 'e-blueinfo'),
                 "PE" => __('Peru', 'e-blueinfo')
             );
             $c_name = array_intersect_key($c_name, array_flip($c_code));

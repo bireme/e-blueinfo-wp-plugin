@@ -174,7 +174,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <section id="categories" class="container containerAos">
     <div class="row">
         <?php foreach ( $categories as $index => $collection) : $index++; $total_docs = $collection_cluster['_'.$collection->id]['total']; ?>
-            <?php if ( $total_docs ) : ?>
+            <?php // if ( $total_docs ) : ?>
             <article class="col s12">
                 <div class="card cardSingle">
                     <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>" onclick="__gaTracker('send','event','Collection','View','<?php echo $countries[$country].'|'.$collection->name; ?>');">
@@ -189,7 +189,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                     </a>
                 </div>
             </article>
-            <?php endif; ?>
+            <?php // endif; ?>
         <?php endforeach; ?>
     </div>
 </section>

@@ -9,6 +9,7 @@
         "CO" => __('Colombia', 'e-blueinfo'),
         "SV" => __('El Salvador', 'e-blueinfo'),
         "GT" => __('Guatemala', 'e-blueinfo'),
+        "PY" => __('Paraguay', 'e-blueinfo'),
         "PE" => __('Peru', 'e-blueinfo'),
         "MO" => __('Macao', 'e-blueinfo')
     );
