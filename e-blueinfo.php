@@ -622,9 +622,9 @@ if(!class_exists('EBlueInfo_Plugin')) {
                     "en" => $_site . '/en/data-from-guatemala/'
                 ),
                 "PY" => array(
-                    "pt" => $site . '/dados-do-paraguai/',
-                    "es" => $site . '/es/datos-de-paraguay/',
-                    "en" => $site . '/en/data-from-paraguay/'
+                    "pt" => $_site . '/dados-do-paraguai/',
+                    "es" => $_site . '/es/datos-de-paraguay/',
+                    "en" => $_site . '/en/data-from-paraguay/'
                 ),
                 "PE" => array(
                     "pt" => $_site . '/dados-do-peru/',
