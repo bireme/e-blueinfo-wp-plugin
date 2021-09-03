@@ -34,6 +34,11 @@
             "es" => $site . '/es/datos-de-guatemala/',
             "en" => $site . '/en/data-from-guatemala/'
         ),
+        "PY" => array(
+            "pt" => $site . '/dados-do-paraguai/',
+            "es" => $site . '/es/datos-de-paraguay/',
+            "en" => $site . '/en/data-from-paraguay/'
+        ),
         "PE" => array(
             "pt" => $site . '/dados-do-peru/',
             "es" => $site . '/es/datos-de-peru/',
