@@ -27,7 +27,7 @@ function eblueinfo_page_admin() {
                         </tr>
                         <tr valign="top">
                             <th scope="row"><?php _e('Google Analytics code', 'e-blueinfo'); ?>:</th>
-                            <td><input type="text" name="eblueinfo_config[google_analytics_code]" value="<?php echo $config['google_analytics_code'] ?>" class="regular-text code"></td>
+                            <td><textarea name="eblueinfo_config[google_analytics_code]" rows="3" class="regular-text code"><?php echo $config['google_analytics_code'] ?></textarea></td>
                         </tr>
                         <tr valign="top">
                             <th scope="row"><?php _e('Fulltext', 'e-blueinfo'); ?>:</th>
