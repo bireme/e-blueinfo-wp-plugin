@@ -122,7 +122,7 @@ $pages->paginate($page_url_params);
         <header class="page-header">
             <?php simple_sliding_menu($lang); ?>
             <div class="searchBarMain">
-        		<i class="material-icons searchBarSearchIcon noUserSelect" onclick="__gaTracker('send','event','Browse','Search',document.getElementById('searchBarInput').value);">search</i>
+        		<i class="material-icons searchBarSearchIcon noUserSelect" onclick="gtag('send','event','Browse','Search',document.getElementById('searchBarInput').value);">search</i>
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search">
                     <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
                     <input type="hidden" name="collection" id="collection" value="<?php echo $collection_id; ?>">
@@ -160,13 +160,13 @@ $pages->paginate($page_url_params);
                     <div class="col-xs-12 col-sm-6 col-md-4 item">
                         <div id="<?php echo $id; ?>" class="image-flip">
                             <div class="mainflip">
-                                <div class="doc" onclick="__gaTracker('send','event','Browse','<?php echo $action; ?>','<?php echo $url; ?>');">
+                                <div class="doc" onclick="gtag('send','event','Browse','<?php echo $action; ?>','<?php echo $url; ?>');">
                                     <div class="card">
                                         <div class="card-body text-center">
                                             <!-- <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '?id=' . $doc->id . '&url=' . $url; ?>" alt="card image" onerror="this.src='http://placehold.it/120x160'"></p> -->
                                             <p class="thumb"><img class="img-fluid" src="<?php echo $thumb_service_url . '/' . $doc->id . '/' . $doc->id . '.jpg'; ?>" alt="card image" onerror="this.src='http://thumbs.bireme.org/nothumb.jpg'"></p>
                                             <a class="full-text" href="<?php echo $url; ?>"><h4 class="card-title"><?php echo $doc->ti[0]; ?></h4></a>
-                                            <a class="btn btn-primary btn-sm redirect" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id . '&lang=' . $lang; ?>" onclick="__gaTracker('send','event','Browse','View','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');"><i class="fa fa-info-circle"></i></a>
+                                            <a class="btn btn-primary btn-sm redirect" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id . '&lang=' . $lang; ?>" onclick="gtag('send','event','Browse','View','<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id; ?>');"><i class="fa fa-info-circle"></i></a>
                                         </div>
                                     </div>
                                 </div>

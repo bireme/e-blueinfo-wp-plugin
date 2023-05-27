@@ -118,7 +118,7 @@ $pages->paginate($page_url_params);
         <header class="page-header">
             <?php simple_sliding_menu($lang); ?>
             <div class="searchBarMain">
-        		<i class="material-icons searchBarSearchIcon noUserSelect" onclick="__gaTracker('send','event','Community','Search',document.getElementById('searchBarInput').value);">search</i>
+        		<i class="material-icons searchBarSearchIcon noUserSelect" onclick="gtag('send','event','Community','Search',document.getElementById('searchBarInput').value);">search</i>
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search">
                     <input type="hidden" name="community" id="community" value="<?php echo $community_ids; ?>">
         		    <input type="text" name="q" value="<?php echo $query; ?>" id="searchBarInput" placeholder="<?php _e('Search...', 'e-blueinfo'); ?>">
@@ -147,7 +147,7 @@ $pages->paginate($page_url_params);
                 <div class="col-xs-12 col-sm-6 col-md-4 item">
                     <div id="<?php echo $id; ?>" class="image-flip">
                         <div class="mainflip">
-                            <div class="frontside" onclick="__gaTracker('send','event','Community','View','<?php echo $community->name; ?>');">
+                            <div class="frontside" onclick="gtag('send','event','Community','View','<?php echo $community->name; ?>');">
                                 <div class="card">
                                     <div class="card-body text-center">
                                         <p><img class="img-fluid" src="<?php echo $community->image; ?>" alt="card image"></p>

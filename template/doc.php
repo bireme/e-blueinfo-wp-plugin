@@ -140,7 +140,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <header class="page-header">
             <?php simple_sliding_menu($lang); ?>
             <div class="searchBarMain">
-        		<i class="material-icons searchBarSearchIcon noUserSelect" onclick="__gaTracker('send','event','Document','Search',document.getElementById('searchBarInput').value);">search</i>
+        		<i class="material-icons searchBarSearchIcon noUserSelect" onclick="gtag('send','event','Document','Search',document.getElementById('searchBarInput').value);">search</i>
                 <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search">
                     <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
                     <input type="hidden" name="collection" id="collection" value="<?php echo $collection_id; ?>">
@@ -179,7 +179,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                                 <div>
                                     <?php if ( isset($doc[0]->electronic_address[0]->_u) ) : ?>
                                     <span><?php _e('Document Access', 'e-blueinfo'); ?></span>
-                                    <p class="card-text"><a href="<?php echo $doc[0]->electronic_address[0]->_u; ?>" onclick="__gaTracker('send','event','Document','Full Text','<?php echo $doc[0]->electronic_address[0]->_u; ?>');"><?php _e('Download link', 'e-blueinfo'); ?></a></p>
+                                    <p class="card-text"><a href="<?php echo $doc[0]->electronic_address[0]->_u; ?>" onclick="gtag('send','event','Document','Full Text','<?php echo $doc[0]->electronic_address[0]->_u; ?>');"><?php _e('Download link', 'e-blueinfo'); ?></a></p>
                                     <?php endif; ?>
                                     <span><?php _e('Abstract', 'e-blueinfo'); ?></span>
                                     <p class="card-text"><?php echo $abstract; ?></p>
