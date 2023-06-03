@@ -113,7 +113,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <div class="col s10 m11" id="barSearch">
             <nav>
                 <div class="nav-wrapper">
-                    <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Collection','Search','<?php echo $countries[$country]; ?>|'+document.getElementById('searchBarInput').value);">
+                    <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="gtag('send','event','Collection','Search','<?php echo $countries[$country]; ?>|'+document.getElementById('searchBarInput').value);">
                         <div class="input-field">
                             <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
                             <input type="hidden" name="count" id="count" value="<?php echo $count; ?>">
@@ -177,7 +177,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
             <?php // if ( $total_docs ) : ?>
             <article class="col s12">
                 <div class="card cardSingle">
-                    <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>" onclick="__gaTracker('send','event','Collection','View','<?php echo $countries[$country].'|'.$collection->name; ?>');">
+                    <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>" onclick="gtag('send','event','Collection','View','<?php echo $countries[$country].'|'.$collection->name; ?>');">
                         <div class="card-content">
                             <b><?php echo $collection->name; ?></b> <br />
                             <p><small><?php echo $collection->description; ?></small></p>
@@ -203,7 +203,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
             <?php if ( $total_docs ) : ?>
             <article class="col s12">
                 <div class="card cardSingle">
-                    <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>" onclick="__gaTracker('send','event','Collection','View','<?php echo $countries[$country].'|'.$collection->name; ?>');">
+                    <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>" onclick="gtag('send','event','Collection','View','<?php echo $countries[$country].'|'.$collection->name; ?>');">
                         <div class="card-content">
                             <b><?php echo $collection->name; ?></b> <br />
                             <p><small><?php echo $collection->description; ?></small></p>

@@ -16,7 +16,7 @@
 <div class="col s12">
     <ul class="collection">
         <?php foreach ($similar_docs as $similar) : ?>
-        <li class="collection-item"><a href="<?php echo $similar['url']; ?>" target="_blank" onclick="__gaTracker('send','event','Document','Similar','<?php echo $countries[$country].'|'.$similar['title']; ?>');"><?php echo $similar['title']; ?></a></li>
+        <li class="collection-item"><a href="<?php echo $similar['url']; ?>" target="_blank" onclick="gtag('send','event','Document','Similar','<?php echo $countries[$country].'|'.$similar['title']; ?>');"><?php echo $similar['title']; ?></a></li>
         <?php endforeach; ?>
     </ul>
 </div>

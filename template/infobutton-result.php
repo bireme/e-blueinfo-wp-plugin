@@ -47,7 +47,7 @@ if ($response){
 <section id="categories" class="container">
     <ul class="collection">
         <?php foreach ( $docs as $index => $doc ) : $index++; ?>
-        <li class="collection-item"><?php echo $index; ?> - <a href="<?php echo $doc->link->href; ?>" target="_blank" onclick="__gaTracker('send','event','InfoButton','View','<?php echo $countries[$country].'|'.$doc->title->_value; ?>');"><?php echo $doc->title->_value; ?></a></li>
+        <li class="collection-item"><?php echo $index; ?> - <a href="<?php echo $doc->link->href; ?>" target="_blank" onclick="gtag('send','event','InfoButton','View','<?php echo $countries[$country].'|'.$doc->title->_value; ?>');"><?php echo $doc->title->_value; ?></a></li>
         <?php endforeach; ?>
     </ul>
 </section>

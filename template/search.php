@@ -128,7 +128,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
         <div class="col s10 m11" id="barSearch">
             <nav>
                 <div class="nav-wrapper">
-                    <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="__gaTracker('send','event','Search Results','Search','<?php echo $countries[$country]; ?>|'+document.getElementById('searchBarInput').value);">
+                    <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($eblueinfo_plugin_slug); ?>search" onsubmit="gtag('send','event','Search Results','Search','<?php echo $countries[$country]; ?>|'+document.getElementById('searchBarInput').value);">
                         <div class="input-field">
                             <input type="hidden" name="community" id="community" value="<?php echo $community_id; ?>">
                             <input type="hidden" name="collection" id="collection" value="<?php echo $collection_id; ?>">
@@ -180,14 +180,14 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                     </div>
                     <div class="col s2 right-align">
                         <?php if ( 'leisref' != $doc->is ) : ?>
-                        <div class="iconActions btn-favorites" data-author="<?php echo implode('; ', $doc->au); ?>" data-altid="<?php echo $altid; ?>" data-docid="<?php echo $doc->id; ?>"><a class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Add to Favorites', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Search Results','Favorites','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">star</i></a></div>
+                        <div class="iconActions btn-favorites" data-author="<?php echo implode('; ', $doc->au); ?>" data-altid="<?php echo $altid; ?>" data-docid="<?php echo $doc->id; ?>"><a class="btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('Add to Favorites', 'e-blueinfo'); ?>" onclick="gtag('send','event','Search Results','Favorites','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">star</i></a></div>
                         <?php endif; ?>
                         <?php if ( isset($doc->ur[0]) ) : ?>
-                        <div class="iconActions"><a href="<?php echo $doc->ur[0]; ?>" data-docid="<?php echo $doc->id; ?>" class="btn-ajax e-blueinfo-doc btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="__gaTracker('send','event','Search Results','Full Text','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">visibility</i></a></div>
+                        <div class="iconActions"><a href="<?php echo $doc->ur[0]; ?>" data-docid="<?php echo $doc->id; ?>" class="btn-ajax e-blueinfo-doc btn-floating waves-effect waves-light blue lightn-3 btn-small" title="<?php _e('View Document', 'e-blueinfo'); ?>" onclick="gtag('send','event','Search Results','Full Text','<?php echo $countries[$country].'|'.$title; ?>');"><i class="material-icons">visibility</i></a></div>
                         <?php endif; ?>
                     </div>
                     <div class="col s12 blue-grey lighten-5 padding1">
-                        <a class="e-blueinfo-doc" data-docid="<?php echo $doc->id; ?>" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="__gaTracker('send','event','Search Results','View','<?php echo $countries[$country].'|'.$title; ?>');">
+                        <a class="e-blueinfo-doc" data-docid="<?php echo $doc->id; ?>" href="<?php echo real_site_url($eblueinfo_plugin_slug) . 'doc/' . $doc->id . '?community=' . $community_id . '&collection=' . $collection_id; ?>" onclick="gtag('send','event','Search Results','View','<?php echo $countries[$country].'|'.$title; ?>');">
                             <p class="doc-title"><?php echo $title; ?></p>
                         </a>
                     </div>

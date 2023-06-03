@@ -676,21 +676,23 @@ if(!class_exists('EBlueInfo_Plugin')) {
             }
 
             // check if is defined GA code and pagename starts with plugin slug
-            if ($eblueinfo_config['google_analytics_code'] != ''
-                && strpos($pagename, $this->plugin_slug) === 0) {
-
+            if ($eblueinfo_config['google_analytics_code'] != '' && strpos($pagename, $this->plugin_slug) === 0) {
+                $google_analytics_code = explode(PHP_EOL, $eblueinfo_config['google_analytics_code']);
+                foreach ($google_analytics_code as $ga_code) {
         ?>
-        <script type="text/javascript">
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
-            __gaTracker('create', '<?php echo $eblueinfo_config['google_analytics_code']; ?>', 'auto');
-            __gaTracker('send', 'pageview');
-            __gaTracker('set', 'userId', '<?php echo $userID; ?>'); // Set the user ID using signed-in user_id.
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $ga_code; ?>"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ 'userId' : '<?php echo $userID; ?>' }); // set the user ID using signed-in user_id
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '<?php echo $ga_code; ?>');
+            // gtag('config', '<?php echo $ga_code; ?>', { 'user_id': '<?php echo $userID; ?>' });
         </script>
         <?php
-            }
+                }
+            } //endif
         }
 
         function force_cookie_lang() {
