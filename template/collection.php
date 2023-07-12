@@ -146,7 +146,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <!-- ./Sidebar -->
 <?php if ( $collection_types && count($collection_types) == 2 ) : ?>
 <section class="center-align">
-    Display by:
+    <?php _e('Display by','e-blueinfo'); ?>:
     <label>
         <input id="radioCategories" class="with-gap" name="exibir" type="radio" value="Categorias" checked />
         <span><?php echo strtoupper(__('Categories','e-blueinfo')); ?></span>
@@ -174,14 +174,14 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
 <section id="categories" class="container containerAos">
     <div class="row">
         <?php foreach ( $categories as $index => $collection) : $index++; $total_docs = $collection_cluster['_'.$collection->id]['total']; ?>
-            <?php // if ( $total_docs ) : ?>
+            <?php if ( $total_docs ) : ?>
             <article class="col s12">
                 <div class="card cardSingle">
                     <a href="<?php echo real_site_url($eblueinfo_plugin_slug); ?>browse/?community=<?php echo $community_id; ?>&collection=<?php echo $collection->id; ?>" onclick="gtag('send','event','Collection','View','<?php echo $countries[$country].'|'.$collection->name; ?>');">
                         <div class="card-content">
                             <b><?php echo $collection->name; ?></b> <br />
                             <p><small><?php echo $collection->description; ?></small></p>
-                            <small><?php _e('Documents','e-blueinfo'); ?>: <?php echo $total_docs; ?></small>
+                            <small><?php _e('Documents','e-blueinfo'); ?>: <?php echo ( $total_docs ) ? $total_docs : 0; ?></small>
                             <?php if ( is_timestamp($collection->updated_time) ) : ?>
                                 <small><?php _e('Last Update','e-blueinfo'); ?>: <?php echo $collection->updated_time; ?></small>
                             <?php endif; ?>
@@ -189,7 +189,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                     </a>
                 </div>
             </article>
-            <?php // endif; ?>
+            <?php endif; ?>
         <?php endforeach; ?>
     </div>
 </section>
@@ -207,7 +207,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
                         <div class="card-content">
                             <b><?php echo $collection->name; ?></b> <br />
                             <p><small><?php echo $collection->description; ?></small></p>
-                            <small><?php _e('Documents','e-blueinfo'); ?>: <?php echo $total_docs; ?></small>
+                            <small><?php _e('Documents','e-blueinfo'); ?>: <?php echo ( $total_docs ) ? $total_docs : 0; ?></small>
                             <?php if ( is_timestamp($collection->updated_time) ) : ?>
                                 <small><?php _e('Last Update','e-blueinfo'); ?>: <?php echo $collection->updated_time; ?></small>
                             <?php endif; ?>

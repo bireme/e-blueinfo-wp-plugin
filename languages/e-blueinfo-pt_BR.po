@@ -4,15 +4,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Memória Azul 0.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/leisref\n"
-"POT-Creation-Date: 2021-08-30 14:25-0300\n"
-"PO-Revision-Date: 2021-08-30 14:26-0300\n"
+"POT-Creation-Date: 2023-07-12 16:58-0300\n"
+"PO-Revision-Date: 2023-07-12 16:58-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -84,15 +84,15 @@ msgstr "Paraguai"
 msgid "Peru"
 msgstr "Perú"
 
-#: e-blueinfo.php:642
+#: e-blueinfo.php:647
 msgid "Document added to Favorites"
 msgstr "Documento adicionado aos Favoritos"
 
-#: e-blueinfo.php:643
+#: e-blueinfo.php:648
 msgid "This document has already been added to Favorites"
 msgstr "Este documento já foi adicionado aos Favoritos"
 
-#: e-blueinfo.php:644
+#: e-blueinfo.php:649
 msgid "The document was not correctly added to Favorites"
 msgstr "O documento não foi adicionado corretamente aos Favoritos"
 
@@ -167,7 +167,7 @@ msgstr "Base de dados"
 msgid "Collection"
 msgstr "Coleção"
 
-#: settings.php:131 template/leisref-metadata.php:167 template/menu.php:137
+#: settings.php:131 template/leisref-metadata.php:167 template/menu.php:142
 #: template/multimedia-metadata.php:175
 msgid "Language"
 msgstr "Idioma"
@@ -195,7 +195,7 @@ msgstr "Escolher país"
 #: template/biblio-metadata.php:125 template/biblio-metadata.php:180
 #: template/browse.php:324 template/browse.php:344 template/favorites.php:152
 #: template/favorites.php:223 template/leisref-metadata.php:207
-#: template/menu.php:75 template/multimedia-metadata.php:109
+#: template/menu.php:80 template/multimedia-metadata.php:109
 #: template/multimedia-metadata.php:124 template/multimedia-metadata.php:215
 #: template/search.php:204 template/visited.php:147 template/visited.php:163
 msgid "Favorites"
@@ -220,7 +220,7 @@ msgid "Title"
 msgstr "Título"
 
 #: template/biblio-metadata.php:138 template/leisref-metadata.php:131
-#: template/menu.php:104 template/multimedia-metadata.php:142
+#: template/menu.php:109 template/multimedia-metadata.php:142
 #: template/search.php:178
 msgid "Contents"
 msgstr "Conteúdos"
@@ -257,7 +257,7 @@ msgstr ""
 
 #: template/biblio-metadata.php:182 template/browse.php:346
 #: template/favorites.php:225 template/leisref-metadata.php:209
-#: template/login.php:21 template/login.php:63 template/menu.php:78
+#: template/login.php:21 template/login.php:63 template/menu.php:83
 #: template/multimedia-metadata.php:217 template/search.php:206
 #: template/visited.php:165
 msgid "Login"
@@ -351,7 +351,7 @@ msgstr "Todos os documentos"
 msgid "Last Visited"
 msgstr "Último Visitado"
 
-#: template/browse.php:267 template/browse.php:282 template/menu.php:76
+#: template/browse.php:267 template/browse.php:282 template/menu.php:81
 msgid "Visited"
 msgstr "Visitados"
 
@@ -387,6 +387,10 @@ msgstr "Não há mais documentos"
 #: template/browse.php:367 template/search.php:227
 msgid "Loading..."
 msgstr "Carregando..."
+
+#: template/collection.php:149
+msgid "Display by"
+msgstr "Mostrar por"
 
 #: template/collection.php:152
 msgid "Categories"
@@ -439,6 +443,10 @@ msgstr "Outros Conteúdos"
 msgid "Search for scientific evidence in the Virtual Health Library"
 msgstr "Buscar evidências científicas na Biblioteca Virtual em Saúde"
 
+#: template/community.php:251
+msgid "No description"
+msgstr "Sem descrição"
+
 #: template/community.php:264
 msgid ""
 "Collection of guidelines published by the Panamerican Health Organization "
@@ -459,7 +467,7 @@ msgstr ""
 msgid "Contact Form"
 msgstr "Formulário de Contato"
 
-#: template/country.php:46 template/menu.php:88 template/menu.php:102
+#: template/country.php:46 template/menu.php:93 template/menu.php:107
 msgid "Country"
 msgstr "País"
 
@@ -648,51 +656,51 @@ msgstr "Lembrar-me"
 msgid "Macao"
 msgstr "Macau"
 
-#: template/menu.php:74
+#: template/menu.php:79
 msgid "Logout"
 msgstr "Logout"
 
-#: template/menu.php:82 template/menu.php:94
+#: template/menu.php:87 template/menu.php:99
 msgid "Change country"
 msgstr "Escolher país"
 
-#: template/menu.php:92
+#: template/menu.php:97
 msgid "See more"
 msgstr "Saiba mais"
 
-#: template/menu.php:109
+#: template/menu.php:114
 msgid "About"
 msgstr "Sobre"
 
-#: template/menu.php:112
+#: template/menu.php:117
 msgid "Why e-BlueInfo?"
 msgstr "Por que e-BlueInfo?"
 
-#: template/menu.php:113
+#: template/menu.php:118
 msgid "Supporters"
 msgstr "Apoiadores"
 
-#: template/menu.php:123
+#: template/menu.php:128
 msgid "Help"
 msgstr "Ajuda"
 
-#: template/menu.php:126
+#: template/menu.php:131
 msgid "Contact"
 msgstr "Contato"
 
-#: template/menu.php:127
+#: template/menu.php:132
 msgid "Tutorial"
 msgstr "Tutorial"
 
-#: template/menu.php:148
+#: template/menu.php:153
 msgid "Settings"
 msgstr "Configurações"
 
-#: template/menu.php:155
+#: template/menu.php:160
 msgid "Setting Colors"
 msgstr "Definir Cores"
 
-#: template/menu.php:158 template/menu.php:161 template/menu.php:164
+#: template/menu.php:163 template/menu.php:166 template/menu.php:169
 msgid "Color"
 msgstr "Cor"
 

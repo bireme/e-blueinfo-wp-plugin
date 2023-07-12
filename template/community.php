@@ -74,7 +74,7 @@ if ( $user_filter != '' ) {
     }
 }
 
-// print $eblueinfo_service_request;
+// echo "<pre>"; print_r($eblueinfo_service_request); echo "</pre>"; die();
 
 if ( 'US' != $cc ) {
     $response = @file_get_contents($eblueinfo_service_request);
@@ -248,7 +248,7 @@ $home_url = isset($eblueinfo_config['home_url_' . $lang]) ? $eblueinfo_config['h
     <div id="modal-community-<?php echo $community->id; ?>" class="modal modal-fixed-footer">
         <div class="modal-content">
             <h4><?php echo $community->name; ?></h4>
-            <p><?php echo $community->description; ?></p>
+            <p><?php echo ( $community->description ) ? $community->description : __('No description','e-blueinfo'); ?></p>
         </div>
         <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat"><?php _e('Close','e-blueinfo'); ?></a>
