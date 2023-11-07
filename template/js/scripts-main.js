@@ -151,7 +151,7 @@ $(function () {
 
     $('select.languages').on( "change", function(e) {
         var lang = $(this).val();
-        var label = $('div.countries.'+lang).data('text');
+        var label = $('div.countries.'+lang).data('label');
         var country = $('div.countries.'+lang+' select').find('option:selected').data('country');
 
         $('div.countries').css('display', 'none');
