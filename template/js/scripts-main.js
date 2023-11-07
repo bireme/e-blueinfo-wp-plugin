@@ -151,10 +151,13 @@ $(function () {
 
     $('select.languages').on( "change", function(e) {
         var lang = $(this).val();
+        var label = $('div.countries.'+lang).data('text');
         var country = $('div.countries.'+lang+' select').find('option:selected').data('country');
 
         $('div.countries').css('display', 'none');
         $('div.countries.'+lang).css('display', 'block');
+        $('#btn-submit').text(label);
+        $('#btn-submit').removeClass('hide');
 
         if ( country && lang ) {
             $('#btn-submit').attr('disabled', false);

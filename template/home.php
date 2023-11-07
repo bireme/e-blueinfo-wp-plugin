@@ -62,7 +62,7 @@
                     </select>
                 </div>
                 <?php endif; ?>
-                <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4 countries en">
+                <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4 countries en" data-label="SELECT">
                     <?php $countries_en = normalize_country_object($countries, 'en'); ?>
                     <?php if ( !EBLUEINFO_CTEST ) { $countries_en = array_diff($countries_en, $ctest); } ?>
                     <h6 class="center-align"><b>Please choose a country</b></h6>
@@ -81,7 +81,7 @@
                         </optgroup>
                     </select>
                 </div>
-                <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4 countries pt">
+                <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4 countries pt" data-label="SELECIONAR">
                     <?php $countries_pt = normalize_country_object($countries, 'pt'); ?>
                     <?php if ( !EBLUEINFO_CTEST ) { $countries_pt = array_diff($countries_pt, $ctest); } ?>
                     <h6 class="center-align"><b>Por favor, escolha um país</b></h6>
@@ -100,7 +100,7 @@
                         </optgroup>
                     </select>
                 </div>
-                <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4 countries es">
+                <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4 countries es" data-label="SELECCIONAR">
                     <?php $countries_es = normalize_country_object($countries, 'es'); ?>
                     <?php if ( !EBLUEINFO_CTEST ) { $countries_es = array_diff($countries_es, $ctest); } ?>
                     <h6 class="center-align"><b>Por favor, elija un país</b></h6>
@@ -120,7 +120,7 @@
                     </select>
                 </div>
                 <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4 center-align">
-                    <a id="btn-submit" class="btn waves-effect waves-light blue darken-4 bt100" disabled><?php echo strtoupper(__('Select', 'e-blueinfo')); ?></a>
+                    <a id="btn-submit" class="btn waves-effect waves-light blue darken-4 bt100 hide" disabled><?php echo strtoupper(__('Select', 'e-blueinfo')); ?></a>
                 </div>
             </div>
         </form>

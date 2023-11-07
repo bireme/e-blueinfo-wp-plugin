@@ -351,6 +351,9 @@ a:active{
     content: "";
     flex: auto;
 }
+.hide {
+    display: none;
+}
 /****************************** cor 01 ************************/
 .bgColor1{
 	background: url('../images/bgShape.png') #2962ff top right fixed no-repeat;
