@@ -596,7 +596,8 @@ if(!class_exists('EBlueInfo_Plugin')) {
                 "SV" => __('El Salvador', 'e-blueinfo'),
                 "GT" => __('Guatemala', 'e-blueinfo'),
                 "PY" => __('Paraguay', 'e-blueinfo'),
-                "PE" => __('Peru', 'e-blueinfo')
+                "PE" => __('Peru', 'e-blueinfo'),
+                "HN" => __('Honduras', 'e-blueinfo')
             );
             $c_name = array_intersect_key($c_name, array_flip($c_code));
 
@@ -630,6 +631,11 @@ if(!class_exists('EBlueInfo_Plugin')) {
                     "pt" => $_site . '/dados-do-peru/',
                     "es" => $_site . '/es/datos-de-peru/',
                     "en" => $_site . '/en/data-from-peru/'
+                ),
+                "HN" => array(
+                    "pt" => $_site . '/dados-de-honduras/',
+                    "es" => $_site . '/es/datos-de-honduras/',
+                    "en" => $_site . '/en/data-from-honduras/'
                 )
             );
             $c_pages = wp_list_pluck( $c_pages, $lang );

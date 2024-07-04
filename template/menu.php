@@ -9,6 +9,7 @@
         "CO" => __('Colombia', 'e-blueinfo'),
         "SV" => __('El Salvador', 'e-blueinfo'),
         "GT" => __('Guatemala', 'e-blueinfo'),
+        "HN" => __('Honduras', 'e-blueinfo'),
         "PY" => __('Paraguay', 'e-blueinfo'),
         "PE" => __('Peru', 'e-blueinfo'),
         "MO" => __('Macao', 'e-blueinfo')
@@ -43,6 +44,11 @@
             "pt" => $site . '/dados-do-peru/',
             "es" => $site . '/es/datos-de-peru/',
             "en" => $site . '/en/data-from-peru/'
+        ),
+        "HN" => array(
+            "pt" => $site . '/dados-do-honduras/',
+            "es" => $site . '/es/datos-de-honduras/',
+            "en" => $site . '/en/data-from-honduras/'
         )
     );
 
